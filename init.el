@@ -27,10 +27,16 @@
 (add-to-list 'load-path config-dir)
 
 (require 'cl-lib)
+(require 'one-key)
+(require 'lazy-load)
+(require 'benchmark-init)
+(add-hook 'after-init-hook 'benchmark-init/deactivate)
+
+;;; Config files
 (require 'init-misc)
 (require 'init-appearance)
 (require 'init-parens)
-(require 'init-git)
+(require 'init-lazy-keys)
 
 (progn ;     startup
   (message "Loading %s...done (%.3fs)" user-init-file

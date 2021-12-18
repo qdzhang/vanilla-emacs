@@ -1,3 +1,6 @@
+[submodule "benchmark-init"]
+	path = lib/benchmark-init
+	url = git@github.com:dholm/benchmark-init-el.git
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
@@ -14,9 +17,18 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "lazy-load"]
+	path = lib/lazy-load
+	url = git@github.com:manateelazycat/lazy-load.git
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
+[submodule "modus-themes"]
+	path = lib/modus-themes
+	url = git@gitlab.com:protesilaos/modus-themes.git
+[submodule "one-key"]
+	path = lib/one-key
+	url = git@github.com:manateelazycat/one-key.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git
