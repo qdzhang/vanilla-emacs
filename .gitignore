@@ -62,7 +62,6 @@ places
 .historian
 .last-package-update-day
 parinfer-rust/
-transient/
 rime/
 custom.el
 bookmarks
@@ -71,3 +70,4 @@ racket-mode/
 amx-items
 projects
 history
+/epkgs/
