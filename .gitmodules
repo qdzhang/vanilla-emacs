@@ -1,3 +1,6 @@
+[submodule "aggressive-indent"]
+	path = lib/aggressive-indent
+	url = git@github.com:Malabarba/aggressive-indent-mode.git
 [submodule "benchmark-init"]
 	path = lib/benchmark-init
 	url = git@github.com:dholm/benchmark-init-el.git
@@ -10,6 +13,9 @@
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
+[submodule "easy-kill"]
+	path = lib/easy-kill
+	url = git@github.com:leoliu/easy-kill.git
 [submodule "emacsql"]
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
@@ -29,6 +35,9 @@
 [submodule "one-key"]
 	path = lib/one-key
 	url = git@github.com:manateelazycat/one-key.git
+[submodule "smartparens"]
+	path = lib/smartparens
+	url = git@github.com:Fuco1/smartparens.git
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git
