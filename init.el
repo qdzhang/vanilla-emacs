@@ -36,6 +36,9 @@
 (require 'init-misc)
 (require 'init-appearance)
 (require 'init-parens)
+(require 'init-smartparens)
+(require 'init-aggressive-indent)
+(require 'init-edit)
 (require 'init-lazy-keys)
 
 (progn ;     startup
