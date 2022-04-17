@@ -26,11 +26,12 @@
 ;; Set up load path
 (add-to-list 'load-path config-dir)
 
+;; Basic packages
 (require 'cl-lib)
 (require 'one-key)
 (require 'lazy-load)
-(require 'benchmark-init)
-(add-hook 'after-init-hook 'benchmark-init/deactivate)
+
+(fido-vertical-mode)
 
 ;;; Config files
 (require 'init-misc)
