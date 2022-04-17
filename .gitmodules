@@ -1,9 +1,6 @@
 [submodule "aggressive-indent"]
 	path = lib/aggressive-indent
 	url = git@github.com:Malabarba/aggressive-indent-mode.git
-[submodule "benchmark-init"]
-	path = lib/benchmark-init
-	url = git@github.com:dholm/benchmark-init-el.git
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git

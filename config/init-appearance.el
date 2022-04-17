@@ -1,8 +1,8 @@
 ;;; init-appearance.el -*- lexical-binding: t; -*-
 
-(set-face-attribute 'default nil :font (font-spec :family "IBM Plex Mono" :size 20))
+(set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 23))
 (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
-(set-face-attribute 'fixed-pitch nil :family "IBM Plex Mono")
+(set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
 ;; (set-fontset-font t 'han "LXGW WenKai")
 (set-fontset-font t 'han "Sarasa Mono SC")
 (set-fontset-font t 'kana "Sarasa Mono J")

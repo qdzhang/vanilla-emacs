@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 ;;; Early birds
-(progn                                  ;     startup
+(progn
   (defvar before-user-init-time (current-time)
     "Value of `current-time' when Emacs begins loading `user-init-file'.")
   (message "Loading Emacs...done (%.3fs)"
@@ -42,7 +42,7 @@
 (require 'init-edit)
 (require 'init-lazy-keys)
 
-(progn ;     startup
+(progn
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
                                       before-user-init-time)))
@@ -54,7 +54,7 @@
                                           before-user-init-time))))
             t))
 
-(progn ;     personalize
+(progn
   (let ((file (expand-file-name (concat (user-real-login-name) ".el")
                                 user-emacs-directory)))
     (when (file-exists-p file)

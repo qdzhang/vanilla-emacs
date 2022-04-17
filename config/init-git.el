@@ -6,6 +6,9 @@
                           'magit-insert-stashes
                           'append))
 
+;; Make magit status show full screen
+;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
+(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
 (one-key-create-menu
  "MAGIT"
