@@ -60,6 +60,7 @@
    ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
    ("C-]" . sp-select-next-thing-exchange)
    ("C-\"" . sp-change-inner)
+   ("M-o" . my/sp-new-line)
    ("M-i" . sp-change-enclosing))
  
  smartparens-mode-map

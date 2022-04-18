@@ -19,4 +19,12 @@
    )
  t)
 
+(defun my/sp-new-line ()
+  "This is my version of `sp-newline'.
+Move a char forward, then call `sp-newline'"
+  (interactive)
+  (forward-char)
+  (when (equal (char-before) 41) ; )
+    (sp-newline)))
+
 (provide 'init-smartparens)
