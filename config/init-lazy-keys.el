@@ -65,4 +65,10 @@
  smartparens-mode-map
  "init-smartparens")
 
+(lazy-load-global-keys
+ '(
+   ("C-c d" . one-key-menu-dired))
+ "init-dired")
+
+
 (provide 'init-lazy-keys)
