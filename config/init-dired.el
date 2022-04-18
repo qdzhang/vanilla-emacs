@@ -144,8 +144,6 @@ Version 2018-12-23"
    (("i" . "Image dired") . image-dired)
    (("s" . "Dired sort") . my/xah-dired-sort)
    (("z" . "File size") . my/dired-get-size)
-   (("r" . "Open async") . my/dired-start-process)
-   (("/" . "Filter") . my/dired-filter)
    )
  t)
 

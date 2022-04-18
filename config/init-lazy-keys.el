@@ -71,5 +71,13 @@
    ("C-c d" . one-key-menu-dired))
  "init-dired")
 
+(eval-after-load 'dired
+  (lambda ()
+    (lazy-load-local-keys
+     '(
+       ("r" . my/dired-start-process)
+       ("/" . my/dired-filter))
+     dired-mode-map
+     "init-dired")))
 
 (provide 'init-lazy-keys)

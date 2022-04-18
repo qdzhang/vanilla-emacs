@@ -41,6 +41,7 @@
 (require 'init-aggressive-indent)
 (require 'init-edit)
 (require 'init-company)
+(require 'init-dired)
 (require 'init-lazy-keys)
 
 (progn
