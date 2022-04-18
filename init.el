@@ -40,6 +40,7 @@
 (require 'init-smartparens)
 (require 'init-aggressive-indent)
 (require 'init-edit)
+(require 'init-company)
 (require 'init-lazy-keys)
 
 (progn
