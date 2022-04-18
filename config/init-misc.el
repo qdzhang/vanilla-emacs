@@ -28,6 +28,10 @@
   (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
   (setq scroll-step 1) ;; keyboard scroll one line at a time
 
+  (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
+  (setq-default display-fill-column-indicator-column 80)
+  (setq-default fill-column 80)
+
   (setq-default indent-tabs-mode nil)
   (savehist-mode 1)
   (setq save-interprogram-paste-before-kill t

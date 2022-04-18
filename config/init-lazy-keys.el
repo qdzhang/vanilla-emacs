@@ -16,6 +16,13 @@
 ;;  '(
 ;;    ("C-<return>" . my/newline-without-break-of-line)))
 
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+;; Use `comment-line' to replace `comment-dwim'
+(global-set-key [remap comment-dwim] #'comment-line)
+
+
 ;;; === Git config ===
 
 (lazy-load-global-keys
