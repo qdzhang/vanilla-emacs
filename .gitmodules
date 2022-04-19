@@ -1,6 +1,9 @@
 [submodule "aggressive-indent"]
 	path = lib/aggressive-indent
 	url = git@github.com:Malabarba/aggressive-indent-mode.git
+[submodule "benchmark-init"]
+	path = lib/benchmark-init
+	url = git@github.com:dholm/benchmark-init-el.git
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
@@ -10,6 +13,9 @@
 [submodule "company"]
 	path = lib/company
 	url = git@github.com:company-mode/company-mode.git
+[submodule "company-c-headers"]
+	path = lib/company-c-headers
+	url = git@github.com:randomphrase/company-c-headers.git
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
@@ -29,6 +35,9 @@
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
+[submodule "meson-mode"]
+	path = lib/meson-mode
+	url = git@github.com:wentasah/meson-mode.git
 [submodule "modus-themes"]
 	path = lib/modus-themes
 	url = git@gitlab.com:protesilaos/modus-themes.git

@@ -18,6 +18,8 @@
   (borg-initialize))
 
 
+(require 'benchmark-init)
+(benchmark-init/activate)
 
 ;; Set path to dependencies
 (setq config-dir
@@ -44,6 +46,8 @@
 (require 'init-dired)
 (require 'init-lazy-keys)
 (require 'init-super-save)
+(require 'init-c)
+
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
@@ -62,3 +66,7 @@
                                 user-emacs-directory)))
     (when (file-exists-p file)
       (load file))))
+
+
+;; To disable collection of benchmark data after init is done.
+(add-hook 'after-init-hook 'benchmark-init/deactivate)
