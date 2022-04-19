@@ -80,4 +80,22 @@
      dired-mode-map
      "init-dired")))
 
+(lazy-load-global-keys
+ '(
+   ("C-c s" . mu-recursive-grep))
+ "init-grep")
+
+(lazy-load-global-keys
+ '(
+   ("C-x p n" . my/create-project-root-file)
+   ("C-x p i" . my/create-fd-ignore-file))
+ "init-project")
+
+(lazy-load-global-keys
+ '(
+   ("C-x t [" . tab-bar-switch-to-prev-tab)
+   ("C-x t ]" . tab-bar-switch-to-next-tab)
+   ("M-g t" . tab-bar-switch-to-tab))
+ "init-tab-bar")
+
 (provide 'init-lazy-keys)
