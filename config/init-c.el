@@ -23,7 +23,7 @@
   (global-semantic-idle-scheduler-mode 1)
   (semantic-add-system-include "/usr/include/gtk-3.0/" 'c-mode))
 
-(require 'meson-mode)
+
 (with-eval-after-load 'company
   (add-hook 'meson-mode-hook 'company-mode))
 

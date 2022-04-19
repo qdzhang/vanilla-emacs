@@ -42,12 +42,15 @@
 (require 'init-smartparens)
 (require 'init-aggressive-indent)
 (require 'init-edit)
+(require 'init-isearch)
 (require 'init-company)
 (require 'init-dired)
+(require 'init-mode)
 (require 'init-lazy-keys)
 (require 'init-super-save)
 (require 'init-c)
-
+(require 'init-project)
+(require 'init-tab-bar)
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
