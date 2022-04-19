@@ -1,8 +1,8 @@
 ;;; init-dired.el --- dired-config                   -*- lexical-binding: t; -*-
 
 
-(add-hook 'dired-mode 'dired-hide-details-mode)
-(add-hook 'dired-mode 'auto-revert-mode)
+(add-hook 'dired-mode-hook 'dired-hide-details-mode)
+(add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (setq dired-dwim-target t)
 (setq dired-guess-shell-alist-user '(("\\.pdf\\'" "llpp")
