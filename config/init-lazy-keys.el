@@ -62,7 +62,7 @@
    ("C-\"" . sp-change-inner)
    ("M-o" . my/sp-new-line)
    ("M-i" . sp-change-enclosing))
- 
+
  smartparens-mode-map
  "init-smartparens")
 
@@ -97,5 +97,19 @@
    ("C-x t ]" . tab-bar-switch-to-next-tab)
    ("M-g t" . tab-bar-switch-to-tab))
  "init-tab-bar")
+
+(lazy-load-set-keys
+ '(("C-x w" . delete-frame)))
+
+
+;; According to thie issues, eshell can't bind keys in eshll-mode-map this time
+;; Use hook instead
+;; https://github.com/noctuid/general.el/issues/80
+(add-hook 'eshell-mode-hook (lambda ()
+                              (lazy-load-local-keys
+                               '(
+                                 ("C-r" . my/eshell-history))
+                               eshell-mode-map
+                               "init-eshell")))
 
 (provide 'init-lazy-keys)
