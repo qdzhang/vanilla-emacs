@@ -44,6 +44,9 @@
 [submodule "one-key"]
 	path = lib/one-key
 	url = git@github.com:manateelazycat/one-key.git
+[submodule "rime"]
+	path = lib/rime
+	url = git@github.com:DogLooksGood/emacs-rime.git
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git

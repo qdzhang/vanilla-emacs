@@ -51,6 +51,7 @@
 (require 'init-c)
 (require 'init-project)
 (require 'init-tab-bar)
+(require 'init-rime)
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
