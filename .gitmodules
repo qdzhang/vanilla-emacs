@@ -38,9 +38,6 @@
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
-[submodule "modus-themes"]
-	path = lib/modus-themes
-	url = git@gitlab.com:protesilaos/modus-themes.git
 [submodule "one-key"]
 	path = lib/one-key
 	url = git@github.com:manateelazycat/one-key.git

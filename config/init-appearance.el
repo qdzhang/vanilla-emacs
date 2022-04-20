@@ -20,11 +20,12 @@
 
 ;; (load-theme 'tsdh-light t)
 
-(require 'modus-themes)
 
 (setq modus-themes-no-mixed-fonts t
       modus-themes-org-blocks 'gray-background)
-(modus-themes-load-themes)
-(modus-themes-load-operandi)
+
+(load-theme 'modus-operandi)
+
+(define-key global-map (kbd "<f6>") #'modus-themes-toggle)
 
 (provide 'init-appearance)
