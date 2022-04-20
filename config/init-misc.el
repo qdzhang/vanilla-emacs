@@ -58,4 +58,20 @@
       (unless (file-exists-p dir)
         (make-directory dir t)))))
 
+;;; Show tabs
+(defun my/show-tabs ()
+  (setq whitespace-style
+        '(face
+          ;; show tab as » (see `whitespace-display-mappings')
+          tab-mark))
+  (whitespace-mode 1))
+
+;;; Show trailing whitespace
+(defun my/show-trailing-whitespace ()
+  (set-face-attribute 'trailing-whitespace nil
+                      :background "green")
+  (setq show-trailing-whitespace 1))
+(add-hook 'prog-mode-hook 'my/show-trailing-whitespace)
+(add-hook 'prog-mode-hook 'my/show-tabs)
+
 (provide 'init-misc)
