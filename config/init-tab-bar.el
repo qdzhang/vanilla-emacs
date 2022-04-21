@@ -22,7 +22,7 @@
                 tab-bar-back-button nil
                 tab-bar-new-button nil
                 tab-bar-tab-hints t)
-  
+
   ;; Config `tab-bar-tab-name-format-function' to show pretty numbers
   ;; https://christiantietze.de/posts/2022/02/emacs-tab-bar-numbered-tabs/
   (defvar ct/circle-numbers-alist

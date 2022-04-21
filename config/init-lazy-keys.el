@@ -1,4 +1,4 @@
-;;; init-lazy-keys.el --- Init for lazy load keys
+;;; init-lazy-keys.el --- Init for lazy load keys  -*- lexical-binding: t; -*-
 
 ;;; newline-without-break-of-line
 ;;;###autoload

@@ -1,4 +1,4 @@
-;;; init-smartparens.el --- Init for smartparens
+;;; init-smartparens.el --- Init for smartparens  -*- lexical-binding: t; -*-
 
 (require 'smartparens-config)
 

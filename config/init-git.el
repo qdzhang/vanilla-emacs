@@ -1,4 +1,4 @@
-;;; init-git.el --- Init for git
+;;; init-git.el --- Init for git     -*- lexical-binding: t; -*-
 
 (with-eval-after-load 'magit
   (magit-add-section-hook 'magit-status-sections-hook
