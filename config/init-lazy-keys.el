@@ -47,6 +47,14 @@
    ("C-M-s" . one-key-menu-smartparens))
  "init-smartparens")
 
+(lazy-load-unset-keys '("M-m"))
+
+(lazy-load-global-keys
+ '(
+   ("M-m" . my/match-paren)
+   ("M-M" . my/forward-or-backward-sexp))
+ "init-parens")
+
 (lazy-load-local-keys
  '(
    ("M-<delete>" . sp-unwrap-sexp)
