@@ -74,16 +74,13 @@
  smartparens-mode-map
  "init-smartparens")
 
-(lazy-load-global-keys
- '(
-   ("C-c d" . one-key-menu-dired))
- "init-dired")
 
 (eval-after-load 'dired
   (lambda ()
     (lazy-load-local-keys
      '(
-       ("r" . my/dired-start-process)
+       ("C-c d" . one-key-menu-dired)
+       ("C-<return>" . my/dired-start-process)
        ("/" . my/dired-filter))
      dired-mode-map
      "init-dired")))
@@ -107,7 +104,8 @@
  "init-tab-bar")
 
 (lazy-load-set-keys
- '(("C-x w" . delete-frame)))
+ '(("C-x w" . delete-frame)
+   ("C-x W" . delete-other-frames)))
 
 
 ;; According to thie issues, eshell can't bind keys in eshll-mode-map this time
