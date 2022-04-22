@@ -26,8 +26,7 @@
 ;;; === Git config ===
 
 (lazy-load-global-keys
- '(
-   ("C-c g" . one-key-menu-magit))
+ '(("C-c g" . one-key-menu-magit))
  "init-git")
 
 ;;; === Git config ===
@@ -43,20 +42,24 @@
 ;; (lazy-load-set-keys smartparens-key-alist smartparens-mode-map)
 
 (lazy-load-global-keys
- '(
-   ("C-M-s" . one-key-menu-smartparens))
+ '(("C-M-s" . one-key-menu-smartparens))
  "init-smartparens")
 
 (lazy-load-unset-keys '("M-m"))
 
 (lazy-load-global-keys
- '(
-   ("M-m" . my/match-paren)
+ '(("M-m" . my/match-paren)
    ("M-M" . my/forward-or-backward-sexp))
  "init-parens")
 
 (lazy-load-local-keys
- '(
+ '(("C-M-f" . sp-forward-sexp)
+   ("C-M-b" . sp-backward-sexp)
+   ("C-M-d" . sp-down-sexp)
+   ("C-M-u" . sp-backward-up-sexp)
+   ("C-M-k" . sp-kill-sexp)
+   ("M-l" . sp-end-of-sexp)
+   ("M-n" . sp-end-of-next-sexp)
    ("M-<delete>" . sp-unwrap-sexp)
    ("M-<backspace>" . sp-backward-unwrap-sexp)
    ("C-<right>". sp-forward-slurp-sexp)
@@ -78,27 +81,28 @@
 (eval-after-load 'dired
   (lambda ()
     (lazy-load-local-keys
-     '(
-       ("C-c d" . one-key-menu-dired)
+     '(("C-c d" . one-key-menu-dired)
        ("C-<return>" . my/dired-start-process)
        ("/" . my/dired-filter))
      dired-mode-map
      "init-dired")))
 
 (lazy-load-global-keys
- '(
-   ("C-c s" . mu-recursive-grep))
+ '(("C-c s" . mu-recursive-grep))
  "init-grep")
 
+(lazy-load-unset-keys '("C-x f"))
+
+(lazy-load-set-keys
+ '(("C-x f" . find-lisp-find-dired)))
+
 (lazy-load-global-keys
- '(
-   ("C-x p n" . my/create-project-root-file)
+ '(("C-x p n" . my/create-project-root-file)
    ("C-x p i" . my/create-fd-ignore-file))
  "init-project")
 
 (lazy-load-global-keys
- '(
-   ("C-x t [" . tab-bar-switch-to-prev-tab)
+ '(("C-x t [" . tab-bar-switch-to-prev-tab)
    ("C-x t ]" . tab-bar-switch-to-next-tab)
    ("M-g t" . tab-bar-switch-to-tab))
  "init-tab-bar")
@@ -113,8 +117,7 @@
 ;; https://github.com/noctuid/general.el/issues/80
 (add-hook 'eshell-mode-hook (lambda ()
                               (lazy-load-local-keys
-                               '(
-                                 ("C-r" . my/eshell-history))
+                               '(("C-r" . my/eshell-history))
                                eshell-mode-map
                                "init-eshell")))
 

@@ -8,14 +8,15 @@
 
 (one-key-create-menu
  "SMARTPARENS"
- '(
-   (("d" . "sp down") . sp-down-sexp)
-   (("e" . "sp up") . sp-up-sexp)
-   (("u" . "sp backward up") . sp-backward-up-sexp)
-   (("a" . "sp backward down") . sp-backward-down-sexp)
-   (("f" . "sp forward") . sp-forward-sexp)
-   (("b" . "sp backward") . sp-backward-sexp)
-   (("k" . "sp kill") . sp-kill-sexp)
+ '((("d" . "Down") . sp-down-sexp)
+   (("e" . "Up") . sp-up-sexp)
+   (("u" . "Backward Up") . sp-backward-up-sexp)
+   (("a" . "Backward Down") . sp-backward-down-sexp)
+   (("f" . "Forward") . sp-forward-sexp)
+   (("b" . "Backward") . sp-backward-sexp)
+   (("k" . "Kill") . sp-kill-sexp)
+   (("r" . "Raise") . sp-raise-sexp)
+   (("t" . "Transpose") . sp-transpose-sexp)
    )
  t)
 
