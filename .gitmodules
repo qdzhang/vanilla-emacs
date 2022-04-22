@@ -29,6 +29,9 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "janet-mode"]
+	path = lib/janet-mode
+	url = git@github.com:ALSchwalm/janet-mode.git
 [submodule "lazy-load"]
 	path = lib/lazy-load
 	url = git@github.com:manateelazycat/lazy-load.git

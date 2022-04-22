@@ -2,5 +2,6 @@
 
 ;; Mode load
 (autoload 'meson-mode "meson-mode")
+(autoload 'janet-mode "janet-mode")
 
 (provide 'init-mode)
