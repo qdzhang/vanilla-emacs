@@ -121,4 +121,13 @@
                                eshell-mode-map
                                "init-eshell")))
 
+(lazy-load-global-keys
+ '(("C-c C-r" . my/sudo-edit))
+ "init-edit")
+
+(lazy-load-set-keys
+ '(("M-/" . hippie-expand)))
+
+
+
 (provide 'init-lazy-keys)
