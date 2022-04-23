@@ -128,6 +128,11 @@
 (lazy-load-set-keys
  '(("M-/" . hippie-expand)))
 
-
+(add-hook 'c-initialization-hook
+          (lambda ()
+            (lazy-load-local-keys
+             '(("C-M-<tab>" . clang-format-region))
+             c-mode-base-map
+             "init-clang-format")))
 
 (provide 'init-lazy-keys)
