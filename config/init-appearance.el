@@ -24,7 +24,9 @@
 (setq modus-themes-no-mixed-fonts t
       modus-themes-org-blocks 'gray-background)
 
-(load-theme 'modus-operandi)
+(if (display-graphic-p)
+    (load-theme 'modus-operandi)
+  (load-theme 'modus-vivendi))
 
 (define-key global-map (kbd "<f6>") #'modus-themes-toggle)
 
