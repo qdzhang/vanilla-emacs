@@ -44,6 +44,9 @@
 [submodule "one-key"]
 	path = lib/one-key
 	url = git@github.com:manateelazycat/one-key.git
+[submodule "rg"]
+	path = lib/rg
+	url = git@github.com:dajva/rg.el.git
 [submodule "rime"]
 	path = lib/rime
 	url = git@github.com:DogLooksGood/emacs-rime.git
@@ -56,6 +59,9 @@
 [submodule "transient"]
 	path = lib/transient
 	url = git@github.com:magit/transient.git
+[submodule "wgrep"]
+	path = lib/wgrep
+	url = git@github.com:mhayashi1120/Emacs-wgrep.git
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git

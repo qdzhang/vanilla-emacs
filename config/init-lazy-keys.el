@@ -88,7 +88,12 @@
      "init-dired")))
 
 (lazy-load-global-keys
- '(("C-c s" . mu-recursive-grep))
+ '(("C-c s" . rg-menu))
+ "init-grep")
+
+(lazy-load-local-keys
+ '(("M-s r" . rg-isearch-menu))
+ isearch-mode-map
  "init-grep")
 
 (lazy-load-unset-keys '("C-x f"))

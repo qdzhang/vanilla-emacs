@@ -18,3 +18,7 @@
     (rgrep search-term "*" search-path)))
 
 
+(require 'rg)
+(require 'rg-isearch)
+
+(provide 'init-grep)
