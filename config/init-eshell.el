@@ -12,4 +12,9 @@
     (setf (buffer-substring start-pos end-pos) command)
     (end-of-line)))
 
+(add-hook 'eshell-mode-hook (lambda ()
+                              (setq completion-ignore-case t)
+                              (setq read-file-name-completion-ignore-case t)
+                              (setq read-buffer-completion-ignore-case t)))
+
 (provide 'init-eshell)
