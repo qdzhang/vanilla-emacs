@@ -136,8 +136,9 @@
 (add-hook 'c-initialization-hook
           (lambda ()
             (lazy-load-local-keys
-             '(("C-M-<tab>" . clang-format-region))
+             '(("C-M-<tab>" . clang-format-region)
+               ("C-c <f2>" . clang-rename))
              c-mode-base-map
-             "init-clang-format")))
+             "init-clang-tools")))
 
 (provide 'init-lazy-keys)
