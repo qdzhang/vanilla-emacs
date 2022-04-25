@@ -14,7 +14,11 @@ amx-items
 projects
 history
 /epkgs/
-eln-cache/
+/eln-cache/
+/transient/
+/semanticdb/
+.project
+.fdignore
 
 # Created by https://www.toptal.com/developers/gitignore/api/emacs
 # Edit at https://www.toptal.com/developers/gitignore?templates=emacs
