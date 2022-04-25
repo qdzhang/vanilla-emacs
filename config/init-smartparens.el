@@ -17,15 +17,19 @@
    (("k" . "Kill") . sp-kill-sexp)
    (("r" . "Raise") . sp-raise-sexp)
    (("t" . "Transpose") . sp-transpose-sexp)
+   (("c" . "Convolute") . sp-convolute-sexp)
+   (("j" . "Join") . sp-join-sexp)
+   (("(" . "Wrap ()") . sp-wrap-round)
+   (("{" . "Wrap {}") . sp-wrap-curly)
+   (("[" . "Wrap []") . sp-wrap-square)
    )
  t)
 
 (defun my/sp-new-line ()
   "This is my version of `sp-newline'.
-Move a char forward, then call `sp-newline'"
+Jump out a sexp, then call `sp-newline'"
   (interactive)
-  (forward-char)
-  (when (equal (char-before) 41) ; )
-    (sp-newline)))
+  (sp-up-sexp)
+  (sp-newline))
 
 (provide 'init-smartparens)

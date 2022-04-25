@@ -45,13 +45,6 @@
  '(("C-M-s" . one-key-menu-smartparens))
  "init-smartparens")
 
-(lazy-load-unset-keys '("M-m"))
-
-(lazy-load-global-keys
- '(("M-m" . my/match-paren)
-   ("M-M" . my/forward-or-backward-sexp))
- "init-parens")
-
 (lazy-load-local-keys
  '(("C-M-f" . sp-forward-sexp)
    ("C-M-b" . sp-backward-sexp)
@@ -59,7 +52,7 @@
    ("C-M-u" . sp-backward-up-sexp)
    ("C-M-k" . sp-kill-sexp)
    ("M-l" . sp-end-of-sexp)
-   ("M-n" . sp-end-of-next-sexp)
+   ("M-u" . sp-up-sexp)
    ("M-<delete>" . sp-unwrap-sexp)
    ("M-<backspace>" . sp-backward-unwrap-sexp)
    ("C-<right>". sp-forward-slurp-sexp)
