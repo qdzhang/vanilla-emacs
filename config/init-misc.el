@@ -32,6 +32,10 @@
   (setq-default display-fill-column-indicator-column 80)
   (setq-default fill-column 80)
 
+  ;; Fix CJK word wrap
+  ;; https://debbugs.gnu.org/cgi/bugreport.cgi?bug=29364
+  (setq-default word-wrap-by-category t)
+
   (setq-default indent-tabs-mode nil)
   (savehist-mode 1)
   (setq save-interprogram-paste-before-kill t
