@@ -44,6 +44,7 @@
 (require 'init-edit)
 (require 'init-isearch)
 (require 'init-company)
+;; (require 'init-completion)
 (require 'init-dired)
 (require 'init-mode)
 (require 'init-lazy-keys)
