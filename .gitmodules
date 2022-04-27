@@ -56,11 +56,11 @@
 [submodule "sly"]
 	path = lib/sly
 	url = git@github.com:joaotavora/sly.git
-        ignore = dirty
+	ignore = dirty
 [submodule "sly-quicklisp"]
 	path = lib/sly-quicklisp
 	url = git@github.com:joaotavora/sly-quicklisp.git
-        ignore = dirty
+	ignore = dirty
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
