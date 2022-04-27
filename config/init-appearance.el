@@ -24,10 +24,49 @@
 (setq modus-themes-no-mixed-fonts t
       modus-themes-org-blocks 'gray-background)
 
-(if (display-graphic-p)
-    (load-theme 'modus-operandi)
-  (load-theme 'modus-vivendi))
+;; (if (display-graphic-p)
+;;     (load-theme 'modus-operandi)
+;;   (load-theme 'modus-vivendi))
 
-(define-key global-map (kbd "<f6>") #'modus-themes-toggle)
+;; (define-key global-map (kbd "<f6>") #'modus-themes-toggle)
+
+;; {{{ Modify built-in `misterioso' theme
+;; (load-theme 'misterioso)
+;; (custom-theme-set-faces
+;;  'misterioso
+;;  '(cursor ((t (:background "#abb2bf"))))
+;;  '(one-key-keystroke ((t (:foreground "#f29112")))))
+;; (enable-theme 'misterioso)
+;; }}}
+
+;; {{{ Modify default light theme
+;; Default light theme
+(set-background-color "white")
+(set-foreground-color "black")
+;; initial window settings
+(setq initial-frame-alist
+      '((background-color . "honeydew")))
+
+;; subsequent window settings
+(setq default-frame-alist
+      '((background-color . "honeydew")))
+
+(set-face-attribute 'region nil :background "darkseagreen")
+(with-eval-after-load 'easy-kill
+  (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
+;;}}}
+
+;; {{{ Modify built-in `wombat' theme
+;; (load-theme 'wombat)
+;; (custom-theme-set-faces
+;;  'wombat
+;;  '(cursor ((t (:background "#abb2bf"))))
+;;  '(one-key-keystroke ((t (:foreground "#f29112")))))
+
+;; Apply the preceding custom theme faces immediately
+;; https://emacs.stackexchange.com/a/60628
+;; (enable-theme 'wombat)
+;; }}}
+
 
 (provide 'init-appearance)
