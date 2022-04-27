@@ -53,6 +53,14 @@
 [submodule "rime"]
 	path = lib/rime
 	url = git@github.com:DogLooksGood/emacs-rime.git
+[submodule "sly"]
+	path = lib/sly
+	url = git@github.com:joaotavora/sly.git
+        ignore = dirty
+[submodule "sly-quicklisp"]
+	path = lib/sly-quicklisp
+	url = git@github.com:joaotavora/sly-quicklisp.git
+        ignore = dirty
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
