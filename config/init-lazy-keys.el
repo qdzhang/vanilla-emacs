@@ -89,6 +89,11 @@
  isearch-mode-map
  "init-grep")
 
+(lazy-load-local-keys
+ '(("M-s t" . my/toggle-search-whitespace))
+ isearch-mode-map
+ "init-isearch")
+
 (lazy-load-unset-keys '("C-x f"))
 
 (lazy-load-set-keys
