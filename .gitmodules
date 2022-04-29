@@ -29,6 +29,9 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "god-mode"]
+	path = lib/god-mode
+	url = git@github.com:emacsorphanage/god-mode.git
 [submodule "janet-mode"]
 	path = lib/janet-mode
 	url = git@github.com:ALSchwalm/janet-mode.git
@@ -50,6 +53,9 @@
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
+[submodule "rich-minority"]
+	path = lib/rich-minority
+	url = git@github.com:Malabarba/rich-minority.git
 [submodule "rime"]
 	path = lib/rime
 	url = git@github.com:DogLooksGood/emacs-rime.git
