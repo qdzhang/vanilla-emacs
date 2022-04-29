@@ -17,7 +17,7 @@
 ;;    ("C-<return>" . my/newline-without-break-of-line)))
 
 ;; Make ESC quit prompts
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; Use `comment-line' to replace `comment-dwim'
 (global-set-key [remap comment-dwim] #'comment-line)
@@ -64,6 +64,7 @@
    ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
    ("C-]" . sp-select-next-thing-exchange)
    ("C-\"" . sp-change-inner)
+   ("M-r" . sp-delete-region)
    ("M-o" . my/sp-new-line)
    ("M-i" . sp-change-enclosing))
 
@@ -107,6 +108,7 @@
 (lazy-load-global-keys
  '(("C-x t [" . tab-bar-switch-to-prev-tab)
    ("C-x t ]" . tab-bar-switch-to-next-tab)
+   ("C-x t l" . tab-bar-switch-to-tab)
    ("M-g t" . tab-bar-switch-to-tab))
  "init-tab-bar")
 
