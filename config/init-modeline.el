@@ -10,8 +10,7 @@
 (rich-minority-mode 1)
 
 (setq useless-minor-modes
-      '(" company"
-        "hl-p"
+      '(" hl-p"
         "super-save"
         "ElDoc"
         "SP"
