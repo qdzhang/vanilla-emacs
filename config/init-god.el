@@ -32,6 +32,7 @@
 (global-set-key (kbd "C-x C-0") 'delete-window)
 
 (define-key god-local-mode-map (kbd ".") 'repeat)
+(define-key god-local-mode-map (kbd "i") #'god-local-mode)
 
 ;; https://www.reddit.com/r/emacs/comments/3pk8rl/comment/cw7l5n8/?utm_source=share&utm_medium=web2x&context=3
 (defun my/god-esc ()
@@ -47,6 +48,11 @@ Otherwise, invoke `god-mode-all'"
 
 (define-key isearch-mode-map (kbd "<escape>") 'god-mode-isearch-activate)
 (define-key god-mode-isearch-map (kbd "<escape>") 'god-mode-isearch-disable)
+
+;; quickjump is a package that provide functions to navigate like avy
+(require 'quickjump)
+(define-key god-local-mode-map (kbd "m") 'quickjump-back)
+(define-key god-local-mode-map (kbd ",") 'quickjump-forward)
 
 ;; Hooks
 
