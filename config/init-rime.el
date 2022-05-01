@@ -2,11 +2,17 @@
 
 (setq default-input-method "rime")
 
+(defun rime-predicate-god-mode-p ()
+  (and (fboundp 'god-mode)
+       (bound-and-true-p god-local-mode)))
+
 (with-eval-after-load 'rime
   (setq rime-disable-predicates
-        '(rime-predicate-space-after-cc-p
+        '(rime-predicate-after-alphabet-char-p
+          rime-predicate-space-after-cc-p
           rime-predicate-org-in-src-block-p
-          rime-predicate-prog-in-code-p))
+          rime-predicate-prog-in-code-p
+          rime-predicate-god-mode-p))
 
   ;; Change cursor color when input method is opening
   ;; Adapted from https://emacs-china.org/t/topic/17717
