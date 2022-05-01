@@ -48,4 +48,7 @@ buffer is not visiting a file."
 
 (setq browse-url-browser-function 'browse-url-firefox)
 
+(defalias 'rb 'revert-buffer)
+(defalias 'ba 'borg-assimilate)
+
 (provide 'init-edit)
