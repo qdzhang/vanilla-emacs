@@ -58,4 +58,10 @@ FACE defaults to inheriting from default and highlight."
       show-paren-when-point-in-periphery t)
 (show-paren-mode 1)
 
+;; Exchange ( and [ for key chord convenience
+(keyboard-translate ?\( ?\[)
+(keyboard-translate ?\[ ?\()
+(keyboard-translate ?\) ?\])
+(keyboard-translate ?\] ?\))
+
 (provide 'init-parens)
