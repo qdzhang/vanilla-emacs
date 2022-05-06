@@ -141,4 +141,18 @@
              c-mode-base-map
              "init-clang-tools")))
 
+(lazy-load-global-keys
+ '(("C-c o e" . eglot)
+   ("C-c o E" . eglot-shutdown))
+ "init-eglot")
+
+(eval-after-load 'flymake
+  (lambda ()
+    (lazy-load-local-keys
+     '(("C-c ! l" . flymake-show-diagnostics-buffer)
+       ("C-c ! n" . flymake-goto-next-error)
+       ("C-c ! p" . flymake-goto-prev-error))
+     flymake-mode-map
+     "init-flymake")))
+
 (provide 'init-lazy-keys)
