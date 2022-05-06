@@ -17,4 +17,6 @@
                               (setq read-file-name-completion-ignore-case t)
                               (setq read-buffer-completion-ignore-case t)))
 
+(defalias 'e 'eshell)
+
 (provide 'init-eshell)

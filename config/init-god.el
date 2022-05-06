@@ -11,6 +11,8 @@
 (require 'god-mode)
 (require 'god-mode-isearch)
 
+(add-to-list 'god-exempt-major-modes 'sly-stickers--replay-mode)
+
 (defun god-update-cursor ()
   "Update my cursor."
   (setq cursor-type
