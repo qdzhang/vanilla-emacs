@@ -77,4 +77,31 @@ DIR must include a .project file to be considered a project."
               (insert fdignore-content))))
       (message ".fdignore file created"))))
 
+(defvar my/jsconfig-content
+  "{\n\
+  \"compilerOptions\": {\n\
+    \"target\": \"es2017\",\n\
+    \"allowSyntheticDefaultImports\": true,\n\
+    \"noEmit\": true,\n\
+    \"checkJs\": false,\n\
+    \"jsx\": \"react\",\n\
+    \"lib\": [\"dom\", \"es2017\"]\n\
+  },\n\
+  \"exclude\": [\"build\", \"node_modules\", \"assets/dependencies\"]\n\
+}\n\
+"
+  "Content of jsconfig.json file.")
+
+(defun my/create-jsconfig-file ()
+  "Create a jsconfig file at project root."
+  (interactive)
+  (let ((jsconfig (cdr (project-current))))
+    (if jsconfig
+        (let ((jsconfig-file (concat jsconfig "jsconfig.json")))
+          (if (file-exists-p jsconfig-file)
+              (message "File exists")
+            (with-temp-file jsconfig-file
+              (insert my/jsconfig-content))))
+      (message "Project not found"))))
+
 (provide 'init-project)
