@@ -101,8 +101,7 @@
  '(("C-x f" . find-lisp-find-dired)))
 
 (lazy-load-global-keys
- '(("C-x p n" . my/create-project-root-file)
-   ("C-x p i" . my/create-fd-ignore-file))
+ '(("C-x p n" . one-key-menu-project-new))
  "init-project")
 
 (lazy-load-global-keys

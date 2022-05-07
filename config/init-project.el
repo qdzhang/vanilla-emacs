@@ -104,4 +104,14 @@ DIR must include a .project file to be considered a project."
               (insert my/jsconfig-content))))
       (message "Project not found"))))
 
+;; One key menu to create some new files in project
+(one-key-create-menu
+ "PROJECT-NEW"
+ '(
+   (("r" . "project root file") . my/create-project-root-file)
+   (("f" . "fd ignore file") . my/create-fd-ignore-file)
+   (("j" . "jsconfig file") . my/create-jsconfig-file)
+   )
+ t)
+
 (provide 'init-project)
