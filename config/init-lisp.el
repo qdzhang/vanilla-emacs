@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+(setq sly-lisp-implementations
+      '((sbcl ("sbcl"))
+        (clisp ("clisp"))))
 (setq inferior-lisp-program "/usr/bin/sbcl")
 
 (with-eval-after-load 'sly
