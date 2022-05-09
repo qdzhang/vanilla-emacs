@@ -31,6 +31,16 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
   (interactive)
   (magit-status "~/"))
 
+(defun my/add-current-file-to-dotfiles ()
+  "Add current file to dotfiles respository"
+  (interactive)
+  (let* ((command "dotfiles add ")
+         (file-name (buffer-file-name))
+         (full-command (concat command file-name))
+         (shell-command-switch "-ic"))
+    (start-file-process-shell-command "add-to-dotfiles" "*Messages*" full-command)
+    (message "Add current file to dotfiles")))
+
 (one-key-create-menu
  "MAGIT"
  '(
@@ -48,6 +58,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
    (("B" . "Magit buffer") . magit-process-buffer)
    (("D" . "Magit discarded") . magit-discard)
    (("d" . "Dotfiles") . my/magit-dotfiles-status)
+   (("a" . "Add dotfiles") . my/add-current-file-to-dotfiles)
    (("," . "Magit init") . magit-init)
    (("." . "Magit add remote") . magit-remote-add)
    )
