@@ -60,6 +60,7 @@
 (require 'init-eshell)
 (require 'init-lisp)
 (require 'init-modeline)
+(require 'init-tempo)
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file

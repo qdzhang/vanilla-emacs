@@ -20,5 +20,8 @@
 (add-hook 'gfm-mode-hook 'my/markdown-mode-hook)
 (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
 
+;; `tempo-template-markdown-frontmatter' is defined in file `init-tempo.el'
+(define-abbrev markdown-mode-abbrev-table "frontmatter" "" 'tempo-template-markdown-frontmatter)
+
 (provide 'init-markdown)
 ;;; init-markdown.el ends here
