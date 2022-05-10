@@ -22,6 +22,9 @@
 [submodule "easy-kill"]
 	path = lib/easy-kill
 	url = git@github.com:leoliu/easy-kill.git
+[submodule "edit-indirect"]
+	path = lib/edit-indirect
+	url = git@github.com:Fanael/edit-indirect.git
 [submodule "eglot"]
 	path = lib/eglot
 	url = git@github.com:joaotavora/eglot.git
