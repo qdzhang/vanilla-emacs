@@ -38,6 +38,9 @@
 [submodule "god-mode"]
 	path = lib/god-mode
 	url = git@github.com:emacsorphanage/god-mode.git
+[submodule "inf-ruby"]
+	path = lib/inf-ruby
+	url = git@github.com:nonsequitur/inf-ruby.git
 [submodule "janet-mode"]
 	path = lib/janet-mode
 	url = git@github.com:ALSchwalm/janet-mode.git
