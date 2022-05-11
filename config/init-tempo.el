@@ -24,7 +24,15 @@
    "math: false" n
    "markup: md" n
    "draft: true" n
-   "---" n))
+   "---" n)
+ "frontmatter"
+ "Insert yaml-style frontmatter before markdown post")
+
+(defun try-tempo-complete-tag (old)
+  (unless old
+    (tempo-complete-tag)))
+
+(add-to-list 'hippie-expand-try-functions-list 'try-tempo-complete-tag)
 
 (provide 'init-tempo)
 ;;; init-tempo.el ends here
