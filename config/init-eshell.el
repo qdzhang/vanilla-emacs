@@ -18,5 +18,6 @@
                               (setq read-buffer-completion-ignore-case t)))
 
 (defalias 'e 'eshell)
+(defalias 'at 'ansi-term)
 
 (provide 'init-eshell)
