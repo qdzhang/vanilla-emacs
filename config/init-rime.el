@@ -14,6 +14,11 @@
           rime-predicate-prog-in-code-p
           rime-predicate-god-mode-p))
 
+  ;; Disable input-method in `isearch-mode'
+  ;; If want to use input-method when using isearch
+  ;; press `M-e' to edit pattern in minibuffer
+  (add-hook 'isearch-mode-hook #'deactivate-input-method)
+
   ;; Change cursor color when input method is opening
   ;; Adapted from https://emacs-china.org/t/topic/17717
   (defvar input-method-cursor-color "Orange"
