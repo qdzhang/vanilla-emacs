@@ -53,6 +53,7 @@
 (require 'init-lazy-keys)
 (require 'init-super-save)
 (require 'init-god)
+(require 'init-window)
 ;; (require 'init-c)
 (require 'init-project)
 (require 'init-tab-bar)

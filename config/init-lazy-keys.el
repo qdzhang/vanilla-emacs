@@ -111,10 +111,6 @@
    ("M-g t" . tab-bar-switch-to-tab))
  "init-tab-bar")
 
-(lazy-load-set-keys
- '(("C-x w" . delete-frame)
-   ("C-x W" . delete-other-frames)))
-
 
 ;; According to thie issues, eshell can't bind keys in eshll-mode-map this time
 ;; Use hook instead
