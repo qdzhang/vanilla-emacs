@@ -3,7 +3,7 @@
 ;; Copyright (C) 2022 qdzhang
 ;; Copyright (C) 2018 Adam Patterson
 
-;; Modified from `same-term':
+;; Modified from `sane-term':
 ;; URL: http://github.com/adamrt/sane-term
 ;; Original Author: Adam Patterson <adam@adamrt.com>
 
