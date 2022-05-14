@@ -9,6 +9,7 @@
 (autoload 'janet-mode "janet-mode")
 (autoload 'markdown-mode "init-markdown")
 (autoload 'gfm-mode "init-markdown")
+(autoload 'ruby-mode "init-ruby")
 (autoload 'inf-ruby-minor-mode "init-ruby")
 
 (provide 'init-mode)

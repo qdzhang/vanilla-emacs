@@ -13,6 +13,15 @@
 
 (setq ruby-deep-indent-paren nil)
 
+(eval-after-load "hideshow"
+  '(add-to-list 'hs-special-modes-alist
+                `(ruby-mode
+                  ,(rx (or "def" "class" "module" "do" "{" "[" "if" "else" "unless"))
+                  ,(rx (or "}" "]" "end"))
+                  ,(rx (or "#" "=begin"))
+                  ruby-forward-sexp nil)))
+
+(add-hook 'ruby-mode-hook #'hs-minor-mode)
 
 (require 'chruby)
 (add-hook 'ruby-mode-hook #'chruby-use-corresponding)
