@@ -150,4 +150,10 @@
      flymake-mode-map
      "init-flymake")))
 
+(lazy-load-global-keys
+ '(("C-`" . sane-eshell)
+   ("<f12>" . sane-eshell-create)
+   ("C-<f12>" . sane-eshell-create-in-project-root))
+ "sane-eshell")
+
 (provide 'init-lazy-keys)
