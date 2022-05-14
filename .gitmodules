@@ -7,6 +7,9 @@
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
+[submodule "chruby"]
+	path = lib/chruby
+	url = git@github.com:plexus/chruby.el.git
 [submodule "closql"]
 	path = lib/closql
 	url = git@github.com:emacscollective/closql.git
