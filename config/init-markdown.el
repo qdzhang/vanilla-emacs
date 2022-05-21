@@ -14,6 +14,7 @@
 (defun my/markdown-mode-hook ()
   (visual-line-mode 1)
   (smartparens-mode 1)
+  (variable-pitch-mode 1)
   (text-scale-increase 1.2))
 
 (add-hook 'markdown-mode-hook 'my/markdown-mode-hook)
