@@ -156,4 +156,9 @@
    ("C-<f12>" . sane-eshell-create-in-project-root))
  "sane-eshell")
 
+(lazy-load-global-keys
+ '(("c" . org-capture))
+ "org-capture"
+ "C-c n")
+
 (provide 'init-lazy-keys)
