@@ -2,11 +2,9 @@
 
 ;;; Commentary:
 
-;; Config Emacs built-in completion
+;; Config Emacs built-in completion. Use `smart-tab' to trigger completion
 
 ;;; Code:
-
-
 
 (autoload 'ffap-file-at-point "ffap")
 
@@ -25,7 +23,8 @@
           #'my/complete-path-at-point+
           'append)
 
-
+(require 'smart-tab)
+(global-smart-tab-mode 1)
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
