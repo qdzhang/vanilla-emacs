@@ -9,7 +9,8 @@
 (defun my/org-font-setup ()
   "Setup variable-pitch fonts for `org-mode'."
   (interactive)
-  (variable-pitch-mode)
+  (variable-pitch-mode 1)
+  (text-scale-increase 1.2)
 
   (custom-theme-set-faces
    'user
@@ -38,11 +39,12 @@
 
 (add-hook 'org-mode-hook #'my/org-font-setup)
 
+
 (setq org-default-notes-file "~/org/notes.org"
       org-agenda-files '("~/org/agenda.org")
       org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
       ;; org-ellipsis "  "
-      org-startup-indented t
+      ;; org-startup-indented t
       org-log-into-drawer "LOGBOOK"
       org-archive-location "~/org/archive.org::datetree/"
       org-src-fontify-natively t
