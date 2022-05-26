@@ -32,4 +32,10 @@ Jump out a sexp, then call `sp-newline'"
   (sp-up-sexp)
   (sp-newline))
 
+(with-eval-after-load 'web-mode
+  (sp-local-pair 'web-mode "<" nil :actions :rem))
+
+(with-eval-after-load 'js-mode
+  (sp-local-pair 'js-mode "<" nil :actions :rem))
+
 (provide 'init-smartparens)

@@ -26,5 +26,8 @@
 (require 'chruby)
 (add-hook 'ruby-mode-hook #'chruby-use-corresponding)
 
+(with-eval-after-load 'web-mode
+  (setq web-mode-markup-indent-offset 2))
+
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
