@@ -40,7 +40,7 @@
 (add-hook 'org-mode-hook #'my/org-font-setup)
 
 
-(setq org-default-notes-file "~/org/notes.org"
+(setq org-default-notes-file "~/org/inbox.org"
       org-agenda-files '("~/org/agenda.org")
       org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
       ;; org-ellipsis "  "
@@ -59,22 +59,25 @@
 
 ;; Config org-capture-templates
 (setq org-capture-templates nil)
-(add-to-list 'org-capture-templates '("t" "Tasks"))
-(add-to-list 'org-capture-templates
-             '("tr" "Book Reading Task" entry
-               (file+olp "~/org/task.org" "Reading" "Book")
-               "* TODO %^{书名}\n%u\n%a\n" :clock-in t :clock-resume t))
-(add-to-list 'org-capture-templates
-             '("tw" "Work Task" entry
-               (file+headline "~/org/task.org" "Work")
-               "* TODO %^{任务名}\n%u\n%a\n" :clock-in t :clock-resume t))
-(add-to-list 'org-capture-templates
-             '("i" "Inbox" entry (file "~/org/inbox.org")
-               "* %U - %^{heading} %^g\n %?\n"))
-(add-to-list 'org-capture-templates
-             '("s" "New snippet" entry
-               (file+headline "~/org/snippets.org" "Code snippets")
-               "* %^{代码片段描述} %^g\n:PROPERTIES:\n:time: %U\n:origin: %^{代码来源}\n:describes: %?\n:END:\n\n#+begin_src\n \n#+end_src\n" :empty-lines 1))
+(setq org-capture-templates
+      `(("t" "Work Task" entry
+         (file+headline "~/org/task.org" "Tasks")
+         "* TODO %^{任务名}\n%U\n" :clock-in t :clock-resume t :empty-lines 1)
+        ("b" "Reading Books" entry
+         (file+headline "~/org/books.org" "Books")
+         "** %U - %^{Book name} %^g\n %?" :empty-lines 1)
+        ("i" "Inbox" entry
+         (file "~/org/inbox.org")
+         "* %U - %^{heading} %^g\n %?" :empty-lines 1)
+        ("s" "New snippet" entry
+         (file+headline "~/org/snippets.org" "Code snippets")
+         "* %^{代码片段描述} %^g\n:PROPERTIES:\n:time: %U\n:origin: %^{代码来源}\n:describes: %?\n:END:\n\n#+begin_src\n \n#+end_src\n" :empty-lines 1)
+        ("j" "Journal" entry
+         (file+olp+datetree "~/org/journal.org")
+         "* %?\n%U\n" :clock-in t :clock-resume t :empty-lines 1)
+        ("n" "Notes" entry
+         (file+headline "~/org/notes.org" "Notes")
+         "** %U - %^{heading} %^g\n %?" :empty-lines 1)))
 
 (provide 'init-org)
 ;;; init-org.el ends here
