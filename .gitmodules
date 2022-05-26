@@ -79,18 +79,12 @@
 	path = lib/sly-quicklisp
 	url = git@github.com:joaotavora/sly-quicklisp.git
 	ignore = dirty
-[submodule "smart-tab"]
-	path = lib/smart-tab
-	url = https://git.genehack.net/genehack/smart-tab.git
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
 [submodule "super-save"]
 	path = lib/super-save
 	url = git@github.com:bbatsov/super-save.git
-[submodule "transient"]
-	path = lib/transient
-	url = git@github.com:magit/transient.git
 [submodule "visual-fill-column"]
 	path = lib/visual-fill-column
 	url = https://codeberg.org/joostkremers/visual-fill-column.git

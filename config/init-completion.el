@@ -23,8 +23,8 @@
           #'my/complete-path-at-point+
           'append)
 
-(require 'smart-tab)
-(global-smart-tab-mode 1)
+(setq tab-always-indent 'complete)
+(add-to-list 'completion-styles 'initials t)
 
 (provide 'init-completion)
 ;;; init-completion.el ends here
