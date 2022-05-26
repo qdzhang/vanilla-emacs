@@ -125,6 +125,10 @@
  '(("C-c C-r" . my/sudo-edit))
  "init-edit")
 
+(lazy-load-global-keys
+ '(("M-Q" . my/unfill-paragraph-or-region))
+ "init-edit")
+
 (lazy-load-set-keys
  '(("M-/" . hippie-expand)))
 
@@ -159,6 +163,12 @@
 (lazy-load-global-keys
  '(("c" . org-capture))
  "org-capture"
- "C-c n")
+ "C-c")
+
+;; In emacs 29, `imenu' is bound to `M-g i' globally
+;; https://git.savannah.gnu.org/cgit/emacs.git/diff/etc/NEWS?id=ad89ec84ee20a027e36922c187ad9f2dcb93bcaf&id2=783dd6da31e3f0387e110972c0b9fe1f5acc4bba
+(when (< emacs-major-version 29)
+  (lazy-load-set-keys
+   '(("M-g i" . imenu))))
 
 (provide 'init-lazy-keys)
