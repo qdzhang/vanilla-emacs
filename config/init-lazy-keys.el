@@ -165,6 +165,11 @@
  "org-capture"
  "C-c")
 
+(lazy-load-global-keys
+ '(("a" . org-agenda))
+ "org-agenda"
+ "C-c")
+
 ;; In emacs 29, `imenu' is bound to `M-g i' globally
 ;; https://git.savannah.gnu.org/cgit/emacs.git/diff/etc/NEWS?id=ad89ec84ee20a027e36922c187ad9f2dcb93bcaf&id2=783dd6da31e3f0387e110972c0b9fe1f5acc4bba
 (when (< emacs-major-version 29)
