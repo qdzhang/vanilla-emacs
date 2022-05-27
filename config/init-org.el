@@ -102,6 +102,7 @@
 (set-register ?j (cons 'file "~/org/journal.org"))
 (set-register ?b (cons 'file "~/org/books.org"))
 (set-register ?d (cons 'file "~/org/daily.org"))
+(set-register ?r (cons 'file "~/org/refile.org"))
 
 (provide 'init-org)
 ;;; init-org.el ends here
