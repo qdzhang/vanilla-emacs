@@ -148,7 +148,7 @@
 (eval-after-load 'flymake
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c ! l" . flymake-show-diagnostics-buffer)
+     '(("C-c ! l" . flymake-show-buffer-diagnostics)
        ("C-c ! n" . flymake-goto-next-error)
        ("C-c ! p" . flymake-goto-prev-error))
      flymake-mode-map

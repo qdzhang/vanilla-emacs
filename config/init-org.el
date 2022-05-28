@@ -97,6 +97,11 @@
 ;; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
+(add-hook 'org-mode-hook
+          (lambda ()
+            (require 'init-flymake)
+            (add-hook 'flymake-diagnostic-functions 'flymake-vale nil t)))
+
 
 (set-register ?t (cons 'file "~/org/task.org"))
 (set-register ?j (cons 'file "~/org/journal.org"))

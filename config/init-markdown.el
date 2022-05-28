@@ -21,5 +21,11 @@
 (add-hook 'gfm-mode-hook 'my/markdown-mode-hook)
 (add-hook 'visual-line-mode-hook #'visual-fill-column-mode)
 
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (require 'init-flymake)
+            (add-hook 'flymake-diagnostic-functions 'flymake-vale nil t)))
+
+
 (provide 'init-markdown)
 ;;; init-markdown.el ends here
