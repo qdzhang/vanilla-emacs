@@ -63,6 +63,7 @@
 (require 'init-modeline)
 (require 'init-tempo)
 (require 'init-org)
+(require 'init-flyspell)
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
