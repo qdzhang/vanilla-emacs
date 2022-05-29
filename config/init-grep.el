@@ -21,4 +21,14 @@
 (require 'rg)
 (require 'rg-isearch)
 
+;;;###autoload (autoload 'rg-ask-current-file "rg.el" "" t)
+(rg-define-search rg-ask-current-file
+  "Search for thing in files matching the current file
+name (as a pattern) under the current directory."
+  :query ask
+  :format literal
+  :files (rg-get-buffer-file-name)
+  :dir current
+  :menu ("Search" "g" "Grep current file"))
+
 (provide 'init-grep)
