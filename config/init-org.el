@@ -41,7 +41,7 @@
 
 
 (setq org-default-notes-file "~/org/inbox.org"
-      org-agenda-files '("~/org/task.org" "~/org/refile.org")
+      org-agenda-files '("~/org/task.org" "~/org/refile.org" "~/org/archive.org")
       org-todo-keywords '((sequence "TODO(t)" "IN-PROGRESS(i)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)"))
       ;; org-ellipsis "  "
       ;; org-startup-indented t
@@ -60,6 +60,13 @@
 
 ;; Config org-capture-templates
 (setq org-capture-templates nil)
+
+(defun my/org-find-month-in-datetree()
+  "Use this function to capture datetree only for month, not day
+Ref:https://emacs.stackexchange.com/a/58326"
+  (org-datetree-find-date-create (calendar-current-date))
+  (kill-line))
+
 (setq org-capture-templates
       `(("t" "Work Task" entry
          (file+headline "~/org/refile.org" "Tasks")
@@ -70,6 +77,9 @@
         ("i" "Inbox" entry
          (file+headline "~/org/refile.org" "Inbox")
          "* %U - %^{heading} %^g\n%?" :empty-lines 1)
+        ("r" "Weekly Review" plain
+         (file+function "~/org/review.org" my/org-find-month-in-datetree)
+         "*** %U Weekly review\n%?" :empty-lines 1)
         ("d" "Daily Target" checkitem
          (file+olp+datetree "~/org/daily.org")
          "- [ ] %?" :prepend t :kill-buffer t)
@@ -85,8 +95,10 @@
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9)
-                                 ("notes.org" :maxlevel . 9))))
+                                 ("~/org/notes.org" :maxlevel . 9))))
 
+;; Make `org-clock-report' contains all levels of subtree
+(setq org-clock-clocktable-default-properties '(:maxlevel 9))
 
 ;; Use full outline paths for refile targets
 (setq org-refile-use-outline-path t)
@@ -108,6 +120,7 @@
 (set-register ?b (cons 'file "~/org/books.org"))
 (set-register ?d (cons 'file "~/org/daily.org"))
 (set-register ?r (cons 'file "~/org/refile.org"))
+(set-register ?a (cons 'file "~/org/archive.org"))
 
 (provide 'init-org)
 ;;; init-org.el ends here
