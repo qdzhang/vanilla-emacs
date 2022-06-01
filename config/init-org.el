@@ -97,6 +97,9 @@ Ref:https://emacs.stackexchange.com/a/58326"
                                  (org-agenda-files :maxlevel . 9)
                                  ("~/org/notes.org" :maxlevel . 9))))
 
+;; Make week starts on Monday
+(setq calendar-week-start-day 1)
+
 ;; Make `org-clock-report' contains all levels of subtree
 (setq org-clock-clocktable-default-properties '(:maxlevel 9))
 
