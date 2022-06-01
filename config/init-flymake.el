@@ -27,5 +27,10 @@
          (msg (format "%s" text)))
     (list fmqd-source beg end :warning msg)))
 
+(add-hook 'flymake-mode-hook
+          (lambda ()
+            (require 'flymake-childframe)
+            (flymake-childframe-mode 1)))
+
 (provide 'init-flymake)
 ;;; init-flymake.el ends here
