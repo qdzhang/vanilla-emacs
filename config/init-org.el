@@ -124,6 +124,7 @@ Ref:https://emacs.stackexchange.com/a/58326"
 (set-register ?d (cons 'file "~/org/daily.org"))
 (set-register ?r (cons 'file "~/org/refile.org"))
 (set-register ?a (cons 'file "~/org/archive.org"))
+(set-register ?s (cons 'file "~/org/snippets.org"))
 
 (provide 'init-org)
 ;;; init-org.el ends here
