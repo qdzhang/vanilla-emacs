@@ -18,7 +18,7 @@
   (setq cursor-type
         (if god-local-mode
             'box
-          'bar)))
+          'hollow)))
 
 (defun god-toggle-on-overwrite ()
   "Toggle god-mode on overwrite-mode."

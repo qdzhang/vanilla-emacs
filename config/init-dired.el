@@ -6,6 +6,7 @@
 
 (setq dired-dwim-target t)
 (setq dired-guess-shell-alist-user '(("\\.pdf\\'" "zathura")
+                                     ("\\.djvu\\'" "zathura")
                                      ("\\.mkv\\'"  "mpv")
                                      ("\\.avi\\'"  "mpv")
                                      ("\\.mp4\\'"  "mpv")
