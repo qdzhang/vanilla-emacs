@@ -85,6 +85,9 @@
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
+[submodule "sml-mode"]
+	path = lib/sml-mode
+	url = git@github.com:emacsmirror/sml-mode.git
 [submodule "super-save"]
 	path = lib/super-save
 	url = git@github.com:bbatsov/super-save.git

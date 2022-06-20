@@ -64,6 +64,7 @@
 (require 'init-tempo)
 (require 'init-org)
 (require 'init-flyspell)
+(require 'init-ml)
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
