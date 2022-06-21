@@ -38,7 +38,4 @@ Jump out a sexp, then call `sp-newline'"
 (with-eval-after-load 'js-mode
   (sp-local-pair 'js-mode "<" nil :actions :rem))
 
-(with-eval-after-load 'sml-mode
-  (sp-local-pair 'sml-mode "(*" "*" :trigger "(*"))
-
 (provide 'init-smartparens)
