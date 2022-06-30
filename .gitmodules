@@ -19,6 +19,9 @@
 [submodule "company-c-headers"]
 	path = lib/company-c-headers
 	url = git@github.com:randomphrase/company-c-headers.git
+[submodule "d-mode"]
+	path = lib/d-mode
+	url = git@github.com:Emacs-D-Mode-Maintainers/Emacs-D-Mode.git
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
