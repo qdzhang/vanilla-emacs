@@ -66,6 +66,9 @@
 (require 'init-flyspell)
 (require 'init-ml)
 
+(when (> emacs-major-version 27)
+  (require 'init-menu))
+
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
