@@ -69,6 +69,8 @@
 (when (> emacs-major-version 27)
   (require 'init-menu))
 
+(require 'init-docview)
+
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
            (float-time (time-subtract (current-time)
