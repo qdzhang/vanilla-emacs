@@ -44,6 +44,12 @@
 [submodule "flymake-quickdef"]
 	path = lib/flymake-quickdef
 	url = git@github.com:karlotness/flymake-quickdef.git
+[submodule "geiser"]
+	path = lib/geiser
+	url = git@gitlab.com:emacs-geiser/geiser.git
+[submodule "geiser-guile"]
+	path = lib/geiser-guile
+	url = git@gitlab.com:emacs-geiser/guile.git
 [submodule "god-mode"]
 	path = lib/god-mode
 	url = git@github.com:emacsorphanage/god-mode.git
