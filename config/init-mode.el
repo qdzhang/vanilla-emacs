@@ -12,6 +12,11 @@
 (setq interpreter-mode-alist (rassq-delete-all 'perl-mode interpreter-mode-alist))
 (add-to-list 'interpreter-mode-alist '("\\(mini\\)?perl5?" . cperl-mode))
 
+(autoload 'forth-mode "gforth.el")
+(autoload 'forth-block-mode "gforth.el")
+(add-to-list 'auto-mode-alist '("\\.\\(f\\|fs\\|fth\\|4th\\|frt\\)\\'" . forth-mode))
+(add-to-list 'auto-mode-alist '("\\.fb\\'" . forth-block-mode))
+
 ;; Mode load
 (autoload 'meson-mode "meson-mode")
 (autoload 'janet-mode "janet-mode")

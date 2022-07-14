@@ -66,6 +66,7 @@
 (require 'init-flyspell)
 (require 'init-ml)
 (require 'init-perl)
+(require 'init-forth)
 
 (when (> emacs-major-version 27)
   (require 'init-menu))
