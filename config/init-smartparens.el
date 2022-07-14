@@ -38,4 +38,10 @@ Jump out a sexp, then call `sp-newline'"
 (with-eval-after-load 'js-mode
   (sp-local-pair 'js-mode "<" nil :actions :rem))
 
+;; Fix the conflict of smartparens and electric-pairs in `cperl-mode'
+;; https://github.com/syl20bnr/spacemacs/issues/480#issuecomment-262340062
+(with-eval-after-load 'cperl-mode
+  (add-hook 'smartparens-enabled-hook  (lambda () (define-key cperl-mode-map "{" nil)))
+  (add-hook 'smartparens-disabled-hook  (lambda () (define-key cperl-mode-map "{" 'cperl-electric-lbrace))))
+
 (provide 'init-smartparens)
