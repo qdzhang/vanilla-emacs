@@ -46,8 +46,8 @@
 (require 'init-aggressive-indent)
 (require 'init-edit)
 (require 'init-isearch)
-;; (require 'init-company)
-(require 'init-completion)
+(require 'init-company)
+;; (require 'init-completion)
 (require 'init-dired)
 (require 'init-mode)
 (require 'init-lazy-keys)
@@ -65,6 +65,7 @@
 (require 'init-org)
 (require 'init-flyspell)
 (require 'init-ml)
+(require 'init-perl)
 
 (when (> emacs-major-version 27)
   (require 'init-menu))

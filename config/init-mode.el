@@ -5,6 +5,13 @@
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 
+;; use cperl-mode instead of perl-mode
+(setq auto-mode-alist (rassq-delete-all 'perl-mode auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.\\([pP]\\([Llm]\\|erl\\|od\\)\\|al\\)\\'" . cperl-mode))
+
+(setq interpreter-mode-alist (rassq-delete-all 'perl-mode interpreter-mode-alist))
+(add-to-list 'interpreter-mode-alist '("\\(mini\\)?perl5?" . cperl-mode))
+
 ;; Mode load
 (autoload 'meson-mode "meson-mode")
 (autoload 'janet-mode "janet-mode")
