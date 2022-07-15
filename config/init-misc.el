@@ -78,4 +78,7 @@
 (add-hook 'prog-mode-hook 'my/show-trailing-whitespace)
 (add-hook 'prog-mode-hook 'my/show-tabs)
 
+(when (> emacs-major-version 27)
+  (setq xref-search-program 'ripgrep))
+
 (provide 'init-misc)
