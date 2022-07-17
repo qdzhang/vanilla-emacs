@@ -72,6 +72,7 @@
   (require 'init-menu))
 
 (require 'init-docview)
+(require 'init-navigate)
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file

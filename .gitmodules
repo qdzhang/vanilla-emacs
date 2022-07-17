@@ -59,6 +59,9 @@
 [submodule "janet-mode"]
 	path = lib/janet-mode
 	url = git@github.com:ALSchwalm/janet-mode.git
+[submodule "jumplist"]
+	path = lib/jumplist
+	url = git@github.com:ganmacs/jumplist.git
 [submodule "lazy-load"]
 	path = lib/lazy-load
 	url = git@github.com:manateelazycat/lazy-load.git
