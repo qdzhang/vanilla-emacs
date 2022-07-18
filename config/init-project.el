@@ -111,4 +111,26 @@ DIR must include a .project file to be considered a project."
    ("f" "Fdignore" my/create-fd-ignore-file)
    ("j" "jsconfig" my/create-jsconfig-file)])
 
+(transient-define-prefix my-transient/project-menu ()
+  "Porject transient menu invoked by prefix `C-x p'"
+  [["Find"
+    ("f" "Project find file" project-find-file)
+    ("g" "Project find regexp" project-find-regexp)
+    ("d" "Project find dir" project-find-dir)
+    ("r" "Project query and replece" project-query-replace-regexp)]
+   ["Switch"
+    ("p" "Project switch project" project-switch-project)
+    ("b" "Project switch buffer" project-switch-to-buffer)
+    ("k" "Project kill buffers" project-kill-buffers)]]
+  [["Actions"
+    ("!" "Project shell command" project-shell-command)
+    ("&" "Project async shell command" project-async-shell-command)
+    ("c" "Project compile" project-compile)
+    ("n" "Peoject new..." my-transient/project-new-menu)]
+   ["Modes"
+    ("D" "Dired" project-dired)
+    ("e" "Eshell" project-eshell)
+    ("s" "Shell" project-shell)
+    ("v" "VC dir" project-vc-dir)]])
+
 (provide 'init-project)

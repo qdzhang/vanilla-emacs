@@ -82,6 +82,17 @@
      "init-dired")))
 
 (lazy-load-global-keys
+ '(("C-c ," . my-transient/global-menu))
+ "init-transient")
+
+(eval-after-load 'org
+  (lambda ()
+    (lazy-load-local-keys
+     '(("C-c ," . my-transient/org-mode-menu))
+     org-mode-map
+     "init-org")))
+
+(lazy-load-global-keys
  '(("C-c s" . rg-menu))
  "init-grep")
 
@@ -101,13 +112,11 @@
  '(("C-x f" . find-lisp-find-dired)))
 
 (lazy-load-global-keys
- '(("C-x p n" . my-transient/project-new-menu))
+ '(("C-x p" . my-transient/project-menu))
  "init-project")
 
 (lazy-load-global-keys
- '(("C-x t [" . tab-bar-switch-to-prev-tab)
-   ("C-x t ]" . tab-bar-switch-to-next-tab)
-   ("C-x t l" . tab-bar-switch-to-tab)
+ '(("C-x t" . my-transient/tab-bar-menu)
    ("M-g t" . tab-bar-switch-to-tab))
  "init-tab-bar")
 
