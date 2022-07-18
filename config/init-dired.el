@@ -140,16 +140,13 @@ Version 2018-12-23"
                       (set-window-configuration wnd))))
       (error "no more than 2 files should be marked"))))
 
-(one-key-create-menu
- "DIRED"
- '(
-   (("b" . "Open in browser") . my/browse-marked-file)
-   (("e" . "Ediff-files") . my/ediff-files)
-   (("i" . "Image dired") . image-dired)
-   (("s" . "Dired sort") . my/xah-dired-sort)
-   (("z" . "File size") . my/dired-get-size)
-   )
- t)
+(transient-define-prefix my-transient/dired-menu ()
+  "Dires transient menu"
+  [("b" "Open in browser" my/browse-marked-file)
+   ("e" "Ediff-files" my/ediff-files)
+   ("i" "Image dired" image-dired)
+   ("s" "Dired sort" my/xah-dired-sort)
+   ("z" "File size" my/dired-get-size)])
 
 
 (provide 'init-dired)

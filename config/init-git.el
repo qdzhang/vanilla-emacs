@@ -41,27 +41,58 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
     (start-file-process-shell-command "add-to-dotfiles" "*Messages*" full-command)
     (message "Add current file to dotfiles")))
 
-(one-key-create-menu
- "MAGIT"
- '(
-   (("s" . "Magit status") . magit-status)
-   (("c" . "Magit checkout") . magit-checkout)
-   (("C" . "Magit commit") . magit-commit)
-   (("u" . "Magit push to remote") . magit-push-current-to-pushremote)
-   (("p" . "Magit delete remote branch") . magit-delete-remote-branch)
-   (("i" . "Magit pull") . magit-pull-from-upstream)
-   (("r" . "Magit rebase") . magit-rebase)
-   (("e" . "Magit merge") . magit-merge)
-   (("l" . "Magit log file") . magit-log-buffer-file)
-   (("L" . "Magit log all") . magit-log-all)
-   (("b" . "Magit branch") . magit-branch)
-   (("B" . "Magit buffer") . magit-process-buffer)
-   (("D" . "Magit discarded") . magit-discard)
-   (("d" . "Dotfiles") . my/magit-dotfiles-status)
-   (("a" . "Add dotfiles") . my/add-current-file-to-dotfiles)
-   (("," . "Magit init") . magit-init)
-   (("." . "Magit add remote") . magit-remote-add)
-   )
- t)
+(transient-define-prefix my-transient/magit-log ()
+  "Log"
+  [["File"
+    ("f" "Current" magit-log-buffer-file)
+    ("F" "File Popup" magit-log)
+    ("l" "Log All" magit-log-all)
+    ("u" "Unmerged Commits" magit-cherry)]
+   ["Branch"
+    ("p" "Pick..." magit-log-other)
+    ("c" "Current" magit-log-current)
+    ("h" "Head" magit-log-head)
+    ("o" "Local & Head" magit-log-branches)
+    ("a" "Local & Head & Remote" magit-log-all-branches)
+    ("A" "Everything" magit-log-all)]
+   ["Reflog"
+    ("P" "Pick..." magit-reflog-other)
+    ("C" "Current" magit-reflog-current)
+    ("H" "Head" magit-reflog-head)]])
+
+(transient-define-prefix my-transient/ediff ()
+  "Ediff"
+  [["Actions"
+    ("f" "Files" ediff-files)
+    ("F" "Files - (3 Way)" ediff-files3)
+    ("b" "Buffers" ediff-buffers)
+    ("B" "Buffers - (3 Way)" ediff-buffers3)
+    ("d" "Directories" ediff-directories)
+    ("D" "Directories - (3 Way)" ediff-directories3)]])
+
+(transient-define-prefix my-transient/magit-menu ()
+  "Magit transient menu"
+  [["Repository"
+    ("s" "status" magit-status)
+    ("c" "checkout" magit-checkout)
+    ("C" "commit" magit-commit)
+    ("D" "Magit discarded" magit-discard)
+    ("," "Magit init" magit-init)
+    ("." "Magit add remote" magit-remote-add)
+    ("r" "rebase" magit-rebase)
+    ("b" "branch" magit-branch)
+    ("o" "submodule" magit-submodule)]
+   ["History"
+    ("l" "Log" my-transient/magit-log)
+    ("e" "Ediff" my-transient/ediff)
+    ("j" "Blob next" magit-blob-next)
+    ("k" "Blob previous" magit-blob-previous)]
+   ["Files"
+    ("p" "File Popup" magit-file-dispatch)
+    ("f" "Find File" magit-find-file)
+    ("F" "Find File in Other Window" magit-find-file-other-window)]
+   ["Dotfiles"
+    ("d" "Dotfiles" my/magit-dotfiles-status)
+    ("a" "Add dotfiles" my/add-current-file-to-dotfiles)]])
 
 (provide 'init-git)

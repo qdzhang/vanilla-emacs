@@ -6,24 +6,25 @@
 (setq show-smartparens-mode nil)
 (add-hook 'prog-mode-hook #'smartparens-strict-mode)
 
-(one-key-create-menu
- "SMARTPARENS"
- '((("d" . "Down") . sp-down-sexp)
-   (("e" . "Up") . sp-up-sexp)
-   (("u" . "Backward Up") . sp-backward-up-sexp)
-   (("a" . "Backward Down") . sp-backward-down-sexp)
-   (("f" . "Forward") . sp-forward-sexp)
-   (("b" . "Backward") . sp-backward-sexp)
-   (("k" . "Kill") . sp-kill-sexp)
-   (("r" . "Raise") . sp-raise-sexp)
-   (("t" . "Transpose") . sp-transpose-sexp)
-   (("c" . "Convolute") . sp-convolute-sexp)
-   (("j" . "Join") . sp-join-sexp)
-   (("(" . "Wrap ()") . sp-wrap-round)
-   (("{" . "Wrap {}") . sp-wrap-curly)
-   (("[" . "Wrap []") . sp-wrap-square)
-   )
- t)
+(transient-define-prefix my-transient/smartparens-menu ()
+  "Smartparens transient menu"
+  [["Move"
+    ("d" "Down" sp-down-sexp)
+    ("e" "Up" sp-up-sexp)
+    ("u" "Backward Up" sp-backward-up-sexp)
+    ("a" "Backward Down" sp-backward-down-sexp)
+    ("f" "Forward" sp-forward-sexp)
+    ("b" "Backward" sp-backward-sexp)]
+   ["Change"
+    ("k" "Kill" sp-kill-sexp)
+    ("r" "Raise" sp-raise-sexp)
+    ("t" "Transpose" sp-transpose-sexp)
+    ("c" "Convolute" sp-convolute-sexp)
+    ("j" "Join" sp-join-sexp)]
+   ["Wrap"
+    ("(" "Wrap ()" sp-wrap-round)
+    ("{" "Wrap {}" sp-wrap-curly)
+    ("[" "Wrap []" sp-wrap-square)]])
 
 (defun my/sp-new-line ()
   "This is my version of `sp-newline'.

@@ -74,9 +74,6 @@
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
-[submodule "one-key"]
-	path = lib/one-key
-	url = git@github.com:manateelazycat/one-key.git
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git

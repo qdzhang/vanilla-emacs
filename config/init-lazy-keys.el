@@ -26,7 +26,7 @@
 ;;; === Git config ===
 
 (lazy-load-global-keys
- '(("C-c g" . one-key-menu-magit))
+ '(("C-c g" . my-transient/magit-menu))
  "init-git")
 
 ;;; === Git config ===
@@ -42,7 +42,7 @@
 ;; (lazy-load-set-keys smartparens-key-alist smartparens-mode-map)
 
 (lazy-load-global-keys
- '(("C-M-s" . one-key-menu-smartparens))
+ '(("C-M-s" . my-transient/smartparens-menu))
  "init-smartparens")
 
 (lazy-load-local-keys
@@ -75,7 +75,7 @@
 (eval-after-load 'dired
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c d" . one-key-menu-dired)
+     '(("C-c d" . my-transient/dired-menu)
        ("C-<return>" . my/dired-start-process)
        ("/" . my/dired-filter))
      dired-mode-map
@@ -101,7 +101,7 @@
  '(("C-x f" . find-lisp-find-dired)))
 
 (lazy-load-global-keys
- '(("C-x p n" . one-key-menu-project-new))
+ '(("C-x p n" . my-transient/project-new-menu))
  "init-project")
 
 (lazy-load-global-keys

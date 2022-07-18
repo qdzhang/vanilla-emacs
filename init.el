@@ -33,7 +33,7 @@
 
 ;; Basic packages
 (require 'cl-lib)
-(require 'one-key)
+(require 'transient)
 (require 'lazy-load)
 
 (fido-vertical-mode)
