@@ -23,4 +23,10 @@ Version 2019-02-22 2021-11-13"
       (setq search-whitespace-regexp nil)
       (message "Space set to literal."))))
 
+(define-key isearch-mode-map (kbd "<up>") 'isearch-ring-retreat)
+(define-key isearch-mode-map (kbd "<down>") 'isearch-ring-advance)
+
+(define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
+(define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
+
 (provide 'init-isearch)
