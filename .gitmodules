@@ -77,9 +77,6 @@
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
-[submodule "rich-minority"]
-	path = lib/rich-minority
-	url = git@github.com:Malabarba/rich-minority.git
 [submodule "rime"]
 	path = lib/rime
 	url = git@github.com:DogLooksGood/emacs-rime.git
