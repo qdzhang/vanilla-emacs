@@ -50,9 +50,6 @@
 [submodule "geiser-guile"]
 	path = lib/geiser-guile
 	url = git@gitlab.com:emacs-geiser/guile.git
-[submodule "god-mode"]
-	path = lib/god-mode
-	url = git@github.com:emacsorphanage/god-mode.git
 [submodule "inf-ruby"]
 	path = lib/inf-ruby
 	url = git@github.com:nonsequitur/inf-ruby.git
