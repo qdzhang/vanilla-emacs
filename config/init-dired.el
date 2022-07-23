@@ -140,12 +140,18 @@ Version 2018-12-23"
                       (set-window-configuration wnd))))
       (error "no more than 2 files should be marked"))))
 
+(defun my/terminal-here ()
+  "Open an external terminal from Emacs in `default-directory'"
+  (interactive)
+  (start-process "terminal" nil "urxvt"))
+
 (transient-define-prefix my-transient/dired-menu ()
   "Dires transient menu"
   [("b" "Open in browser" my/browse-marked-file)
    ("e" "Ediff-files" my/ediff-files)
    ("i" "Image dired" image-dired)
    ("s" "Dired sort" my/xah-dired-sort)
+   ("t" "Terminal here" my/terminal-here)
    ("z" "File size" my/dired-get-size)])
 
 

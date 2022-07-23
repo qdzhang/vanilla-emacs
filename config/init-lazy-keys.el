@@ -65,8 +65,9 @@
    ("C-]" . sp-select-next-thing-exchange)
    ("C-\"" . sp-change-inner)
    ("M-r" . sp-delete-region)
-   ("M-o" . my/sp-new-line)
-   ("M-i" . sp-change-enclosing))
+   ("M-RET" . my/sp-new-line)
+   ("M-i" . sp-change-enclosing)
+   ("M-o" . sp-rewrap-sexp))
 
  smartparens-mode-map
  "init-smartparens")
