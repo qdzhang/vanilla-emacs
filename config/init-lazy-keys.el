@@ -106,6 +106,11 @@
  isearch-mode-map
  "init-isearch")
 
+(lazy-load-global-keys
+ '(("C-f" . vimlike-f)
+   ("C-b" . vimlike-f-backward))
+ "init-isearch")
+
 (lazy-load-unset-keys '("C-x f"))
 
 (lazy-load-set-keys
