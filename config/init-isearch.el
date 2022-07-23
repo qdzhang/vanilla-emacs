@@ -29,4 +29,16 @@ Version 2019-02-22 2021-11-13"
 (define-key isearch-mode-map (kbd "<left>") 'isearch-repeat-backward)
 (define-key isearch-mode-map (kbd "<right>") 'isearch-repeat-forward)
 
+;; https://karthinks.com/software/it-bears-repeating/
+;; This post provide a comprehensive introduction of `repeat-mode'.
+;; The following isearch configuration is an example in this post.
+(defvar isearch-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "s") #'isearch-repeat-forward)
+    (define-key map (kbd "r") #'isearch-repeat-backward)
+    map))
+
+(dolist (cmd '(isearch-repeat-forward isearch-repeat-backward))
+  (put cmd 'repeat-map 'isearch-repeat-map))
+
 (provide 'init-isearch)

@@ -37,6 +37,7 @@
 (require 'lazy-load)
 
 (fido-vertical-mode)
+(repeat-mode)
 
 ;;; Config files
 (require 'init-misc)
