@@ -45,4 +45,14 @@ Jump out a sexp, then call `sp-newline'"
   (add-hook 'smartparens-enabled-hook  (lambda () (define-key cperl-mode-map "{" nil)))
   (add-hook 'smartparens-disabled-hook  (lambda () (define-key cperl-mode-map "{" 'cperl-electric-lbrace))))
 
+(defvar sp-splurp-barf-sexp-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "<right>") #'sp-forward-slurp-sexp)
+    (define-key map (kbd "<left>") #'sp-forward-barf-sexp)
+    map)
+  "Keymap to repeat `sp-forward-barf-sexp' and `sp-forward-slurp-sexp'")
+
+(dolist (cmd '(sp-forward-slurp-sexp sp-forward-barf-sexp))
+  (put cmd 'repeat-map 'sp-splurp-barf-sexp-repeat-map))
+
 (provide 'init-smartparens)
