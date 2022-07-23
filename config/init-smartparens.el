@@ -55,4 +55,16 @@ Jump out a sexp, then call `sp-newline'"
 (dolist (cmd '(sp-forward-slurp-sexp sp-forward-barf-sexp))
   (put cmd 'repeat-map 'sp-splurp-barf-sexp-repeat-map))
 
+(defvar sp-movement-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "f") '("forward-sexp" . sp-forward-sexp))
+    (define-key map (kbd "b") '("backward-sexp" . sp-backward-sexp))
+    (define-key map (kbd "d") '("down-sexp" . sp-down-sexp))
+    (define-key map (kbd "u") '("up-sexp" . sp-up-sexp))
+    map)
+  "Keymap to quick move across sexp.")
+
+(dolist (cmd '(sp-forward-sexp sp-backward-sexp sp-down-sexp sp-up-sexp))
+  (put cmd 'repeat-map 'sp-movement-repeat-map))
+
 (provide 'init-smartparens)

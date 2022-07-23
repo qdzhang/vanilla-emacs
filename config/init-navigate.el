@@ -84,5 +84,25 @@
 (dolist (cmd '(vimlike-f-backward vimlike-f-backward-semicolon))
   (put cmd 'repeat-map 'vimlike-f-backward-repeat-map))
 
+(defvar word-navigation-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "f") #'forward-word)
+    (define-key map (kbd "b") #'backward-word)
+    map)
+  "Keymap to repeat `forward-word' and `backward-word'")
+
+(dolist (cmd '(forward-word backward-word))
+  (put cmd 'repeat-map 'word-navigation-repeat-map))
+
+(defvar defun-navigation-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "e") #'end-of-defun)
+    (define-key map (kbd "a") #'beginning-of-defun)
+    map)
+  "Keymap to repeat functions navigation key sequences.")
+
+(dolist (cmd '(end-of-defun beginning-of-defun))
+  (put cmd 'repeat-map 'defun-navigation-repeat-map))
+
 (provide 'init-navigate)
 ;;; init-navigate.el ends here
