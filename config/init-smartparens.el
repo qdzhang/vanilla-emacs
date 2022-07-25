@@ -33,6 +33,14 @@ Jump out a sexp, then call `sp-newline'"
   (sp-up-sexp)
   (sp-newline))
 
+(defun my/sp-kill-word (arg)
+  "Kill characters forward until encountering the end of a word, or the current selection.
+Copied from: https://christiantietze.de/posts/2020/05/delete-word-or-region-emacs/"
+  (interactive "p")
+  (if (use-region-p)
+      (delete-active-region 'kill)
+    (sp-kill-word arg)))
+
 (with-eval-after-load 'web-mode
   (sp-local-pair 'web-mode "<" nil :actions :rem))
 

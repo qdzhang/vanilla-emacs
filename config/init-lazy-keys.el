@@ -67,7 +67,8 @@
    ("M-r" . sp-delete-region)
    ("M-RET" . my/sp-new-line)
    ("M-i" . sp-change-enclosing)
-   ("M-o" . sp-rewrap-sexp))
+   ("M-o" . sp-rewrap-sexp)
+   ("M-d" . my/sp-kill-word))
 
  smartparens-mode-map
  "init-smartparens")
