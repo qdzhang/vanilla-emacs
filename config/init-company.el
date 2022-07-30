@@ -4,7 +4,7 @@
 (setq company-idle-delay 0.1)
 (setq company-global-modes '(not org-mode markdown-mode eshell-mode))
 
-(add-hook 'after-init-hook 'global-company-mode)
+(global-company-mode 1)
 
 (with-eval-after-load 'company-mode
   (define-key company-active-map (kbd "RET") 'company-complete-selection)

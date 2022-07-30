@@ -47,32 +47,41 @@
 (require 'init-aggressive-indent)
 (require 'init-edit)
 (require 'init-isearch)
-(require 'init-company)
-;; (require 'init-completion)
-(require 'init-dired)
 (require 'init-mode)
 (require 'init-lazy-keys)
 (require 'init-super-save)
 (require 'init-window)
-;; (require 'init-c)
 (require 'init-project)
 (require 'init-tab-bar)
 (require 'init-rime)
 (require 'init-eshell)
-(require 'init-lisp)
 (require 'init-modeline)
-(require 'init-tempo)
-(require 'init-org)
-(require 'init-flyspell)
-(require 'init-ml)
-(require 'init-perl)
-(require 'init-forth)
 
 (when (> emacs-major-version 27)
   (require 'init-menu))
 
-(require 'init-docview)
 (require 'init-navigate)
+(require 'init-incremental)
+
+;; Some package can be loaded defered
+(run-with-idle-timer
+ 1 nil
+ #'(lambda ()
+     (require 'init-company)
+     ;; (require 'init-completion)
+     (require 'init-dired)
+     (require 'init-docview)
+
+     ;; Languages
+     ;; (require 'init-c)
+     (require 'init-lisp)
+     (require 'init-tempo)
+     (require 'init-org)
+     (require 'init-flyspell)
+     (require 'init-ml)
+     (require 'init-perl)
+     (require 'init-forth)
+     (message "Deferred config loading...Done.")))
 
 (progn
   (message "Loading %s...done (%.3fs)" user-init-file
