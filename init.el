@@ -53,8 +53,6 @@
 (require 'init-window)
 (require 'init-project)
 (require 'init-tab-bar)
-(require 'init-rime)
-(require 'init-eshell)
 (require 'init-modeline)
 
 (when (> emacs-major-version 27)
@@ -71,6 +69,8 @@
      ;; (require 'init-completion)
      (require 'init-dired)
      (require 'init-docview)
+     (require 'init-eshell)
+     (require 'init-rime)
 
      ;; Languages
      ;; (require 'init-c)
