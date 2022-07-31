@@ -91,7 +91,13 @@ Ref:https://emacs.stackexchange.com/a/58326"
          "* %?\n%U\n" :clock-in t :empty-lines 1)
         ("n" "Notes" entry
          (file+headline "~/org/notes.org" "Notes")
-         "** %U - %^{heading} %^g\n%?" :empty-lines 1)))
+         "** %U - %^{heading} %^g\n%?" :empty-lines 1)
+        ("v" "Vocabulary" entry
+         (file+headline "~/org/vocab.org" "Vocabulary")
+         "* %^{The word}\n %t\n %^{Extended word (may be empty)} \n** Answer \n%^{The definition} \n*** Examples \n%^{Examples}")
+        ("e" "Expression" entry
+         (file+headline "~/org/expressions.org" "Expression")
+         "* %^{The expression}\n %t\n %^{Extended expression (may be empty)} \n** Answer \n%^{The definition} \n*** Examples \n%^{Examples}")))
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9)
