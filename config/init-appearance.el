@@ -56,7 +56,7 @@
 (setq default-frame-alist
       '((background-color . "honeydew")))
 
-(set-face-attribute 'region nil :background "darkseagreen")
+(set-face-attribute 'region nil :background "#e9dd76")
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
 ;;}}}
