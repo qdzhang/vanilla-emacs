@@ -77,9 +77,9 @@
 (eval-after-load 'dired
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c d" . my-transient/dired-menu)
-       ("C-<return>" . my/dired-start-process)
-       ("/" . my/dired-filter))
+     '(("C-<return>" . my/dired-start-process)
+       ("/" . my/dired-filter)
+       ("?" . my-transient/dired-help-menu))
      dired-mode-map
      "init-dired")))
 

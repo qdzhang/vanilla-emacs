@@ -35,7 +35,8 @@
   [["Manage"
     ("0" "Close" tab-close)
     ("1" "Close(other)" tab-close-other)
-    ("2" "New" tab-new)
+    ("2" "New" tab-new)]
+   [""
     ("G" "Group" tab-group)
     ("M" "Move to..." tab-move-to)
     ("N" "New to..." tab-new-to)

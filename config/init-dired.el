@@ -145,14 +145,80 @@ Version 2018-12-23"
   (interactive)
   (start-process "terminal" nil "urxvt"))
 
-(transient-define-prefix my-transient/dired-menu ()
-  "Dires transient menu"
-  [("b" "Open in browser" my/browse-marked-file)
-   ("e" "Ediff-files" my/ediff-files)
-   ("i" "Image dired" image-dired)
-   ("s" "Dired sort" my/xah-dired-sort)
-   ("t" "Terminal here" my/terminal-here)
-   ("z" "File size" my/dired-get-size)])
+(defun my/dired-parent-directory ()
+  "Open parent directory in current buffer"
+  (interactive)
+  (find-alternate-file ".."))
+
+(transient-define-prefix my-transient/dired-help-menu ()
+  "Show dired help menu"
+  [
+   :description
+   (lambda ()
+     (propertize "Dired Help Menu" 'face 'warning))
+   ["Directory"
+    ("+" "New directory" dired-create-directory)
+    ("g" "Revert buffer" revert-buffer)        ;; read all directories again (refresh)
+    ("w" "Kill subdir" dired-kill-subdir)
+    ("l" "redisplay" dired-do-redisplay)   ;; relist the marked or singel directory
+    ("k" "Kill lines" dired-do-kill-lines)
+    ("i" "Insert subdir" dired-maybe-insert-subdir)
+    ("_" "Undo" dired-undo)]
+   ["Immediate"
+    ("a" "Parent dir" my/dired-parent-directory)
+    ("f" "Visit file" dired-find-file)
+    ("o" "Visit file(other window)" dired-find-file-other-window)
+    ("O" "Display" dired-display-file)
+    ("v" "View" dired-view-file)      ;; q to exit, s to search, = gets line #
+    ("s" "Sort by..." my/xah-dired-sort)]
+   ["Flag for Deletion"
+    ("~" "Flag backup files" dired-flag-backup-files)
+    ("d" "Flag for deletion" dired-flag-file-deletion)
+    ("#" "Flag autosave files" dired-flag-auto-save-files)
+    ("%d" "Flag matching regexp" dired-flag-files-regexp)
+    ("%." "Flag extension" dired-flag-extension)
+    ("%^" "Flag garbage files" dired-flag-garbage-files)]]
+  [["Mark"
+    ("m" "mark" dired-mark)
+    ("u" "unmark" dired-unmark)
+    ("U" "unmark all" dired-unmark-all-marks)
+    ("*." "mark extension" dired-mark-extension)
+    ("*/" "mark all directories" dired-mark-directories)
+    ("*@" "mark all symlinks" dired-mark-symlinks)
+    ("**" "mark all executables" dired-mark-executables)
+    ("*s" "mark subdir files" dired-mark-subdir-files)
+    ("*%" "mark matching regexp" dired-mark-files-regexp)
+    ("*c" "change marks" dired-change-marks)
+    ("F" "find marked" dired-do-find-marked-files)
+    ("t" "invert mark" dired-toggle-marks)
+    ("{" "prev marked" dired-prev-marked-file)
+    ("}" "next marked" dired-next-marked-file)]
+   ["Actions on marks"
+    ("C" "Copy to" dired-do-copy)        ;; Copy all marked files
+    ("R" "Rename to" dired-do-rename)
+    ("D" "Delete" dired-do-delete)
+    ("S" "Symlink to" dired-do-symlink)
+    ("Y" "Relative symlink to" dired-do-relsymlink)
+    ("Z" "Compress" dired-do-compress)
+    ("c" "Compress to..." dired-do-compress-to)
+    ("G" "Change group" dired-do-chgrp)
+    ("M" "Change mode" dired-do-chmod)
+    ("A" "Find regexp" dired-do-find-regexp)
+    ("Q" "Find regexp and replace" dired-do-find-regexp-and-replace)
+    ("e" "Ediff" my/ediff-files)
+    ("%l" "Lower case" dired-downcase)
+    ("%u" "Upper case" dired-upcase)]
+   ["Info"
+    ("(" "Hide details" dired-hide-details-mode)
+    (")" "dired-omit-mode" dired-omit-mode)
+    ("?" "Dired summary" dired-summary)
+    ("z" "File size" my/dired-get-size)]
+   ["External"
+    ("!" "shell" dired-smart-shell-command)
+    ("&" "async shell" async-shell-command)
+    ("b" "Open in browser" my/browse-marked-file)
+    ("T" "Open terminal" my/terminal-here)
+    ("q" "Quit" keyboard-quit)]])
 
 
 (provide 'init-dired)
