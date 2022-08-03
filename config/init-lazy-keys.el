@@ -192,4 +192,9 @@
   (lazy-load-set-keys
    '(("M-g i" . imenu))))
 
+(lazy-load-global-keys
+ '(("r" . my-transient/rectangle-edit-menu))
+ "init-registers"
+ "C-x")
+
 (provide 'init-lazy-keys)
