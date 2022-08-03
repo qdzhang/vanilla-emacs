@@ -104,5 +104,13 @@
 (dolist (cmd '(end-of-defun beginning-of-defun))
   (put cmd 'repeat-map 'defun-navigation-repeat-map))
 
+(defvar recenter-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "l") #'recenter-top-bottom)
+    map)
+  "Keymap to repeat recenter function.")
+
+(put 'recenter-top-bottom 'repeat-map 'recenter-repeat-map)
+
 (provide 'init-navigate)
 ;;; init-navigate.el ends here

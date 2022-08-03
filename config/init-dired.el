@@ -41,7 +41,21 @@
   (require 'dired-aux)
 
   (add-to-list 'dired-compress-file-suffixes
-               '("\\.rar\\'" ".rar" "unrar x")))
+               '("\\.rar\\'" "" "unrar x %i %o"))
+
+  (setq dired-compress-files-alist
+        '(("\\.tar\\.gz\\'" . "tar -cf - %i | gzip -c9 > %o")
+          ("\\.tar\\.bz2\\'" . "tar -cf - %i | bzip2 -c9 > %o")
+          ("\\.tar\\.xz\\'" . "tar -cf - %i | xz -c9 > %o")
+          ("\\.tar\\.zst\\'" . "tar -cf - %i | zstd -19 -o %o")
+          ("\\.tar\\.lz\\'" . "tar -cf - %i | lzip -c9 > %o")
+          ("\\.tar\\.lzo\\'" . "tar -cf - %i | lzop -c9 > %o")
+          ;; ("\\.zip\\'" . "zip %o -r --filesync %i")
+          ("\\.zip\\'" . "7z a -tzip %o %i")
+          ("\\.7z\\'" . "7z a %o %i")
+          ("\\.rar\\'" . "rar a %o %i")
+          ("\\.pax\\'" . "pax -wf %o %i"))))
+
 
 
 (defvar dired-filelist-cmd

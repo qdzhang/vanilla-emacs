@@ -86,7 +86,7 @@ If this is a daemon session, load them all immediately instead."
  '(calendar find-func format-spec org-macs org-compat
             org-faces org-entities org-list org-pcomplete org-src
             org-footnote org-macro ob org org-clock org-agenda
-            org-capture magit
+            org-capture magit bookmark
             eshell em-alias em-banner em-basic em-cmpl em-glob em-hist em-ls
             em-prompt em-script em-term em-unix))
 
