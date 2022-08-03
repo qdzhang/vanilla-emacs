@@ -12,7 +12,10 @@
 
 (transient-define-prefix my-transient/rectangle-edit-menu ()
   "Rectangle editing menu"
-  ["Rectangle edit"
+  [
+   :description
+   (lambda ()
+     (propertize "Rectangle edit" 'face 'warning))
    ["Kill"
     ("k" "kill" kill-rectangle)
     ("d" "delete-rectangle" delete-rectangle)
@@ -25,7 +28,10 @@
    ["Copy"
     ("r" "copy rectangle to register" copy-rectangle-to-register)
     ("M-w" "copy-rectangle" copy-rectangle-as-kill)]]
-  ["Registers"
+  [
+   :description
+   (lambda ()
+     (propertize "Registers" 'face 'warning))
    ["Text"
     ("+" "increment register" increment-register)
     ("s" "copy to register" copy-to-register)
