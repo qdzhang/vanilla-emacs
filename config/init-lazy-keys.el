@@ -197,4 +197,8 @@
  "init-registers"
  "C-x")
 
+(lazy-load-global-keys
+ '(("C-c h" . highlight-symbol-at-point))
+ "init-hi-lock")
+
 (provide 'init-lazy-keys)

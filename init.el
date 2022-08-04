@@ -81,6 +81,7 @@
      (require 'init-ml)
      (require 'init-perl)
      (require 'init-forth)
+     (require 'init-hi-lock)
      (message "Deferred config loading...Done.")))
 
 (progn
