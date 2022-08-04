@@ -128,6 +128,24 @@ Ref:https://emacs.stackexchange.com/a/58326"
             (require 'init-flymake)
             (add-hook 'flymake-diagnostic-functions 'flymake-vale nil t)))
 
+(add-hook 'org-agenda-mode-hook (lambda () (hl-line-mode 1)))
+
+(defun my/org-align-all-tables ()
+  (interactive)
+  (org-table-map-tables 'org-table-align 'quietly))
+
+(advice-add 'org-agenda-quit :before 'org-save-all-org-buffers)
+
+(with-eval-after-load 'org-attach
+  (setq org-attach-store-link-p t))
+
+(with-eval-after-load 'org-agenda
+  (add-to-list 'org-agenda-custom-commands
+               '("x" todo "NEXT"
+                 ((org-agenda-max-entries 5))))
+  (add-to-list 'org-agenda-custom-commands
+               '("z" todo "SOMEDAY"
+                 ((org-agenda-max-entries 5)))))
 
 (set-register ?t (cons 'file "~/org/task.org"))
 (set-register ?j (cons 'file "~/org/journal.org"))
