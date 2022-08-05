@@ -15,6 +15,11 @@
     ("f" "Forward char" forward-char :transient t)
     ("b" "Backward char" backward-char :transient t)
     ("." "Repeat" repeat :transient t)]
+   ["Proxy"
+    ("xs" "Status" proxy-socks-show)
+    ("xe" "Enable" proxy-socks-enable)
+    ("xd" "Disable" proxy-socks-disable)
+    ("xt" "Toggle" proxy-socks-toggle)]
    ["Help"
     ("h" "Shortdoc" shortdoc-display-group)]])
 

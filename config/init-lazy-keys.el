@@ -201,4 +201,8 @@
  '(("C-c h" . highlight-symbol-at-point))
  "init-hi-lock")
 
+(lazy-load-global-keys
+ '(("C-c o b" . eww))
+ "init-eww")
+
 (provide 'init-lazy-keys)
