@@ -40,7 +40,7 @@
 (defun vimlike-f (char)
   "search to forward char into current line and move point (vim 'f' command)"
   (interactive "cSearch to forward char: ")
-  (when (= (char-after (point)) char)
+  (when (= (downcase (char-after (point))) char)
     (forward-char))
   (search-forward (char-to-string char) (point-at-eol) nil 1)
   (backward-char)

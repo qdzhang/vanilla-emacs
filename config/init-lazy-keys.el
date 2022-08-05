@@ -84,13 +84,13 @@
      "init-dired")))
 
 (lazy-load-global-keys
- '(("C-c ," . my-transient/global-menu))
+ '(("C-c SPC" . my-transient/global-menu))
  "init-transient")
 
 (eval-after-load 'org
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c ," . my-transient/org-mode-menu))
+     '(("C-c SPC" . my-transient/org-mode-menu))
      org-mode-map
      "init-org")))
 
