@@ -11,6 +11,11 @@
         (clisp ("clisp"))))
 (setq inferior-lisp-program "/usr/bin/sbcl")
 
+(with-eval-after-load 'hyperspec
+  (let ((hyperspec-dir (expand-file-name "~/.local/share/doc/HyperSpec/")))
+    (setq common-lisp-hyperspec-root (concat "file://" hyperspec-dir)
+          common-lisp-hyperspec-symbol-table (concat hyperspec-dir "Data/Map_Sym.txt"))))
+
 (with-eval-after-load 'sly
   (define-key sly-prefix-map (kbd "M-h") 'sly-documentation-lookup)
   (defalias 's 'sly))
