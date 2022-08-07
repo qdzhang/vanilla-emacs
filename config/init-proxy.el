@@ -96,11 +96,13 @@
 (defun proxy-socks-enable ()
   "Enable SOCKS proxy."
   (interactive)
+  (setq socks-noproxy '("localhost"))
   (require 'socks)
   (setq url-gateway-method 'socks
-        socks-noproxy '("localhost")
         socks-server '("Default server" "127.0.0.1" 7890 5))
-  (setenv "all_proxy" "socks5://127.0.0.1:7890")
+  (setenv "all_proxy" "127.0.0.1:7890")
+  (setenv "http_proxy" "127.0.0.1:7890")
+  (setenv "https_proxy" "127.0.0.1:7890")
   (proxy-socks-show))
 
 (defun proxy-socks-disable ()
@@ -110,6 +112,8 @@
   (setq url-gateway-method 'native
         socks-noproxy nil)
   (setenv "all_proxy" "")
+  (setenv "http_proxy" "")
+  (setenv "https_proxy" "")
   (proxy-socks-show))
 
 (defun proxy-socks-toggle ()
