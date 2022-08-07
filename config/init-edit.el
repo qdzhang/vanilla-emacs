@@ -46,8 +46,6 @@ buffer is not visiting a file."
                          (ido-read-file-name "Find file(as root): ")))
     (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))))
 
-(setq browse-url-browser-function 'browse-url-firefox)
-
 (defalias 'rb 'revert-buffer)
 (defalias 'ba 'borg-assimilate)
 (defalias 'bd 'borg-remove)

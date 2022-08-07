@@ -202,7 +202,7 @@
  "init-hi-lock")
 
 (lazy-load-global-keys
- '(("C-c o b" . eww))
+ '(("C-c o b" . my-transient/eww-menu))
  "init-eww")
 
 (provide 'init-lazy-keys)
