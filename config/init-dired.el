@@ -219,7 +219,7 @@ Version 2018-12-23"
     ("M" "Change mode" dired-do-chmod)
     ("A" "Find regexp" dired-do-find-regexp)
     ("Q" "Find regexp and replace" dired-do-find-regexp-and-replace)
-    ("e" "Ediff" my/ediff-files)
+    ("E" "Ediff" my/ediff-files)
     ("%l" "Lower case" dired-downcase)
     ("%u" "Upper case" dired-upcase)]
    ["Info"
@@ -232,6 +232,7 @@ Version 2018-12-23"
     ("&" "async shell" async-shell-command)
     ("b" "Open in browser" my/browse-marked-file)
     ("T" "Open terminal" my/terminal-here)
+    ("e" "EWW" eww-open-file)
     ("q" "Quit" keyboard-quit)]])
 
 

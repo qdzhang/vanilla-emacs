@@ -19,10 +19,23 @@
 (define-key eww-mode-map (kbd "I") #'my/eww-toggle-images)
 (define-key eww-link-keymap (kbd "I") #'my/eww-toggle-images)
 
+(setq my/eww-search-engines
+      '(
+        ("google" "https://google.com/search?q=%s")
+        ("duckduckgo" "https://html.duckduckgo.com/html?q=%s")
+        ("wiby" "https://wiby.me/?q=%s")
+        ))
+
+(defun my/eww-set-search-engine ()
+  "Search for a term using an engine."
+  (interactive)
+  (let ((engine (car (cdr (assoc (completing-read "Select a search engine:" my/eww-search-engines) my/eww-search-engines)))))
+    (setq eww-search-prefix engine)))
+
 (setq shr-use-colors nil                          ; No colours
       shr-indentation 2                           ; Left-side margin
       shr-width 120                               ; Fold text to 120 columns
-      eww-search-prefix "https://wiby.me/?q=")    ; Use another engine for searching
+      )
 
 (setq browse-url-browser-function 'browse-url-firefox)
 
@@ -45,9 +58,21 @@
     ("h" "Histories" eww-list-histories)
     ("b" "Bookmarks" eww-list-bookmarks)]
    [""
+    ("e" "Change search engine" my/eww-set-search-engine)
     ("q" "Quit" keyboard-quit)]])
 
-(define-key eww-mode-map "f" 'browse-url)
+
+(require 'eww-lnum)
+
+(with-eval-after-load 'eww
+  (define-key eww-mode-map "o" 'browse-url)
+  (define-key eww-mode-map "f" 'eww-lnum-follow)
+  (define-key eww-mode-map "F" 'eww-lnum-universal)
+
+  (custom-theme-set-faces
+   'user
+   `(eww-lnum-number ((t (:background "light pink" :foreground "black"))))))
+
 
 (provide 'init-eww)
 ;;; init-eww.el ends here

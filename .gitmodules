@@ -41,6 +41,9 @@
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
+[submodule "eww-lnum"]
+	path = lib/eww-lnum
+	url = git@github.com:m00natic/eww-lnum.git
 [submodule "flymake-quickdef"]
 	path = lib/flymake-quickdef
 	url = git@github.com:karlotness/flymake-quickdef.git
