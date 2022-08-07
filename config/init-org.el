@@ -46,6 +46,7 @@
       ;; org-ellipsis "  "
       ;; org-startup-indented t
       org-log-into-drawer "LOGBOOK"
+      org-clock-into-drawer "CLOCK"
       org-log-done 'time
       org-archive-location "~/org/archive.org::datetree/"
       org-src-fontify-natively t
@@ -145,7 +146,16 @@ Ref:https://emacs.stackexchange.com/a/58326"
                  ((org-agenda-max-entries 5))))
   (add-to-list 'org-agenda-custom-commands
                '("z" todo "SOMEDAY"
-                 ((org-agenda-max-entries 5)))))
+                 ((org-agenda-max-entries 5))))
+
+  (defun my/org-agenda-goto ()
+    "A custom `org-agenda-goto' to narrow to the item's subtree"
+    (interactive)
+    (when (equal major-mode 'org-agenda-mode)
+      (org-agenda-goto)
+      (org-narrow-to-subtree)))
+
+  (define-key org-agenda-mode-map (kbd "<tab>") 'my/org-agenda-goto))
 
 (set-register ?t (cons 'file "~/org/task.org"))
 (set-register ?j (cons 'file "~/org/journal.org"))
