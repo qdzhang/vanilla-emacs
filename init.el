@@ -83,6 +83,7 @@
      (require 'init-forth)
      (require 'init-hi-lock)
      (require 'init-proxy)
+     (require 'init-info)
      (message "Deferred config loading...Done.")))
 
 (progn
