@@ -205,4 +205,9 @@
  '(("C-c o b" . my-transient/eww-menu))
  "init-eww")
 
+
+(lazy-load-global-keys
+ '(("C-c d" . sdcv-search-to-buffer))
+ "init-sdcv")
+
 (provide 'init-lazy-keys)
