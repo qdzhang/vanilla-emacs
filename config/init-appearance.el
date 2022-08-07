@@ -15,6 +15,7 @@
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
 (set-fontset-font t 'bopomofo "Sarasa Mono SC")
 (set-fontset-font t 'greek (font-spec :family "Helvetica"))
+(set-fontset-font t 'phonetic "Noto Sans")
 
 
 ;; Color emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿

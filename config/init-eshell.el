@@ -53,6 +53,8 @@ length of PATH (sans directory slashes) down to MAX-LEN."
     (concat
      (with-face (concat (fish-path (eshell/pwd) 40) " ")
                 :foreground blue)
+     (when (bound-and-true-p socks-noproxy)
+       (with-face "[proxy] " :foreground "purple"))
      (with-face
       (or (ignore-errors (format "(%s)" (vc-responsible-backend default-directory))) ""))
      (when (featurep 'chruby)
