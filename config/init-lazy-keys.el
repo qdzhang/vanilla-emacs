@@ -87,6 +87,10 @@
  '(("C-c SPC" . my-transient/global-menu))
  "init-transient")
 
+(lazy-load-global-keys
+ '(("C-c n" . my/tmp-buffer))
+ "init-transient")
+
 (eval-after-load 'org
   (lambda ()
     (lazy-load-local-keys

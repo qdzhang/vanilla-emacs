@@ -20,6 +20,7 @@
     ("xt" "Toggle" proxy-socks-toggle)]
    ["Mode"
     ("g" "Glasses mode" glasses-mode)
+    ("l" "Lisp mode" lisp-interaction-mode)
     ("s" "Hideshow" hs-minor-mode)
     ("o" "Outline" outline-minor-mode)
     ("p" "Smartparens" smartparens-strict-mode)]
@@ -28,6 +29,32 @@
     ("f" "Describe face" describe-face)
     ("q" "Quit" keyboard-quit)]])
 
+
+;; Create different temp buffers with different major mode, like *scratch*.
+;; Ref: https://old.reddit.com/r/emacs/comments/90xkzt/what_do_you_use_the_scratch_buffer_for/e2ulfh5/
+;; Why these code are in this file (init-transient.el)?
+;; Maybe it will be rewritten by transient :)
+(defcustom my/tmp-buffer-mode-alist
+  '((?o . org-mode)
+    (?t . text-mode)
+    (?m . markdown-mode)
+    (?s . shell-mode)
+    (?l . lisp-interaction-mode))
+  "List of major modes for temporary buffers and their hotkeys."
+  :type '(alist :key-type character :value-type symbol))
+
+(defun my/tmp-buffer (mode)
+  "Open temporary buffer in specified major mode."
+  (interactive "c")
+  (if (eq mode ?\C-h)
+      (with-output-to-temp-buffer "*Help*"
+        (princ "Temporary buffers:\n\nKey\tMode\n")
+        (dolist (km my/tmp-buffer-mode-alist)
+          (princ (format " %c\t%s\n" (car km) (cdr km)))))
+    (let ((buf (generate-new-buffer "*tmp*")))
+      (with-current-buffer buf
+        (funcall (cdr (assoc mode my/tmp-buffer-mode-alist))))
+      (pop-to-buffer buf))))
 
 (provide 'init-transient)
 ;;; init-transient.el ends here
