@@ -29,8 +29,8 @@
 ;; (load-theme 'tsdh-light t)
 
 
-(setq modus-themes-no-mixed-fonts t
-      modus-themes-org-blocks 'gray-background)
+;; (setq modus-themes-no-mixed-fonts t
+;;       modus-themes-org-blocks 'gray-background)
 
 ;; (if (display-graphic-p)
 ;;     (load-theme 'modus-operandi)

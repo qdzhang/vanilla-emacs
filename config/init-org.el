@@ -11,6 +11,7 @@
   (interactive)
   (variable-pitch-mode 1)
   (text-scale-increase 1.2)
+  (auto-fill-mode)
 
   (custom-theme-set-faces
    'user

@@ -25,6 +25,11 @@
   '(
     ;; dictionary name
     ("^-->\\(.*\\)$" . (1 font-lock-type-face))
+    ;; Search word
+    ("^-->\\(.*\\)[ \t\n]*" . (1 font-lock-function-name-face))
+    ;; Serial number
+    ("\\(^[0-9] \\|[0-9]+:\\|[0-9]+\\.\\)" . (1 font-lock-constant-face))
+    ("^\\([IVXivx0-9]+\\)\\." . (1 font-lock-constant-face))
     ;; property of word
     ("^<<\\([^>]*\\)>>$" . (1 font-lock-comment-face))
     ;; phonetic symbol
