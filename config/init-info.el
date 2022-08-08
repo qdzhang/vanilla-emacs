@@ -14,7 +14,5 @@
    'user
    `(Info-quoted ((t (:foreground "deep pink"))))))
 
-(add-hook 'Info-mode-hook #'my/info-mode-font-setup)
-
 (provide 'init-info)
 ;;; init-info.el ends here

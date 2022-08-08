@@ -42,35 +42,38 @@
 ;;; Config files
 (require 'init-misc)
 (require 'init-appearance)
-(require 'init-parens)
-(require 'init-smartparens)
 (require 'init-aggressive-indent)
-(require 'init-edit)
-(require 'init-isearch)
 (require 'init-mode)
 (require 'init-lazy-keys)
 (require 'init-super-save)
-(require 'init-window)
-(require 'init-project)
-(require 'init-tab-bar)
 (require 'init-modeline)
-
-(when (> emacs-major-version 27)
-  (require 'init-menu))
-
-(require 'init-navigate)
 (require 'init-incremental)
 
 ;; Some package can be loaded defered
 (run-with-idle-timer
  1 nil
  #'(lambda ()
+     (require 'init-edit)
+     (require 'init-isearch)
+     (require 'init-window)
+     (require 'init-navigate)
+
      (require 'init-company)
      ;; (require 'init-completion)
      (require 'init-dired)
      (require 'init-docview)
      (require 'init-eshell)
      (require 'init-rime)
+     (require 'init-defer-misc)
+
+     (require 'init-parens)
+     (require 'init-smartparens)
+
+     (require 'init-project)
+     (require 'init-tab-bar)
+
+     (when (> emacs-major-version 27)
+       (require 'init-menu))
 
      ;; Languages
      ;; (require 'init-c)
@@ -81,9 +84,9 @@
      (require 'init-ml)
      (require 'init-perl)
      (require 'init-forth)
+
      (require 'init-hi-lock)
      (require 'init-proxy)
-     (require 'init-info)
      (message "Deferred config loading...Done.")))
 
 (progn
@@ -103,6 +106,21 @@
                                 user-emacs-directory)))
     (when (file-exists-p file)
       (load file))))
+
+
+;; Show garbage collector's message.
+;; Execute garbage collector when idle for 15 seconds.
+(defmacro k-time (&rest body)
+  "Measure and return the time it takes evaluating BODY."
+  `(let ((time (current-time)))
+     ,@body
+     (float-time (time-since time))))
+
+(defvar k-gc-timer
+  (run-with-idle-timer 15 t
+                       (lambda ()
+                         (message "Garbage Collector has run for %.06fsec"
+                                  (k-time (garbage-collect))))))
 
 
 ;; To disable collection of benchmark data after init is done.

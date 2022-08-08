@@ -37,8 +37,6 @@
       shr-width 120                               ; Fold text to 120 columns
       )
 
-(setq browse-url-browser-function 'browse-url-firefox)
-
 ;; minimal rendering by default
 (setq-default shr-inhibit-images t)
 

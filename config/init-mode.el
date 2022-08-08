@@ -26,4 +26,8 @@
 (autoload 'inf-ruby-minor-mode "init-ruby")
 ;; (autoload 'erb-mode "erb-mode")
 
+;; Config `Info-mode'
+(autoload 'my/info-mode-font-setup "init-info")
+(add-hook 'Info-mode-hook #'my/info-mode-font-setup)
+
 (provide 'init-mode)
