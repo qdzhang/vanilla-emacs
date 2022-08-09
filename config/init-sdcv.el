@@ -24,7 +24,7 @@
   nil
   '(
     ;; dictionary name
-    ("^-->\\(.*\\)$" . (1 font-lock-type-face))
+    ("^-->\\(.*\\)\n-" . (1 font-lock-type-face))
     ;; Search word
     ("^-->\\(.*\\)[ \t\n]*" . (1 font-lock-function-name-face))
     ;; Serial number
