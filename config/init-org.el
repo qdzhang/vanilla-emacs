@@ -104,7 +104,10 @@ Ref:https://emacs.stackexchange.com/a/58326"
          "* %^{The word}\n %t\n %^{Extended word (may be empty)} \n** Answer \n%^{The definition} \n*** Examples \n%^{Examples}")
         ("e" "Expression" entry
          (file+headline "~/org/expressions.org" "Expression")
-         "* %^{The expression}\n %t\n %^{Extended expression (may be empty)} \n** Answer \n%^{The definition} \n*** Examples \n%^{Examples}")))
+         "* %^{The expression}\n %t\n %^{Extended expression (may be empty)} \n** Answer \n%^{The definition} \n*** Examples \n%^{Examples}")
+        ("f" "Fun websites" entry
+         (file+headline "~/org/fun-web.org" "Websites")
+         "* %^{heading} %^g\n:PROPERTIES:\n:time: %U\n:url: %^{url}\n:describes: %?\n:other: \n:END:\n" :empty-lines 1)))
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9)
@@ -146,8 +149,7 @@ Ref:https://emacs.stackexchange.com/a/58326"
                '("x" todo "NEXT"
                  ((org-agenda-max-entries 5))))
   (add-to-list 'org-agenda-custom-commands
-               '("z" todo "SOMEDAY"
-                 ((org-agenda-max-entries 5))))
+               '("z" todo "SOMEDAY"))
 
   (defun my/org-agenda-goto ()
     "A custom `org-agenda-goto' to narrow to the item's subtree"

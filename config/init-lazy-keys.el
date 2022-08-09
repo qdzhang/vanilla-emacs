@@ -115,7 +115,7 @@
 (lazy-load-global-keys
  '(("C-f" . vimlike-f)
    ("C-b" . vimlike-f-backward))
- "init-isearch")
+ "init-navigate")
 
 (lazy-load-unset-keys '("C-x f"))
 
@@ -206,7 +206,7 @@
  "init-hi-lock")
 
 (lazy-load-global-keys
- '(("C-c o b" . my-transient/eww-menu))
+ '(("C-c b" . my-transient/eww-menu))
  "init-eww")
 
 
