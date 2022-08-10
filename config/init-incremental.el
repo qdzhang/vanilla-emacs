@@ -85,8 +85,8 @@ If this is a daemon session, load them all immediately instead."
 (my-defer/load-packages-incrementally
  '(calendar find-func format-spec org-macs org-compat
             org-faces org-entities org-list org-pcomplete org-src
-            org-footnote org-macro ob org org-clock org-agenda
-            org-capture org-attach magit bookmark
+            org-footnote org-macro ob org org-clock org-agenda org-capture
+            org-attach magit-log magit-diff magit-status bookmark
             eshell em-alias em-banner em-basic em-cmpl em-glob em-hist em-ls
             em-prompt em-script em-term em-unix))
 

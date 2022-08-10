@@ -77,6 +77,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
     ("c" "checkout" magit-checkout)
     ("C" "commit" magit-commit)
     ("D" "Magit discarded" magit-discard)
+    ("d" "Magit diff" magit-diff)
     ("," "Magit init" magit-init)
     ("." "Magit add remote" magit-remote-add)
     ("r" "rebase" magit-rebase)
@@ -92,7 +93,7 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
     ("f" "Find File" magit-find-file)
     ("F" "Find File in Other Window" magit-find-file-other-window)]
    ["Dotfiles"
-    ("d" "Dotfiles" my/magit-dotfiles-status)
+    ("h" "Status" my/magit-dotfiles-status)
     ("a" "Add dotfiles" my/add-current-file-to-dotfiles)]])
 
 (provide 'init-git)

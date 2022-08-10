@@ -211,7 +211,7 @@
 
 
 (lazy-load-global-keys
- '(("C-c d" . sdcv-search-to-buffer))
+ '(("C-c d" . sdcv-search))
  "init-sdcv")
 
 (provide 'init-lazy-keys)
