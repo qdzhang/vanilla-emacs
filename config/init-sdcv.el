@@ -77,6 +77,7 @@ show it."
                             nil nil word))
     (set-buffer (get-buffer-create "*sdcv*"))
     (buffer-disable-undo)
+    (setq buffer-read-only nil)
     (erase-buffer)
     (let ((process (start-process-shell-command "sdcv" "*sdcv*" (concat "sdcv " "-n " word))))
       (set-process-sentinel
@@ -84,7 +85,9 @@ show it."
        (lambda (process signal)
          (when (memq (process-status process) '(exit signal))
            (if (string= (buffer-name) "*sdcv*")
-               (goto-char (point-min))
+               (progn
+                 (goto-char (point-min))
+                 (setq buffer-read-only t))
              (switch-to-buffer-other-window "*sdcv*")
              (sdcv-mode)
              (goto-char (point-min)))))))))
@@ -143,6 +146,7 @@ show it."
           (lambda ()
             (use-local-map sdcv-mode-map)
             (set (make-local-variable 'outline-regexp) "^-->.*\n-->")
+            (setq buffer-read-only t)
             (outline-minor-mode)))
 
 (provide 'init-sdcv)
