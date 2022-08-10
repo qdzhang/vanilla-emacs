@@ -67,7 +67,18 @@ show it."
       (when (looking-at outline-regexp)
         (show-entry)))))
 
-(defun sdcv-search-to-buffer ()
+(defvar sdcv--search-history nil)
+(defvar sdcv--search-history-position -1)
+
+(defun sdcv--append-current-word-to-search-history (word)
+  "Append current searching word to `sdcv--search-history'"
+  (setq sdcv--search-history
+        (append (cl-subseq sdcv--search-history
+                           0 (1+ sdcv--search-history-position))
+                (list word))
+        sdcv--search-history-position (1- (length sdcv--search-history))))
+
+(defun sdcv-search ()
   "The main function to search for a word."
   (interactive)
   (let ((word (if mark-active
@@ -75,22 +86,48 @@ show it."
                 (current-word nil t))))
     (setq word (read-string (format "Search the dictionary for (default %s): " word)
                             nil nil word))
-    (set-buffer (get-buffer-create "*sdcv*"))
-    (buffer-disable-undo)
-    (setq buffer-read-only nil)
-    (erase-buffer)
-    (let ((process (start-process-shell-command "sdcv" "*sdcv*" (concat "sdcv " "-n " word))))
-      (set-process-sentinel
-       process
-       (lambda (process signal)
-         (when (memq (process-status process) '(exit signal))
-           (if (string= (buffer-name) "*sdcv*")
-               (progn
-                 (goto-char (point-min))
-                 (setq buffer-read-only t))
-             (switch-to-buffer-other-window "*sdcv*")
-             (sdcv-mode)
-             (goto-char (point-min)))))))))
+    (sdcv--search-core word)))
+
+(defun sdcv--search-core (word)
+  "The core of `sdcv-search'."
+  (unless (string= word
+                   (nth sdcv--search-history-position
+                        sdcv--search-history))
+    (sdcv--append-current-word-to-search-history word))
+  (set-buffer (get-buffer-create "*sdcv*"))
+  (buffer-disable-undo)
+  (setq buffer-read-only nil)
+  (erase-buffer)
+  (let ((process (start-process-shell-command "sdcv" "*sdcv*" (concat "sdcv " "-n " word))))
+    (set-process-sentinel
+     process
+     (lambda (process signal)
+       (when (memq (process-status process) '(exit signal))
+         (if (string= (buffer-name) "*sdcv*")
+             (progn
+               (goto-char (point-min))
+               (setq buffer-read-only t))
+           (switch-to-buffer-other-window "*sdcv*")
+           (sdcv-mode)
+           (goto-char (point-min))))))))
+
+(defun sdcv-search-history-backwards ()
+  "Search the previous word searched."
+  (interactive)
+  (if (> sdcv--search-history-position 0)
+      (sdcv--search-core (nth (setq sdcv--search-history-position
+                                    (1- sdcv--search-history-position))
+                              sdcv--search-history))
+    (message "At start of search history.")))
+
+(defun sdcv-search-history-forwards ()
+  "Search the next word searched."
+  (interactive)
+  (if (> (length sdcv--search-history) sdcv--search-history-position)
+      (sdcv--search-core (nth (setq sdcv--search-history-position
+                                    (1+ sdcv--search-history-position))
+                              sdcv--search-history))
+    (message "At end of search history.")))
 
 (defvar sdcv-dict-list nil
   "All dicts of sdcv")
@@ -125,7 +162,6 @@ show it."
     (define-key map ">" 'end-of-buffer)
     (define-key map "q" 'sdcv-return-from-sdcv)
     (define-key map "s" 'isearch-forward-regexp)
-    (define-key map "r" 'isearch-backward-regexp)
     (define-key map (kbd "C-s") 'isearch-forward)
     (define-key map (kbd "C-r") 'isearch-backward)
     (define-key map (kbd "C-n") 'next-line)
@@ -133,7 +169,9 @@ show it."
     (define-key map (kbd "C-p") 'previous-line)
     (define-key map "p" 'sdcv-mode-previous-line)
     (define-key map "j" 'sdcv-jump-to-dictionary)
-    (define-key map "d" 'sdcv-search-to-buffer)
+    (define-key map "d" 'sdcv-search)
+    (define-key map "l" 'sdcv-search-history-backwards)
+    (define-key map "r" 'sdcv-search-history-forwards)
     (define-key map "?" 'describe-mode)
     (define-key map "a" 'outline-show-all)
     (define-key map "h" 'outline-hide-body)
