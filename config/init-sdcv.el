@@ -38,6 +38,13 @@
   nil
   nil)
 
+(defvar sdcv-mode-syntax-table
+  (let ((table (make-syntax-table)))
+    ;; double quotes (") don't delimit strings
+    (modify-syntax-entry ?\" "-" table)
+    table)
+  "Syntax table used in `sdcv-mode'.")
+
 (defun sdcv-return-from-sdcv ()
   "Quit from sdcv buffer"
   (interactive)
@@ -183,6 +190,7 @@ show it."
 (add-hook 'sdcv-mode-hook
           (lambda ()
             (use-local-map sdcv-mode-map)
+            (set-syntax-table sdcv-mode-syntax-table)
             (set (make-local-variable 'outline-regexp) "^-->.*\n-->")
             (setq buffer-read-only t)
             (outline-minor-mode)))
