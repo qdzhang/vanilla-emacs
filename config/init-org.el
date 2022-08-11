@@ -42,7 +42,7 @@
 
 
 (setq org-default-notes-file "~/org/inbox.org"
-      org-agenda-files '("~/org/task.org" "~/org/refile.org" "~/org/archive.org")
+      org-agenda-files '("~/org/task.org" "~/org/refile.org" "~/org/archive.org" "~/org/project.org")
       org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "SOMEDAY(s)" "|" "DONE(d)" "CANCELED(c)"))
       ;; org-ellipsis "  "
       ;; org-startup-indented t
@@ -107,7 +107,10 @@ Ref:https://emacs.stackexchange.com/a/58326"
          "* %^{The expression}\n %t\n %^{Extended expression (may be empty)} \n** Answer \n%^{The definition} \n*** Examples \n%^{Examples}")
         ("f" "Fun websites" entry
          (file+headline "~/org/fun-web.org" "Websites")
-         "* %^{heading} %^g\n:PROPERTIES:\n:time: %U\n:url: %^{url}\n:describes: %?\n:other: \n:END:\n" :empty-lines 1)))
+         "* %^{heading} %^g\n:PROPERTIES:\n:time: %U\n:url: %^{url}\n:describes: %?\n:other: \n:END:\n" :empty-lines 1)
+        ("p" "Project" entry
+         (file+headline "~/org/project.org" "Projects")
+         "* %^{heading} [/] %^g\n" :empty-lines 1)))
 
 (setq org-refile-targets (quote ((nil :maxlevel . 9)
                                  (org-agenda-files :maxlevel . 9)
