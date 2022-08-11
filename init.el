@@ -55,7 +55,6 @@
  #'(lambda ()
      (require 'init-edit)
      (require 'init-isearch)
-     (require 'init-window)
      (require 'init-navigate)
 
      (require 'init-company)

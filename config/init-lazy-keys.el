@@ -214,4 +214,9 @@
  '(("C-c d" . sdcv-search))
  "init-sdcv")
 
+(lazy-load-global-keys
+ '(("C-x C-5" . my/toggle-frame-split)
+   ("C-x v" . shrink-window))
+ "init-window")
+
 (provide 'init-lazy-keys)
