@@ -51,7 +51,7 @@
 
 ;; Some package can be loaded defered
 (run-with-idle-timer
- 1 nil
+ 0.5 nil
  #'(lambda ()
      (require 'init-edit)
      (require 'init-isearch)
@@ -86,6 +86,7 @@
 
      (require 'init-hi-lock)
      (require 'init-proxy)
+     (require 'init-auto-insert)
      (message "Deferred config loading...Done.")))
 
 (progn
