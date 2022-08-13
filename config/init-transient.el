@@ -6,24 +6,33 @@
 
 ;;; Code:
 
+(transient-define-prefix my-transient/common-modes-menu ()
+  "A transient menu contains common modes"
+  [["Mode"
+    ("g" "Glasses mode" glasses-mode)
+    ("l" "Lisp mode" lisp-interaction-mode)
+    ("s" "Hideshow" hs-minor-mode)
+    ("o" "Outline" outline-minor-mode)
+    ("p" "Smartparens" smartparens-strict-mode)
+    ("e" "Flyspell" flyspell-mode)
+    ("m" "Flymake" flymake-mode)]])
 
 (transient-define-prefix my-transient/global-menu ()
   "A global transient menu"
   [["Actions"
     ("." "Repeat" repeat :transient t)
     ("d" "Delete whitespace" delete-trailing-whitespace)
-    ("r" "Regexp builder" regexp-builder)]
+    ("r" "Regexp builder" regexp-builder)
+    ("b" "Benchmark" benchmark-init/show-durations-tree)
+    ("t" "Change theme" my/switch-theme)
+    ("i" "Auto insert" auto-insert)]
    ["Proxy"
     ("xs" "Status" proxy-socks-show)
     ("xe" "Enable" proxy-socks-enable)
     ("xd" "Disable" proxy-socks-disable)
     ("xt" "Toggle" proxy-socks-toggle)]
-   ["Mode"
-    ("g" "Glasses mode" glasses-mode)
-    ("l" "Lisp mode" lisp-interaction-mode)
-    ("s" "Hideshow" hs-minor-mode)
-    ("o" "Outline" outline-minor-mode)
-    ("p" "Smartparens" smartparens-strict-mode)]
+   ["Modes"
+    ("m" "Common modes" my-transient/common-modes-menu)]
    ["Help"
     ("h" "Shortdoc" shortdoc-display-group)
     ("f" "Describe face" describe-face)

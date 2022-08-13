@@ -74,5 +74,14 @@
 ;; (enable-theme 'wombat)
 ;; }}}
 
+(defun my/switch-theme (theme)
+  ;; This interactive call is taken from `load-theme'
+  (interactive
+   (list
+    (intern (completing-read "Load custom theme: "
+                             (mapcar 'symbol-name
+                                     (custom-available-themes))))))
+  (mapcar #'disable-theme custom-enabled-themes)
+  (load-theme theme t))
 
 (provide 'init-appearance)
