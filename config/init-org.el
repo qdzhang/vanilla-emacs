@@ -129,12 +129,18 @@ Ref:https://emacs.stackexchange.com/a/58326"
 (setq org-outline-path-complete-in-steps nil)
 
 ;; Allow refile to create parent tasks with confirmation
-(setq org-refile-allow-creating-parent-nodes (quote confirm))
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+;; Sublevels are intented with leading dots in `org-tags-view'(C-c a m)
+(setq org-tags-match-list-sublevels 'indented)
 
 (add-hook 'org-mode-hook
           (lambda ()
-            (require 'init-flymake)
-            (add-hook 'flymake-diagnostic-functions 'flymake-vale nil t)))
+            (run-with-idle-timer
+             1 nil
+             #'(lambda ()
+                 (require 'init-flymake)
+                 (add-hook 'flymake-diagnostic-functions 'flymake-vale nil t)))))
 
 (add-hook 'org-agenda-mode-hook (lambda () (hl-line-mode 1)))
 

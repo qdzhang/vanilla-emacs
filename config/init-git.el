@@ -87,7 +87,8 @@ https://github.com/magit/magit/issues/460 (@cpitclaudel)."
     ("l" "Log" my-transient/magit-log)
     ("e" "Ediff" my-transient/ediff)
     ("j" "Blob next" magit-blob-next)
-    ("k" "Blob previous" magit-blob-previous)]
+    ("k" "Blob previous" magit-blob-previous)
+    ("=" "Diff current file" magit-diff-buffer-file)]
    ["Files"
     ("p" "File Popup" magit-file-dispatch)
     ("f" "Find File" magit-find-file)
