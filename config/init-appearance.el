@@ -1,13 +1,16 @@
 ;;; init-appearance.el -*- lexical-binding: t; -*-
 
-;; (set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 24))
-(set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
+(set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 24))
+;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
+;; (set-face-attribute 'default nil :font (font-spec :family "JetbrainsMono Nerd Font Mono" :size 24))
 ;; (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
 ;; (set-face-attribute 'variable-pitch nil :family "Vollkorn Medium")
 ;; (set-face-attribute 'variable-pitch nil :family "Bookerly")
 ;; (set-face-attribute 'variable-pitch nil :family "Liberation Serif")
 (set-face-attribute 'variable-pitch nil :family "Input Serif Compressed")
-(set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
+;; (set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
+(set-face-attribute 'fixed-pitch nil :family "M+ 1mn")
+
 ;; (set-fontset-font t 'han "LXGW WenKai")
 (set-fontset-font t 'han "Sarasa Mono SC")
 (set-fontset-font t 'kana "Sarasa Mono J")
@@ -19,6 +22,8 @@
 
 
 ;; Color emoji: 😄, 🤦, 🏴󠁧󠁢󠁳󠁣󠁴󠁿
+(unless (version< emacs-version "28.1")
+  (set-fontset-font t 'emoji "Noto Color Emoji"))
 (set-fontset-font t 'symbol "Noto Color Emoji")
 ;; (set-fontset-font t 'symbol "Noto Sans Symbols" nil 'append)
 ;; (set-fontset-font t 'symbol "Noto Sans Symbols2" nil 'append)
@@ -49,16 +54,9 @@
 
 ;; {{{ Modify default light theme
 ;; Default light theme
-(set-background-color "white")
-(set-foreground-color "black")
-;; initial window settings
-(setq initial-frame-alist
-      '((background-color . "honeydew")))
-
-;; subsequent window settings
-(setq default-frame-alist
-      '((background-color . "honeydew")))
-
+(set-face-attribute 'default nil :background "white")
+(set-face-attribute 'default nil :foreground "black")
+(set-face-attribute 'cursor nil :background "black")
 (set-face-attribute 'region nil :background "#e9dd76")
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
