@@ -117,5 +117,21 @@
   "** */" \n
   "/* " v1 " */")
 
+(define-skeleton insert-lisp-comment-rectangle
+  "Insert a lisp comment in a rectangle into current buffer."
+  ""
+  '(setq str (skeleton-read "Comment: "))
+  '(when (string= str "") (setq str " - "))
+  '(setq v1 (make-string (- fill-column 6) ?-))
+  '(setq v2 (- fill-column 10 (length str)))
+  ";;; +" v1 "+" \n
+  ";;  |"
+  (make-string (floor v2 2) ?\ )
+  str
+  (make-string (ceiling v2 2) ?\ )
+  "    |" \n
+  ";;; +" v1 "+")
+
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
