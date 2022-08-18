@@ -6,6 +6,9 @@
 (setq show-smartparens-mode nil)
 (add-hook 'prog-mode-hook #'smartparens-strict-mode)
 
+(with-eval-after-load 'smartparens
+  (setq sp-highlight-pair-overlay nil))
+
 (transient-define-prefix my-transient/smartparens-menu ()
   "Smartparens transient menu"
   [["Move"
