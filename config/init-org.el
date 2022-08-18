@@ -62,7 +62,23 @@
 
 (setq org-todo-keyword-faces
       '(("NEXT" . (:foreground "blue" :weight bold))
-        ("SOMEDAY" . (:foreground "DarkOrange" :weight bold))))
+        ("SOMEDAY" . (:foreground "DarkOrange" :weight bold))
+        ("CANCELED" . (:foreground "darkgray"))))
+
+;;;###autoload
+(defun my/replace-in-string (literal rep string)
+  "Replace all LITERAL substring with REP in STRING"
+  (replace-regexp-in-string (regexp-quote literal) rep string nil 'literal))
+
+;; TODO: improve this function to truncate the whitespaces
+(defun my/checkbox-to-todo-item ()
+  "Convert current line checkbox to TODO items."
+  (interactive)
+  (let ((current-checklist (buffer-substring-no-properties (line-beginning-position)
+                                                           (line-end-position)))
+        new-todo-item)
+    (setq new-todo-item (my/replace-in-string "- [ ] " "" current-checklist))
+    (kill-new new-todo-item)))
 
 
 ;; Config org-capture-templates
@@ -154,11 +170,27 @@ Ref:https://emacs.stackexchange.com/a/58326"
   (setq org-attach-store-link-p t))
 
 (with-eval-after-load 'org-agenda
+  (add-to-list 'org-modules 'org-habit)
+  (require 'org-habit)
+
   (add-to-list 'org-agenda-custom-commands
                '("x" todo "NEXT"
                  ((org-agenda-max-entries 5))))
   (add-to-list 'org-agenda-custom-commands
                '("z" todo "SOMEDAY"))
+  (add-to-list 'org-agenda-custom-commands
+               '("d" "Daily targets" search
+                 (format-time-string "%Y-%m-%d" nil)
+                 ((org-agenda-files '("daily.org"))
+                  (org-agenda-text-search-extra-files nil))))
+  (add-to-list 'org-agenda-custom-commands
+               '("h" "Daily habits"
+                 ((agenda ""))
+                 ((org-agenda-files '("habits.org"))
+                  (org-agenda-show-log t)
+                  (org-agenda-ndays 7)
+                  (org-agenda-log-mode-items '(state))
+                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":habit:")))))
 
   (defun my/org-agenda-goto ()
     "A custom `org-agenda-goto' to narrow to the item's subtree"
@@ -168,6 +200,9 @@ Ref:https://emacs.stackexchange.com/a/58326"
       (org-narrow-to-subtree)))
 
   (define-key org-agenda-mode-map (kbd "<tab>") 'my/org-agenda-goto))
+
+(with-eval-after-load 'org-habit
+  (setq org-habit-show-all-today t))
 
 (set-register ?t (cons 'file "~/org/task.org"))
 (set-register ?j (cons 'file "~/org/journal.org"))
