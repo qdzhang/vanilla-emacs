@@ -94,7 +94,8 @@
 (eval-after-load 'org
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c SPC" . my-transient/org-mode-menu))
+     '(("C-c SPC" . my-transient/org-mode-menu)
+       ("C-c l" . org-store-link))
      org-mode-map
      "init-org")))
 
@@ -151,6 +152,12 @@
 
 (lazy-load-set-keys
  '(("M-/" . hippie-expand)))
+
+(lazy-load-global-keys
+ '(("C-<f9>" . my/upcase)
+   ("C-<f8>" . my/downcase)
+   ("M-c" . my/capitalize))
+ "init-edit")
 
 (add-hook 'c-initialization-hook
           (lambda ()
