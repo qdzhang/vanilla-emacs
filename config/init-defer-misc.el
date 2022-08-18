@@ -45,7 +45,10 @@
 (when (> emacs-major-version 27)
   (setq xref-search-program 'ripgrep))
 
+;;; Enable the disabled functions
 (put 'narrow-to-region 'disabled nil)
+(put 'upcase-region   'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ;; Disable vc and use magit exclusively
 (setq vc-handled-backends nil)
