@@ -17,6 +17,15 @@
 (add-to-list 'auto-mode-alist '("\\.\\(f\\|fs\\|fth\\|4th\\|frt\\)\\'" . forth-mode))
 (add-to-list 'auto-mode-alist '("\\.fb\\'" . forth-block-mode))
 
+(setq arc-program-name "arc -n")
+(defvar arc-program-dir (expand-file-name "~/.local/share/anarki/")
+  "The directory of Arc with some other tools")
+(autoload 'arc-mode (concat arc-program-dir "extras/arc.el"))
+(add-to-list 'auto-mode-alist '("\\.arc\\'" . arc-mode))
+(add-hook 'arc-mode-hook (lambda ()
+                           (load-file (concat arc-program-dir "extras/inferior-arc.el"))
+                           (require 'inferior-arc)))
+
 ;; Mode load
 (autoload 'meson-mode "meson-mode")
 (autoload 'janet-mode "janet-mode")
