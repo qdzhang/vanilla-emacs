@@ -5,7 +5,7 @@
 (global-set-key [remap kill-ring-save] #'easy-kill)
 (global-set-key [remap mark-sexp] #'easy-mark)
 
-;; https://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/
+;;;###autoload
 (defun my/smarter-move-beginning-of-line (arg)
   "Move point back to indentation of beginning of line.
 
@@ -15,7 +15,9 @@ Effectively toggle between the first non-whitespace character and
 the beginning of the line.
 
 If ARG is not nil or 1, move forward ARG - 1 lines first.  If
-point reaches the beginning or end of the buffer, stop there."
+point reaches the beginning or end of the buffer, stop there.
+
+URL: https://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/"
   (interactive "^p")
   (setq arg (or arg 1))
 
@@ -33,13 +35,15 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'my/smarter-move-beginning-of-line)
 
-;; https://emacsredux.com/blog/2013/04/21/edit-files-as-root/
+;;;###autoload
 (defun my/sudo-edit (&optional arg)
   "Edit currently visited file as root.
 
 With a prefix ARG prompt for a file to visit.
 Will also prompt for a file to visit if current
-buffer is not visiting a file."
+buffer is not visiting a file.
+
+URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
   (interactive "P")
   (if (or arg (not buffer-file-name))
       (find-file (concat "/sudo:root@localhost:"
@@ -52,6 +56,7 @@ buffer is not visiting a file."
 
 
 ;; unfill paragraph: the opposite of `fill-paragraph'
+;;;###autoload
 (defun my/unfill-paragraph-or-region (&optional region)
   "Takes a multi-line paragraph and makes it into a single line of text."
   (interactive (progn (barf-if-buffer-read-only) '(t)))

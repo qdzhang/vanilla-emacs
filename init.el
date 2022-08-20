@@ -49,6 +49,10 @@
 (require 'init-modeline)
 (require 'init-incremental)
 
+;; Autoload files
+(require 'config-loaddefs)
+(require 'site-lisp-loaddefs)
+
 ;; Some package can be loaded defered
 (run-with-idle-timer
  0.5 nil
