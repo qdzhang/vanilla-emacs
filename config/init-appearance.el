@@ -54,9 +54,11 @@
 
 ;; {{{ Modify default light theme
 ;; Default light theme
-(set-face-attribute 'default nil :background "white")
-(set-face-attribute 'default nil :foreground "black")
-(set-face-attribute 'cursor nil :background "black")
+(custom-theme-set-faces
+ 'user
+ `(default ((t (:background "#ffffe8" :foreground "black"))))
+ `(cursor ((t (:background "black")))))
+
 (set-face-attribute 'region nil :background "#e9dd76")
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
