@@ -29,6 +29,7 @@
 ;; (set-fontset-font t 'symbol "Noto Sans Symbols2" nil 'append)
 (set-fontset-font t 'symbol "JetBrainsMono Nerd Font Mono" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
+(set-fontset-font t nil "98WB-U" nil 'prepend)
 
 
 ;; (load-theme 'tsdh-light t)
