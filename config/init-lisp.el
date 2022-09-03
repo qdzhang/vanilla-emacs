@@ -10,6 +10,7 @@
       '((sbcl ("sbcl"))
         (clisp ("clisp"))))
 (setq inferior-lisp-program "/usr/bin/sbcl")
+(setq sly-contribs '(sly-scratch sly-mrepl sly-fancy sly-quicklisp sly-stickers sly-indentation))
 
 (with-eval-after-load 'hyperspec
   (let ((hyperspec-dir (expand-file-name "~/.local/share/doc/HyperSpec/")))
