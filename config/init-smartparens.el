@@ -27,7 +27,12 @@
    ["Wrap"
     ("(" "Wrap ()" sp-wrap-round)
     ("{" "Wrap {}" sp-wrap-curly)
-    ("[" "Wrap []" sp-wrap-square)]])
+    ("[" "Wrap []" sp-wrap-square)]
+   ["Select"
+    ("n" "Select next" sp-select-next-thing)
+    ("p" "Select previous" sp-select-previous-thing)
+    ("N" "Select next (hold point)" sp-select-next-thing-exchange)
+    ("P" "Select previous (hold point)" sp-select-previous-thing-exchange)]])
 
 (defun my/sp-new-line ()
   "This is my version of `sp-newline'.
@@ -77,5 +82,25 @@ Copied from: https://christiantietze.de/posts/2020/05/delete-word-or-region-emac
 
 (dolist (cmd '(sp-forward-sexp sp-backward-sexp sp-down-sexp sp-up-sexp))
   (put cmd 'repeat-map 'sp-movement-repeat-map))
+
+;;;###autoload
+(defun my/close-all-parentheses ()
+  "Close all parentheses. When smartparens or auto-pair-like functions disabled,
+it is convenient to close all parentheses using this function.
+
+Ref: https://acidwords.com/posts/2017-10-19-closing-all-parentheses-at-once.html"
+  (interactive "*")
+  (let ((closing nil))
+    (save-excursion
+      (while (condition-case nil
+                 (progn
+                   (backward-up-list)
+                   (let ((syntax (syntax-after (point))))
+                     (cl-case (car syntax)
+                       ((4) (setq closing (cons (cdr syntax) closing)))
+                       ((7 8) (setq closing (cons (char-after (point)) closing)))))
+                   t)
+               ((scan-error) nil))))
+    (apply #'insert (nreverse closing))))
 
 (provide 'init-smartparens)
