@@ -66,71 +66,54 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
     (fill-paragraph nil region)))
 
 ;;; Cycle Letter Case
+;;; https://gist.github.com/abo-abo/29f581cac2f615fd709d
 ;;;###autoload
-(defun xah-cycle-letter-case (arg)
-  "Cycle the letter case of the selected region or the current word.
-Cycles from 'lower' -> 'Capitalize' -> 'UPPER' -> 'lower' -> ..
-        C-u M-x xah-cycle-letter-case -> Force convert to upper case.
-    C-u C-u M-x xah-cycle-letter-case -> Force convert to lower case.
-C-u C-u C-u M-x xah-cycle-letter-case -> Force capitalize.
-
-URL: http://ergoemacs.org/emacs/modernization_upcase-word.html"
-  (interactive "p")
-  (let (p1 p2
-           (deactivate-mark nil)
-           (case-fold-search nil))
-    (if (use-region-p)
-        (setq p1 (region-beginning)
-              p2 (region-end))
-      (let ((bds (bounds-of-thing-at-point 'word)))
-        (setq p1 (car bds)
-              p2 (cdr bds))))
-
-    (cl-case arg
-      (4  (put this-command 'next-state "UPPER"))      ; Force convert to upper case
-      (16 (put this-command 'next-state "lower"))      ; Force convert to lower case
-      (64 (put this-command 'next-state "Capitalize")) ; Force capitalize
-      (t (when (not (eq last-command this-command))
-           (save-excursion
-             (goto-char p1)
-             (cond
-              ;; lower -> Capitalize
-              ((looking-at "[[:lower:]]")            (put this-command 'next-state "Capitalize"))
-              ;; Capitalize -> UPPER
-              ((looking-at "[[:upper:]][[:lower:]]") (put this-command 'next-state "UPPER"))
-              ;; Default: UPPER -> lower
-              (t                                     (put this-command 'next-state "lower")))))))
-
-    (cl-case (string-to-char (get this-command 'next-state)) ; `string-to-char' returns first character in string
-      (?U (upcase-region p1 p2)
-          ;; UPPER -> lower
-          (put this-command 'next-state "lower"))
-      (?l (downcase-region p1 p2)
-          ;; lower -> Capitalize
-          (put this-command 'next-state "Capitalize"))
-      ;; Capitalization is a better option here than upcasing the initials
-      ;; because (upcase-initials "abc") -> "Abc" (good)
-      ;;         (upcase-initials "ABC") -> "ABC" (not what I expect most of the times)
-      ;;         (capitalize "abc")      -> "Abc" (good)
-      ;;         (capitalize "ABC")      -> "Abc" (good)
-      (t (capitalize-region p1 p2)
-         ;; Capitalize -> UPPER
-         (put this-command 'next-state "UPPER")))))
-
-;;;###autoload
-(defun my/upcase ()
+(defun my/capitalize-word-toggle ()
   (interactive)
-  (xah-cycle-letter-case 4))
+  (let ((start (car
+                (save-excursion
+                  (backward-word)
+                  (bounds-of-thing-at-point 'symbol)))))
+    (if start
+        (save-excursion
+          (goto-char start)
+          (funcall
+           (if (char-upcasep (char-after))
+               'downcase-region
+             'upcase-region)
+           start (1+ start)))
+      (capitalize-word -1))))
 
 ;;;###autoload
-(defun my/downcase ()
+(defun my/upcase-word-toggle ()
   (interactive)
-  (xah-cycle-letter-case 16))
+  (let ((bounds (bounds-of-thing-at-point 'symbol))
+        beg end
+        regionp)
+    (if (eq this-command last-command)
+        (setq regionp (get this-command 'regionp))
+      (put this-command 'regionp nil))
+    (cond
+     ((or (region-active-p) regionp)
+      (setq beg (region-beginning)
+            end (region-end))
+      (put this-command 'regionp t))
+     (bounds
+      (setq beg (car bounds)
+            end (cdr bounds)))
+     (t
+      (setq beg (point)
+            end (1+ beg))))
+    (save-excursion
+      (goto-char (1- beg))
+      (and (re-search-forward "[A-Za-z]" end t)
+           (funcall (if (char-upcasep (char-before))
+                        'downcase-region
+                      'upcase-region)
+                    beg end)))))
 
-;;;###autoload
-(defun my/capitalize ()
-  (interactive)
-  (xah-cycle-letter-case 64))
+(defun char-upcasep (letter)
+  (eq letter (upcase letter)))
 
 ;;;###autoload
 (defun my/increment-number-at-point ()

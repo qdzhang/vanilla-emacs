@@ -155,9 +155,8 @@
  '(("M-/" . hippie-expand)))
 
 (lazy-load-global-keys
- '(("C-<f9>" . my/upcase)
-   ("C-<f8>" . my/downcase)
-   ("M-c" . my/capitalize))
+ '(("C-<f8>" . my/upcase-word-toggle)
+   ("M-c" . my/capitalize-word-toggle))
  "init-edit")
 
 (add-hook 'c-initialization-hook
