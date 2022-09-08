@@ -53,6 +53,21 @@
 (require 'config-loaddefs)
 (require 'site-lisp-loaddefs)
 
+;; Languages
+;; (require 'init-c)
+(with-eval-after-load 'lisp-mode
+  (require 'init-lisp))
+(require 'init-tempo)
+(with-eval-after-load 'org
+  (require 'init-org))
+(require 'init-flyspell)
+(with-eval-after-load 'sml-mode
+  (require 'init-ml))
+(with-eval-after-load 'cperl-mode
+  (require 'init-perl))
+(with-eval-after-load 'forth-mode
+  (require 'init-forth))
+
 ;; Some package can be loaded defered
 (run-with-idle-timer
  0.5 nil
@@ -77,16 +92,6 @@
 
      (when (> emacs-major-version 27)
        (require 'init-menu))
-
-     ;; Languages
-     ;; (require 'init-c)
-     (require 'init-lisp)
-     (require 'init-tempo)
-     (require 'init-org)
-     (require 'init-flyspell)
-     (require 'init-ml)
-     (require 'init-perl)
-     (require 'init-forth)
 
      (require 'init-hi-lock)
      (require 'init-proxy)
