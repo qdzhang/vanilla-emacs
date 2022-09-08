@@ -1,9 +1,25 @@
 ;;; init-edit.el -*- lexical-binding: t; -*-
 
-(require 'easy-kill)
+(require 'mark-thing-at)
+(mark-thing-at-mode)
 
-(global-set-key [remap kill-ring-save] #'easy-kill)
-(global-set-key [remap mark-sexp] #'easy-mark)
+(require 'selected)
+(dolist (mode '(prog-mode-hook text-mode-hook))
+  (add-hook mode 'selected-minor-mode))
+(define-key selected-keymap (kbd "q") #'selected-off)
+(define-key selected-keymap (kbd "u") #'upcase-region)
+(define-key selected-keymap (kbd "d") #'downcase-region)
+(define-key selected-keymap (kbd "c") #'capitalize-dwim)
+(define-key selected-keymap (kbd "m") #'apply-macro-to-region-lines)
+(define-key selected-keymap (kbd "s") #'phi-search)
+(define-key selected-keymap (kbd "%") #'phi-replace-query)
+
+;; Define some keybindings to use `mark-thing-at' functions
+(define-key selected-keymap (kbd "e") #'mark-sexp-thing)
+(define-key selected-keymap (kbd "t") #'mark-list)
+(define-key selected-keymap (kbd "l") #'mark-line-this)
+(define-key selected-keymap (kbd "w") #'mark-word-thing)
+
 
 ;;;###autoload
 (defun my/smarter-move-beginning-of-line (arg)

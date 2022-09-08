@@ -41,4 +41,9 @@ Version 2019-02-22 2021-11-13"
 (dolist (cmd '(isearch-repeat-forward isearch-repeat-backward))
   (put cmd 'repeat-map 'isearch-repeat-map))
 
+;; Use `phi-search' to replace with `isearch'
+(with-eval-after-load 'phi-search
+  (define-key phi-search-default-map (kbd "<left>") 'phi-search-again-or-previous)
+  (define-key phi-search-default-map (kbd "<right>") 'phi-search-again-or-next))
+
 (provide 'init-isearch)

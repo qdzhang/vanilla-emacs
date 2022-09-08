@@ -7,6 +7,9 @@
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
+[submodule "choice-program"]
+	path = lib/choice-program
+	url = git@github.com:plandes/choice-program.git
 [submodule "chruby"]
 	path = lib/chruby
 	url = git@github.com:plexus/chruby.el.git
@@ -25,9 +28,6 @@
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
-[submodule "easy-kill"]
-	path = lib/easy-kill
-	url = git@github.com:leoliu/easy-kill.git
 [submodule "edit-indirect"]
 	path = lib/edit-indirect
 	url = git@github.com:Fanael/edit-indirect.git
@@ -68,12 +68,18 @@
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
+[submodule "mark-thing-at"]
+	path = lib/mark-thing-at
+	url = git@github.com:plandes/mark-thing-at.git
 [submodule "markdown-mode"]
 	path = lib/markdown-mode
 	url = git@github.com:jrblevin/markdown-mode.git
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
+[submodule "phi-search"]
+	path = lib/phi-search
+	url = git@github.com:zk-phi/phi-search.git
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
@@ -83,6 +89,9 @@
 [submodule "sdlang-mode"]
 	path = lib/sdlang-mode
 	url = git@github.com:CyberShadow/sdlang-mode.git
+[submodule "selected"]
+	path = lib/selected
+	url = git@github.com:Kungsgeten/selected.el.git
 [submodule "sly"]
 	path = lib/sly
 	url = git@github.com:joaotavora/sly.git
