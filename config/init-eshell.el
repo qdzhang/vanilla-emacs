@@ -92,4 +92,19 @@ length of PATH (sans directory slashes) down to MAX-LEN."
       (eshell/printnl "Unpack command: " unpack-command)
       (eshell-command-result unpack-command))))
 
+(defun eshell/ccat (file)
+  "Like `cat' but output with Emacs syntax highlighting.
+
+Ref: https://codeberg.org/vifon/emacs-config/src/branch/master/emacs.d/lisp/30-eshell.el"
+  (with-temp-buffer
+    (insert-file-contents file)
+    (let ((buffer-file-name file))
+      (delay-mode-hooks
+        (set-auto-mode)
+        (if (fboundp 'font-lock-ensure)
+            (font-lock-ensure)
+          (with-no-warnings
+            (font-lock-fontify-buffer)))))
+    (buffer-string)))
+
 (provide 'init-eshell)

@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 
-;; Config common lisp develop environment
+;; Config Common Lisp and Scheme develop environment
 
 ;;; Code:
 
@@ -25,6 +25,9 @@
 
 (with-eval-after-load 'sly-mrepl
   (define-key sly-mrepl-mode-map (kbd "M-]") 'my/close-all-parentheses))
+
+(with-eval-after-load 'geiser-repl
+  (define-key geiser-repl-mode-map (kbd "M-]") 'my/close-all-parentheses))
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here
