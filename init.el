@@ -81,6 +81,7 @@
      (require 'init-dired)
      (require 'init-docview)
      (require 'init-eshell)
+     (require 'init-term)
      (require 'init-rime)
      (require 'init-defer-misc)
 

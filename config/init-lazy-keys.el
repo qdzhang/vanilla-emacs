@@ -198,6 +198,11 @@
  "sane-eshell")
 
 (lazy-load-global-keys
+ '(("C-<f11>" . my/ansi-term-bash)
+   ("M-<f11>" . my/open-term-in-split-window))
+ "init-term")
+
+(lazy-load-global-keys
  '(("c" . org-capture))
  "org-capture"
  "C-c")
