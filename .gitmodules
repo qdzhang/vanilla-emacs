@@ -121,3 +121,6 @@
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
+[submodule "lib/flymake-childframe"]
+	path = lib/flymake-childframe
+	url = git@github.com:qdzhang/flymake-childframe.git
