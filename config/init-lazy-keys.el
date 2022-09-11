@@ -149,7 +149,9 @@
 ;; https://github.com/noctuid/general.el/issues/80
 (add-hook 'eshell-mode-hook (lambda ()
                               (lazy-load-local-keys
-                               '(("C-r" . my/eshell-history))
+                               '(("C-r" . my/eshell-history)
+                                 ("C-l" . my/eshell-clear-keystroke)
+                                 ("C-w" . my/kill-word-backward))
                                eshell-mode-map
                                "init-eshell")))
 

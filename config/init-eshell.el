@@ -15,11 +15,16 @@
 (add-hook 'eshell-mode-hook (lambda ()
                               (setq completion-ignore-case t)
                               (setq read-file-name-completion-ignore-case t)
-                              (setq read-buffer-completion-ignore-case t)))
+                              (setq read-buffer-completion-ignore-case t)
+                              (setq eshell-buffer-maximum-lines 20000
+                                    eshell-history-size 350
+                                    eshell-hist-ignoredups t)))
 
 (defalias 'e 'eshell)
 (defalias 'at 'ansi-term)
-
+(defalias 'eshell/f 'find-file)
+(defalias 'eshell/x 'eshell/exit)
+(defalias 'eshell/v 'view-file)
 
 (defun with-face (str &rest face-plist)
   (propertize str 'face face-plist))
@@ -106,5 +111,50 @@ Ref: https://codeberg.org/vifon/emacs-config/src/branch/master/emacs.d/lisp/30-e
           (with-no-warnings
             (font-lock-fontify-buffer)))))
     (buffer-string)))
+
+;; Visual commands
+(require 'em-term)
+(mapc (lambda (x) (add-to-list 'eshell-visual-commands x))
+      '("el" "elinks" "htop" "less" "ssh" "tmux" "top"))
+
+;; Copied from Spacemacs shell layer
+(defun my/protect-eshell-prompt ()
+  "Protect Eshell's prompt like Comint's prompts.
+E.g. `evil-change-whole-line' won't wipe the prompt. This
+is achieved by adding the relevant text properties."
+  (let ((inhibit-field-text-motion t))
+    (add-text-properties
+     (point-at-bol)
+     (point)
+     '(rear-nonsticky t
+                      inhibit-line-move-field-capture t
+                      field output
+                      read-only t
+                      front-sticky (field inhibit-line-move-field-capture)))))
+
+(add-hook 'eshell-after-prompt-hook 'my/protect-eshell-prompt)
+
+(defun my/kill-word-backward ()
+  "Let Eshell kill word acting like zsh."
+  (interactive)
+  (set-mark-command nil)
+  (backward-word)
+  (call-interactively 'kill-region))
+
+;; Copied from Spacemacs
+(defun my/eshell-clear-keystroke ()
+  "Allow for keystrokes to invoke eshell/clear"
+  (interactive)
+  (let ((inhibit-read-only t))
+    (erase-buffer))
+  (eshell-send-input))
+
+(defun my/eshell-xdg-open (file)
+  "Invoke `xdg-open' to open file in eshell"
+  (interactive)
+  (let ((command (format "xdg-open '%s'" file)))
+    (shell-command command)))
+
+(defalias 'eshell/o 'my/eshell-xdg-open)
 
 (provide 'init-eshell)
