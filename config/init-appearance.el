@@ -58,7 +58,9 @@
 (custom-theme-set-faces
  'user
  `(default ((t (:background "#ffffe8" :foreground "black"))))
- `(cursor ((t (:background "black")))))
+ `(cursor ((t (:background "black"))))
+ ;; Make `term' and `ansi-term' prompt more distinguishable
+ `(ansi-color-white ((t :background "gray65" :foreground "gray65"))))
 
 (set-face-attribute 'region nil :background "#e9dd76")
 (with-eval-after-load 'easy-kill
