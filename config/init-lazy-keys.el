@@ -204,6 +204,13 @@
    ("M-<f11>" . my/open-term-in-split-window))
  "init-term")
 
+(eval-after-load 'term
+  (lambda ()
+    (lazy-load-local-keys
+     '(("C-c C-y" . term-paste))
+     term-raw-map
+     "term")))
+
 (lazy-load-global-keys
  '(("c" . org-capture))
  "org-capture"

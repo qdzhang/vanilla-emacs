@@ -6,9 +6,6 @@
 
 ;;; Code:
 
-(eval-after-load "term"
-  '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
-
 ;;; A general function to create a new split window and switch to it
 ;;; https://emacsredux.com/blog/2013/04/29/start-command-or-switch-to-its-buffer/
 (defun my/start-or-switch-to-split (function buffer-name)
@@ -35,23 +32,19 @@ the current buffer."
   (interactive)
   (ansi-term "/bin/bash"))
 
-(defun my/exit-term-kill-buffer ()
-  "When `term' or `ansi-term' exit, kill the buffer. If `term' is in a split
-window, delete this window also.
+;; Copied from Spacemacs
+(defun my/ansi-term-handle-close ()
+  "Close current term buffer when `exit' from term buffer."
+  (when (ignore-errors (get-buffer-process (current-buffer)))
+    (set-process-sentinel (get-buffer-process (current-buffer))
+                          (lambda (proc change)
+                            (when (string-match "\\(finished\\|exited\\)"
+                                                change)
+                              (kill-buffer (process-buffer proc))
+                              (when (> (count-windows) 1)
+                                (delete-window)))))))
 
-URL: https://oremacs.com/2015/01/01/three-ansi-term-tips/"
-  (let* ((buff (current-buffer))
-         (proc (get-buffer-process buff)))
-    (set-process-sentinel
-     proc
-     `(lambda (process event)
-        (if (and (string= event "finished\n")
-                 (one-window-p))
-            (kill-buffer ,buff)
-          (progn (kill-buffer ,buff)
-                 (delete-window)))))))
-
-(add-hook 'term-exec-hook 'my/exit-term-kill-buffer)
+(add-hook 'term-mode-hook 'my/ansi-term-handle-close)
 
 (provide 'init-term)
 ;;; init-term.el ends here
