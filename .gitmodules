@@ -124,3 +124,6 @@
 [submodule "flymake-childframe"]
 	path = lib/flymake-childframe
 	url = git@github.com:qdzhang/flymake-childframe.git
+[submodule "quick-insert-unicode"]
+	path = lib/quick-insert-unicode
+	url = git@github.com:qdzhang/quick-insert-unicode.git

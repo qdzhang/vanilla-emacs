@@ -250,4 +250,8 @@
    ("C-x v" . shrink-window))
  "init-window")
 
+(lazy-load-global-keys
+ '(("C-x 8 i" . quick-insert-unicode))
+ "quick-insert-unicode")
+
 (provide 'init-lazy-keys)
