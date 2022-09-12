@@ -114,16 +114,6 @@
  isearch-mode-map
  "init-isearch")
 
-;; Use `phi-search' to replace with `isearch'
-(lazy-load-global-keys
- '(("C-s" . phi-search)
-   ("C-r" . phi-search-backward))
- "phi-search")
-
-(lazy-load-global-keys
- '(("M-%" . phi-replace-query))
- "phi-replace")
-
 (lazy-load-global-keys
  '(("C-f" . vimlike-f)
    ("C-b" . vimlike-f-backward))

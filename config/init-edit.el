@@ -11,8 +11,6 @@
 (define-key selected-keymap (kbd "d") #'downcase-region)
 (define-key selected-keymap (kbd "c") #'capitalize-dwim)
 (define-key selected-keymap (kbd "m") #'apply-macro-to-region-lines)
-(define-key selected-keymap (kbd "s") #'phi-search)
-(define-key selected-keymap (kbd "%") #'phi-replace-query)
 
 ;; Define some keybindings to use `mark-thing-at' functions
 (define-key selected-keymap (kbd "e") #'mark-sexp-thing)

@@ -77,9 +77,6 @@
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
-[submodule "phi-search"]
-	path = lib/phi-search
-	url = git@github.com:zk-phi/phi-search.git
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
