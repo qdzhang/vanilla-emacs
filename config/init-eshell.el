@@ -25,6 +25,7 @@
 (defalias 'eshell/f 'find-file)
 (defalias 'eshell/x 'eshell/exit)
 (defalias 'eshell/v 'view-file)
+(defalias 'eshell/d 'dired-jump)
 
 (defun with-face (str &rest face-plist)
   (propertize str 'face face-plist))

@@ -26,6 +26,9 @@
                            (load-file (concat arc-program-dir "extras/inferior-arc.el"))
                            (require 'inferior-arc)))
 
+(add-to-list 'auto-mode-alist '("/Eask\\'" . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("/Easkfile\\'" . emacs-lisp-mode))
+
 ;; Mode load
 (autoload 'meson-mode "meson-mode")
 (autoload 'janet-mode "janet-mode")
