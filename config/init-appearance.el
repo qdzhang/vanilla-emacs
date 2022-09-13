@@ -65,6 +65,31 @@
 (set-face-attribute 'region nil :background "#e9dd76")
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
+
+(defface my/lisp-paren-face
+  '((((class color) (background dark))
+     (:foreground "grey50"))
+    (((class color) (background light))
+     (:foreground "grey55")))
+  "Face used to dim (Lisp) parentheses."
+  :group 'personal)
+
+;; Dim lisp parentheses
+(dolist (mode '(scheme-mode
+                emacs-lisp-mode
+                lisp-mode
+                clojure-mode
+                clojurescript-mode))
+  (font-lock-add-keywords mode '(("(\\|)" . 'my/lisp-paren-face))))
+
+;; Highlight TODO watchwords
+(defun my/add-watchwords ()
+  (font-lock-add-keywords
+   nil '(("\\<\\(FIXME\\|TODO\\|FIX\\|XXX\\|HACK\\|REFACTOR\\|NOCOMMIT\\|NTA\\)"
+          1 font-lock-warning-face t))))
+
+(add-hook 'prog-mode-hook 'my/add-watchwords)
+
 ;;}}}
 
 ;; {{{ Modify built-in `wombat' theme
