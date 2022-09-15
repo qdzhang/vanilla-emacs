@@ -104,12 +104,46 @@ DIR must include a .project file to be considered a project."
               (insert my/jsconfig-content))))
       (message "Project not found"))))
 
+(defun my/create-dir-locals-file ()
+  "Create a .dir-locals.el"
+  (interactive)
+  (let ((projectroot (cdr (project-current))))
+    (if projectroot
+        (let ((dir-locals-file (concat projectroot ".dir-locals.el")))
+          (if (file-exists-p dir-locals-file)
+              (message ".dir-locals.el exists")
+            (with-temp-buffer (write-file dir-locals-file))))
+      (let ((dir-locals-file (concat default-directory ".dir-locals.el")))
+        (with-temp-buffer (write-file dir-locals-file))
+        (message ".dir-locals.el created")))))
+
+(defvar my/ccls-content
+  "clang\n\
+%c -std=c11\n\
+%cpp -std=c++2a")
+
+(defun my/create-ccls-file ()
+  "Create .ccls"
+  (interactive)
+  (let ((projectroot (cdr (project-current))))
+    (if projectroot
+        (let ((ccls-file (concat projectroot ".ccls")))
+          (if (file-exists-p ccls-file)
+              (message ".ccls exists")
+            (with-temp-file ccls-file
+              (insert my/ccls-content))))
+      (let ((ccls-file (concat default-directory ".ccls")))
+        (with-temp-file ccls-file
+          (insert my/ccls-content))))))
+
 (transient-define-prefix my-transient/project-new-menu ()
   "Project new transient menu"
   ["Create"
    ("r" "Root file" my/create-project-root-file)
    ("f" "Fdignore" my/create-fd-ignore-file)
-   ("j" "jsconfig" my/create-jsconfig-file)])
+   ("j" "jsconfig" my/create-jsconfig-file)
+   ("d" ".dir-locals" my/create-dir-locals-file)
+   ("c" ".ccls" my/create-ccls-file)])
 
 (transient-define-prefix my-transient/project-menu ()
   "Porject transient menu invoked by prefix `C-x p'"
@@ -126,7 +160,7 @@ DIR must include a .project file to be considered a project."
     ("!" "Project shell command" project-shell-command)
     ("&" "Project async shell command" project-async-shell-command)
     ("c" "Project compile" project-compile)
-    ("n" "Peoject new..." my-transient/project-new-menu)]
+    ("n" "Project new..." my-transient/project-new-menu)]
    ["Modes"
     ("D" "Dired" project-dired)
     ("e" "Eshell" project-eshell)
