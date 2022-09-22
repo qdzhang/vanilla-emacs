@@ -54,7 +54,8 @@
 (require 'site-lisp-loaddefs)
 
 ;; Languages
-;; (require 'init-c)
+(with-eval-after-load 'cc-mode
+  (require 'init-c))
 (with-eval-after-load 'lisp-mode
   (require 'init-lisp))
 (require 'init-tempo)
