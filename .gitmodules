@@ -44,6 +44,9 @@
 [submodule "eww-lnum"]
 	path = lib/eww-lnum
 	url = git@github.com:m00natic/eww-lnum.git
+[submodule "flymake-childframe"]
+	path = lib/flymake-childframe
+	url = git@github.com:qdzhang/flymake-childframe.git
 [submodule "flymake-quickdef"]
 	path = lib/flymake-quickdef
 	url = git@github.com:karlotness/flymake-quickdef.git
@@ -53,6 +56,9 @@
 [submodule "geiser-guile"]
 	path = lib/geiser-guile
 	url = git@gitlab.com:emacs-geiser/guile.git
+[submodule "go-mode"]
+	path = lib/go-mode
+	url = git@github.com:dominikh/go-mode.el.git
 [submodule "inf-ruby"]
 	path = lib/inf-ruby
 	url = git@github.com:nonsequitur/inf-ruby.git
@@ -77,6 +83,9 @@
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
+[submodule "quick-insert-unicode"]
+	path = lib/quick-insert-unicode
+	url = git@github.com:qdzhang/quick-insert-unicode.git
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
@@ -118,9 +127,3 @@
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
-[submodule "flymake-childframe"]
-	path = lib/flymake-childframe
-	url = git@github.com:qdzhang/flymake-childframe.git
-[submodule "quick-insert-unicode"]
-	path = lib/quick-insert-unicode
-	url = git@github.com:qdzhang/quick-insert-unicode.git

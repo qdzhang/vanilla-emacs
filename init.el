@@ -68,6 +68,8 @@
   (require 'init-perl))
 (with-eval-after-load 'forth-mode
   (require 'init-forth))
+(with-eval-after-load 'go-mode
+  (require 'init-go))
 
 ;; Some package can be loaded defered
 (run-with-idle-timer
