@@ -86,6 +86,9 @@
 [submodule "quick-insert-unicode"]
 	path = lib/quick-insert-unicode
 	url = git@github.com:qdzhang/quick-insert-unicode.git
+[submodule "racket-mode"]
+	path = lib/racket-mode
+	url = git@github.com:greghendershott/racket-mode.git
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
