@@ -10,6 +10,8 @@
   "Customize fonts in `Info-mode'"
   (text-scale-increase 1.2)
 
+  (setq Info-additional-directory-list '("~/.local/share/info"))
+
   (custom-theme-set-faces
    'user
    `(Info-quoted ((t (:foreground "deep pink"))))))

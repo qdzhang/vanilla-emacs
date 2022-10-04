@@ -115,5 +115,6 @@
 (setq-default tab-width 4)
 (setq c-default-style "csapp")
 (setq c-basic-offset 4)
+(setq comment-style 'extra-line)
 
 (provide 'init-c)
