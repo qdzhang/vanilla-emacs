@@ -95,7 +95,7 @@
 (eval-after-load 'org
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c SPC" . my-transient/org-mode-menu)
+     '(("C-c p" . my-transient/org-mode-menu)
        ("C-c l" . org-store-link))
      org-mode-map
      "init-org")))
