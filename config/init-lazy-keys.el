@@ -244,4 +244,10 @@
  '(("C-x 8 i" . quick-insert-unicode))
  "quick-insert-unicode")
 
+(with-eval-after-load 'racket-mode
+  (lazy-load-local-keys
+   '(("C-c p" . my-transient/racket-mode-menu))
+   racket-mode-map
+   "init-racket"))
+
 (provide 'init-lazy-keys)
