@@ -20,16 +20,34 @@
 
 (transient-define-prefix my-transient/racket-mode-menu ()
   "Show menu in `racket-mode'"
-  [["mode"
+  [["repl"
     ("'" "racket repl" racket-repl)
-    ("u" "unicode" racket-unicode-input-method-enable)]
+    ("d" "send defination" racket-send-definition)
+    ("e" "send sexp" racket-send-last-sexp)
+    ("sr" "send region" racket-send-region)]
    ["edit"
     ("a" "align pairs" racket-align)
     ("A" "unallign pairs" racket-unalign)
+    ("p" "cycle paren" racket-cycle-paren-shapes)
     ("r" "run program" racket-run)
-    ("R" "rename" racket-xp-rename)]
+    ("R" "rename" racket-xp-rename)
+    ("m" "macros" my-transient/racket-macro-menu)]
+   ["modes"
+    ("f" "fold tests" racket-fold-all-tests)
+    ("F" "unfold tests" racket-unfold-all-tests)
+    ("t" "test" racket-test)
+    ("i" "unicode" racket-unicode-input-method-enable)
+    ("l" "logger" racket-logger)
+    ("o" "profile" racket-profile)]
    ["help"
     ("h" "describe" racket-describe-search)]])
+
+(transient-define-prefix my-transient/racket-macro-menu ()
+  "Transient menu contains racket macro commands"
+  ["Macros"
+   ("d" "expand definition" racket-expand-definition)
+   ("e" "expand last sexp" racket-expand-last-sexp)
+   ("r" "expand region" racket-expand-region)])
 
 (provide 'init-racket)
 ;;; init-racket.el
