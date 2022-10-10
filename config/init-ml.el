@@ -27,5 +27,11 @@
 (with-eval-after-load 'sml-mode
   (setq sml-program-name "smlnj"))
 
+;; don't auto-close apostrophes (type 'a = foo) and backticks (`Foo)
+(with-eval-after-load 'smartparens
+  (sp-with-modes 'sml-mode
+    (sp-local-pair "'" nil :actions nil)
+    (sp-local-pair "`" nil :actions nil)))
+
 (provide 'init-ml)
 ;;; init-ml.el ends here
