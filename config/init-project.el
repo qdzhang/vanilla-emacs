@@ -24,8 +24,17 @@ DIR must include a .project file to be considered a project."
   (let ((root (locate-dominating-file dir ".project")))
     (and root (cons 'local root))))
 
+(cl-defmethod project-root ((project (head dlang-dub)))
+  (cdr project))
+
+(defun my/project-find-d-dub (dir)
+  (when-let ((root (or (locate-dominating-file dir "dub.json")
+                       (locate-dominating-file dir "dub.sdl"))))
+    (cons 'dlang-dub root)))
+
 (add-hook 'project-find-functions #'my/project-find-go-module)
 (add-hook 'project-find-functions #'my/project-try-local)
+(add-hook 'project-find-functions #'my/project-find-d-dub)
 
 (defun my--project-files-in-directory (dir)
   "Use `fd' to list files in DIR."
