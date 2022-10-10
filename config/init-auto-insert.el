@@ -152,5 +152,21 @@
   ""
   ";;;###autoload")
 
+(define-skeleton my/meson-build-simple-template
+  "A simple template for meson.build file"
+  "Project name: "
+  "project('" str "', '"
+  (setq v1 (skeleton-read "Language: (c/cpp) "))
+  "')" \n
+  "add_project_arguments('-fanalyzer', language : '" v1 "')" \n
+  \n
+  "executable('"
+  (skeleton-read "Output file: ")
+  "', '"
+  (skeleton-read "Source file: ")
+  "')"\n)
+
+(define-auto-insert "/meson.build\\'" 'my/meson-build-simple-template)
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
