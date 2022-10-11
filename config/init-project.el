@@ -169,7 +169,8 @@ DIR must include a .project file to be considered a project."
     ("!" "Project shell command" project-shell-command)
     ("&" "Project async shell command" project-async-shell-command)
     ("c" "Project compile" project-compile)
-    ("n" "Project new..." my-transient/project-new-menu)]
+    ("n" "Project new..." my-transient/project-new-menu)
+    ("a" "Add .dir-locals.el" add-dir-local-variable)]
    ["Modes"
     ("D" "Dired" project-dired)
     ("e" "Eshell" project-eshell)

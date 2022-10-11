@@ -8,6 +8,8 @@
 
 (setq auto-insert-query nil)
 
+(setq skeleton-end-newline nil)
+
 (define-auto-insert "\\.el$" 'my/elisp-header)
 
 (define-skeleton my/elisp-header
@@ -167,6 +169,37 @@
   "')"\n)
 
 (define-auto-insert "/meson.build\\'" 'my/meson-build-simple-template)
+
+(define-skeleton my-skel/html5
+  "Basic html5 file"
+  "Title: "
+  "<!DOCTYPE html>
+<html lang=\"en\">
+  <head>
+    <meta charset=\"utf-8\" />
+    <meta http-equiv=\"x-ua-compatible\" content=\"ie=edge\" />
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
+
+    <title>" str "</title>
+    <link rel=\"stylesheet\" href=\"css/main.css\" />
+    <link rel=\"icon\" href=\"images/favicon.png\" />
+  </head>
+
+  <body>
+    <h1>" str "</h1>
+  </body>
+</html>
+")
+
+(define-skeleton my-skel/hugo-go-template
+  "Insert hugo template delimiter"
+  ""
+  "{{ " - " }}")
+
+(define-skeleton my-skel/hugo-go-template-without-whitespaces
+  "Insert hugo template delimiter without whitespaces"
+  ""
+  "{{- " - " -}}")
 
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
