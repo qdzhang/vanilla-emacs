@@ -49,6 +49,15 @@ Copied from: https://christiantietze.de/posts/2020/05/delete-word-or-region-emac
       (delete-active-region 'kill)
     (sp-kill-word arg)))
 
+;; Autopair quotes more conservatively; if I'm next to a word/before another
+;; quote, I don't want to open a new pair or it would unbalance them.
+;; https://github.com/doomemacs/doomemacs/blob/e0385052a8004ec54a402c27357b1352840eb798/modules/config/default/config.el
+(let ((unless-list '(sp-point-before-word-p
+                     sp-point-after-word-p
+                     sp-point-before-same-p)))
+  (sp-pair "'"  nil :unless unless-list)
+  (sp-pair "\"" nil :unless unless-list))
+
 (with-eval-after-load 'web-mode
   (sp-local-pair 'web-mode "<" nil :actions :rem))
 
