@@ -1,5 +1,6 @@
 ;;; init-appearance.el -*- lexical-binding: t; -*-
 
+;; * Default fonts settings
 (set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "JetbrainsMono Nerd Font Mono" :size 24))
@@ -32,6 +33,7 @@
 (set-fontset-font t nil "98WB-U" nil 'prepend)
 
 
+;; * Themes settings
 ;; (load-theme 'tsdh-light t)
 
 
@@ -44,16 +46,16 @@
 
 ;; (define-key global-map (kbd "<f6>") #'modus-themes-toggle)
 
-;; {{{ Modify built-in `misterioso' theme
+;; ** Modify built-in `misterioso' theme
 ;; (load-theme 'misterioso)
 ;; (custom-theme-set-faces
 ;;  'misterioso
 ;;  '(cursor ((t (:background "#abb2bf"))))
 ;;  '(one-key-keystroke ((t (:foreground "#f29112")))))
 ;; (enable-theme 'misterioso)
-;; }}}
 
-;; {{{ Modify default light theme
+
+;; ** Modify default light theme
 ;; Default light theme
 (custom-theme-set-faces
  'user
@@ -90,9 +92,8 @@
 
 (add-hook 'prog-mode-hook 'my/add-watchwords)
 
-;;}}}
 
-;; {{{ Modify built-in `wombat' theme
+;; ** Modify built-in `wombat' theme
 ;; (load-theme 'wombat)
 ;; (custom-theme-set-faces
 ;;  'wombat
@@ -102,7 +103,6 @@
 ;; Apply the preceding custom theme faces immediately
 ;; https://emacs.stackexchange.com/a/60628
 ;; (enable-theme 'wombat)
-;; }}}
 
 (defun my/switch-theme (theme)
   ;; This interactive call is taken from `load-theme'
