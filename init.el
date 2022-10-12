@@ -81,6 +81,7 @@
      (require 'init-edit)
      (require 'init-isearch)
      (require 'init-navigate)
+     (require 'init-fold)
 
      (require 'init-company)
      ;; (require 'init-completion)
