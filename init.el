@@ -72,6 +72,7 @@
   (require 'init-go))
 (with-eval-after-load 'racket-mode
   (require 'init-racket))
+(require 'init-elisp)
 
 ;; Some package can be loaded defered
 (run-with-idle-timer
