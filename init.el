@@ -104,6 +104,8 @@
      (require 'init-hi-lock)
      (require 'init-proxy)
      (require 'init-auto-insert)
+
+     (require 'init-web)
      (message "Deferred config loading...Done.")))
 
 (progn
