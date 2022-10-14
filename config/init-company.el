@@ -6,6 +6,7 @@
 
 (global-company-mode 1)
 (setq completion-ignore-case t)
+(setq company-dabbrev-downcase nil)
 
 (with-eval-after-load 'company-mode
   (define-key company-active-map (kbd "RET") 'company-complete-selection)

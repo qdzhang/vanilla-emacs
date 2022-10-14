@@ -133,7 +133,7 @@ is achieved by adding the relevant text properties."
                       read-only t
                       front-sticky (field inhibit-line-move-field-capture)))))
 
-(add-hook 'eshell-after-prompt-hook 'my/protect-eshell-prompt)
+;; (add-hook 'eshell-after-prompt-hook 'my/protect-eshell-prompt)
 
 (defun my/kill-word-backward ()
   "Let Eshell kill word acting like zsh."
