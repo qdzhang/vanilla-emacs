@@ -174,15 +174,30 @@ Ref:https://emacs.stackexchange.com/a/58326"
   (require 'org-habit)
 
   (add-to-list 'org-agenda-custom-commands
-               '("x" todo "NEXT"
-                 ((org-agenda-max-entries 5))))
+               '("1" "Deadlines"
+                 agenda "Display deadlines"
+                 ((org-agenda-span 'year)
+                  (org-agenda-show-all-dates nil)
+                  ;; this entry can also include :scheduled
+                  (org-agenda-entry-types '(:deadline))
+                  (org-deadline-warning-days 0)))
+               t)
   (add-to-list 'org-agenda-custom-commands
-               '("z" todo "SOMEDAY"))
+               '("2" "Next todo"
+                 todo "NEXT"
+                 ((org-agenda-max-entries 5)))
+               t)
   (add-to-list 'org-agenda-custom-commands
-               '("d" "Daily targets" search
+               '("3" "Someday todo"
+                 todo "SOMEDAY")
+               t)
+  (add-to-list 'org-agenda-custom-commands
+               '("d" "Daily targets"
+                 search "Daily targets"
                  (format-time-string "%Y-%m-%d" nil)
                  ((org-agenda-files '("daily.org"))
-                  (org-agenda-text-search-extra-files nil))))
+                  (org-agenda-text-search-extra-files nil)))
+               t)
   (add-to-list 'org-agenda-custom-commands
                '("h" "Daily habits"
                  ((agenda ""))
@@ -190,7 +205,8 @@ Ref:https://emacs.stackexchange.com/a/58326"
                   (org-agenda-show-log t)
                   (org-agenda-ndays 7)
                   (org-agenda-log-mode-items '(state))
-                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":habit:")))))
+                  (org-agenda-skip-function '(org-agenda-skip-entry-if 'notregexp ":habit:"))))
+               t)
 
   (defun my/org-agenda-goto ()
     "A custom `org-agenda-goto' to narrow to the item's subtree"
