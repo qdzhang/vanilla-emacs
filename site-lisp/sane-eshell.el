@@ -15,7 +15,8 @@
 ;;
 ;; There are two main functions:
 ;; - `sane-eshell': If there is no eshell yet, create a new one; otherwise cycle
-;;   between all eshell buffers
+;;   between all eshell buffers. If current buffer is `eshell-mode', return to
+;;   previous buffer which is not eshell.
 ;; - `sane-eshell-create': Create a new eshell buffer named "eshell<N>"(N is a
 ;;   positive number)
 ;; - `sane-eshell-create-in-project-root': Create a new eshell in the root of
@@ -80,10 +81,14 @@
 (defun sane-eshell ()
   "Cycle through eshell buffers, creating if necessary."
   (interactive)
-  (when sane-eshell-initial-create
-    (unless (sane-eshell-buffer-exists-p)
-      (sane-eshell-create)))
-  (sane-eshell-next))
+  (if (derived-mode-p 'eshell-mode)
+      (progn
+        (bury-buffer (get-buffer "*eshell*"))
+        (bury-buffer))
+    (when sane-eshell-initial-create
+      (unless (sane-eshell-buffer-exists-p)
+        (sane-eshell-create)))
+    (sane-eshell-next)))
 
 (provide 'sane-eshell)
 

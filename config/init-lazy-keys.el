@@ -190,8 +190,8 @@
  "sane-eshell")
 
 (lazy-load-global-keys
- '(("C-<f11>" . my/ansi-term-bash)
-   ("M-<f11>" . my/open-term-in-split-window))
+ '(("C-<f11>" . my/ansi-term-toggle)
+   ("M-<f11>" . my/ansi-term-split-toggle))
  "init-term")
 
 (eval-after-load 'term

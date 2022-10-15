@@ -32,6 +32,56 @@ the current buffer."
   (interactive)
   (ansi-term "/bin/bash"))
 
+(defun my/ansi-term-cycle (reverse)
+  (unless reverse
+    (when (derived-mode-p 'term-mode)
+      (bury-buffer)))
+  (let ((buffers (buffer-list)))
+    (when reverse
+      (setq buffers (nreverse buffers)))
+    (catch 'loop
+      (dolist (buf buffers)
+        (when (with-current-buffer buf (derived-mode-p 'term-mode))
+          (switch-to-buffer buf)
+          (throw 'loop nil))))))
+
+(defun my/ansi-term-next ()
+  "Cycle through ansi-term buffers."
+  (interactive)
+  (my/ansi-term-cycle nil))
+
+(defun my/term-buffer-exists-p ()
+  "Boolean if term-mode buffers exist."
+  (catch 'loop
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (derived-mode-p 'term-mode)
+          (throw 'loop t))))))
+
+(defun my/ansi-term-toggle ()
+  "Toggle `ansi-term'.
+
+If current buffer is ansi-term, close it; Otherwise open a new ansi-term window"
+  (interactive)
+  (if (derived-mode-p 'term-mode)
+      (progn
+        (bury-buffer (get-buffer "*ansi-term*"))
+        (bury-buffer))
+    (unless (my/term-buffer-exists-p)
+      (my/ansi-term-bash))
+    (my/ansi-term-next)))
+
+(defun my/ansi-term-split-toggle ()
+  "Like `my/ansi-term-toggle', but for split term buffer."
+  (interactive)
+  (if (derived-mode-p 'term-mode)
+      (progn
+        (bury-buffer (get-buffer "*ansi-term*"))
+        (bury-buffer))
+    (unless (my/term-buffer-exists-p)
+      (my/open-term-in-split-window))
+    (my/ansi-term-next)))
+
 ;; Copied from Spacemacs
 (defun my/ansi-term-handle-close ()
   "Close current term buffer when `exit' from term buffer."
