@@ -1,41 +1,55 @@
 ;;; init-project.el --- project.el config            -*- lexical-binding: t; -*-
 
+
+;; * Add new file types be determined as project root
+;;
 ;; More example about add a new file to specify project root
 ;; https://www.reddit.com/r/emacs/comments/lfbyq5/specifying_projectroot_in_projectel/
-
-;; Declare directories with "go.mod" as a project
-(cl-defmethod project-root ((project (head go-module)))
-  (cdr project))
-
-(defun my/project-find-go-module (dir)
-  (when-let ((root (locate-dominating-file dir "go.mod")))
-    (cons 'go-module root)))
-
+;;
 ;; Some other extending of project.el
 ;; https://www.manueluberti.eu//emacs/2020/11/14/extending-project/
+;;
+;; I defined some separate file types as root-indicator formerly,
+;; this is a  more generic method to detect the project root
+;; https://andreyorst.gitlab.io/posts/2022-07-16-project-el-enhancements/
+;; And there is a similar library:
+;; https://github.com/buzztaiki/project-rootfile.el
+(defcustom my/project-root-markers
+  '(".project" "Gemfile" "go.mod" "Cargo.toml"
+    "Makefile" "GNUMakefile" "CMakeLists.txt" "meson.build"
+    "Cask" "Eldev" "Keg" "Eask"
+    "Gruntfile.js" "gulpfile.js" "package.json"
+    "project.clj"  "deps.edn" "shadow-cljs.edn"
+    "dub.json" "dub.sdl")
+  "Files or directories that indicate the root of a project."
+  :type '(repeat string)
+  :group 'project)
 
-;; Declare directories with ".project" as a project
-(cl-defmethod project-root ((project (head local)))
-  (cdr project))
+(defun my/project-root-p (path)
+  "Check if the current PATH has any of the project root markers.
 
-(defun my/project-try-local (dir)
-  "Determine if DIR is a non-Git project.
-DIR must include a .project file to be considered a project."
-  (let ((root (locate-dominating-file dir ".project")))
-    (and root (cons 'local root))))
+Use `dolist' to iterate my/project-root-markers."
+  (catch 'found
+    (dolist (marker my/project-root-markers)
+      (when (file-exists-p (concat path marker))
+        (throw 'found marker)))))
 
-(cl-defmethod project-root ((project (head dlang-dub)))
-  (cdr project))
+(defun my/project-root-p-1 (path)
+  "Check if the current PATH has any of the project root markers.
 
-(defun my/project-find-d-dub (dir)
-  (when-let ((root (or (locate-dominating-file dir "dub.json")
-                       (locate-dominating-file dir "dub.sdl"))))
-    (cons 'dlang-dub root)))
+Use `seq-some' to test at least one element of my/project-root-markers exists."
+  (seq-some (lambda (f) (file-exists-p (expand-file-name f path)))
+            my/project-root-markers))
 
-(add-hook 'project-find-functions #'my/project-find-go-module)
-(add-hook 'project-find-functions #'my/project-try-local)
-(add-hook 'project-find-functions #'my/project-find-d-dub)
+(defun my/project-find-root (path)
+  "Search up the PATH for `my/project-root-markers'."
+  (when-let ((root (locate-dominating-file path #'my/project-root-p-1)))
+    (cons 'transient (expand-file-name root))))
 
+(add-to-list 'project-find-functions #'my/project-find-root)
+
+
+;; * Use fd to supersede default project find-file
 (defun my--project-files-in-directory (dir)
   "Use `fd' to list files in DIR."
   (let* ((default-directory dir)
@@ -50,10 +64,12 @@ DIR must include a .project file to be considered a project."
   (mapcan #'my--project-files-in-directory
           (or dirs (list (project-root project)))))
 
-;; Add the command `project-switch-to-buffer' when using `project-switch-project'
+;; * Add the command `project-switch-to-buffer' when using `project-switch-project'
 (with-eval-after-load 'project
   (add-to-list 'project-switch-commands '(?b "Switch buffer" project-switch-to-buffer)))
 
+
+;; * Create new files in project root
 (defun my/create-project-root-file ()
   "Create .project file at project root."
   (interactive)
@@ -145,6 +161,7 @@ DIR must include a .project file to be considered a project."
         (with-temp-file ccls-file
           (insert my/ccls-content))))))
 
+;; * Define transient menu
 (transient-define-prefix my-transient/project-new-menu ()
   "Project new transient menu"
   ["Create"
