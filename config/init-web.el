@@ -8,6 +8,7 @@
 
 ;; * `mhtml-mode' setup
 (with-eval-after-load 'mhtml-mode
+  ;; Define keybindings to insert hugo template easily
   (define-key mhtml-mode-map (kbd "C-c C-c b") 'my-skel/hugo-go-template)
   (define-key mhtml-mode-map (kbd "C-c C-c p") 'my-skel/hugo-go-template-without-whitespaces))
 
@@ -18,6 +19,10 @@
 
 ;; * `web-mode' setup
 (with-eval-after-load 'web-mode
+  ;; Define keybindings to insert hugo template easily
+  (define-key web-mode-map (kbd "C-c C-e g") 'my-skel/hugo-go-template)
+  (define-key web-mode-map (kbd "C-c C-e G") 'my-skel/hugo-go-template-without-whitespaces)
+
   ;; Let smartparens handle these
   (setq web-mode-enable-auto-quoting nil)
   (setq web-mode-enable-auto-pairing nil)
