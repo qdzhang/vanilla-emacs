@@ -32,7 +32,8 @@
     ("xd" "Disable" proxy-socks-disable)
     ("xt" "Toggle" proxy-socks-toggle)]
    ["Modes"
-    ("m" "Common modes" my-transient/common-modes-menu)]
+    ("m" "Common modes" my-transient/common-modes-menu)
+    ("l" "List timers" list-timers)]
    ["Help"
     ("h" "Shortdoc" shortdoc-display-group)
     ("f" "Describe face" describe-face)

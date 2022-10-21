@@ -133,3 +133,6 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
+[submodule "tomato-timer"]
+	path = lib/tomato-timer
+	url = git@github.com:qdzhang/tomato-timer.git
