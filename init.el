@@ -73,6 +73,7 @@
 (with-eval-after-load 'racket-mode
   (require 'init-racket))
 (require 'init-elisp)
+(require 'init-direnv)
 
 ;; Some package can be loaded defered
 (run-with-idle-timer

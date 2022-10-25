@@ -38,6 +38,9 @@
 	path = lib/emacsql
 	url = git@github.com:skeeto/emacsql.git
 	no-byte-compile = emacsql-pg.el
+[submodule "envrc"]
+	path = lib/envrc
+	url = git@github.com:purcell/envrc.git
 [submodule "epkg"]
 	path = lib/epkg
 	url = git@github.com:emacscollective/epkg.git
@@ -62,6 +65,9 @@
 [submodule "inf-ruby"]
 	path = lib/inf-ruby
 	url = git@github.com:nonsequitur/inf-ruby.git
+[submodule "inheritenv"]
+	path = lib/inheritenv
+	url = git@github.com:purcell/inheritenv.git
 [submodule "janet-mode"]
 	path = lib/janet-mode
 	url = git@github.com:ALSchwalm/janet-mode.git
@@ -118,6 +124,9 @@
 [submodule "super-save"]
 	path = lib/super-save
 	url = git@github.com:bbatsov/super-save.git
+[submodule "tomato-timer"]
+	path = lib/tomato-timer
+	url = git@github.com:qdzhang/tomato-timer.git
 [submodule "visual-fill-column"]
 	path = lib/visual-fill-column
 	url = https://codeberg.org/joostkremers/visual-fill-column.git
@@ -133,6 +142,3 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
-[submodule "tomato-timer"]
-	path = lib/tomato-timer
-	url = git@github.com:qdzhang/tomato-timer.git
