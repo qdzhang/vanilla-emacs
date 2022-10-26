@@ -15,7 +15,7 @@
 ;; And there is a similar library:
 ;; https://github.com/buzztaiki/project-rootfile.el
 (defcustom my/project-root-markers
-  '(".project" "Gemfile" "go.mod" "Cargo.toml"
+  '(".git" ".project" "Gemfile" "go.mod" "Cargo.toml"
     "Makefile" "GNUMakefile" "CMakeLists.txt" "meson.build"
     "Cask" "Eldev" "Keg" "Eask"
     "Gruntfile.js" "gulpfile.js" "package.json"

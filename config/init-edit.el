@@ -66,6 +66,7 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
 
 (defalias 'rb 'revert-buffer)
 (defalias 'ba 'borg-assimilate)
+(defalias 'bb 'borg-build)
 (defalias 'bd 'borg-remove)
 
 

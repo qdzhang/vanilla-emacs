@@ -62,27 +62,11 @@
  `(default ((t (:background "#ffffe8" :foreground "black"))))
  `(cursor ((t (:background "black"))))
  ;; Make `term' and `ansi-term' prompt more distinguishable
- `(ansi-color-white ((t :background "gray65" :foreground "gray65"))))
+ `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
+ `(region ((t :background "#e9dd76"))))
 
-(set-face-attribute 'region nil :background "#e9dd76")
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
-
-(defface my/lisp-paren-face
-  '((((class color) (background dark))
-     (:foreground "grey50"))
-    (((class color) (background light))
-     (:foreground "grey55")))
-  "Face used to dim (Lisp) parentheses."
-  :group 'personal)
-
-;; Dim lisp parentheses
-(dolist (mode '(scheme-mode
-                emacs-lisp-mode
-                lisp-mode
-                clojure-mode
-                clojurescript-mode))
-  (font-lock-add-keywords mode '(("(\\|)" . 'my/lisp-paren-face))))
 
 ;; Highlight TODO watchwords
 (defun my/add-watchwords ()

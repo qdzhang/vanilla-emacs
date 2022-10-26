@@ -33,7 +33,8 @@
     ("xt" "Toggle" proxy-socks-toggle)]
    ["Modes"
     ("m" "Common modes" my-transient/common-modes-menu)
-    ("l" "List timers" list-timers)]
+    ("l" "List timers" list-timers)
+    ("o" "Tomato timer" tomato-timer)]
    ["Help"
     ("h" "Shortdoc" shortdoc-display-group)
     ("f" "Describe face" describe-face)
