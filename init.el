@@ -74,6 +74,7 @@
   (require 'init-racket))
 (require 'init-elisp)
 (require 'init-direnv)
+(require 'init-python)
 
 ;; Some package can be loaded defered
 (run-with-idle-timer

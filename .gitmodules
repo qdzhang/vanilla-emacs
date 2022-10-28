@@ -115,6 +115,9 @@
 	path = lib/sly-quicklisp
 	url = git@github.com:joaotavora/sly-quicklisp.git
 	ignore = dirty
+[submodule "smart-dash"]
+	path = lib/smart-dash
+	url = git@github.com:malsyned/smart-dash.git
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git
