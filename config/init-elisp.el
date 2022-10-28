@@ -30,5 +30,10 @@
 (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
 (add-hook 'emacs-lisp-mode-hook 'hs-minor-mode)
 
+(defun my/ielm-mode-hook ()
+  (and (featurep 'smartparens) (smartparens-mode 1)))
+
+(add-hook 'ielm-mode-hook 'my/ielm-mode-hook)
+
 (provide 'init-elisp)
 ;;; init-elisp.el ends here
