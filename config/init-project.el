@@ -15,7 +15,7 @@
 ;; And there is a similar library:
 ;; https://github.com/buzztaiki/project-rootfile.el
 (defcustom my/project-root-markers
-  '(".git" ".project" "Gemfile" "go.mod" "Cargo.toml"
+  '(".project" "Gemfile" "go.mod" "Cargo.toml"
     "Makefile" "GNUMakefile" "CMakeLists.txt" "meson.build"
     "Cask" "Eldev" "Keg" "Eask"
     "Gruntfile.js" "gulpfile.js" "package.json"
@@ -48,6 +48,16 @@ Use `seq-some' to test at least one element of my/project-root-markers exists."
 
 (add-to-list 'project-find-functions #'my/project-find-root)
 
+;; Similar to `project-try-vc' but works when VC is disabled.
+(defun my/project-try-magit (dir)
+  "Similar to `project-try-vc' but works when VC is disabled.
+
+URL: https://github.com/andschwa/.emacs.d/blob/main/init.el"
+  (require 'magit-process)
+  (let* ((root (magit-toplevel dir)))
+    (and root (cons 'vc root))))
+
+(add-to-list 'project-find-functions #'my/project-try-magit)
 
 ;; * Use fd to supersede default project find-file
 (defun my/project-fd ()
