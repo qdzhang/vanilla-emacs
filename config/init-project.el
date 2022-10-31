@@ -190,6 +190,36 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
         (with-temp-file ccls-file
           (insert my/ccls-content))))))
 
+(defun my/project-git-find-files ()
+  "Find file in the current Git repository."
+  (interactive)
+  (let* ((default-directory (locate-dominating-file
+                             default-directory ".git"))
+         (cands (split-string
+                 (shell-command-to-string
+                  "git ls-files --full-name --")))
+         (file (completing-read "Find file: " cands)))
+    (when file
+      (find-file file))))
+
+(defun my/project-term ()
+  "Open `ansi-term' in current project root."
+  (interactive)
+  (let* ((pr (project-current t))
+         (default-directory (project-root pr)))
+    (my/ansi-term-bash)))
+
+(defun my/project-remove-project ()
+  "Remove project from `project--list' using completion.
+
+URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b9138c8c/lisp/setup-project.el#L78"
+  (interactive)
+  (project--ensure-read-project-list)
+  (let* ((projects project--list)
+         (dir (completing-read "REMOVE project from list: " projects nil t)))
+    (setq project--list (delete (assoc dir projects) projects))))
+
+
 ;; * Define transient menu
 (transient-define-prefix my-transient/project-new-menu ()
   "Project new transient menu"
@@ -203,10 +233,13 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
 (transient-define-prefix my-transient/project-menu ()
   "Porject transient menu invoked by prefix `C-x p'"
   [["Find"
-    ("f" "Project find file" project-find-file)
-    ("g" "Project find regexp" project-find-regexp)
+    ("f" "Project find file" my/project-fd)
+    ("F" "Project find regexp" project-find-regexp)
     ("d" "Project find dir" project-find-dir)
-    ("r" "Project query and replece" project-query-replace-regexp)]
+    ("r" "Project query and replece" project-query-replace-regexp)
+    ("u" "Find sub-dir" my/project-find-file-in-dir)
+    ("g" "Rg" rg-project)
+    ("l" "Git files" my/project-git-find-files)]
    ["Switch"
     ("p" "Project switch project" project-switch-project)
     ("b" "Project switch buffer" project-switch-to-buffer)
@@ -216,11 +249,13 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
     ("&" "Project async shell command" project-async-shell-command)
     ("c" "Project compile" project-compile)
     ("n" "Project new..." my-transient/project-new-menu)
-    ("a" "Add .dir-locals.el" add-dir-local-variable)]
+    ("a" "Add .dir-locals.el" add-dir-local-variable)
+    ("h" "Remove project" my/project-remove-project)]
    ["Modes"
     ("D" "Dired" project-dired)
     ("e" "Eshell" project-eshell)
     ("s" "Shell" project-shell)
+    ("t" "Ansi-term" my/project-term)
     ("v" "VC dir" project-vc-dir)]])
 
 (provide 'init-project)
