@@ -50,23 +50,42 @@ Use `seq-some' to test at least one element of my/project-root-markers exists."
 
 
 ;; * Use fd to supersede default project find-file
-(defun my--project-files-in-directory (dir)
-  "Use `fd' to list files in DIR."
-  (let* ((default-directory dir)
-         (localdir (file-local-name (expand-file-name dir)))
-         (command (format "fd -H -t f -0 . %s" localdir)))
-    (project--remote-file-names
-     (sort (split-string (shell-command-to-string command) "\0" t)
-           #'string<))))
+(defun my/project-fd ()
+  "Use `fd' to find files"
+  (interactive)
+  (let* ((pr (project-current t))
+         (default-directory (project-root pr))
+         (command (format "fd -H -t f --strip-cwd-prefix -0"))
+         (cands (split-string (shell-command-to-string command) "\0" t))
+         (file (completing-read "Fd file: " cands)))
+    (when file
+      (find-file file))))
 
-(cl-defmethod project-files ((project (head local)) &optional dirs)
-  "Override `project-files' to use `fd' in local projects."
-  (mapcan #'my--project-files-in-directory
-          (or dirs (list (project-root project)))))
-
-;; * Add the command `project-switch-to-buffer' when using `project-switch-project'
+;; * Customize `project-switch-commands'.
+;; - Add the command `project-switch-to-buffer' when using `project-switch-project'
+;; - Use `my/project-fd' to supersede `project-find-file'
 (with-eval-after-load 'project
-  (add-to-list 'project-switch-commands '(?b "Switch buffer" project-switch-to-buffer)))
+  (add-to-list 'project-switch-commands '(?b "Switch buffer" project-switch-to-buffer))
+  (assq-delete-all 'project-find-file project-switch-commands)
+  (assq-delete-all 'project-vc-dir project-switch-commands)
+  (add-to-list 'project-switch-commands '(?v "Magit" magit-status))
+  (add-to-list 'project-switch-commands '(?f "Fd-files" my/project-fd)))
+
+;; * find files in a specific sub-directory
+(defun my/choose-directory (dir)
+  "Choose a directory."
+  (interactive "D") dir)
+
+(defun my/project-find-file-in-dir ()
+  "Find files in a specific directory. Use the default `project-find-file-in'.
+
+URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_directory/i2idk6j/"
+  (interactive)
+  (let* ((pr (project-current t))
+         (default-directory (project-root pr))
+         (dir (call-interactively 'my/choose-directory))
+         (dirs (list dir)))
+    (project-find-file-in (thing-at-point 'filename) dirs pr)))
 
 
 ;; * Create new files in project root
