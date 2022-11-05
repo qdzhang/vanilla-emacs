@@ -38,6 +38,9 @@
 (autoload 'inf-ruby-minor-mode "init-ruby")
 ;; (autoload 'erb-mode "erb-mode")
 
+(autoload 'racket-xp-mode "init-racket")
+(autoload 'racket-mode "init-racket")
+
 ;; Config `Info-mode'
 (autoload 'my/info-mode-font-setup "init-info")
 (add-hook 'Info-mode-hook #'my/info-mode-font-setup)

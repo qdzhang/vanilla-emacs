@@ -8,10 +8,15 @@
 
 ;;; Code:
 
+(require 'racket-mode)
+
 (with-eval-after-load 'racket-repl
   (define-key racket-repl-mode-map (kbd "M-]") 'my/close-all-parentheses))
 
-(add-hook 'racket-mode-hook #'racket-xp-mode)
+(add-hook 'racket-mode-hook
+          (lambda ()
+            (racket-xp-mode 1)
+            (setq-local imenu-create-index-function #'racket-imenu-create-index-function)))
 
 (with-eval-after-load 'smartparens
   (when (fboundp 'sp-local-pair)

@@ -70,8 +70,6 @@
   (require 'init-forth))
 (with-eval-after-load 'go-mode
   (require 'init-go))
-(with-eval-after-load 'racket-mode
-  (require 'init-racket))
 (require 'init-elisp)
 (require 'init-direnv)
 (require 'init-python)
