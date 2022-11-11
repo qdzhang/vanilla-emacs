@@ -138,4 +138,34 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
       (error "No number at point"))
   (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
 
+;;;###autoload
+(defun my/time-stamp ()
+  "Insert time stamp"
+  (interactive)
+  (insert (format-time-string "%Y-%m-%d")))
+
+
+;; Open newline
+;; https://github.com/manateelazycat/open-newline/blob/master/open-newline.el
+;;;###autoload
+(defun my/open-newline-above (arg)
+  "Move to the previous line (like vi) and then opens a line."
+  (interactive "p")
+  (beginning-of-line)
+  (open-line arg)
+  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
+      (indent-according-to-mode)
+    (beginning-of-line)))
+
+;;;###autoload
+(defun my/open-newline-below (arg)
+  "Move to the next line (like vi) and then opens a line."
+  (interactive "p")
+  (end-of-line)
+  (open-line arg)
+  (call-interactively 'next-line arg)
+  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
+      (indent-according-to-mode)
+    (beginning-of-line)))
+
 (provide 'init-edit)

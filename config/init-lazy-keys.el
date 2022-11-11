@@ -65,7 +65,6 @@
    ("C-]" . sp-select-next-thing-exchange)
    ("C-\"" . sp-change-inner)
    ("M-r" . sp-delete-region)
-   ("M-RET" . my/sp-new-line)
    ("M-i" . sp-change-enclosing)
    ("M-o" . sp-rewrap-sexp)
    ("M-d" . my/sp-kill-word)
@@ -158,7 +157,9 @@
 
 (lazy-load-global-keys
  '(("C-<f8>" . my/upcase-word-toggle)
-   ("M-c" . my/capitalize-word-toggle))
+   ("M-c" . my/capitalize-word-toggle)
+   ("M-<return>" . my/open-newline-below)
+   ("C-M-<return>" . my/open-newline-above))
  "init-edit")
 
 (add-hook 'c-initialization-hook
