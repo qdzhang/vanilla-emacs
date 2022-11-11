@@ -23,10 +23,6 @@
   (define-key web-mode-map (kbd "C-c C-e g") 'my-skel/hugo-go-template)
   (define-key web-mode-map (kbd "C-c C-e G") 'my-skel/hugo-go-template-without-whitespaces)
 
-  ;; Let smartparens handle these
-  (setq web-mode-enable-auto-quoting nil)
-  (setq web-mode-enable-auto-pairing nil)
-
   ;; Indent setup
   (setq web-mode-markup-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
@@ -38,6 +34,9 @@
   (setq web-mode-enable-current-element-highlight t)
   (set-face-attribute 'web-mode-current-element-highlight-face nil :foreground "black" :background "PaleGreen2"))
 
+;; Deactivate smartparens in `web-mode'
+;; Using `web-mode' built-in auto-pairs and auto-quoting
+(add-hook 'web-mode-hook #'spacemacs//deactivate-smartparens)
 
 ;; * `css-mode' setup
 (with-eval-after-load 'css-mode

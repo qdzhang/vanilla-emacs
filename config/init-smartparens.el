@@ -58,16 +58,27 @@ Copied from: https://christiantietze.de/posts/2020/05/delete-word-or-region-emac
   (sp-pair "'"  nil :unless unless-list)
   (sp-pair "\"" nil :unless unless-list))
 
-(with-eval-after-load 'web-mode
-  (sp-local-pair 'web-mode "<" nil :actions :rem))
+;; After curly brace, enter `RET' will create an extra newline
+;; https://emacs.stackexchange.com/questions/12368/make-ending-curly-brace-of-block-go-down-an-extra-newline-in-golang
+;; https://github.com/Fuco1/smartparens/wiki/Permissions#pre-and-post-action-hooks
+;;
+;; Expand {|} => { | }
+;; Expand {|} => {
+;;   |
+;; }
+(dolist (brace '("(" "{" "["))
+  (sp-pair brace nil
+           :post-handlers '(("||\n[i]" "RET") ("| " "SPC"))
+           ;; Don't autopair opening braces if before a word character or
+           ;; other opening brace. The rationale: it interferes with manual
+           ;; balancing of braces, and is odd form to have s-exps with no
+           ;; whitespace in between, e.g. ()()(). Insert whitespace if
+           ;; genuinely want to start a new form in the middle of a word.
+           :unless '(sp-point-before-word-p sp-point-before-same-p)))
 
 (with-eval-after-load 'js-mode
   (sp-local-pair 'js-mode "<" nil :actions :rem))
 
-;; After curly brace, enter `RET' will create an extra newline
-;; https://emacs.stackexchange.com/questions/12368/make-ending-curly-brace-of-block-go-down-an-extra-newline-in-golang
-;; https://github.com/Fuco1/smartparens/wiki/Permissions#pre-and-post-action-hooks
-(sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
 
 ;; Remove ) auto pair in sh-mode
 (with-eval-after-load 'sh-mode
@@ -120,5 +131,21 @@ Ref: https://acidwords.com/posts/2017-10-19-closing-all-parentheses-at-once.html
                    t)
                ((scan-error) nil))))
     (apply #'insert (nreverse closing))))
+
+;;;###autoload
+(defun spacemacs//deactivate-smartparens(&optional global)
+  "Deactivate `smartparens-mode'.
+This deactivates `smartparens-mode' and `smartparens-strict-mode'.
+It is important to disable both to remove all advices.
+If `global' is non-nil activate the respective global mode."
+  (if global
+      (progn
+        (when smartparens-global-strict-mode
+          (smartparens-global-strict-mode -1))
+        (smartparens-global-mode -1))
+    (progn
+      (when smartparens-strict-mode
+        (smartparens-strict-mode -1))
+      (smartparens-mode -1))))
 
 (provide 'init-smartparens)
