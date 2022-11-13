@@ -31,7 +31,8 @@
 (with-eval-after-load 'smartparens
   (sp-with-modes 'sml-mode
     (sp-local-pair "'" nil :actions nil)
-    (sp-local-pair "`" nil :actions nil)))
+    (sp-local-pair "`" nil :actions nil)
+    (sp-local-pair "(* "  " *")))
 
 (provide 'init-ml)
 ;;; init-ml.el ends here
