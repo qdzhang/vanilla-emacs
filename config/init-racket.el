@@ -54,5 +54,26 @@
    ("e" "expand last sexp" racket-expand-last-sexp)
    ("r" "expand region" racket-expand-region)])
 
+(defcustom outlined-racket-regexp (rx (or (group line-start
+                                                 ";;"
+                                                 whitespace
+                                                 (one-or-more "*")
+                                                 whitespace)
+                                          (group line-start
+                                                 ";;;"
+                                                 (zero-or-more ";")
+                                                 whitespace)))
+  "regexp that matches headings"
+  :group 'outlined-racket)
+
+(defun my/outline-regexp-for-racket-mode (&rest _)
+  "outline-regexp = +racket-outline-regexp"
+  (setq-local outline-regexp outlined-racket-regexp))
+
+(add-hook 'racket-mode-hook #'my/outline-regexp-for-racket-mode -90)
+
+(add-hook 'racket-mode-hook 'outline-minor-mode)
+(add-hook 'racket-mode-hook 'hs-minor-mode)
+
 (provide 'init-racket)
 ;;; init-racket.el

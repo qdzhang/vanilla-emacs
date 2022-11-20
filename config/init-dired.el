@@ -5,8 +5,8 @@
 (add-hook 'dired-mode-hook 'auto-revert-mode)
 
 (setq dired-dwim-target t)
-(setq dired-guess-shell-alist-user '(("\\.pdf\\'" "zathura")
-                                     ("\\.djvu\\'" "zathura")
+(setq dired-guess-shell-alist-user '(("\\.pdf\\'" "mupdf")
+                                     ("\\.djvu\\'" "mupdf")
                                      ("\\.mkv\\'"  "mpv")
                                      ("\\.avi\\'"  "mpv")
                                      ("\\.mp4\\'"  "mpv")
@@ -25,7 +25,7 @@
                                      ("\\.png\\'" "pqiv")
                                      ("\\.gif\\'" "pqiv")
                                      ("\\.jpeg\\'" "pqiv")
-                                     ("\\.epub\\'" "zathura")
+                                     ("\\.epub\\'" "mupdf")
                                      ("\\.azw3\\'" "ebook-viewer")))
 (setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'always)
@@ -61,7 +61,8 @@
 
 (defvar dired-filelist-cmd
   '(("mpv")
-    ("zathura")))
+    ("zathura")
+    ("mupdf")))
 
 ;; Create a new procedure to start a process in dired without popup windows.
 ;; The process will persist when Emacs is closed.
