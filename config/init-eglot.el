@@ -15,10 +15,24 @@
 ;; I want to turn on `flymake-mode' manually.
 (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
 
+(with-eval-after-load 'eldoc
+  (setq eldoc-echo-area-use-multiline-p nil))
+
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "ccls"))
 ;; (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("clangd" "--clang-tidy")))
-(add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
+;; (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
+;; (add-to-list 'eglot-server-programs '(python-mode . ("pylsp")))
 (add-to-list 'eglot-server-programs '(d-mode . ("/usr/bin/serve-d")))
+
+(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+
+(defclass eglot-deno (eglot-lsp-server) ()
+  :documentation "A custom class for deno lsp.")
+
+(cl-defmethod eglot-initialization-options ((server eglot-deno))
+  "Passes through required deno initialization options"
+  (list :enable t
+        :lint t))
 
 
 (transient-define-prefix my-transient/eglot
