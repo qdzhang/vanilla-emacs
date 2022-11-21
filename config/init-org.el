@@ -10,7 +10,6 @@
   "Setup variable-pitch fonts for `org-mode'."
   (interactive)
   (variable-pitch-mode 1)
-  (text-scale-increase 1.2)
   (auto-fill-mode)
 
   (custom-theme-set-faces
@@ -36,10 +35,20 @@
    `(org-property-value ((t (:inherit fixed-pitch))) t)
    `(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
    ;; `(org-tag ((t (:box (:line-width 1)))))
+   `(org-checkbox ((t :inherit 'fixed-pitch-serif :background nil :box nil)))
    `(org-verbatim ((t (:inherit (shadow fixed-pitch)))))))
 
 (add-hook 'org-mode-hook #'my/org-font-setup)
 
+;; https://github.com/DogLooksGood/meomacs/blob/master/writing.org
+(defun my/org-prettify-symbols ()
+  (setq-local prettify-symbols-alist
+              '(("[X]" . "⦿")
+                ("[ ]" . "🞆")
+                ("[-]" . "⦾")))
+  (prettify-symbols-mode 1))
+
+(add-hook 'org-mode-hook 'my/org-prettify-symbols)
 
 (setq org-default-notes-file "~/org/inbox.org"
       org-agenda-files '("~/org/task.org" "~/org/refile.org" "~/org/archive.org" "~/org/project.org")

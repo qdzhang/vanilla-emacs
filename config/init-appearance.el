@@ -2,20 +2,21 @@
 
 ;; * Default fonts settings
 ;; (set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 24))
-(set-face-attribute 'default nil :family "Latin Modern Mono" :height 180)
+(set-face-attribute 'default nil :font (font-spec :family "Latin Modern Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "JetbrainsMono Nerd Font Mono" :size 24))
 ;; (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
-;; (set-face-attribute 'variable-pitch nil :family "Vollkorn Medium")
-(set-face-attribute 'variable-pitch nil :family "Bookerly")
+(set-face-attribute 'variable-pitch nil :family "Vollkorn")
+;; (set-face-attribute 'variable-pitch nil :family "Libertinus Serif")
+;; (set-face-attribute 'variable-pitch nil :family "Latin Modern Roman")
 ;; (set-face-attribute 'variable-pitch nil :family "Liberation Serif")
 ;; (set-face-attribute 'variable-pitch nil :family "Input Serif Compressed")
-;; (set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
+(set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
 ;; (set-face-attribute 'fixed-pitch nil :family "M+ 1mn")
-(set-face-attribute 'fixed-pitch nil :family "Latin Modern Mono")
+(set-face-attribute 'fixed-pitch-serif nil :family "Latin Modern Mono")
 
-;; (set-fontset-font t 'han "LXGW WenKai")
-(set-fontset-font t 'han "Sarasa Mono SC")
+(set-fontset-font t 'han "LXGW WenKai")
+;; (set-fontset-font t 'han "Sarasa Mono SC")
 (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
@@ -33,6 +34,13 @@
 (set-fontset-font t 'symbol "JetBrainsMono Nerd Font Mono" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
 (set-fontset-font t nil "98WB-U" nil 'prepend)
+
+;; Scale font
+;;
+;; Make the font bigger but not effect the font size in some scenarios, such as
+;; table in org-mode.
+(dolist (mode '(prog-mode-hook text-mode-hook sdcv-mode-hook))
+  (add-hook mode (lambda () (text-scale-increase 1.2))))
 
 
 ;; * Themes settings
@@ -65,7 +73,9 @@
  `(cursor ((t (:background "black"))))
  ;; Make `term' and `ansi-term' prompt more distinguishable
  `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
- `(region ((t :background "#e9dd76"))))
+ `(region ((t :background "#e9dd76")))
+ `(mode-line ((t (:inherit variable-pitch :height 1.1 :background "#c1c1c1" :foreground "#000000"))))
+ `(mode-line-inactive ((t (:inherit variable-pitch :height 1.1 :background "#eeeeee" :foreground "#000000")))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
