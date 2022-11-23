@@ -24,11 +24,11 @@
    `(org-level-8 ((t (:inherit (outline-8 my/font-org-header) :height 1.0 :weight bold))))
    `(org-table ((t (:inherit fixed-pitch))))
    `(org-formula ((t (:inherit fixed-pitch))))
-   `(org-code ((t (:inherit fixed-pitch :foreground "deep pink"))))
+   `(org-code ((t (:inherit fixed-pitch :foreground "#0f7f5f"))))
    `(org-footnote ((t (:inherit (org-link fixed-pitch)))))
-   `(org-block ((t (:inherit fixed-pitch :background "#f8f8f8"))))
-   `(org-block-begin-line ((t (:background "#e0e0e0" :extend t))))
-   `(org-block-end-line ((t (:background "#e0e0e0" :extend t))))
+   `(org-block ((t (:inherit fixed-pitch :background "#f8f3ea"))))
+   `(org-block-begin-line ((t (:background "#f0ece0" :extend t))))
+   `(org-block-end-line ((t (:background "#f0ece0" :extend t))))
    `(org-document-info ((t (:foreground "dark orange"))))
    `(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
    `(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch) :height 0.8))))
@@ -36,7 +36,9 @@
    `(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch) :height 0.8))))
    ;; `(org-tag ((t (:box (:line-width 1)))))
    `(org-checkbox ((t :inherit 'fixed-pitch-serif :background nil :box nil)))
-   `(org-verbatim ((t (:inherit (shadow fixed-pitch)))))))
+   `(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "#ba2d2f")))))
+
+  (set-face-attribute 'org-date nil :inherit 'fixed-pitch))
 
 (add-hook 'org-mode-hook #'my/org-font-setup)
 

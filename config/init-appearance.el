@@ -73,16 +73,17 @@
 
 
 ;; ** Modify default light theme
-;; Default light theme
+
+;; Default light theme with some customization
 (custom-theme-set-faces
  'user
- `(default ((t (:background "#ffffe8" :foreground "black"))))
+ `(default ((t (:background "#fcf7e8" :foreground "black"))))
  `(cursor ((t (:background "black"))))
  ;; Make `term' and `ansi-term' prompt more distinguishable
  `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
- `(region ((t :background "#e9dd76")))
- `(mode-line ((t (:inherit variable-pitch :height 1.1 :background "#c1c1c1" :foreground "#000000"))))
- `(mode-line-inactive ((t (:inherit variable-pitch :height 1.1 :background "#eeeeee" :foreground "#000000")))))
+ `(region ((t :background "#edccb7")))
+ `(mode-line ((t (:inherit variable-pitch :height 1.1 :box (:line-width (-1 . -1) :color "#a8a296") :background "#e5dac4"))))
+ `(mode-line-inactive ((t (:inherit variable-pitch :height 1.1 :box (:line-width (-1 . -1) :color "#a8a296") :background "#f8f2e0")))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
@@ -90,7 +91,7 @@
 ;; Highlight TODO watchwords
 (defun my/add-watchwords ()
   (font-lock-add-keywords
-   nil '(("\\<\\(FIXME\\|TODO\\|FIX\\|XXX\\|HACK\\|REFACTOR\\|NOCOMMIT\\|NTA\\)"
+   nil '(("\\<\\(FIXME\\|TODO\\|FIX\\)"
           1 font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook 'my/add-watchwords)
