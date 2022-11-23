@@ -22,6 +22,9 @@
 [submodule "company-c-headers"]
 	path = lib/company-c-headers
 	url = git@github.com:randomphrase/company-c-headers.git
+[submodule "company-posframe"]
+	path = lib/company-posframe
+	url = git@github.com:tumashu/company-posframe.git
 [submodule "d-mode"]
 	path = lib/d-mode
 	url = git@github.com:Emacs-D-Mode-Maintainers/Emacs-D-Mode.git
@@ -89,6 +92,9 @@
 [submodule "meson-mode"]
 	path = lib/meson-mode
 	url = git@github.com:wentasah/meson-mode.git
+[submodule "posframe"]
+	path = lib/posframe
+	url = git@github.com:tumashu/posframe.git
 [submodule "quick-insert-unicode"]
 	path = lib/quick-insert-unicode
 	url = git@github.com:qdzhang/quick-insert-unicode.git
