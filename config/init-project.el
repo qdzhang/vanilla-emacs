@@ -1,5 +1,6 @@
 ;;; init-project.el --- project.el config            -*- lexical-binding: t; -*-
 
+(require 'project)
 
 ;; * Add new file types be determined as project root
 ;;

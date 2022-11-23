@@ -95,7 +95,6 @@
      (require 'init-parens)
      (require 'init-smartparens)
 
-     (require 'init-project)
      (require 'init-tab-bar)
 
      (when (> emacs-major-version 27)
