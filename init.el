@@ -83,8 +83,8 @@
      (require 'init-navigate)
      (require 'init-fold)
 
-     (require 'init-company)
-     ;; (require 'init-completion)
+     ;; (require 'init-company)
+     (require 'init-completion)
      (require 'init-dired)
      (require 'init-docview)
      (require 'init-eshell)

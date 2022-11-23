@@ -251,4 +251,8 @@
    racket-mode-map
    "init-racket"))
 
+(lazy-load-global-keys
+ '(("<f6>" . my/toggle-company-mode))
+ "init-company")
+
 (provide 'init-lazy-keys)
