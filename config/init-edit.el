@@ -1,23 +1,69 @@
 ;;; init-edit.el -*- lexical-binding: t; -*-
 
 (require 'mark-thing-at)
-(mark-thing-at-mode)
-
 (require 'selected)
+
 (dolist (mode '(prog-mode-hook text-mode-hook))
   (add-hook mode 'selected-minor-mode))
 (define-key selected-keymap (kbd "q") #'selected-off)
-(define-key selected-keymap (kbd "u") #'upcase-region)
-(define-key selected-keymap (kbd "d") #'downcase-region)
-(define-key selected-keymap (kbd "c") #'capitalize-dwim)
-(define-key selected-keymap (kbd "m") #'apply-macro-to-region-lines)
+(define-key selected-keymap (kbd "U") #'upcase-region)
+(define-key selected-keymap (kbd "D") #'downcase-region)
+(define-key selected-keymap (kbd "C") #'capitalize-dwim)
+(define-key selected-keymap (kbd "M") #'apply-macro-to-region-lines)
+(define-key selected-keymap (kbd "a") #'my/query-replace-append)
+(define-key selected-keymap (kbd "A") #'my/query-replace-add-prefix)
+(define-key selected-keymap (kbd "%") #'my/query-replace-selected)
 
-;; Define some keybindings to use `mark-thing-at' functions
+;; Define some keybindings to use `mark-thing-at' functions.
+;; There is no need to use `mark-thing-at-mode'. Defining keybindings in
+;; `selected-minor-mode' has shorter keystrokes and better consistency.
+(define-key selected-keymap (kbd "c") #'mark-sentence)
+(define-key selected-keymap (kbd "d") #'mark-defun-thing)
 (define-key selected-keymap (kbd "e") #'mark-sexp-thing)
+(define-key selected-keymap (kbd "f") #'mark-filename)
+(define-key selected-keymap (kbd "h") #'mark-whitespace)
 (define-key selected-keymap (kbd "t") #'mark-list)
 (define-key selected-keymap (kbd "l") #'mark-line-this)
 (define-key selected-keymap (kbd "w") #'mark-word-thing)
+(define-key selected-keymap (kbd "u") #'mark-url)
+(define-key selected-keymap (kbd "s") #'mark-symbol)
 
+(defun my/query-replace-in-selected-mode (pos)
+  "Generic query-replace in `selected-mode' to operate the selected region.
+POS is a symbol indicates the position which replace will operate. The value are
+'self, 'prefix and 'suffix."
+  (save-excursion
+    (when (use-region-p)
+      (when (= (point) (region-end))
+        (exchange-point-and-mark))
+      (let* ((selected-content (buffer-substring (region-beginning)
+                                                 (region-end)))
+             (to-string (cond
+                         ((eq pos 'self)
+                          (read-string "Replace with: "))
+                         ((eq pos 'prefix)
+                          (concat (read-string "Add prefix to selected: ")
+                                  selected-content))
+                         ((eq pos 'suffix)
+                          (concat selected-content
+                                  (read-string "Append to selected: ")))
+                         (t (message "Wrong position to operate the replacement")))))
+        (replace-regexp selected-content to-string)))))
+
+(defun my/query-replace-selected ()
+  "Replace current selected region with something."
+  (interactive)
+  (my/query-replace-in-selected-mode 'self))
+
+(defun my/query-replace-append ()
+  "Append something to currrent selected region."
+  (interactive)
+  (my/query-replace-in-selected-mode 'suffix))
+
+(defun my/query-replace-add-prefix ()
+  "Add some prefix to current selected region."
+  (interactive)
+  (my/query-replace-in-selected-mode 'prefix))
 
 ;;;###autoload
 (defun my/smarter-move-beginning-of-line (arg)
