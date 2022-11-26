@@ -239,7 +239,11 @@
 
 (lazy-load-global-keys
  '(("C-x C-5" . my/toggle-frame-split)
-   ("C-x v" . shrink-window))
+   ("C-x v" . shrink-window)
+   ("S-<left>" . windmove-left)
+   ("S-<right>" . windmove-right)
+   ("S-<up>" . windmove-up)
+   ("S-<down>" . windmove-down))
  "init-window")
 
 (lazy-load-global-keys

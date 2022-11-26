@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'windmove)
+
 (defun my/toggle-frame-split ()
   "If the frame is split vertically, split it horizontally or vice versa.
 Assumes that the frame is only split into two."
