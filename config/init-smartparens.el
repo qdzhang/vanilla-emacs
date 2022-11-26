@@ -148,4 +148,13 @@ If `global' is non-nil activate the respective global mode."
         (smartparens-strict-mode -1))
       (smartparens-mode -1))))
 
+;;;###autoload
+(defun my/kill-region-or-line (&optional arg)
+  "Kill active region or current line. A alternative function to
+`sp-kill-region'."
+  (interactive "p")
+  (if (use-region-p)
+      (kill-region (region-beginning) (region-end))
+    (kill-whole-line)))
+
 (provide 'init-smartparens)
