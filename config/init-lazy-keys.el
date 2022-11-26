@@ -146,7 +146,9 @@
                                "init-eshell")))
 
 (lazy-load-global-keys
- '(("C-c C-r" . my/sudo-edit))
+ '(("C-c C-r" . my/sudo-edit)
+   ("C-x K" . my/delete-file-and-buffer)
+   ("C-x R" . my/rename-file-and-buffer))
  "init-edit")
 
 (lazy-load-global-keys

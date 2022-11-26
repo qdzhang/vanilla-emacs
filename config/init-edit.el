@@ -214,4 +214,39 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
       (indent-according-to-mode)
     (beginning-of-line)))
 
+;;;###autoload
+(defun my/rename-file-and-buffer ()
+  "Renames the current buffer and the file it is visiting.
+
+URL: https://whhone.com/emacs-config/#rename-file-and-buffer-together"
+  (interactive)
+  (let ((name (buffer-name))
+        (filename (buffer-file-name)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " filename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+;;;###autoload
+(defun my/delete-file-and-buffer ()
+  "Kills the current buffer and deletes the file it is visiting.
+
+URL: https://whhone.com/emacs-config/#delete-file-and-buffer-together"
+  (interactive)
+  (let ((filename (buffer-file-name)))
+    (if filename
+        (if (y-or-n-p (concat "Do you really want to delete file " filename " ?"))
+            (progn
+              (delete-file filename)
+              (message "Deleted file %s." filename)
+              (kill-buffer)))
+      (message "Not a file visiting buffer!"))))
+
 (provide 'init-edit)
