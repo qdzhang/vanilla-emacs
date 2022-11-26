@@ -219,6 +219,14 @@
   (lazy-load-set-keys
    '(("M-g i" . imenu))))
 
+;; Add a procedure to refresh imenu list manually.
+;; https://www.emacswiki.org/emacs/ImenuMode#h5o-4
+(lazy-load-set-keys
+ '(("M-g I" . (lambda ()
+                (interactive)
+                (imenu--menubar-select imenu--rescan-item)
+                (message "Imenu rescan done.")))))
+
 (lazy-load-global-keys
  '(("r" . my-transient/rectangle-edit-menu))
  "init-registers"
