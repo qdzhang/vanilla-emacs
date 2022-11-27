@@ -16,6 +16,7 @@
 (add-hook 'racket-mode-hook
           (lambda ()
             (racket-xp-mode 1)
+            (setq racket-show-functions 'racket-show-echo-area)
             (setq-local imenu-create-index-function #'racket-imenu-create-index-function)))
 
 (with-eval-after-load 'smartparens

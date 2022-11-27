@@ -46,7 +46,7 @@
 ;;
 ;; Make the font bigger but not effect the font size in some scenarios, such as
 ;; table in org-mode.
-(dolist (mode '(prog-mode-hook text-mode-hook sdcv-mode-hook))
+(dolist (mode '(prog-mode-hook text-mode-hook sdcv-mode-hook conf-mode-hook help-mode-hook))
   (add-hook mode (lambda () (text-scale-increase 1.2))))
 
 
