@@ -74,16 +74,63 @@
 
 ;; ** Modify default light theme
 
+;; Current color theme. Acceptable values: 'light, 'dark
+;; Default is light
+(defvar my/current-color-theme 'light)
+(add-hook 'after-init-hook 'my/light-theme)
+(define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
+
+(defun my/theme-toggle-color ()
+  "Toggle between light and dark color scheme."
+  (interactive)
+  (cond ((eq my/current-color-theme 'light)
+         (my/dark-theme))
+        ((eq my/current-color-theme 'dark)
+         (my/light-theme))))
+
 ;; Default light theme with some customization
-(custom-theme-set-faces
- 'user
- `(default ((t (:background "#fcf7e8" :foreground "black"))))
- `(cursor ((t (:background "black"))))
- ;; Make `term' and `ansi-term' prompt more distinguishable
- `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
- `(region ((t :background "#edccb7")))
- `(mode-line ((t (:inherit variable-pitch :height 1.1 :box (:line-width (-1 . -1) :color "#a8a296") :background "#e5dac4"))))
- `(mode-line-inactive ((t (:inherit variable-pitch :height 1.1 :box (:line-width (-1 . -1) :color "#a8a296") :background "#f8f2e0")))))
+(defun my/light-theme ()
+  (interactive)
+  (setq my/current-color-theme 'light)
+  (custom-theme-set-faces
+   'user
+   `(default ((t (:background "#fcf7e8" :foreground "black"))))
+   `(cursor ((t (:background "black"))))
+   `(font-lock-comment-face ((t :foreground "Firebrick")))
+   ;; Make `term' and `ansi-term' prompt more distinguishable
+   `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
+   `(region ((t :background "#edccb7")))
+   `(mode-line ((t (
+                    :inherit variable-pitch
+                    :height 1.1
+                    :box (:line-width (-1 . -1) :color "#a8a296")
+                    :background "#e5dac4"))))
+   `(mode-line-inactive ((t (
+                             :inherit variable-pitch
+                             :height 1.1
+                             :box (:line-width (-1 . -1) :color "#a8a296")
+                             :background "#f8f2e0"))))))
+
+(defun my/dark-theme ()
+  (interactive)
+  (setq my/current-color-theme 'dark)
+  (custom-theme-set-faces
+   'user
+   `(default ((t :background "#1a1a1a" :foreground "#e0e0e0")))
+   `(cursor ((t :background "#e0e0e0")))
+   `(font-lock-comment-face ((t :foreground "violet")))
+   `(ansi-color-white ((t :background "gray90" :foreground "gray90")))
+   `(region ((t :background "#342464")))
+   `(mode-line ((t (
+                    :inherit variable-pitch
+                    :height 1.1
+                    :box (:line-width (-1 . -1) :color "dim gray")
+                    :background "#323232"))))
+   `(mode-line-inactive ((t (
+                             :inherit variable-pitch
+                             :height 1.1
+                             :box (:line-width (-1 . -1) :color "dim gray")
+                             :background "#222222"))))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
