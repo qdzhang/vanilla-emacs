@@ -28,10 +28,10 @@
    `(org-footnote ((t (:inherit (org-link fixed-pitch)))))
    `(org-block ((((background light)) (:inherit fixed-pitch :background "#f8f3ea"))
                 (((background dark)) (:inherit fixed-pitch :background "#333333"))))
-   `(org-block-begin-line ((((background light)) (:background "#f0ece0" :extend t))
-                           (((background dark)) (:background "#292929" :extend t))))
-   `(org-block-end-line ((((background light)) (:inherit org-block-begin-line))
-                         (((background dark)) (:inherit org-block-begin-line))))
+   `(org-block-begin-line ((((background light)) (:background "#f0ece0" :extend t :slant italic))
+                           (((background dark)) (:background "#292929" :extend t :slant italic))))
+   `(org-block-end-line ((((background light)) (:inherit org-block-begin-line :slant italic))
+                         (((background dark)) (:inherit org-block-begin-line :slant italic))))
    `(org-document-info ((t (:foreground "dark orange"))))
    `(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
    `(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch) :height 0.8))))
@@ -75,7 +75,7 @@
       org-edit-src-content-indentation 0)
 
 (setq org-todo-keyword-faces
-      '(("NEXT" . (:foreground "blue" :weight bold))
+      '(("NEXT" . (:foreground "dodger blue" :weight bold))
         ("SOMEDAY" . (:foreground "DarkOrange" :weight bold))
         ("CANCELED" . (:foreground "darkgray"))))
 
