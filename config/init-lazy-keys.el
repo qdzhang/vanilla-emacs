@@ -238,4 +238,8 @@
  '(("<f6>" . my/toggle-company-mode))
  "init-company")
 
+(lazy-load-set-keys
+ '(("M-<up>" . switch-to-prev-buffer)
+   ("M-<down>" . switch-to-next-buffer)))
+
 (provide 'init-lazy-keys)

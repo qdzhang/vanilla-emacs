@@ -154,7 +154,7 @@ If `global' is non-nil activate the respective global mode."
 `sp-kill-region'."
   (interactive "p")
   (if (use-region-p)
-      (kill-region (region-beginning) (region-end))
-    (kill-whole-line)))
+      (sp-kill-region (region-beginning) (region-end))
+    (sp-kill-whole-line)))
 
 (provide 'init-smartparens)
