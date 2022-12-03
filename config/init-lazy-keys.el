@@ -129,8 +129,8 @@
 (lazy-load-global-keys
  '(("C-<f8>" . my/upcase-word-toggle)
    ("M-c" . my/capitalize-word-toggle)
-   ("M-<return>" . my/open-newline-below)
-   ("C-M-<return>" . my/open-newline-above))
+   ("C-M-<return>" . my/open-newline-below)
+   ("C-o" . my/open-newline-above))
  "init-edit")
 
 (add-hook 'c-initialization-hook

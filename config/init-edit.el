@@ -199,7 +199,7 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
   (interactive "p")
   (beginning-of-line)
   (open-line arg)
-  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
+  (if (derived-mode-p 'prog-mode)
       (indent-according-to-mode)
     (beginning-of-line)))
 
@@ -210,7 +210,7 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
   (end-of-line)
   (open-line arg)
   (call-interactively 'next-line arg)
-  (if (not (member major-mode '(haskell-mode org-mode literate-haskell-mode)))
+  (if (derived-mode-p 'prog-mode)
       (indent-according-to-mode)
     (beginning-of-line)))
 

@@ -23,8 +23,9 @@
 
 (add-hook 'ruby-mode-hook #'hs-minor-mode)
 
-(require 'chruby)
-(add-hook 'ruby-mode-hook #'chruby-use-corresponding)
+;; Use direnv to instead of chruby
+;; (require 'chruby)
+;; (add-hook 'ruby-mode-hook #'chruby-use-corresponding)
 
 (with-eval-after-load 'web-mode
   (setq web-mode-markup-indent-offset 2))
