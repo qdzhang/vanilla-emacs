@@ -52,7 +52,7 @@
 (setq completion-category-defaults nil)
 (setq completion-in-region-function
       (lambda (&rest args)
-        (apply (if fido-vertical-mode
+        (apply (if icomplete-mode
                    #'completing-read-at-point
                  #'completion--in-region)
                args)))

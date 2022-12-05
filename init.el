@@ -37,6 +37,10 @@
 (require 'lazy-load)
 
 (fido-vertical-mode)
+;; Make `icomplete' related commands faster
+(setq icomplete-delay-completions-threshold 2000)
+(setq icomplete-compute-delay 0)
+
 (repeat-mode)
 
 ;;; Config files
