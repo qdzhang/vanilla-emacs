@@ -71,6 +71,9 @@
    'user
    `(eww-lnum-number ((t (:background "light pink" :foreground "black"))))))
 
+;; Use readability-cli to make eww pages more readable
+;; https://gitlab.com/gardenappl/readability-cli
+(setq eww-retrieve-command '("readable"))
 
 (provide 'init-eww)
 ;;; init-eww.el ends here

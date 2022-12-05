@@ -62,5 +62,7 @@
 
 (setq browse-url-browser-function 'browse-url-firefox)
 
+(global-so-long-mode 1)
+
 (provide 'init-defer-misc)
 ;;; init-defer-misc.el ends here

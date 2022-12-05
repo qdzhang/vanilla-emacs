@@ -20,6 +20,9 @@
         ediff-window-setup-function 'ediff-setup-windows-plain
         custom-file (expand-file-name "~/.emacs.d/custom.el"))
 
+  ;; Use font caches to preventing some GC
+  (setq inhibit-compacting-font-caches t)
+
   (unless backup-directory-alist
     (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
                                                    "backups"))))))
