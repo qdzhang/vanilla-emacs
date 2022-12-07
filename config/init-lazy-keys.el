@@ -90,7 +90,7 @@
 (lazy-load-unset-keys '("C-x f"))
 
 (lazy-load-set-keys
- '(("C-x f" . find-lisp-find-dired)))
+ '(("C-x f" . my/find-file-fd)))
 
 (lazy-load-global-keys
  '(("C-x p" . my-transient/project-menu))

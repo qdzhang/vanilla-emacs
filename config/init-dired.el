@@ -237,5 +237,15 @@ Version 2018-12-23"
     ("e" "EWW" eww-open-file)
     ("q" "Quit" keyboard-quit)]])
 
+;;;###autoload
+(defun my/find-file-fd ()
+  "Use `fd' to find files in current directory, and open it in dired."
+  (interactive)
+  (let* ((command (format "fd -H -t f --strip-cwd-prefix -0"))
+         (cands (split-string (shell-command-to-string command) "\0" t))
+         (file (completing-read "Fd file: " cands)))
+    (when file
+      (dired-jump nil file))))
+
 
 (provide 'init-dired)
