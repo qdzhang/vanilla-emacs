@@ -64,5 +64,8 @@
 
 (global-so-long-mode 1)
 
+;; Show context lines in `occur-mode'
+(setq list-matching-lines-default-context-lines 1)
+
 (provide 'init-defer-misc)
 ;;; init-defer-misc.el ends here

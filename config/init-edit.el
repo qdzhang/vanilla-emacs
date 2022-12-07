@@ -249,4 +249,28 @@ URL: https://whhone.com/emacs-config/#delete-file-and-buffer-together"
               (kill-buffer)))
       (message "Not a file visiting buffer!"))))
 
+;;;###autoload
+(defun my/get-filename ()
+  "Copy the full path of the current buffer."
+  (interactive)
+  (message (kill-new (buffer-file-name
+                      (window-buffer (minibuffer-selected-window))))))
+
+;;;###autoload
+(defun my/get-buffername ()
+  "Copy and show the name of the current buffer."
+  (interactive)
+  (message (kill-new (buffer-name))))
+
+;;;###autoload
+(defun my/get-directory-path ()
+  "Copy and show the directory path of the current buffer."
+  (interactive)
+  (if-let (directory-path (file-name-directory (buffer-file-name)))
+      (progn
+        (kill-new directory-path)
+        (message "%s" directory-path))
+    (message "WARNING: Current buffer does not have a directory!")))
+
+
 (provide 'init-edit)
