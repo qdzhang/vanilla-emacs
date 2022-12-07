@@ -2,7 +2,9 @@
 
 ;; * Default fonts settings
 ;; (set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 24))
-(set-face-attribute 'default nil :font (font-spec :family "Latin Modern Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "Latin Modern Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "Inconsolata" :size 28))
+(set-face-attribute 'default nil :font (font-spec :family "Noto Sans Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "JetbrainsMono Nerd Font Mono" :size 24))
 ;; (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
@@ -11,7 +13,9 @@
 ;; (set-face-attribute 'variable-pitch nil :family "Latin Modern Roman")
 ;; (set-face-attribute 'variable-pitch nil :family "Liberation Serif")
 ;; (set-face-attribute 'variable-pitch nil :family "Input Serif Compressed")
-(set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
+;; (set-face-attribute 'fixed-pitch nil :family "Noto Sans Mono CJK SC")
+;; (set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
+(set-face-attribute 'fixed-pitch nil :family "Inconsolata")
 ;; (set-face-attribute 'fixed-pitch nil :family "M+ 1mn")
 (set-face-attribute 'fixed-pitch-serif nil :family "Latin Modern Mono")
 
@@ -22,12 +26,22 @@
 ;; Libertinus Sans is also good font for headers
 (set-face-attribute 'my/font-org-header nil :family "Sarasa Fixed Slab SC")
 
-(set-fontset-font t 'han "LXGW WenKai")
-;; (set-fontset-font t 'han "Sarasa Mono SC")
+
+;; Sarasa font set for CJK font
+(set-fontset-font t 'han "Sarasa Mono SC")
 (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
 (set-fontset-font t 'bopomofo "Sarasa Mono SC")
+
+;; Noto font set for CJK font
+;; (set-fontset-font t 'han "Noto Sans Mono CJK SC")
+;; (set-fontset-font t 'kana "Noto Sans Mono CJK JP")
+;; (set-fontset-font t 'hangul "Noto Sans Mono CJK KR")
+;; (set-fontset-font t 'cjk-misc "Noto Sans Mono CJK SC")
+;; (set-fontset-font t 'bopomofo "Noto Sans Mono CJK SC")
+
+;; Greek and phonetic font
 (set-fontset-font t 'greek (font-spec :family "Helvetica"))
 (set-fontset-font t 'phonetic "Noto Sans")
 
@@ -36,9 +50,9 @@
 (unless (version< emacs-version "28.1")
   (set-fontset-font t 'emoji "Noto Color Emoji"))
 (set-fontset-font t 'symbol "Noto Color Emoji")
-;; (set-fontset-font t 'symbol "Noto Sans Symbols" nil 'append)
+(set-fontset-font t 'symbol "Noto Sans Symbols" nil 'append)
 ;; (set-fontset-font t 'symbol "Noto Sans Symbols2" nil 'append)
-(set-fontset-font t 'symbol "JetBrainsMono Nerd Font Mono" nil 'append)
+;; (set-fontset-font t 'symbol "JetBrainsMono Nerd Font Mono" nil 'append)
 (set-fontset-font t 'symbol "Symbola" nil 'append)
 (set-fontset-font t nil "98WB-U" nil 'prepend)
 
@@ -46,7 +60,12 @@
 ;;
 ;; Make the font bigger but not effect the font size in some scenarios, such as
 ;; table in org-mode.
-(dolist (mode '(prog-mode-hook text-mode-hook sdcv-mode-hook conf-mode-hook help-mode-hook))
+;;
+;; Some hooks complement Latin Modern Mono:
+;; - prog-mode-hook
+;; - help-mode-hook
+;; - conf-mode-hook
+(dolist (mode '(org-mode-hook sdcv-mode-hook markdown-mode-hook))
   (add-hook mode (lambda () (text-scale-increase 1.2))))
 
 

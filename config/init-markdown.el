@@ -6,7 +6,6 @@
 
 ;;; Code:
 
-(setq markdown-command "multimarkdown")
 (setq-default visual-fill-column-center-text t)
 
 (require 'markdown-mode)
