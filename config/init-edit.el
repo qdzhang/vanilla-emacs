@@ -13,6 +13,7 @@
 (define-key selected-keymap (kbd "a") #'my/query-replace-append)
 (define-key selected-keymap (kbd "A") #'my/query-replace-add-prefix)
 (define-key selected-keymap (kbd "%") #'my/query-replace-selected)
+(define-key selected-keymap (kbd "o") #'browse-url)
 
 ;; Define some keybindings to use `mark-thing-at' functions.
 ;; There is no need to use `mark-thing-at-mode'. Defining keybindings in
@@ -21,6 +22,7 @@
 (define-key selected-keymap (kbd "d") #'mark-defun-thing)
 (define-key selected-keymap (kbd "e") #'mark-sexp-thing)
 (define-key selected-keymap (kbd "f") #'mark-filename)
+(define-key selected-keymap (kbd "n") #'my/mark-defun-name)
 (define-key selected-keymap (kbd "h") #'mark-whitespace)
 (define-key selected-keymap (kbd "t") #'mark-list)
 (define-key selected-keymap (kbd "l") #'mark-line-this)
@@ -251,10 +253,15 @@ URL: https://whhone.com/emacs-config/#delete-file-and-buffer-together"
 
 ;;;###autoload
 (defun my/get-filename ()
-  "Copy the full path of the current buffer."
+  "Copy the full path of the current buffer.
+If current buffer is not associated with a file, show a warning."
   (interactive)
-  (message (kill-new (buffer-file-name
-                      (window-buffer (minibuffer-selected-window))))))
+  (if-let (file-name (buffer-file-name
+                      (window-buffer (minibuffer-selected-window))))
+      (progn
+        (kill-new file-name)
+        (message "%s" file-name))
+    (message "WARNING: Current buffer is not associated with a file!")))
 
 ;;;###autoload
 (defun my/get-buffername ()
@@ -264,13 +271,37 @@ URL: https://whhone.com/emacs-config/#delete-file-and-buffer-together"
 
 ;;;###autoload
 (defun my/get-directory-path ()
-  "Copy and show the directory path of the current buffer."
+  "Copy and show the directory path of the current buffer.
+If the buffer is not associated with a file, use the `list-buffers-directory'
+variable as a fallback to display the directory, useful in buffers like the ones
+created by `magit' and `dired'."
   (interactive)
-  (if-let (directory-path (file-name-directory (buffer-file-name)))
+  (if-let (directory-path (if-let (file-name (buffer-file-name))
+                              (file-name-directory file-name)
+                            list-buffers-directory))
       (progn
         (kill-new directory-path)
         (message "%s" directory-path))
     (message "WARNING: Current buffer does not have a directory!")))
+
+
+(defun my/mark-defun-name ()
+  "Mark the current function name. If not in a function body, hold on the
+position and message a warning.
+This procedure also works on `defmacro', `defface' and scheme `define'."
+  (interactive)
+  (let ((old-pos (point)))
+    (save-restriction
+      (narrow-to-defun)
+      (goto-char (point-min))
+      (if (or (search-forward-regexp "defun\\|defmacro\\|defface" nil t)
+              (search-forward-regexp "define (*" nil t))
+          (progn
+            (forward-word)
+            (mark-sexp-thing))
+        (deactivate-mark)
+        (goto-char old-pos)
+        (message "Not in a function body!")))))
 
 
 (provide 'init-edit)
