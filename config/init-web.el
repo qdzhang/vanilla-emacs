@@ -1,4 +1,4 @@
-;;; init-web.el --- Web reletive configurations      -*- lexical-binding: t; -*-
+;;; init-web.el --- Web relative configurations      -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

@@ -1,4 +1,4 @@
-;;; init-python.el --- python reletive setup         -*- lexical-binding: t; -*-
+;;; init-python.el --- python relative setup         -*- lexical-binding: t; -*-
 
 ;; This file is not part of GNU Emacs.
 
