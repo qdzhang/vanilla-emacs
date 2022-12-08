@@ -17,11 +17,12 @@
 (lazy-load-local-keys
  '(("C-M-f" . sp-forward-sexp)
    ("C-M-b" . sp-backward-sexp)
-   ("C-M-d" . sp-down-sexp)
-   ("C-M-u" . sp-backward-up-sexp)
+   ("C-M-d" . sp-down-sexp)        ; opposite of `sp-backward-up-sexp'
+   ("C-M-u" . sp-backward-up-sexp) ; opposite of `sp-down-sexp'
    ("C-M-k" . sp-kill-sexp)
    ("M-l" . sp-end-of-sexp)
-   ("M-u" . sp-up-sexp)
+   ("M-u" . sp-up-sexp)            ; opposite of `sp-backward-down-sexp'
+   ("M-B" . sp-backward-down-sexp) ; opposite of `sp-up-sexp'
    ("M-[" . sp-backward-unwrap-sexp)
    ("M-]" . sp-unwrap-sexp)
    ("C-<right>". sp-forward-slurp-sexp)

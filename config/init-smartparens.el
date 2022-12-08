@@ -13,9 +13,9 @@
   "Smartparens transient menu"
   [["Move"
     ("d" "Down" sp-down-sexp)
-    ("e" "Up" sp-up-sexp)
-    ("u" "Backward Up" sp-backward-up-sexp)
-    ("a" "Backward Down" sp-backward-down-sexp)
+    ("u" "Up" sp-up-sexp)
+    ("U" "Backward Up" sp-backward-up-sexp)
+    ("D" "Backward Down" sp-backward-down-sexp)
     ("f" "Forward" sp-forward-sexp)
     ("b" "Backward" sp-backward-sexp)]
    ["Change"
