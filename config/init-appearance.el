@@ -119,16 +119,14 @@
    ;; Make `term' and `ansi-term' prompt more distinguishable
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
    `(region ((t :background "#edccb7")))
-   `(mode-line ((t (
-                    :inherit variable-pitch
-                    :height 1.1
-                    :box (:line-width (-1 . -1) :color "#a8a296")
-                    :background "#e5dac4"))))
-   `(mode-line-inactive ((t (
-                             :inherit variable-pitch
-                             :height 1.1
-                             :box (:line-width (-1 . -1) :color "#a8a296")
-                             :background "#f8f2e0"))))))
+   `(mode-line ((t ( :inherit variable-pitch
+                     :height 1.1
+                     :box (:line-width (-1 . -1) :color "#a8a296")
+                     :background "#e5dac4"))))
+   `(mode-line-inactive ((t ( :inherit variable-pitch
+                              :height 1.1
+                              :box (:line-width (-1 . -1) :color "#a8a296")
+                              :background "#f8f2e0"))))))
 
 (defun my/dark-theme ()
   (interactive)
