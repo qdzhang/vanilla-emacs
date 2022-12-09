@@ -213,8 +213,8 @@
 
 
 (lazy-load-global-keys
- '(("C-c d" . sdcv-search))
- "init-sdcv")
+ '(("C-c d" . inf-sdcv-search))
+ "inf-sdcv-mode")
 
 (lazy-load-global-keys
  '(("C-x C-5" . my/toggle-frame-split)
