@@ -1,8 +1,39 @@
 ;;; init-edit.el -*- lexical-binding: t; -*-
 
-(require 'mark-thing-at)
 (require 'selected)
+(require 'thingatpt)
 
+(defun my/mark-things (thing)
+  "A generic function to mark things follow `thing-at-point'."
+  (let ((bounds (bounds-of-thing-at-point thing)))
+    (when (null bounds)
+      (error "Unkown thing."))
+    (goto-char (car bounds))
+    (push-mark nil t t)
+    (goto-char (cdr bounds))))
+
+;; Define `line-this' thing for `thing-at-point'
+(put 'line-this 'beginning-op #'(lambda () (beginning-of-line)))
+(put 'line-this 'end-op #'(lambda () (end-of-line)))
+
+(defvar my/mark-things-list
+  '(symbol list sexp defun filename url email uuid word sentence whitespace
+           line line-this page)
+  "The THINGS used in `my/mark-things-gen'.")
+
+(defmacro my/mark-things-gen (thing)
+  "Generate functions that mark things actually."
+  `(defun ,(intern (concat "my/mark-" (symbol-name thing))) ()
+     ,(format "Mark %s at point." thing)
+     (interactive)
+     (my/mark-things ',thing)))
+
+;; Generate all `my/mark-THING' like functions
+(dolist (thing my/mark-things-list)
+  (eval
+   `(my/mark-things-gen ,thing)))
+
+;; Keybindings for `selected-minor-mode'
 (dolist (mode '(prog-mode-hook text-mode-hook))
   (add-hook mode 'selected-minor-mode))
 (define-key selected-keymap (kbd "q") #'selected-off)
@@ -15,20 +46,20 @@
 (define-key selected-keymap (kbd "%") #'my/query-replace-selected)
 (define-key selected-keymap (kbd "o") #'browse-url)
 
-;; Define some keybindings to use `mark-thing-at' functions.
-;; There is no need to use `mark-thing-at-mode'. Defining keybindings in
-;; `selected-minor-mode' has shorter keystrokes and better consistency.
-(define-key selected-keymap (kbd "c") #'mark-sentence)
-(define-key selected-keymap (kbd "d") #'mark-defun-thing)
-(define-key selected-keymap (kbd "e") #'mark-sexp-thing)
-(define-key selected-keymap (kbd "f") #'mark-filename)
+;; Define some keybindings to use `thing-at-point' functions.
+;; Defining keybindings in `selected-minor-mode' has shorter keystrokes and
+;; better consistency.
+(define-key selected-keymap (kbd "c") #'my/mark-sentence)
+(define-key selected-keymap (kbd "d") #'my/mark-defun)
+(define-key selected-keymap (kbd "e") #'my/mark-sexp)
+(define-key selected-keymap (kbd "f") #'my/mark-filename)
 (define-key selected-keymap (kbd "n") #'my/mark-defun-name)
-(define-key selected-keymap (kbd "h") #'mark-whitespace)
-(define-key selected-keymap (kbd "t") #'mark-list)
-(define-key selected-keymap (kbd "l") #'mark-line-this)
-(define-key selected-keymap (kbd "w") #'mark-word-thing)
-(define-key selected-keymap (kbd "u") #'mark-url)
-(define-key selected-keymap (kbd "s") #'mark-symbol)
+(define-key selected-keymap (kbd "h") #'my/mark-whitespace)
+(define-key selected-keymap (kbd "t") #'my/mark-list)
+(define-key selected-keymap (kbd "l") #'my/mark-line-this)
+(define-key selected-keymap (kbd "w") #'my/mark-word)
+(define-key selected-keymap (kbd "u") #'my/mark-url)
+(define-key selected-keymap (kbd "s") #'my/mark-symbol)
 
 (defun my/query-replace-in-selected-mode (pos)
   "Generic query-replace in `selected-mode' to operate the selected region.
@@ -298,7 +329,7 @@ This procedure also works on `defmacro', `defface' and scheme `define'."
               (search-forward-regexp "define (*" nil t))
           (progn
             (forward-word)
-            (mark-sexp-thing))
+            (my/mark-sexp))
         (deactivate-mark)
         (goto-char old-pos)
         (message "Not in a function body!")))))

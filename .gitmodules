@@ -7,9 +7,6 @@
 [submodule "borg"]
 	path = lib/borg
 	url = git@github.com:emacscollective/borg.git
-[submodule "choice-program"]
-	path = lib/choice-program
-	url = git@github.com:plandes/choice-program.git
 [submodule "chruby"]
 	path = lib/chruby
 	url = git@github.com:plexus/chruby.el.git
@@ -86,9 +83,6 @@
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
-[submodule "mark-thing-at"]
-	path = lib/mark-thing-at
-	url = git@github.com:plandes/mark-thing-at.git
 [submodule "markdown-mode"]
 	path = lib/markdown-mode
 	url = git@github.com:jrblevin/markdown-mode.git
