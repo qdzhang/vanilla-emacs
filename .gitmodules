@@ -68,6 +68,9 @@
 [submodule "inf-ruby"]
 	path = lib/inf-ruby
 	url = git@github.com:nonsequitur/inf-ruby.git
+[submodule "inf-sdcv-mode"]
+	path = lib/inf-sdcv-mode
+	url = git@github.com:qdzhang/inf-sdcv-mode.git
 [submodule "inheritenv"]
 	path = lib/inheritenv
 	url = git@github.com:purcell/inheritenv.git
@@ -154,6 +157,3 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
-[submodule "inf-sdcv-mode"]
-	path = lib/inf-sdcv-mode
-	url = git@github.com:qdzhang/inf-sdcv-mode.git
