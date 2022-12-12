@@ -100,37 +100,59 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
 
 
 ;; * Create new files in project root
-(defun my/create-project-root-file ()
-  "Create .project file at project root."
-  (interactive)
-  (let ((projectroot (cdr (project-current))))
-    (if projectroot
-        (let ((projectroot-file (concat projectroot ".project")))
-          (if (file-exists-p projectroot-file)
-              (message "Project root file exists")
-            (with-temp-buffer (write-file projectroot-file))))
-      (let ((projectroot-file (concat default-directory ".project")))
-        (with-temp-buffer (write-file projectroot-file))
-        (message ".project file created")))))
+(defun my/project-create-new-file (filename &optional file-content)
+  "Create a new file named FILENAME with optional FILE-CONTENT."
+  (let* ((proj (project-current))
+         (proj-root (if proj (project-root proj)
+                      default-directory))
+         (filename-path (concat proj-root
+                                (file-name-nondirectory filename))))
+    (if (file-exists-p filename-path)
+        (message "File %s exist." filename-path)
+      (if file-content
+          (with-temp-file filename-path
+            (insert file-content))
+        (with-temp-buffer
+          (write-file filename-path)))
+      (message "%s created." filename-path))))
 
-(defvar fdignore-content
+(defun my/project-create-root-file ()
+  "Create `.root' file in current directory."
+  (interactive)
+  (my/project-create-new-file ".root"))
+
+(defun my/project-create-fdignore ()
+  "Create `.fdignore' file in the root of current project."
+  (interactive)
+  (my/project-create-new-file ".fdignore" my/fdignore-content))
+
+(defun my/project-create-jsconfig ()
+  "Create `jsconfig.json' file in the root of current project."
+  (interactive)
+  (my/project-create-new-file "jsconfig.json" my/jsconfig-content))
+
+(defun my/project-create-ccls ()
+  "Create `.ccls' file in the root of current project root."
+  (interactive)
+  (my/project-create-new-file ".ccls" my/ccls-content))
+
+(defun my/project-create-dir-locals ()
+  "Create `.dir-locals.el' file in the root of current project."
+  (interactive)
+  (my/project-create-new-file ".dir-locals.el"))
+
+(defun my/project-create-changelog ()
+  "Create `ChangeLog' file in the root of current project."
+  (interactive)
+  (my/project-create-new-file "ChangeLog"))
+
+
+(defvar my/fdignore-content
   "/node_modules\n\
 /.git\n\
 /.ccls-cache\n\
 "
   "Content of .fdignore file.")
-
-(defun my/create-fd-ignore-file ()
-  "Create a fdignore file at project root."
-  (interactive)
-  (let ((fdignore (cdr (project-current))))
-    (if fdignore
-        (let ((fdignore-file (concat fdignore ".fdignore")))
-          (if (file-exists-p fdignore-file)
-              (message "File exists")
-            (with-temp-file fdignore-file
-              (insert fdignore-content))))
-      (message ".fdignore file created"))))
 
 (defvar my/jsconfig-content
   "{\n\
@@ -147,49 +169,11 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
 "
   "Content of jsconfig.json file.")
 
-(defun my/create-jsconfig-file ()
-  "Create a jsconfig file at project root."
-  (interactive)
-  (let ((jsconfig (cdr (project-current))))
-    (if jsconfig
-        (let ((jsconfig-file (concat jsconfig "jsconfig.json")))
-          (if (file-exists-p jsconfig-file)
-              (message "File exists")
-            (with-temp-file jsconfig-file
-              (insert my/jsconfig-content))))
-      (message "Project not found"))))
-
-(defun my/create-dir-locals-file ()
-  "Create a .dir-locals.el"
-  (interactive)
-  (let ((projectroot (cdr (project-current))))
-    (if projectroot
-        (let ((dir-locals-file (concat projectroot ".dir-locals.el")))
-          (if (file-exists-p dir-locals-file)
-              (message ".dir-locals.el exists")
-            (with-temp-buffer (write-file dir-locals-file))))
-      (let ((dir-locals-file (concat default-directory ".dir-locals.el")))
-        (with-temp-buffer (write-file dir-locals-file))
-        (message ".dir-locals.el created")))))
-
 (defvar my/ccls-content
   "clang\n\
 %c -std=c11\n\
 %cpp -std=c++2a")
 
-(defun my/create-ccls-file ()
-  "Create .ccls"
-  (interactive)
-  (let ((projectroot (cdr (project-current))))
-    (if projectroot
-        (let ((ccls-file (concat projectroot ".ccls")))
-          (if (file-exists-p ccls-file)
-              (message ".ccls exists")
-            (with-temp-file ccls-file
-              (insert my/ccls-content))))
-      (let ((ccls-file (concat default-directory ".ccls")))
-        (with-temp-file ccls-file
-          (insert my/ccls-content))))))
 
 (defun my/project-git-find-files ()
   "Find file in the current Git repository."
@@ -225,11 +209,12 @@ URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b
 (transient-define-prefix my-transient/project-new-menu ()
   "Project new transient menu"
   ["Create"
-   ("r" "Root file" my/create-project-root-file)
-   ("f" "Fdignore" my/create-fd-ignore-file)
-   ("j" "jsconfig" my/create-jsconfig-file)
-   ("d" ".dir-locals" my/create-dir-locals-file)
-   ("c" ".ccls" my/create-ccls-file)])
+   ("r" "Root file" my/project-create-root-file)
+   ("f" "Fdignore" my/project-create-fdignore)
+   ("j" "jsconfig" my/project-create-jsconfig)
+   ("d" ".dir-locals" my/project-create-dir-locals)
+   ("c" ".ccls" my/project-create-ccls)
+   ("l" "changelog" my/project-create-changelog)])
 
 (transient-define-prefix my-transient/project-menu ()
   "Porject transient menu invoked by prefix `C-x p'"
@@ -237,10 +222,10 @@ URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b
     ("f" "Project find file" my/project-fd)
     ("F" "Project find regexp" project-find-regexp)
     ("d" "Project find dir" project-find-dir)
-    ("r" "Project query and replece" project-query-replace-regexp)
+    ("R" "Project query and replece" project-query-replace-regexp)
     ("u" "Find sub-dir" my/project-find-file-in-dir)
-    ("g" "Rg" rg-project)
-    ("l" "Git files" my/project-git-find-files)]
+    ("r" "Rg" rg-project)
+    ("g" "Git files" my/project-git-find-files)]
    ["Switch"
     ("p" "Project switch project" project-switch-project)
     ("b" "Project switch buffer" project-switch-to-buffer)
