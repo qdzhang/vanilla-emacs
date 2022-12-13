@@ -22,6 +22,9 @@
 [submodule "company-posframe"]
 	path = lib/company-posframe
 	url = git@github.com:tumashu/company-posframe.git
+[submodule "compat"]
+	path = lib/compat
+	url = https://git.sr.ht/~pkal/compat
 [submodule "d-mode"]
 	path = lib/d-mode
 	url = git@github.com:Emacs-D-Mode-Maintainers/Emacs-D-Mode.git
@@ -98,6 +101,9 @@
 [submodule "racket-mode"]
 	path = lib/racket-mode
 	url = git@github.com:greghendershott/racket-mode.git
+[submodule "raku-mode"]
+	path = lib/raku-mode
+	url = https://github.com/Raku/raku-mode
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
@@ -151,6 +157,3 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
-[submodule "compat"]
-	path = lib/compat
-	url = https://git.sr.ht/~pkal/compat
