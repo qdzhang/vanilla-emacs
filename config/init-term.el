@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(define-key term-raw-map (kbd "M-x") nil)
+
 ;;; A general function to create a new split window and switch to it
 ;;; https://emacsredux.com/blog/2013/04/29/start-command-or-switch-to-its-buffer/
 (defun my/start-or-switch-to-split (function buffer-name)

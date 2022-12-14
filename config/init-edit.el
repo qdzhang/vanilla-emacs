@@ -325,7 +325,7 @@ This procedure also works on `defmacro', `defface' and scheme `define'."
     (save-restriction
       (narrow-to-defun)
       (goto-char (point-min))
-      (if (or (search-forward-regexp "defun\\|defmacro\\|defface" nil t)
+      (if (or (search-forward-regexp "defun\\|defmacro\\|defface\\|defcustom" nil t)
               (search-forward-regexp "define (*" nil t))
           (progn
             (forward-word)

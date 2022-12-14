@@ -6,6 +6,9 @@
 
 ;;; Code:
 
+(setq user-full-name "qdzhang"
+      user-mail-address "qdzhangcn@gmail.com")
+
 ;; https://www.emacswiki.org/emacs/SavePlace
 (save-place-mode 1)
 
