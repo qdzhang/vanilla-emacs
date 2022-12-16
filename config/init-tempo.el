@@ -35,19 +35,19 @@
  "Insert shebang env")
 
 (tempo-define-template
- "shebang for bash"
+ "shebang-for-bash"
  '("#!/bin/bash")
  "bash"
  "Insert shebang bash")
 
 (tempo-define-template
- "shebang for sh"
+ "shebang-for-sh"
  '("#!/bin/sh")
  "sh"
  "Insert shebang sh")
 
 (tempo-define-template
- "shebang for perl"
+ "shebang-for-perl"
  '("#!/usr/bin/perl")
  "perl"
  "Insert shebang perl")

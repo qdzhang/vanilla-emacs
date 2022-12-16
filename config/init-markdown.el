@@ -7,6 +7,7 @@
 ;;; Code:
 
 (setq-default visual-fill-column-center-text t)
+(setq visual-fill-column-width 50)
 
 (require 'markdown-mode)
 
