@@ -2,7 +2,8 @@
 
 (with-eval-after-load 'magit
   (magit-add-section-hook 'magit-status-sections-hook
-                          'magit-insert-modules
+                          ;; Show git submodules
+                          ;; 'magit-insert-modules
                           'magit-insert-stashes
                           'append))
 
