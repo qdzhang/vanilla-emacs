@@ -113,20 +113,19 @@
   (setq my/current-color-theme 'light)
   (custom-theme-set-faces
    'user
-   `(default ((t (:background "#fcf7e8" :foreground "black"))))
+   `(default ((t (:background "white" :foreground "black"))))
    `(cursor ((t (:background "black"))))
    `(font-lock-comment-face ((t :foreground "Firebrick")))
    ;; Make `term' and `ansi-term' prompt more distinguishable
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
-   `(region ((t :background "#edccb7")))
+   `(region ((t :background "#eedc82")))
    `(mode-line ((t ( :inherit variable-pitch
                      :height 1.1
-                     :box (:line-width (-1 . -1) :color "#a8a296")
-                     :background "#e5dac4"))))
+                     :background "#bfbfbf"))))
    `(mode-line-inactive ((t ( :inherit variable-pitch
                               :height 1.1
-                              :box (:line-width (-1 . -1) :color "#a8a296")
-                              :background "#f8f2e0"))))))
+                              :background "#e5e5e5"
+                              :foreground "#7f7f7f"))))))
 
 (defun my/dark-theme ()
   (interactive)
@@ -138,16 +137,14 @@
    `(font-lock-comment-face ((t :foreground "violet")))
    `(ansi-color-white ((t :background "gray90" :foreground "gray90")))
    `(region ((t :background "#342464")))
-   `(mode-line ((t (
-                    :inherit variable-pitch
-                    :height 1.1
-                    :box (:line-width (-1 . -1) :color "dim gray")
-                    :background "#323232"))))
-   `(mode-line-inactive ((t (
-                             :inherit variable-pitch
-                             :height 1.1
-                             :box (:line-width (-1 . -1) :color "dim gray")
-                             :background "#222222"))))))
+   `(mode-line ((t ( :inherit variable-pitch
+                     :height 1.1
+                     :box (:line-width (-1 . -1) :color "dim gray")
+                     :background "#323232"))))
+   `(mode-line-inactive ((t ( :inherit variable-pitch
+                              :height 1.1
+                              :box (:line-width (-1 . -1) :color "dim gray")
+                              :background "#222222"))))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
