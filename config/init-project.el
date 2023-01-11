@@ -117,9 +117,9 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
       (message "%s created." filename-path))))
 
 (defun my/project-create-root-file ()
-  "Create `.root' file in current directory."
+  "Create `.project' file in current directory."
   (interactive)
-  (my/project-create-new-file ".root"))
+  (my/project-create-new-file ".project"))
 
 (defun my/project-create-fdignore ()
   "Create `.fdignore' file in the root of current project."
