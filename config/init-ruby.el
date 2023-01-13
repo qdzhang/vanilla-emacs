@@ -9,7 +9,14 @@
 (require 'inf-ruby)
 
 (autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
-(add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+(add-hook 'ruby-mode-hook (lambda ()
+                            (smart-dash-mode 1)
+                            (inf-ruby-minor-mode 1)
+                            (subword-mode 1)))
+
+;; Don't auto-insert encoding comments
+;; Those are almost never needed in Ruby 2+
+(setq ruby-insert-encoding-magic-comment nil)
 
 (setq ruby-deep-indent-paren nil)
 
