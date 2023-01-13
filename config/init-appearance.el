@@ -28,7 +28,8 @@
 
 
 ;; Sarasa font set for CJK font
-(set-fontset-font t 'han "Sarasa Mono SC")
+;; (set-fontset-font t 'han "Sarasa Mono SC")
+(set-fontset-font t 'han "HYXuanSong")
 (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
