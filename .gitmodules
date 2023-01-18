@@ -157,3 +157,6 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
+[submodule "pulsar"]
+	path = lib/pulsar
+	url = https://git.sr.ht/~protesilaos/pulsar
