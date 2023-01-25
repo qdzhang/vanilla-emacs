@@ -159,7 +159,7 @@ Version 2018-12-23"
 (defun my/terminal-here ()
   "Open an external terminal from Emacs in `default-directory'"
   (interactive)
-  (start-process "terminal" nil "urxvt"))
+  (start-process "terminal" nil "lxterminal"))
 
 (defun my/dired-parent-directory ()
   "Open parent directory in current buffer"

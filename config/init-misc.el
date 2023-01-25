@@ -18,6 +18,7 @@
         require-final-newline t
         load-prefer-newer t
         ediff-window-setup-function 'ediff-setup-windows-plain
+        ediff-split-window-function #'split-window-horizontally
         custom-file (expand-file-name "~/.emacs.d/custom.el"))
 
   ;; Use font caches to preventing some GC

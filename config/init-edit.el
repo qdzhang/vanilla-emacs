@@ -346,7 +346,7 @@ This procedure also works on `defmacro', `defface' and scheme `define'."
 (setq pulsar-pulse t)
 (setq pulsar-delay 0.06)
 (setq pulsar-iterations 10)
-(setq pulsar-face 'pulsar-blue)
+(setq pulsar-face 'pulsar-red)
 (setq pulsar-highlight-face 'pulsar-yellow)
 
 (pulsar-global-mode 1)

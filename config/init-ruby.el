@@ -37,5 +37,8 @@
 (with-eval-after-load 'web-mode
   (setq web-mode-markup-indent-offset 2))
 
+(with-eval-after-load 'ruby-mode
+  (define-key ruby-mode-map (kbd "C-c C-n") 'ruby-send-line))
+
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

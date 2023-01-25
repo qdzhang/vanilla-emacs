@@ -42,6 +42,14 @@
 (with-eval-after-load 'css-mode
   (setq css-indent-offset 2))
 
+;; * `js-mode' setup
+(with-eval-after-load 'js-mode
+  (setq js-indent-level 2))
+
+;; * `typescript-mode' setup
+(with-eval-after-load 'typescript-mode
+  (setq typescript-indent-level 2))
+
 
 (provide 'init-web)
 ;;; init-web.el ends here
