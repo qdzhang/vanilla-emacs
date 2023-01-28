@@ -55,8 +55,9 @@ Copied from: https://christiantietze.de/posts/2020/05/delete-word-or-region-emac
 (let ((unless-list '(sp-point-before-word-p
                      sp-point-after-word-p
                      sp-point-before-same-p)))
-  (sp-pair "'"  nil :unless unless-list)
-  (sp-pair "\"" nil :unless unless-list))
+  ;; Python f-string will need balanced parens after letter f
+  ;; (sp-pair "\"" nil :unless unless-list)
+  (sp-pair "'"  nil :unless unless-list))
 
 ;; After curly brace, enter `RET' will create an extra newline
 ;; https://emacs.stackexchange.com/questions/12368/make-ending-curly-brace-of-block-go-down-an-extra-newline-in-golang

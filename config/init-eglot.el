@@ -13,6 +13,7 @@
 
 ;; Close `flymake-mode' when eglot starts.
 ;; I want to turn on `flymake-mode' manually.
+(setq-local eglot-stay-out-of '(flymake))
 (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
 
 (with-eval-after-load 'eldoc
