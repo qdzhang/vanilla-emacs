@@ -78,6 +78,10 @@
 (require 'init-direnv)
 (require 'init-python)
 
+(with-eval-after-load 'flymake
+  (require 'flymake-diagnostic-at-point)
+  (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
+
 ;; Some package can be loaded defered
 (run-with-idle-timer
  0.5 nil
