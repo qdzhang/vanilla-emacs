@@ -121,7 +121,7 @@ Ref:https://emacs.stackexchange.com/a/58326"
          (file+olp+datetree "~/org/daily.org")
          "- [ ] %?" :prepend t :kill-buffer t)
         ("s" "New snippet" entry
-         (file+headline "~/org/snippets.org" "Code snippets")
+         (file+headline "~/org/snippets/snippets.org" "Code snippets")
          "* %^{代码片段描述} %^g\n:PROPERTIES:\n:time: %U\n:origin: %^{代码来源}\n:describes: %?\n:END:\n\n#+begin_src\n \n#+end_src\n" :empty-lines 1)
         ("j" "Journal" entry
          (file+olp+datetree "~/org/journal.org")
