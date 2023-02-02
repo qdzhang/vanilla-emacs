@@ -17,7 +17,7 @@
 ;; https://github.com/buzztaiki/project-rootfile.el
 (defcustom my/project-root-markers
   '(".project" "Gemfile" "go.mod" "Cargo.toml"
-    "Makefile" "GNUMakefile" "CMakeLists.txt" "meson.build"
+    ;; "Makefile" "GNUMakefile" "CMakeLists.txt" "meson.build"
     "Cask" "Eldev" "Keg" "Eask"
     "Gruntfile.js" "gulpfile.js" "package.json"
     "project.clj"  "deps.edn" "shadow-cljs.edn"

@@ -4,6 +4,9 @@
   ;; Save minibuffer history
   (savehist-mode 1)
 
+  ;; Save kill-ring history
+  (add-to-list 'savehist-additional-variables 'kill-ring)
+
   (autoload 'zap-up-to-char "misc"
     "Kill up to, but not including ARGth occurrence of CHAR." t)
 

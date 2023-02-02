@@ -29,6 +29,8 @@
 (add-to-list 'auto-mode-alist '("/Eask\\'" . emacs-lisp-mode))
 (add-to-list 'auto-mode-alist '("/Easkfile\\'" . emacs-lisp-mode))
 
+(add-to-list 'auto-mode-alist '("\\.m$" . octave-mode))
+
 ;; Mode load
 (autoload 'meson-mode "meson-mode")
 (autoload 'janet-mode "janet-mode")

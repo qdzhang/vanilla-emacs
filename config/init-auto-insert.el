@@ -201,5 +201,12 @@
   ""
   "{{- " - " -}}")
 
+(define-skeleton my-skel/use-c++-mode
+  "Insert comments to make current buffer use `c++-mode'"
+  ""
+  "// Local Variables:
+// mode: c++
+// End:")
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
