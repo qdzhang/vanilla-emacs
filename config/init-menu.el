@@ -30,6 +30,10 @@
         (define-key-after submenu [unhighlight-symbol]
           `(menu-item "Unhighlight Regexp" unhighlight-regexp
                       :help "Unhighlight selected regexp"))
+        (define-key-after submenu [unhighlight-all]
+          `(menu-item "Unhighlight All" (lambda (click)
+                                          (interactive "e")
+                                          (unhighlight-regexp t))))
         (define-key-after menu [highlight-search-mouse]
           `(menu-item "Highlight" ,submenu)))))
   menu)
