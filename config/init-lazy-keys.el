@@ -212,6 +212,9 @@
  '(("C-c d" . inf-sdcv-search))
  "inf-sdcv-mode")
 
+(lazy-load-set-keys
+ '(("C-c C-f" . ff-find-other-file)))
+
 (lazy-load-global-keys
  '(("C-x C-5" . my/toggle-frame-split)
    ("C-x v" . shrink-window)

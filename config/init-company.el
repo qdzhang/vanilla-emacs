@@ -10,6 +10,7 @@
 
 (setq company-idle-delay 0.1)
 (setq company-global-modes '(not org-mode markdown-mode eshell-mode))
+(setq company-minimum-prefix-length 2)
 
 (setq completion-ignore-case t)
 (setq company-dabbrev-downcase nil)
