@@ -242,4 +242,8 @@
  '(("M-<up>" . switch-to-prev-buffer)
    ("M-<down>" . switch-to-next-buffer)))
 
+(lazy-load-global-keys
+ '(("M-w" . my/kill-ring-save))
+ "init-edit")
+
 (provide 'init-lazy-keys)

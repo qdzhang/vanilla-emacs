@@ -365,4 +365,19 @@ This procedure also works on `defmacro', `defface' and scheme `define'."
   (define-key map (kbd "C-c h p") #'pulsar-pulse-line)
   (define-key map (kbd "C-c h h") #'pulsar-highlight-line))
 
+
+;;;###autoload
+(defun my/kill-ring-save ()
+  "Call `kill-ring-save' on region. If there is no region, call it on the whole
+line.
+
+TODO: `duplicate-dwim' is added in Emacs 29. Maybe rewrite this function when
+Emacs 29 releases."
+  (interactive)
+  (if mark-active
+      (kill-ring-save (region-beginning) (region-end))
+    (progn
+      (kill-ring-save (line-beginning-position) (line-end-position))
+      (message "The whole line is copied"))))
+
 (provide 'init-edit)
