@@ -25,15 +25,27 @@
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("pylsp")))
 (add-to-list 'eglot-server-programs '(d-mode . ("/usr/bin/serve-d")))
 
-(add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
+;;;###autoload
+(defun my/eglot-setup-deno ()
+  "Setup deno lsp for eglot when editing typescript."
+  (interactive)
+  (add-to-list 'eglot-server-programs '((js-mode typescript-mode) . (eglot-deno "deno" "lsp")))
 
-(defclass eglot-deno (eglot-lsp-server) ()
-  :documentation "A custom class for deno lsp.")
+  (defclass eglot-deno (eglot-lsp-server) ()
+    :documentation "A custom class for deno lsp.")
 
-(cl-defmethod eglot-initialization-options ((server eglot-deno))
-  "Passes through required deno initialization options"
-  (list :enable t
-        :lint t))
+  (cl-defmethod eglot-initialization-options ((server eglot-deno))
+    "Passes through required deno initialization options"
+    (list :enable t
+          :lint t)))
+
+;;;###autoload
+(defun my/eglot-unset-deno ()
+  "Unset deno lsp eglot setup. Use tsserver when editing typescript."
+  (interactive)
+  (setq eglot-server-programs
+        (seq-remove (lambda (elt) (equal (cdr elt) '(eglot-deno "deno" "lsp")))
+                    eglot-server-programs)))
 
 
 (transient-define-prefix my-transient/eglot
