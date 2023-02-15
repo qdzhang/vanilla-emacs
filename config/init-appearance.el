@@ -112,6 +112,7 @@
 (defun my/light-theme ()
   (interactive)
   (setq my/current-color-theme 'light)
+  (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
    `(default ((t (:background "white" :foreground "black"))))
@@ -131,6 +132,7 @@
 (defun my/dark-theme ()
   (interactive)
   (setq my/current-color-theme 'dark)
+  (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
    `(default ((t :background "#1a1a1a" :foreground "#e0e0e0")))
