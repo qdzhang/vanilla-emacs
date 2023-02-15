@@ -43,13 +43,23 @@
   (setq css-indent-offset 2))
 
 ;; * `js-mode' setup
-(with-eval-after-load 'js-mode
+(with-eval-after-load 'js
   (setq js-indent-level 2))
 
 ;; * `typescript-mode' setup
 (with-eval-after-load 'typescript-mode
   (setq typescript-indent-level 2))
 
+(defun my/typescript-mode-hook ()
+  "`typescript-mode' hook function."
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              (setq-local
+               eldoc-documentation-strategy
+               'eldoc-documentation-compose)))
+  (subword-mode 1))
+
+(add-hook 'typescript-mode-hook 'my/typescript-mode-hook)
 
 (provide 'init-web)
 ;;; init-web.el ends here

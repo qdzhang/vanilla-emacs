@@ -208,5 +208,33 @@
 // mode: c++
 // End:")
 
+;; https://gist.github.com/ctizen/e732e241760f3fc019ead1ee15ad08c8
+(define-skeleton my-skel/tsdoc
+  "Insert tsdoc"
+  ""
+  "/**
+ * 
+"
+  (save-excursion
+    (let* ((fPos
+            (re-search-forward "\\<\\(function\\|public\\|private\\|protected\\)\\s-*\.*(\\([^)]*\\))"))
+           (argStr (and fPos (match-string 2)))
+           (argList (and fPos (split-string argStr ",\\s-*"))))
+      (cl-loop with params = nil
+               for arg in argList
+               do
+               (set 'argMatched (string-match "\\([^:]+\\)\\(: *\\(.+\\)\\)?$" arg))
+               (set 'pName (match-string 1 arg))
+               (set 'pType (match-string 3 arg))
+               (set 'param (format " * @param {%s} %s " (if pType pType "") pName))
+               (if (< 0 (length arg))
+                   (push param params)
+                 )
+               finally return
+               (mapconcat 'identity (reverse (cons " * @return " params)) "\n"))))
+  "
+ */
+")
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
