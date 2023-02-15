@@ -38,8 +38,25 @@
   (setq web-mode-markup-indent-offset 2))
 
 (with-eval-after-load 'ruby-mode
-  (define-key ruby-mode-map (kbd "C-c C-j") 'ruby-send-line)
+  (defun my/ruby-send-line-and-next-line ()
+    (interactive)
+    (ruby-send-line)
+    (next-line))
+
+  (define-key ruby-mode-map (kbd "C-c C-j") 'my/ruby-send-line-and-next-line)
   (define-key ruby-mode-map (kbd "C-c C-n") 'ruby-send-line))
+
+;; Highlight debugger lines
+(defun my/ruby-maybe-highlight-debugger-keywords ()
+  "Highlight break point lines."
+  (interactive)
+  (highlight-lines-matching-regexp "byebug")
+  (highlight-lines-matching-regexp "binding.break")
+  (highlight-lines-matching-regexp "binding.irb")
+  (highlight-lines-matching-regexp "binding.pry"))
+
+(add-hook 'ruby-mode-local-vars-hook 'my/ruby-maybe-highlight-debugger-keywords)
+
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

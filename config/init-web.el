@@ -32,7 +32,11 @@
 
   ;; Highlight current matched tags, and set its color
   (setq web-mode-enable-current-element-highlight t)
-  (set-face-attribute 'web-mode-current-element-highlight-face nil :foreground "black" :background "PaleGreen2"))
+  (set-face-attribute 'web-mode-current-element-highlight-face nil :foreground "black" :background "PaleGreen2")
+
+  (setq web-mode-engines-alist
+        '(("php"    . "\\.phtml\\'")
+          ("ruby"  . "\\.erb\\."))))
 
 ;; Deactivate smartparens in `web-mode'
 ;; Using `web-mode' built-in auto-pairs and auto-quoting

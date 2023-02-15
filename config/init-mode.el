@@ -1,6 +1,15 @@
 ;;; init-mode.el --- Config some autoload modes      -*- lexical-binding: t; -*-
 
+;; hook into `hack-local-variables' in order to allow switching spacemacs
+;; configurations based on local variables
+;; Copied from spacemacs
+(add-hook 'hack-local-variables-hook #'spacemacs//run-local-vars-mode-hook)
 
+(defun spacemacs//run-local-vars-mode-hook ()
+  "Run a hook for the major-mode after the local variables have been processed."
+  (run-hooks (intern (format "%S-local-vars-hook" major-mode))))
+
+;; Autoload major modes
 (add-to-list 'auto-mode-alist '("\\.m?jsx?\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
