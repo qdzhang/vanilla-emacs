@@ -8,12 +8,8 @@
 
 ;;; Code:
 
-(defun my/maybe-enable-envrc-global-mode ()
-  "Enable `envrc-global-mode' if `direnv' is installed."
-  (when (executable-find "direnv")
-    (envrc-global-mode)))
-
-(add-hook 'after-init-hook 'my/maybe-enable-envrc-global-mode)
+(add-hook 'ruby-mode-hook 'envrc-mode)
+(add-hook 'python-mode-hook 'envrc-mode)
 
 (provide 'init-direnv)
 ;;; init-direnv.el
