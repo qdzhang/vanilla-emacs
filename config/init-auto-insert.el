@@ -236,5 +236,18 @@
  */
 ")
 
+(define-skeleton my-skel/ruby-gem-script
+  "Init ruby script with gemfiles"
+  ""
+  "#!/usr/bin/env ruby
+
+require 'bundler/inline'
+
+gemfile do
+  source 'https://gems.ruby-china.com/'
+  # add gems you need here
+end
+")
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
