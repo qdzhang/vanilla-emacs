@@ -13,6 +13,7 @@
           rime-predicate-org-in-src-block-p
           rime-predicate-prog-in-code-p
           rime-predicate-god-mode-p))
+  (setq rime-show-candidate 'posframe)
 
   ;; Disable input-method in `isearch-mode'
   ;; If want to use input-method when using isearch
