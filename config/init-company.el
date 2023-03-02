@@ -14,6 +14,9 @@
 
 (setq completion-ignore-case t)
 (setq company-dabbrev-downcase nil)
+(setq company-dabbrev-ignore-case t)
+(setq company-dabbrev-code-ignore-case t)
+(setq company-etags-ignore-case t)
 
 (require 'company-posframe)
 (company-posframe-mode 1)
