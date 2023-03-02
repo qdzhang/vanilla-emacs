@@ -13,16 +13,15 @@
 
 ;; Close `flymake-mode' when eglot starts.
 ;; I want to turn on `flymake-mode' manually.
-(setq-local eglot-stay-out-of '(flymake))
 (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
 
-(with-eval-after-load 'eldoc
-  (setq eldoc-echo-area-use-multiline-p nil))
+
 
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "ccls"))
 ;; (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("clangd" "--clang-tidy")))
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("pylsp")))
+;; (add-to-list 'eglot-server-programs '(python-mode . ("ruff-lsp")))
 (add-to-list 'eglot-server-programs '(d-mode . ("/usr/bin/serve-d")))
 
 ;;;###autoload
@@ -47,6 +46,12 @@
         (seq-remove (lambda (elt) (equal (cdr elt) '(eglot-deno "deno" "lsp")))
                     eglot-server-programs)))
 
+(require 'eglot-doc-posframe)
+
+(with-eval-after-load 'eldoc
+  ;; Don't resize echo area display. Use `eglot-doc-posframe' to show long doc.
+  (setq eldoc-echo-area-use-multiline-p nil)
+  (define-key eglot-mode-map (kbd "M-h") 'eglot-doc-posframe-show))
 
 (transient-define-prefix my-transient/eglot
   "Eglot"
@@ -54,7 +59,7 @@
     ("d" "Declaration" eglot-find-declaration)
     ("i" "Implementation" eglot-find-implementation)
     ("D" "Type Definition" eglot-find-typeDefinition)
-    ("h" "Doc" eldoc)]
+    ("h" "Doc" eglot-doc-posframe-show)]
    ["Edit"
     ("r" "Rename" eglot-rename)
     ("a" "Code Actions" eglot-code-actions)
