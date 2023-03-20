@@ -115,7 +115,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
-   `(default ((t (:background "white" :foreground "black"))))
+   `(default ((t (:background "honeydew" :foreground "black"))))
    `(cursor ((t (:background "black"))))
    `(font-lock-comment-face ((t :foreground "Firebrick")))
    ;; Make `term' and `ansi-term' prompt more distinguishable
