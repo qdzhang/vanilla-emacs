@@ -13,6 +13,9 @@
 (add-to-list 'auto-mode-alist '("\\.m?jsx?\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[px]?html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
 
 ;; use cperl-mode instead of perl-mode
 (setq auto-mode-alist (rassq-delete-all 'perl-mode auto-mode-alist))
