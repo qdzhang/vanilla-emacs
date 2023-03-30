@@ -246,4 +246,21 @@
  '(("M-w" . my/kill-ring-save))
  "init-edit")
 
+;; string-inflection config
+(lazy-load-global-keys
+ '(("C-c C-u" . string-inflection-all-cycle))
+ "string-inflection")
+
+(with-eval-after-load 'ruby-mode
+  (lazy-load-local-keys
+   '(("C-c C-u" . string-inflection-ruby-style-cycle))
+   ruby-mode-map
+   "string-inflection"))
+
+(with-eval-after-load 'python-mode
+  (lazy-load-local-keys
+   '(("C-c C-u" . string-inflection-python-style-cycle))
+   python-mode-map
+   "string-inflection"))
+
 (provide 'init-lazy-keys)

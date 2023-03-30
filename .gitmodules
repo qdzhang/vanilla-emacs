@@ -50,6 +50,9 @@
 [submodule "eww-lnum"]
 	path = lib/eww-lnum
 	url = git@github.com:m00natic/eww-lnum.git
+[submodule "flymake-diagnostic-at-point"]
+	path = lib/flymake-diagnostic-at-point
+	url = git@github.com:qdzhang/flymake-diagnostic-at-point.git
 [submodule "flymake-quickdef"]
 	path = lib/flymake-quickdef
 	url = git@github.com:karlotness/flymake-quickdef.git
@@ -133,6 +136,9 @@
 [submodule "sml-mode"]
 	path = lib/sml-mode
 	url = git@github.com:emacsmirror/sml-mode.git
+[submodule "string-inflection"]
+	path = lib/string-inflection
+	url = https://github.com/akicho8/string-inflection
 [submodule "super-save"]
 	path = lib/super-save
 	url = git@github.com:bbatsov/super-save.git
@@ -157,6 +163,3 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
-[submodule "flymake-diagnostic-at-point"]
-	path = lib/flymake-diagnostic-at-point
-	url = git@github.com:qdzhang/flymake-diagnostic-at-point.git
