@@ -248,19 +248,50 @@
 
 ;; string-inflection config
 (lazy-load-global-keys
- '(("C-c C-u" . string-inflection-all-cycle))
+ '(("C-c u" . string-inflection-all-cycle))
  "string-inflection")
+
+;; Repeat string-inflection manipulations.
+(defvar string-inflection-repeat-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "u") #'string-inflection-all-cycle)
+    map)
+  "Keymap to repeat `string-inflection-all-cycle' with `u'")
+
+(dolist (cmd '(string-inflection-all-cycle))
+  (put cmd 'repeat-map 'string-inflection-repeat-map))
 
 (with-eval-after-load 'ruby-mode
   (lazy-load-local-keys
-   '(("C-c C-u" . string-inflection-ruby-style-cycle))
+   '(("C-c u" . string-inflection-ruby-style-cycle))
    ruby-mode-map
-   "string-inflection"))
+   "string-inflection")
+
+  ;; Repeat string-inflection manipulations.
+  (defvar string-inflection-repeat-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "u") #'string-inflection-ruby-style-cycle)
+      map)
+    "Keymap to repeat `string-inflection-ruby-style-cycle' with `u'")
+
+  (dolist (cmd '(string-inflection-ruby-style-cycle))
+    (put cmd 'repeat-map 'string-inflection-repeat-map)))
 
 (with-eval-after-load 'python-mode
   (lazy-load-local-keys
-   '(("C-c C-u" . string-inflection-python-style-cycle))
+   '(("C-c u" . string-inflection-python-style-cycle))
    python-mode-map
-   "string-inflection"))
+   "string-inflection")
+
+  ;; Repeat string-inflection manipulations.
+  (defvar string-inflection-repeat-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "u") #'string-inflection-python-style-cycle)
+      map)
+    "Keymap to repeat `string-inflection-python-style-cycle' with `u'")
+
+  (dolist (cmd '(string-inflection-python-style-cycle))
+    (put cmd 'repeat-map 'string-inflection-repeat-map)))
+
 
 (provide 'init-lazy-keys)
