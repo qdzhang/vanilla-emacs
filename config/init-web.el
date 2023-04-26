@@ -35,8 +35,9 @@
   (set-face-attribute 'web-mode-current-element-highlight-face nil :foreground "black" :background "PaleGreen2")
 
   (setq web-mode-engines-alist
-        '(("php"    . "\\.phtml\\'")
-          ("ruby"  . "\\.erb\\."))))
+        '(("php" . "\\.phtml\\'")
+          ("erb" . "\\.erb\\.")
+          ("erb" . "\\.rhtml\\'"))))
 
 ;; Deactivate smartparens in `web-mode'
 ;; Using `web-mode' built-in auto-pairs and auto-quoting
