@@ -6,7 +6,7 @@
 
 (setq dired-dwim-target t)
 (setq dired-guess-shell-alist-user '(("\\.pdf\\'" "mupdf")
-                                     ("\\.djvu\\'" "zathura")
+                                     ("\\.djvu\\'" "djview")
                                      ("\\.mkv\\'"  "mpv")
                                      ("\\.avi\\'"  "mpv")
                                      ("\\.mp4\\'"  "mpv")
@@ -62,6 +62,7 @@
 (defvar dired-filelist-cmd
   '(("mpv")
     ("zathura")
+    ("djview")
     ("mupdf")))
 
 ;; Create a new procedure to start a process in dired without popup windows.
