@@ -230,6 +230,7 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
 (defun my/open-newline-above (arg)
   "Move to the previous line (like vi) and then opens a line."
   (interactive "p")
+  (push (point) buffer-undo-list)
   (beginning-of-line)
   (open-line arg)
   (if (derived-mode-p 'prog-mode)
@@ -240,6 +241,7 @@ URL: https://emacsredux.com/blog/2013/04/21/edit-files-as-root/"
 (defun my/open-newline-below (arg)
   "Move to the next line (like vi) and then opens a line."
   (interactive "p")
+  (push (point) buffer-undo-list)
   (end-of-line)
   (open-line arg)
   (call-interactively 'next-line arg)

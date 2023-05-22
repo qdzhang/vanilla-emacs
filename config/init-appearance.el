@@ -72,6 +72,7 @@
 
 ;; * Themes settings
 ;; (load-theme 'tsdh-light t)
+(load-theme 'tango t)
 
 
 ;; (setq modus-themes-no-mixed-fonts t
@@ -97,8 +98,8 @@
 ;; Current color theme. Acceptable values: 'light, 'dark
 ;; Default is light
 (defvar my/current-color-theme 'light)
-(add-hook 'after-init-hook 'my/light-theme)
-(define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
+;; (add-hook 'after-init-hook 'my/light-theme)
+;; (define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
 
 (defun my/theme-toggle-color ()
   "Toggle between light and dark color scheme."
