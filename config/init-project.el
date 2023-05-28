@@ -60,6 +60,13 @@ URL: https://github.com/andschwa/.emacs.d/blob/main/init.el"
 
 (add-to-list 'project-find-functions #'my/project-try-magit)
 
+(defun my/semantic-project-root (path)
+  "Get PATH and return a string, (the root directory).
+Used in `semanticdb-project-root-functions'."
+  (let ((pr (project-current t)))
+    (project-root pr)))
+
+
 ;; * Use fd to supersede default project find-file
 (defun my/project-fd ()
   "Use `fd' to find files"

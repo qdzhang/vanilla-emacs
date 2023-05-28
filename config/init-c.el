@@ -1,33 +1,38 @@
 ;;; init-c.el --- cc-mode and semantic config        -*- lexical-binding: t; -*-
 
 
-(defun my/c-semantic-hooks ()
+(defun my/c-mode-to-use-semantic ()
   (semantic-mode 1)
+
+  ;; system header files
+  (require 'semantic/bovine/gcc)
+  ;; name completion
+  (require 'semantic/ia)
+
   (local-set-key "\C-c\C-j" 'semantic-ia-fast-jump)
   (local-set-key "\C-c\C-s" 'semantic-ia-show-summary))
 
 
-;; (add-hook 'c-mode-hook 'my/c-semantic-hooks)
-;; (add-hook 'c++-mode-hook ' my/c-semantic-hooks)
+(add-hook 'c-mode-hook 'my/c-mode-to-use-semantic)
+(add-hook 'c++-mode-hook ' my/c-mode-to-use-semantic)
 
-;; (with-eval-after-load 'company
-;;   ;; Use `company-clang' to auto complate
-;;   (setq company-backends (delete 'company-semantic company-backends))
-;;   (setq company-backends (delete 'company-clang company-backends))
-;;   (setq company-clang-arguments '("-I/usr/include/" "-I/usr/include/c++/12.1.1/"))
-;;   (define-key c-mode-map  [(tab)] 'company-complete)
-;;   (define-key c++-mode-map  [(tab)] 'company-complete)
-;;   ;; Add `company-c-headers' backends
-;;   (add-to-list 'company-backends 'company-c-headers)
-;;   (add-to-list 'company-c-headers-path-system "/usr/include/c++/12.1.1/"))
+(defun my/semantic-hook ()
+  "The hook used when semantic initialize"
+  (imenu-add-to-menubar "TAGS"))
+
+(add-hook 'semantic-init-hook 'my/semantic-hook)
 
 (with-eval-after-load 'semantic
   (advice-add 'semantic-idle-scheduler-function :around #'ignore)
 
   (global-semanticdb-minor-mode 1)
   (global-semantic-idle-scheduler-mode 1)
-  (setq semanticdb-project-root-functions #'project-root)
-  (semantic-add-system-include "/usr/include/gtk-3.0/" 'c-mode))
+  (global-semantic-highlight-edits-mode 1)
+
+  ;; Make semantic use built-in project.el
+  (setq semanticdb-project-root-functions #'my/semantic-project-root)
+  ;; (semantic-add-system-include "/usr/include/gtk-3.0/" 'c-mode)
+  )
 
 
 (with-eval-after-load 'company
