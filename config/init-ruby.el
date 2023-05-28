@@ -12,7 +12,29 @@
 (add-hook 'ruby-mode-hook (lambda ()
                             (smart-dash-mode 1)
                             (inf-ruby-minor-mode 1)
-                            (subword-mode 1)))
+                            (subword-mode 1)
+                            (rbtagger-mode)))
+
+;; Auto-update rbtagger tags when ruby files change
+;;
+;; (add-hook 'after-save-hook
+;;           (lambda ()
+;;             (if (eq major-mode 'ruby-mode)
+;;                 (call-interactively 'rbtagger-generate-tags))))
+
+(add-hook
+ 'rbtagger-after-generate-tag-hook
+ (lambda (success project-name)
+   (if success
+       (notify-os (concat project-name " Tags ✅") "Ruby tags successfully generated")
+     (notify-os "Is this a Ruby project? Tags FAILED! ⚠" "Failed!!!"))))
+
+(transient-define-prefix my-transient/ruby-mode ()
+  "A transient menu for ruby mode"
+  [["rbtagger"
+    ("v" "Visit tags table" visit-tags-table)
+    ("g" "Generate tags" rbtagger-generate-tags)
+    ("l" "Show logs" rbtagger-stdout-log)]])
 
 ;; Don't auto-insert encoding comments
 ;; Those are almost never needed in Ruby 2+

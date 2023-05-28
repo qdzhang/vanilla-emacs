@@ -275,7 +275,12 @@
     "Keymap to repeat `string-inflection-ruby-style-cycle' with `u'")
 
   (dolist (cmd '(string-inflection-ruby-style-cycle))
-    (put cmd 'repeat-map 'string-inflection-repeat-map)))
+    (put cmd 'repeat-map 'string-inflection-repeat-map))
+
+  (lazy-load-local-keys
+   '(("C-c p" . my-transient/ruby-mode))
+   ruby-mode-map
+   "init-ruby"))
 
 (with-eval-after-load 'python-mode
   (lazy-load-local-keys

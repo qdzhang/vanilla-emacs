@@ -16,9 +16,6 @@
 [submodule "company"]
 	path = lib/company
 	url = git@github.com:company-mode/company-mode.git
-[submodule "company-c-headers"]
-	path = lib/company-c-headers
-	url = git@github.com:randomphrase/company-c-headers.git
 [submodule "company-posframe"]
 	path = lib/company-posframe
 	url = git@github.com:tumashu/company-posframe.git
@@ -107,6 +104,9 @@
 [submodule "raku-mode"]
 	path = lib/raku-mode
 	url = https://github.com/Raku/raku-mode
+[submodule "rbtagger"]
+	path = lib/rbtagger
+	url = https://github.com/thiagoa/rbtagger
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git

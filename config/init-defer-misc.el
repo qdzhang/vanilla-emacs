@@ -70,5 +70,13 @@
 ;; Show context lines in `occur-mode'
 (setq list-matching-lines-default-context-lines 1)
 
+(defun notify-os (headline-string message-string)
+  "Send message to notification"
+  (shell-command (concat "notify-send --icon=emacs \""
+                         headline-string
+                         "\" \""
+                         message-string
+                         "\"")))
+
 (provide 'init-defer-misc)
 ;;; init-defer-misc.el ends here

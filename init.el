@@ -90,6 +90,7 @@
      (require 'init-isearch)
      (require 'init-navigate)
      (require 'init-fold)
+     (require 'init-tags)
 
      ;; (require 'init-company)
      (require 'init-completion)
