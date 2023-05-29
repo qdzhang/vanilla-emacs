@@ -10,7 +10,15 @@
   (require 'semantic/ia)
 
   (local-set-key "\C-c\C-j" 'semantic-ia-fast-jump)
-  (local-set-key "\C-c\C-s" 'semantic-ia-show-summary))
+  (local-set-key "\C-c\C-s" 'semantic-ia-show-summary)
+  (local-set-key "\C-c\C-h" 'semantic-ia-show-doc)
+  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\C-ct" 'semantic-analyze-proto-impl-toggle)
+  (local-set-key (kbd "C-c , -") 'senator-fold-tag)
+  (local-set-key (kbd "C-c , +") 'senator-unfold-tag)
+  (local-set-key (kbd "C-c , f") 'senator-search-set-tag-class-filter)
+  (local-set-key (kbd "C-c , s") 'senator-search-forward)
+  (local-set-key (kbd "C-c , S") 'senator-search-backward))
 
 
 (add-hook 'c-mode-hook 'my/c-mode-to-use-semantic)
@@ -28,6 +36,7 @@
   (global-semanticdb-minor-mode 1)
   (global-semantic-idle-scheduler-mode 1)
   (global-semantic-highlight-edits-mode 1)
+  (global-semantic-mru-bookmark-mode 1)
 
   ;; Make semantic use built-in project.el
   (setq semanticdb-project-root-functions #'my/semantic-project-root)
