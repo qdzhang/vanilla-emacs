@@ -107,6 +107,9 @@
 [submodule "rbtagger"]
 	path = lib/rbtagger
 	url = https://github.com/thiagoa/rbtagger
+[submodule "reformatter"]
+	path = lib/reformatter
+	url = https://github.com/purcell/emacs-reformatter
 [submodule "rg"]
 	path = lib/rg
 	url = git@github.com:dajva/rg.el.git
