@@ -13,7 +13,9 @@
                             (smart-dash-mode 1)
                             (inf-ruby-minor-mode 1)
                             (subword-mode 1)
-                            (rbtagger-mode)))
+                            (rbtagger-mode)
+                            (stree-format-on-save-mode 1)))
+
 
 ;; Auto-update rbtagger tags when ruby files change
 ;;

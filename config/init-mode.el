@@ -12,7 +12,6 @@
 ;; Autoload major modes
 (add-to-list 'auto-mode-alist '("\\.m?jsx?\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[pxr]?html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
@@ -50,6 +49,13 @@
 (autoload 'gfm-mode "init-markdown")
 (autoload 'ruby-mode "init-ruby")
 (autoload 'inf-ruby-minor-mode "init-ruby")
+
+(define-derived-mode my-erb-mode web-mode "MyErb"
+  "A major mode derived from web-mode, for editing .erb files.")
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . my-erb-mode))
+(add-hook 'my-erb-mode-hook (lambda ()
+                              (erb-format-on-save-mode 1)))
+
 ;; (autoload 'erb-mode "erb-mode")
 
 (autoload 'racket-xp-mode "init-racket")
