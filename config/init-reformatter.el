@@ -26,5 +26,13 @@
   :args `("--stdin-filename" ,(buffer-file-name) "--print-width" "80")
   :lighter " ERB")
 
+;;;###autoload (autoload 'shfmt-buffer "init-reformatter" nil t)
+;;;###autoload (autoload 'shfmt-region "init-reformatter" nil t)
+;;;###autoload (autoload 'shfmt-on-save-mode "init-reformatter" nil t)
+(reformatter-define shfmt
+  :program "shfmt"
+  :args '()
+  :lighter " ShFmt")
+
 (provide 'init-reformatter)
 ;;; init-reformatter.el
