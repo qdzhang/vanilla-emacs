@@ -4,7 +4,9 @@
 ;; (set-face-attribute 'default nil :font (font-spec :family "M+ 1mn" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Latin Modern Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Inconsolata" :size 28))
-(set-face-attribute 'default nil :font (font-spec :family "Noto Sans Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "Noto Sans Mono" :size 26))
+(set-face-attribute 'default nil :font (font-spec :family "IntelOne Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "CozetteHiDpi"))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "JetbrainsMono Nerd Font Mono" :size 24))
 ;; (set-face-attribute 'variable-pitch nil :family "IBM Plex Serif")
@@ -29,7 +31,8 @@
 
 ;; Sarasa font set for CJK font
 ;; (set-fontset-font t 'han "Sarasa Mono SC")
-(set-fontset-font t 'han "HYXuanSong")
+;; (set-fontset-font t 'han "HYXuanSong")
+(set-fontset-font t 'han "FZKai-Z03")
 (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
@@ -72,7 +75,7 @@
 
 ;; * Themes settings
 ;; (load-theme 'tsdh-light t)
-(load-theme 'tango t)
+;; (load-theme 'tango t)
 
 
 ;; (setq modus-themes-no-mixed-fonts t
@@ -98,8 +101,8 @@
 ;; Current color theme. Acceptable values: 'light, 'dark
 ;; Default is light
 (defvar my/current-color-theme 'light)
-;; (add-hook 'after-init-hook 'my/light-theme)
-;; (define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
+(add-hook 'after-init-hook 'my/light-theme)
+(define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
 
 (defun my/theme-toggle-color ()
   "Toggle between light and dark color scheme."
@@ -116,7 +119,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
-   `(default ((t (:background "honeydew" :foreground "black"))))
+   `(default ((t (:background "white" :foreground "black"))))
    `(cursor ((t (:background "black"))))
    `(font-lock-comment-face ((t :foreground "Firebrick")))
    ;; Make `term' and `ansi-term' prompt more distinguishable
