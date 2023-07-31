@@ -244,7 +244,7 @@
 require 'bundler/inline'
 
 gemfile do
-  source 'https://mirrors.bfsu.edu.cn/rubygems/'
+  source 'https://rubygems.org'
   # add gems you need here
 end
 ")

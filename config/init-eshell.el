@@ -9,7 +9,7 @@
          (command (completing-read "History: "
                                    (when (> (ring-size eshell-history-ring) 0)
                                      (ring-elements eshell-history-ring)))))
-    (setf (buffer-substring start-pos end-pos) command)
+    (setf (buffer-substring-no-properties start-pos end-pos) command)
     (end-of-line)))
 
 (add-hook 'eshell-mode-hook (lambda ()

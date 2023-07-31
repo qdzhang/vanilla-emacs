@@ -21,6 +21,10 @@
 (setq scroll-conservatively 100000)
 (setq scroll-preserve-screen-position 1)
 
+;; pixel scroll after Emacs 29
+(when (> emacs-major-version 28)
+  (pixel-scroll-precision-mode 1))
+
 ;; Config how to construct unique buffer names for files with same base name
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
