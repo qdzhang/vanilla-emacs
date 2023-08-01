@@ -2,63 +2,10 @@
 
 (require 'project)
 
-;; * Add new file types be determined as project root
-;;
-;; More example about add a new file to specify project root
-;; https://www.reddit.com/r/emacs/comments/lfbyq5/specifying_projectroot_in_projectel/
-;;
-;; Some other extending of project.el
-;; https://www.manueluberti.eu//emacs/2020/11/14/extending-project/
-;;
-;; I defined some separate file types as root-indicator formerly,
-;; this is a  more generic method to detect the project root
-;; https://andreyorst.gitlab.io/posts/2022-07-16-project-el-enhancements/
-;; And there is a similar library:
+;; References:
+;; https://vannilla.org/write/1609258895/article.html
 ;; https://github.com/buzztaiki/project-rootfile.el
-(defcustom my/project-root-markers
-  '(".project" "Gemfile" "go.mod" "Cargo.toml"
-    ;; "Makefile" "GNUMakefile" "CMakeLists.txt" "meson.build"
-    "Cask" "Eldev" "Keg" "Eask"
-    "Gruntfile.js" "gulpfile.js" "package.json"
-    "project.clj"  "deps.edn" "shadow-cljs.edn"
-    "dub.json" "dub.sdl")
-  "Files or directories that indicate the root of a project."
-  :type '(repeat string)
-  :group 'project)
-
-(defun my/project-root-p (path)
-  "Check if the current PATH has any of the project root markers.
-
-Use `dolist' to iterate my/project-root-markers."
-  (catch 'found
-    (dolist (marker my/project-root-markers)
-      (when (file-exists-p (concat path marker))
-        (throw 'found marker)))))
-
-(defun my/project-root-p-1 (path)
-  "Check if the current PATH has any of the project root markers.
-
-Use `seq-some' to test at least one element of my/project-root-markers exists."
-  (seq-some (lambda (f) (file-exists-p (expand-file-name f path)))
-            my/project-root-markers))
-
-(defun my/project-find-root (path)
-  "Search up the PATH for `my/project-root-markers'."
-  (when-let ((root (locate-dominating-file path #'my/project-root-p-1)))
-    (cons 'transient (expand-file-name root))))
-
-(add-to-list 'project-find-functions #'my/project-find-root)
-
-;; Similar to `project-try-vc' but works when VC is disabled.
-(defun my/project-try-magit (dir)
-  "Similar to `project-try-vc' but works when VC is disabled.
-
-URL: https://github.com/andschwa/.emacs.d/blob/main/init.el"
-  (require 'magit-process)
-  (let* ((root (magit-toplevel dir)))
-    (and root (cons 'vc root))))
-
-(add-to-list 'project-find-functions #'my/project-try-magit)
+;; https://github.com/casouri/lunarymacs/blob/master/star/edit.el
 
 (defun my/semantic-project-root (path)
   "Get PATH and return a string, (the root directory).
@@ -66,6 +13,63 @@ Used in `semanticdb-project-root-functions'."
   (let ((pr (project-current t)))
     (project-root pr)))
 
+(setq project-vc-extra-root-markers '(".projectile.el" ".project.el" ".project"))
+
+(add-to-list 'project-vc-ignores ".ccls-cache/")
+(add-to-list 'project-vc-ignores "node_modules/")
+
+;; Determine language-aware file as project root
+(defvar project-language-aware-root-files
+  '("tsconfig.json" "package.json"
+    "Cargo.toml" "Gemfile" "go.mod"
+    "compile_commands.json"
+    "Cask" "Eldev" "Keg" "Eask"
+    "project.clj"  "deps.edn" "shadow-cljs.edn"
+    "dub.json" "dub.sdl"
+    "compile_flags.txt"))
+
+(defun my/project-try-language-aware (dir)
+  "Find a super-directory of DIR containing a root file."
+  (let ((dir (cl-loop for pattern in project-language-aware-root-files
+                      for result = (locate-dominating-file dir pattern)
+                      if result return result)))
+    (and dir (cons 'language-aware dir))))
+
+(cl-defmethod project-root ((project (head language-aware)))
+  (cdr project))
+
+(add-hook 'project-find-functions #'my/project-try-language-aware)
+
+(defcustom project-common-ignores '("node_modules/" ".ccls-cache/")
+  "List of patterns to add to `project-ignores'."
+  :type '(repeat string))
+
+(require 'grep)
+(setq project-my-custom-ignores (append project-common-ignores grep-find-ignored-files))
+
+(cl-defmethod project-ignores ((_project (head language-aware)) _dir)
+  "Return the list of glob patterns to ignore."
+  (append
+   (cl-call-next-method)
+   project-my-custom-ignores))
+
+
+;; Determine explicit `.project' file as a project root
+(defun my/project-try-explicit (dir)
+  "Find a super-directory of DIR containing a root file."
+  (let ((root (locate-dominating-file dir ".project")))
+    (and root (cons 'explicit root))))
+
+(cl-defmethod project-root ((project (head explicit)))
+  (cdr project))
+
+(add-hook 'project-find-functions #'my/project-try-explicit)
+
+(cl-defmethod project-ignores ((_project (head explicit)) _dir)
+  "Return the list of glob patterns to ignore."
+  (append
+   (cl-call-next-method)
+   project-my-custom-ignores))
 
 ;; * Use fd to supersede default project find-file
 (defun my/project-fd ()
@@ -79,17 +83,18 @@ Used in `semanticdb-project-root-functions'."
     (when file
       (find-file file))))
 
-;; * Customize `project-switch-commands'.
-;; - Add the command `project-switch-to-buffer' when using `project-switch-project'
-;; - Use `my/project-fd' to supersede `project-find-file'
-(with-eval-after-load 'project
-  (add-to-list 'project-switch-commands '(?b "Switch buffer" project-switch-to-buffer))
-  (assq-delete-all 'project-find-file project-switch-commands)
-  (assq-delete-all 'project-vc-dir project-switch-commands)
-  (add-to-list 'project-switch-commands '(?v "Magit" magit-status))
-  (add-to-list 'project-switch-commands '(?f "Fd-files" my/project-fd)))
 
-;; * find files in a specific sub-directory
+;; * Customize `project-switch-commands'.
+(setq project-switch-commands
+      '((?f "Fd file" my/project-fd)
+        (?g "Find regexp" project-find-regexp)
+        (?d "Dired" project-dired)
+        (?b "Buffer" project-switch-to-buffer)
+        (?q "Query replace" project-query-replace-regexp)
+        (?v "magit" my/project-magit-status)
+        (?k "Kill buffers" project-kill-buffers)
+        (?e "Eshell" project-eshell)))
+
 (defun my/choose-directory (dir)
   "Choose a directory."
   (interactive "D") dir)
@@ -105,6 +110,21 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
          (dirs (list dir)))
     (project-find-file-in (thing-at-point 'filename) dirs pr)))
 
+
+(defun my/project-magit-status ()
+  "Run magit-status in the current project's root."
+  (interactive)
+  (magit-status-setup-buffer (project-root (project-current t))))
+
+(defun my/project-remove-project ()
+  "Remove project from `project--list' using completion.
+
+URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b9138c8c/lisp/setup-project.el#L78"
+  (interactive)
+  (project--ensure-read-project-list)
+  (let* ((projects project--list)
+         (dir (completing-read "REMOVE project from list: " projects nil t)))
+    (setq project--list (delete (assoc dir projects) projects))))
 
 ;; * Create new files in project root
 (defun my/project-create-new-file (filename &optional file-content)
@@ -201,16 +221,6 @@ URL: https://old.reddit.com/r/emacs/comments/tq552f/find_file_in_project_sub_dir
          (default-directory (project-root pr)))
     (my/ansi-term-bash)))
 
-(defun my/project-remove-project ()
-  "Remove project from `project--list' using completion.
-
-URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b9138c8c/lisp/setup-project.el#L78"
-  (interactive)
-  (project--ensure-read-project-list)
-  (let* ((projects project--list)
-         (dir (completing-read "REMOVE project from list: " projects nil t)))
-    (setq project--list (delete (assoc dir projects) projects))))
-
 
 ;; * Define transient menu
 (transient-define-prefix my-transient/project-new-menu ()
@@ -226,15 +236,16 @@ URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b
 (transient-define-prefix my-transient/project-menu ()
   "Porject transient menu invoked by prefix `C-x p'"
   [["Find"
-    ("f" "Project find file" my/project-fd)
+    ("f" "Project fd file" my/project-fd)
     ("F" "Project find regexp" project-find-regexp)
     ("d" "Project find dir" project-find-dir)
     ("R" "Project query and replece" project-query-replace-regexp)
     ("u" "Find sub-dir" my/project-find-file-in-dir)
     ("r" "Rg" rg-project)
+    ("o" "Original find file" project-find-file)
     ("g" "Git files" my/project-git-find-files)]
    ["Switch"
-    ("p" "Project switch project" project-switch-project)
+    ("p" "Project switch project" my/switch-project-in-new-tab)
     ("b" "Project switch buffer" project-switch-to-buffer)
     ("k" "Project kill buffers" project-kill-buffers)]]
   [["Actions"
@@ -243,7 +254,7 @@ URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b
     ("c" "Project compile" project-compile)
     ("n" "Project new..." my-transient/project-new-menu)
     ("a" "Add .dir-locals.el" add-dir-local-variable)
-    ("h" "Remove project" my/project-remove-project)]
+    ("<deletechar>" "Remove project" my/project-remove-project)]
    ["Modes"
     ("D" "Dired" project-dired)
     ("e" "Eshell" project-eshell)

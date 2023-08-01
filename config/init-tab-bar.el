@@ -1,6 +1,6 @@
 ;;; init-tab-bar.el --- tab-bar-mode config          -*- lexical-binding: t; -*-
 
-
+;;;###autoload
 (defun my/switch-project-in-new-tab ()
   (interactive)
   (let (succ)
@@ -8,13 +8,16 @@
         (progn
           (tab-bar-new-tab)
           (call-interactively #'project-switch-project)
-          (when-let ((proj (project-current)))
-            (tab-bar-rename-tab (format "%s" (file-name-nondirectory (directory-file-name (cdr proj)))))
+          (when-let* ((proj (project-current))
+                      (dir (if (equal 'vc (car proj))
+                               (car (cdr (cdr proj)))
+                             (cdr proj))))
+            (tab-bar-rename-tab (format "%s" (file-name-nondirectory (directory-file-name dir))))
             (setq succ t)))
       (unless succ
         (tab-bar-close-tab)))))
 
-(global-set-key [remap project-switch-project] #' my/switch-project-in-new-tab)
+
 
 (with-eval-after-load 'tab-bar
   (setq-default tab-bar-border 5
