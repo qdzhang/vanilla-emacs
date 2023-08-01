@@ -53,37 +53,5 @@
   (setq eldoc-echo-area-use-multiline-p nil)
   (define-key eglot-mode-map (kbd "M-h") 'eglot-doc-posframe-show))
 
-(transient-define-prefix my-transient/eglot
-  "Eglot"
-  [["Find"
-    ("d" "Declaration" eglot-find-declaration)
-    ("i" "Implementation" eglot-find-implementation)
-    ("D" "Type Definition" eglot-find-typeDefinition)
-    ("h" "Doc" eglot-doc-posframe-show)]
-   ["Edit"
-    ("r" "Rename" eglot-rename)
-    ("a" "Code Actions" eglot-code-actions)
-    ("=" "Format Buffer" eglot-format-buffer)
-    ("R" "Format Region" eglot-format)]
-   ["Manage"
-    ("f" "Flymake" flymake-mode)
-    ("X" "Shutdown" eglot-shutdown)
-    ("C" "Reconnect" eglot-reconnect)
-    ("E" "Display Events Buffer" eglot-events-buffer)]])
-
-(transient-define-prefix my-transient/eglot-format
-  "Eglot Format"
-  [["Format"
-    ("=" "Format Buffer" eglot-format-buffer)
-    ("R" "Format Region" eglot-format)]])
-
-(transient-define-prefix my-transient/eglot-refactor
-  "Eglot Refactor"
-  [["Refactor"
-    ("r" "Rename" eglot-rename)
-    ("a" "Code Actions" eglot-code-actions)]])
-
-(define-key eglot-mode-map (kbd "C-c e") 'my-transient/eglot)
-
 (provide 'init-eglot)
 ;;; init-eglot.el ends here
