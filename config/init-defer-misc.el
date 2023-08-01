@@ -23,7 +23,9 @@
 
 ;; pixel scroll after Emacs 29
 (when (> emacs-major-version 28)
-  (pixel-scroll-precision-mode 1))
+  (pixel-scroll-precision-mode 1)
+  ;; Use `C-v' and `M-v' to pixel scroll, see `init-navigate' for details
+  (setq pixel-scroll-precision-interpolate-page t))
 
 ;; Config how to construct unique buffer names for files with same base name
 (require 'uniquify)
@@ -59,7 +61,7 @@
 (put 'list-timers 'disabled nil)
 
 ;; Disable vc and use magit exclusively
-(setq vc-handled-backends nil)
+;; (setq vc-handled-backends nil)
 
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
 (setq-default display-fill-column-indicator-column 80)

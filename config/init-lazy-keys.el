@@ -85,7 +85,9 @@
 
 (lazy-load-global-keys
  '(("C-f" . vimlike-f)
-   ("C-b" . vimlike-f-backward))
+   ("C-b" . vimlike-f-backward)
+   ("C-v" . my/scroll-up)
+   ("M-v" . my/scroll-down))
  "init-navigate")
 
 (lazy-load-unset-keys '("C-x f"))
@@ -217,7 +219,7 @@
 
 (lazy-load-global-keys
  '(("C-x C-5" . my/toggle-frame-split)
-   ("C-x v" . shrink-window)
+   ("C-c v" . shrink-window)
    ("S-<left>" . windmove-left)
    ("S-<right>" . windmove-right)
    ("S-<up>" . windmove-up)

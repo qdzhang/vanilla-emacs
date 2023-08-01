@@ -20,8 +20,6 @@
                                     eshell-history-size 350
                                     eshell-hist-ignoredups t)))
 
-(defalias 'e 'eshell)
-(defalias 'at 'ansi-term)
 (defalias 'eshell/f 'find-file)
 (defalias 'eshell/x 'eshell/exit)
 (defalias 'eshell/v 'view-file)

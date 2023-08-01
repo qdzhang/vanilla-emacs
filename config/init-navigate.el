@@ -112,5 +112,17 @@
 
 (put 'recenter-top-bottom 'repeat-map 'recenter-repeat-map)
 
+(defun my/scroll-down (&optional lines)
+  (interactive)
+  (if lines
+      (pixel-scroll-precision-interpolate (* -1 lines (pixel-line-height)))
+    (pixel-scroll-interpolate-up)))
+
+(defun my/scroll-up (&optional lines)
+  (interactive)
+  (if lines
+      (pixel-scroll-precision-interpolate (* lines (pixel-line-height))))
+  (pixel-scroll-interpolate-down))
+
 (provide 'init-navigate)
 ;;; init-navigate.el ends here
