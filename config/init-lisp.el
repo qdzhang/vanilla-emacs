@@ -21,7 +21,15 @@
 
 (with-eval-after-load 'sly
   (define-key sly-prefix-map (kbd "M-h") 'sly-documentation-lookup)
-  (defalias 's 'sly))
+  (defalias 's 'sly)
+
+  (defun my/sly-eval-print-last-expression (string)
+    "Like `sly-eval-print-last-expression', but without newline for better
+indentation"
+    (interactive (list (sly-last-expression)))
+    (sly-eval-print-last-expression string)
+    (forward-line 0)
+    (delete-indentation)))
 
 (with-eval-after-load 'sly-mrepl
   (define-key sly-mrepl-mode-map (kbd "M-]") 'my/close-all-parentheses))
