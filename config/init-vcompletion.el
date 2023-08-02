@@ -29,7 +29,7 @@
 (setq completion-show-inline-help nil)
 (when (> emacs-major-version 28)
   (setq completion-auto-help 'always)
-  (setq completion-auto-select 'second-tab))
+  (setq completion-auto-select t))
 
 
 ;; ** fuzzy completing
@@ -78,16 +78,60 @@ Meant to be added to `minibuffer-setup-hook'."
 
 (add-hook 'minibuffer-setup-hook #'live-completions--setup)
 
-(define-key completion-in-region-mode-map (kbd "M-n") #'switch-to-completions)
+;; Sort by frequency
+;; Reference:
+;; https://robbmann.io/posts/emacs-29-completions/
+(defun renz/sort-by-alpha-length (elems)
+  "Sort ELEMS first alphabetically, then by length."
+  (sort elems (lambda (c1 c2)
+                (or (string-version-lessp c1 c2)
+                    (< (length c1) (length c2))))))
+
+(defun renz/sort-by-history (elems)
+  "Sort ELEMS by minibuffer history.
+Use `mct-sort-sort-by-alpha-length' if no history is available."
+  (if-let ((hist (and (not (eq minibuffer-history-variable t))
+                      (symbol-value minibuffer-history-variable))))
+      (minibuffer--sort-by-position hist elems)
+    (renz/sort-by-alpha-length elems)))
+
+(defun renz/completion-category ()
+  "Return completion category."
+  (when-let ((window (active-minibuffer-window)))
+    (with-current-buffer (window-buffer window)
+      (completion-metadata-get
+       (completion-metadata (buffer-substring-no-properties
+                             (minibuffer-prompt-end)
+                             (max (minibuffer-prompt-end) (point)))
+                            minibuffer-completion-table
+                            minibuffer-completion-predicate)
+       'category))))
+
+(defun renz/sort-multi-category (elems)
+  "Sort ELEMS per completion category."
+  (pcase (renz/completion-category)
+    ('nil elems) ; no sorting
+    ('kill-ring elems)
+    ('project-file (renz/sort-by-alpha-length elems))
+    (_ (renz/sort-by-history elems))))
+
+(setq completions-sort #'renz/sort-multi-category)
+
+
+(define-key completion-in-region-mode-map (kbd "M-n") 'switch-to-completions)
+
+;; Select completion list item in normal buffer
+(define-key completion-in-region-mode-map (kbd "C-n") 'minibuffer-next-completion)
+(define-key completion-in-region-mode-map (kbd "C-p") 'minibuffer-previous-completion)
 
 ;; Jump from completions buffer to minibuffer
 ;; `M-v': Jump from minibuffer to completions buffer
-(define-key completion-list-mode-map (kbd "e") #'switch-to-minibuffer)
+(define-key completion-list-mode-map (kbd "v") #'switch-to-minibuffer)
 
-;; Select completion list item without get into `completion-list-mode'
-(define-key minibuffer-mode-map (kbd "C-n") #'minibuffer-next-completion) ;; emacs29
-(define-key minibuffer-mode-map (kbd "C-p") #'minibuffer-previous-completion) ;; emacs29
-(define-key minibuffer-mode-map (kbd "M-RET") #'minibuffer-choose-completion) ;; emacs29
+;; Select completion list item in minibuffer without get into `completion-list-mode'
+(define-key minibuffer-local-map (kbd "C-n") 'minibuffer-next-completion) ;; emacs29
+(define-key minibuffer-local-map (kbd "C-p") 'minibuffer-previous-completion) ;; emacs29
+(define-key minibuffer-local-map (kbd "M-RET") 'minibuffer-choose-completion) ;; emacs29
 
 (provide 'init-vcompletion)
 ;;; init-vcompletion.el ends here
