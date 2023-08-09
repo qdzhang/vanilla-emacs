@@ -159,7 +159,7 @@
 ;; Highlight TODO watchwords
 (defun my/add-watchwords ()
   (font-lock-add-keywords
-   nil '(("\\<\\(FIXME\\|TODO\\|FIX\\)"
+   nil '(("\\<\\(FIXME\\|TODO\\)"
           1 font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook 'my/add-watchwords)
