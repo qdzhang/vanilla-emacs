@@ -15,6 +15,32 @@
                   (_ elem)))
               mode-line-modes))
 
+;; Set up header-line
+(which-function-mode)
+
+;; Copy from https://old.reddit.com/r/emacs/comments/36fzct/any_good_configs_of_the_emacs_header_line/crduybv/
+(setq which-func-unknown "⊥" ; The default is really boring…
+      which-func-format `((:propertize (" ➤ " which-func-current)
+                                       local-map ,which-func-keymap
+                                       face which-func
+                                       mouse-face mode-line-highlight
+                                       help-echo "mouse-1: go to beginning\n\
+      mouse-2: toggle rest visibility\n\
+      mouse-3: go to end")))
+
+(setq-default header-line-format
+              `("%4l "
+                which-func-mode ("" which-func-format " ")
+                " ➤ "
+                (:propertize default-directory face mode-line-buffer-id)))
+
+
+
+;; Remove which-function-mode from mode-line
+(setq mode-line-misc-info
+      (delete '(which-function-mode (which-func-mode ("" which-func-format " ")))
+              mode-line-misc-info))
+
 ;; Hide mode line
 ;; Ref: https://bzg.fr/en/emacs-hide-mode-line/
 (defvar-local hidden-mode-line-mode nil)
