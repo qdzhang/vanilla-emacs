@@ -34,6 +34,20 @@
   (setq web-mode-enable-current-element-highlight t)
   (set-face-attribute 'web-mode-current-element-highlight-face nil :foreground "black" :background "PaleGreen2")
 
+  (setq web-mode-extra-snippets
+        '(("erb" . (("toto" . "<% toto | %>\n\n<% end %>")
+                    ("form" . "<% form_with(model: |, local: true) do %>\n\n<% end %>")))
+          ))
+
+  ;; `C-c C-m' to mark, and press `m' to expand
+  (defvar web-mode-mark-repeat-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map (kbd "m") #'web-mode-mark-and-expand)
+      map))
+
+  (dolist (cmd '(web-mode-mark-and-expand))
+    (put cmd 'repeat-map 'web-mode-mark-repeat-map))
+
   (setq web-mode-engines-alist
         '(("php" . "\\.phtml\\'")
           ("erb" . "\\.erb\\.")
