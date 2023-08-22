@@ -28,12 +28,15 @@
       mouse-2: toggle rest visibility\n\
       mouse-3: go to end")))
 
-(setq-default header-line-format
+(defun my/setup-header-line ()
+  "Set up header line locally only for `prog-mode'."
+  (setq-local header-line-format
               `("%4l "
                 which-func-mode ("" which-func-format " ")
                 " ➤ "
-                (:propertize default-directory face mode-line-buffer-id)))
+                (:propertize default-directory face mode-line-buffer-id))))
 
+(add-hook 'prog-mode-hook 'my/setup-header-line)
 
 
 ;; Remove which-function-mode from mode-line
