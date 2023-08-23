@@ -52,6 +52,34 @@
  "perl"
  "Insert shebang perl")
 
+(tempo-define-template
+ "RSpec feature define"
+ '("RSpec.feature " "\"" (p "feature: " feature) "\" do" n
+   ""p n
+   "end" n)
+ "feature"
+ "Insert rspect feature blocks")
+
+(tempo-define-template
+ "form template"
+ '("<% form_with(model: "p
+   ", local: true) do |form| %>" n
+   ""n
+   >"<%= form.submit %>"n
+   "<% end %>" n)
+ "formwith"
+ "Insert form_with blocks")
+
+(tempo-define-template
+ "bootstrap form template"
+ '("<%= bootstrap_form_with(model: "p
+   ", local: true, label_errors: true) do |form| %>"n
+   ""n
+   >"<%= form.primary %>"n
+   "<% end %>"n)
+ "bform"
+ "Insert bootstrap_form_with blocks")
+
 (defun try-tempo-complete-tag (old)
   (unless old
     (tempo-complete-tag)))
