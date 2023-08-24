@@ -80,5 +80,15 @@
 
 (add-hook 'typescript-mode-hook 'my/typescript-mode-hook)
 
+(defun node-repl ()
+  (interactive)
+  (setenv "NODE_NO_READLINE" "1")  ; Avoid fancy terminal codes
+  (setq comint-prompt-read-only t)
+  (pop-to-buffer (make-comint "node-repl" "node" nil "--interactive")))
+
+
+;; Config `astro-mode'
+(setq web-mode-enable-front-matter-block t)
+
 (provide 'init-web)
 ;;; init-web.el ends here

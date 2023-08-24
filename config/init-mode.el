@@ -50,6 +50,8 @@
 (autoload 'ruby-mode "init-ruby")
 (autoload 'inf-ruby-minor-mode "init-ruby")
 
+(add-to-list 'auto-mode-alist '("\\.irbrc.*\\'" . ruby-mode))
+
 (define-derived-mode my-erb-mode web-mode "MyErb"
   "A major mode derived from web-mode, for editing .erb files.")
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . my-erb-mode))
@@ -64,5 +66,11 @@
 ;; Config `Info-mode'
 (autoload 'my/info-mode-font-setup "init-info")
 (add-hook 'Info-mode-hook #'my/info-mode-font-setup)
+
+;; Config astro mode
+(define-derived-mode astro-mode web-mode "astro")
+(setq auto-mode-alist
+      (append '((".*\\.astro\\'" . astro-mode))
+              auto-mode-alist))
 
 (provide 'init-mode)
