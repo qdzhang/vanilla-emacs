@@ -27,5 +27,25 @@
          (msg (format "%s" text)))
     (list fmqd-source beg end :warning msg)))
 
+
+(defun my/flymake-toggle-diagnostics-buffer ()
+  "Toggle the diagnostics buffer when entering/exiting `flymake-mode'.
+Ref: https://github.com/progfolio/.emacs.d"
+  (let* ((root (vc-root-dir))
+         (command (if root
+                      #'flymake-show-project-diagnostics
+                    #'flymake-show-buffer-diagnostics))
+         (window (get-buffer-window
+                  (if root
+                      (flymake--project-diagnostics-buffer root)
+                    (flymake--diagnostics-buffer-name)))))
+    (if flymake-mode
+        (funcall command)
+      (when (window-live-p window)
+        (with-selected-window window
+          (kill-buffer-and-window))))))
+
+(add-hook 'flymake-mode-hook #'my/flymake-toggle-diagnostics-buffer)
+
 (provide 'init-flymake)
 ;;; init-flymake.el ends here

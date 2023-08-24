@@ -245,7 +245,9 @@
    ("M-<down>" . switch-to-next-buffer)))
 
 (lazy-load-global-keys
- '(("M-w" . my/kill-ring-save))
+ '(("M-w" . my/kill-ring-save)
+   ("C-M-<" . my/shift-left)
+   ("C-M->" . my/shift-right))
  "init-edit")
 
 ;; string-inflection config

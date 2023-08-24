@@ -382,4 +382,26 @@ Emacs 29 releases."
       (kill-ring-save (line-beginning-position) (line-end-position))
       (message "The whole line is copied"))))
 
+
+;; Shift selected region
+;; ref: https://github.com/claasz/emacs/blob/master/dot_emacs_xw6600
+(defun my/shift-region (distance)
+  (let ((mark (mark)))
+    (save-excursion
+      (indent-rigidly (region-beginning) (region-end) distance)
+      (push-mark mark t t)
+      ;; Tell the command loop not to deactivate the mark
+      ;; for transient mark mode
+      (setq deactivate-mark nil))))
+
+;; Shift selected region right
+(defun my/shift-right ()
+  (interactive)
+  (my/shift-region 2))
+
+;; Shift selected region left
+(defun my/shift-left ()
+  (interactive)
+  (my/shift-region -2))
+
 (provide 'init-edit)
