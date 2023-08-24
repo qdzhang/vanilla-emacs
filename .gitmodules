@@ -77,6 +77,9 @@
 [submodule "lazy-load"]
 	path = lib/lazy-load
 	url = git@github.com:manateelazycat/lazy-load.git
+[submodule "llama"]
+	path = lib/llama
+	url = https://git.sr.ht/~tarsius/llama
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
@@ -113,6 +116,9 @@
 [submodule "rime"]
 	path = lib/rime
 	url = git@github.com:DogLooksGood/emacs-rime.git
+[submodule "rspec-mode"]
+	path = lib/rspec-mode
+	url = https://github.com/pezra/rspec-mode
 [submodule "sdlang-mode"]
 	path = lib/sdlang-mode
 	url = git@github.com:CyberShadow/sdlang-mode.git
@@ -163,6 +169,3 @@
 [submodule "yaml-mode"]
 	path = lib/yaml-mode
 	url = git@github.com:yoshiki/yaml-mode.git
-[submodule "llama"]
-	path = lib/llama
-	url = https://git.sr.ht/~tarsius/llama
