@@ -140,6 +140,7 @@
           (lambda ()
             (lazy-load-local-keys
              '(("C-M-<tab>" . clang-format-region)
+               ("C-c <f1>" . clang-format-buffer)
                ("C-c <f2>" . clang-rename))
              c-mode-base-map
              "init-clang-tools")))
@@ -252,55 +253,37 @@
 
 ;; string-inflection config
 (lazy-load-global-keys
- '(("C-c u" . string-inflection-all-cycle))
+ '(("C-c u" . my/inflect-string))
  "string-inflection")
 
 ;; Repeat string-inflection manipulations.
 (defvar string-inflection-repeat-map
   (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "u") #'string-inflection-all-cycle)
+    (define-key map (kbd "u") #'my/inflect-string)
     map)
   "Keymap to repeat `string-inflection-all-cycle' with `u'")
 
-(dolist (cmd '(string-inflection-all-cycle))
+(dolist (cmd '(my/inflect-string))
   (put cmd 'repeat-map 'string-inflection-repeat-map))
 
 (with-eval-after-load 'ruby-mode
-  (lazy-load-local-keys
-   '(("C-c u" . string-inflection-ruby-style-cycle))
-   ruby-mode-map
-   "string-inflection")
-
-  ;; Repeat string-inflection manipulations.
-  (defvar string-inflection-repeat-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "u") #'string-inflection-ruby-style-cycle)
-      map)
-    "Keymap to repeat `string-inflection-ruby-style-cycle' with `u'")
-
-  (dolist (cmd '(string-inflection-ruby-style-cycle))
-    (put cmd 'repeat-map 'string-inflection-repeat-map))
-
   (lazy-load-local-keys
    '(("C-c p" . my-transient/ruby-mode))
    ruby-mode-map
    "init-ruby"))
 
-(with-eval-after-load 'python-mode
-  (lazy-load-local-keys
-   '(("C-c u" . string-inflection-python-style-cycle))
-   python-mode-map
-   "string-inflection")
+(defun my/inflect-string ()
+  (interactive)
+  (cond ((derived-mode-p 'java-mode 'scala-mode 'js-mode 'typescript-mode 'go-mode)
+         (string-inflection-java-style-cycle))
+        ((derived-mode-p 'ruby-mode 'my-erb-mode)
+         (string-inflection-ruby-style-cycle))
+        ((derived-mode-p  'python-mode 'c-mode 'rust-mode)
+         (string-inflection-python-style-cycle))
+        ((derived-mode-p 'prog-mode)
+         (string-inflection-all-cycle))))
 
-  ;; Repeat string-inflection manipulations.
-  (defvar string-inflection-repeat-map
-    (let ((map (make-sparse-keymap)))
-      (define-key map (kbd "u") #'string-inflection-python-style-cycle)
-      map)
-    "Keymap to repeat `string-inflection-python-style-cycle' with `u'")
-
-  (dolist (cmd '(string-inflection-python-style-cycle))
-    (put cmd 'repeat-map 'string-inflection-repeat-map)))
+;;; TODO: test smart-semicolon package
 
 
 (provide 'init-lazy-keys)
