@@ -249,5 +249,23 @@ gemfile do
 end
 ")
 
+(define-skeleton my-skel/clang-format
+  ""
+  "# See https://www.apertis.org/policies/coding_conventions/#code-formatting
+BasedOnStyle: LLVM
+AlwaysBreakAfterDefinitionReturnType: All
+BreakBeforeBinaryOperators: None
+BinPackParameters: false
+SpaceAfterCStyleCast: true
+PointerAlignment: Right
+# Our column limit is actually 80, but setting that results in clang-format
+# making a lot of dubious hanging-indent choices; disable it and assume the
+# developer will line wrap appropriately. clang-format will still check
+# existing hanging indents.
+ColumnLimit: 0
+")
+
+(define-auto-insert "\\.clang-format$" 'my-skel/clang-format)
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
