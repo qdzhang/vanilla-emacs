@@ -38,7 +38,7 @@
    `(org-property-value ((t (:inherit fixed-pitch :height 0.8))) t)
    `(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch) :height 0.8))))
    ;; `(org-tag ((t (:box (:line-width 1)))))
-   `(org-checkbox ((t :inherit 'fixed-pitch-serif :background nil :box nil)))
+   `(org-checkbox ((t :inherit 'fixed-pitch-serif :background unspecified :box unspecified)))
    `(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "#ba2d2f")))))
 
   (set-face-attribute 'org-date nil :inherit 'fixed-pitch))
