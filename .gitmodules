@@ -136,6 +136,9 @@
 [submodule "smart-dash"]
 	path = lib/smart-dash
 	url = git@github.com:malsyned/smart-dash.git
+[submodule "smart-semicolon"]
+	path = lib/smart-semicolon
+	url = https://github.com/iquiw/smart-semicolon
 [submodule "smartparens"]
 	path = lib/smartparens
 	url = git@github.com:Fuco1/smartparens.git

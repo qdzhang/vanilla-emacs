@@ -91,4 +91,8 @@
            (lambda nil
              (c-set-style "llvm.org"))))
 
+;; Enable `smart-semicolon-mode' in `c-mode'
+(add-hook 'c-mode-common-hook #'smart-semicolon-mode)
+
+
 (provide 'init-c)

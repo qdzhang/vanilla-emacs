@@ -283,7 +283,5 @@
         ((derived-mode-p 'prog-mode)
          (string-inflection-all-cycle))))
 
-;;; TODO: test smart-semicolon package
-
 
 (provide 'init-lazy-keys)
