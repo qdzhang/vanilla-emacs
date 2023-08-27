@@ -115,7 +115,8 @@ Add this function to the hook of `compilation-mode'."
 
 (add-hook 'compilation-filter-hook #'my/compilation-colorize)
 
-
+;; Enable `rspec-mode' in `my-erb-mode'
+(add-hook 'my-erb-mode-hook 'rspec-enable-appropriate-mode)
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
