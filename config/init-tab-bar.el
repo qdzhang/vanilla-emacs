@@ -9,9 +9,12 @@
           (tab-bar-new-tab)
           (call-interactively #'project-switch-project)
           (when-let* ((proj (project-current))
-                      (dir (if (equal 'vc (car proj))
-                               (car (cdr (cdr proj)))
-                             (cdr proj))))
+                      (dir (cond ((equal 'vc (car proj))
+                                  (car (cdr (cdr proj))))
+                                 ((equal :gtagsroot (car proj))
+                                  (car (cdr proj)))
+                                 (t
+                                  (cdr proj)))))
             (tab-bar-rename-tab (format "%s" (file-name-nondirectory (directory-file-name dir))))
             (setq succ t)))
       (unless succ

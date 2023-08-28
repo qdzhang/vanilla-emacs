@@ -1,5 +1,24 @@
 ;;; init-c.el --- cc-mode and semantic config        -*- lexical-binding: t; -*-
 
+;; There are three approaches for editing and navigating in c projects.
+;; Config the variable `my/c-mode-selection' to select which one to use.
+(defvar my/c-mode-selection 'clang
+  "This variable determines which part of configurations will be used in c-mode.
+Available values are:
+  - clang: use `company-clang' to auto complete and gtags to navigate.
+  - cedet: use semantic-relative libraries.
+  - eglot: use lsp.")
+
+(setq my/c-mode-selection 'clang)
+
+(cl-case my/c-mode-selection
+  (clang (add-hook 'c-mode-hook 'my/c-mode-to-use-clang-and-gtags))
+  (cedet (add-hook 'c-mode-hook 'my/c-mode-to-use-semantic))
+  (eglot (add-hook 'c-mode-hook 'my/c-mode-to-use-eglot)))
+
+
+;; Setup CEDET
+;;
 ;; A Gentle introduction to CEDET
 ;; https://alexott.net/en/writings/emacs-devenv/EmacsCedet.html
 ;;
@@ -27,9 +46,6 @@
   (local-set-key (kbd "C-c , S") 'senator-search-backward))
 
 
-(add-hook 'c-mode-hook 'my/c-mode-to-use-semantic)
-(add-hook 'c++-mode-hook ' my/c-mode-to-use-semantic)
-
 (defun my/semantic-hook ()
   "The hook used when semantic initialize"
   (imenu-add-to-menubar "TAGS"))
@@ -52,6 +68,37 @@
 
   (add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
   (add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode))
+
+
+;; Setup gtags
+(defun my/c-mode-to-use-clang-and-gtags ()
+  "Use `company-clang' to auto-complete and `gtags-mode' to navigate in projects"
+  ;; Load tags config
+  (require 'init-tags)
+
+  (gtags-mode 1)
+
+  ;; There is another [gtags-mode](https://github.com/Ergus/gtags-mode). It is
+  ;; a good alternative gtags interface to the built-in one. This mode provides
+  ;; great integration with the built-in facilities, including xref, project,
+  ;; completion-at-point (capf) and imenu.
+  ;; But this gtags-mode package defines a global minor mode, to inhibit
+  ;; `gtags-mode' in other major modes, uncomment the following code fragment.
+  ;;
+  ;; (add-hook 'buffer-list-update-hook
+  ;;           (lambda ()
+  ;;             (gtags-mode (if (derived-mode-p 'c-mode) 1 -1))))
+
+  (with-eval-after-load 'company
+    (setq-local company-backends '(company-clang company-capf))))
+
+
+;; Setup eglot
+(defun my/c-mode-to-use-eglot ()
+  "Load init-eglot.el and enable `eglot'"
+  ;; load eglot config
+  (require 'init-eglot)
+  (eglot-ensure))
 
 
 (with-eval-after-load 'company
