@@ -267,5 +267,31 @@ ColumnLimit: 0
 
 (define-auto-insert "\\.clang-format$" 'my-skel/clang-format)
 
+
+;; https://github.com/ahei/dea/blob/7cc40d7bb48aed26ed7e1e681f626454cce98a81/my-lisps/c-settings.el
+(defconst system-head-file-dir
+  (list "/usr/include" "/usr/local/include" "/usr/include/sys") "System head files")
+(defconst user-head-file-dir
+  (list "." (if (file-directory-p "../include") "../include" "")) "User head files")
+
+(define-skeleton my-skel/include-system
+  "insert #include<>"
+  ""
+  > "#include <"
+  (completing-read "System head files: "
+                   (mapcar #'(lambda (f) (list f ))
+                           (apply 'append (mapcar #'(lambda (dir) (directory-files dir))
+                                                  system-head-file-dir)))) ">\n")
+
+(define-skeleton my-skel/include-user
+  "insert #include\"\""
+  ""
+  > "#include \""
+  (completing-read "User head files: "
+                   (mapcar #'(lambda (f) (list f ))
+                           (apply 'append (mapcar #'(lambda (dir) (directory-files dir))
+                                                  user-head-file-dir)))) "\"\n")
+
+
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here

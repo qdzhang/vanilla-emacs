@@ -141,5 +141,31 @@ Available values are:
 ;; Enable `smart-semicolon-mode' in `c-mode'
 (add-hook 'c-mode-common-hook #'smart-semicolon-mode)
 
+(defun my/meson-executable ()
+  "Insert executable function of current file in meson.build."
+  (interactive)
+  (let* ((file-name-ext (file-name-nondirectory (buffer-file-name)))
+         (file-name (file-name-base file-name-ext)))
+    (find-file "meson.build")
+    (goto-char (point-max))
+    (insert (concat
+             "executable('" file-name "', '" file-name-ext "')"))))
+
+(defun my/c-abbrev-config ()
+  "Configurations of abbrev in `c-mode'"
+  (abbrev-mode 1)
+  (define-abbrev c-mode-abbrev-table "inc"
+    "" 'my-skel/include-system)
+  (define-abbrev c-mode-abbrev-table "incu"
+    "" 'my-skel/include-user))
+
+(defun my/c-flymake ()
+  "Configurations of flymake in `c-mode'"
+  (require 'init-flymake)
+  (add-hook 'flymake-diagnostic-functions 'flymake-gcc nil t))
+
+(add-hook 'c-mode-hook (lambda ()
+                         (my/c-abbrev-config)
+                         (my/c-flymake)))
 
 (provide 'init-c)
