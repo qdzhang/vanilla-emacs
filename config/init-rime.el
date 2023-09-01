@@ -46,8 +46,6 @@
                           input-method-cursor-color
                         default-cursor-color)))
 
-  (add-hook 'post-command-hook 'change-cursor-color-on-input-method)
-
-  (setq mode-line-mule-info '((:eval (rime-lighter)))))
+  (add-hook 'post-command-hook 'change-cursor-color-on-input-method))
 
 (provide 'init-rime)

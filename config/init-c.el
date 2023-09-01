@@ -154,9 +154,9 @@ Available values are:
 (defun my/c-abbrev-config ()
   "Configurations of abbrev in `c-mode'"
   (abbrev-mode 1)
-  (define-abbrev c-mode-abbrev-table "inc"
+  (define-abbrev c-mode-abbrev-table "icl"
     "" 'my-skel/include-system)
-  (define-abbrev c-mode-abbrev-table "incu"
+  (define-abbrev c-mode-abbrev-table "iclu"
     "" 'my-skel/include-user))
 
 (defun my/c-flymake ()

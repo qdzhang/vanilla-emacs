@@ -5,7 +5,9 @@
 ;; (set-face-attribute 'default nil :font (font-spec :family "Latin Modern Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Inconsolata" :size 28))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Noto Sans Mono" :size 26))
-(set-face-attribute 'default nil :font (font-spec :family "IntelOne Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "IntelOne Mono" :size 26))
+(set-face-attribute 'default nil :font (font-spec :family "Go Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "Bedstead" :size 28))
 ;; (set-face-attribute 'default nil :font (font-spec :family "CozetteHiDpi"))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
 ;; (set-face-attribute 'default nil :font (font-spec :family "JetbrainsMono Nerd Font Mono" :size 24))
@@ -32,8 +34,9 @@
 ;; Sarasa font set for CJK font
 ;; (set-fontset-font t 'han "Sarasa Mono SC")
 ;; (set-fontset-font t 'han "HYXuanSong")
-(set-fontset-font t 'han "FZKai-Z03")
-(set-fontset-font t 'kana "Sarasa Mono J")
+;; (set-fontset-font t 'han "FZKai-Z03")
+(set-fontset-font t 'han "FZShuSong-Z01")
+;; (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
 (set-fontset-font t 'bopomofo "Sarasa Mono SC")
@@ -44,6 +47,13 @@
 ;; (set-fontset-font t 'hangul "Noto Sans Mono CJK KR")
 ;; (set-fontset-font t 'cjk-misc "Noto Sans Mono CJK SC")
 ;; (set-fontset-font t 'bopomofo "Noto Sans Mono CJK SC")
+
+;; Noto Serif font set for CJK font
+;; (set-fontset-font t 'han "Noto Serif CJK SC")
+(set-fontset-font t 'kana "Noto Serif CJK JP")
+;; (set-fontset-font t 'hangul "Noto Serif CJK KR")
+;; (set-fontset-font t 'cjk-misc "Noto Serif CJK SC")
+;; (set-fontset-font t 'bopomofo "Noto Serif CJK SC")
 
 ;; Greek and phonetic font
 (set-fontset-font t 'greek (font-spec :family "Helvetica"))
