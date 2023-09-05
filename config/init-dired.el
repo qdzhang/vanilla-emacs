@@ -20,6 +20,7 @@
                                      ("\\.mp3\\'" "mpv --profile=builtin-pseudo-gui")
                                      ("\\.ape\\'" "mpv --profile=builtin-pseudo-gui")
                                      ("\\.flac\\'" "mpv --profile=builtin-pseudo-gui")
+                                     ("\\.m4a\\'" "mpv --profile=builtin-pseudo-gui")
                                      ("\\.webp\\'" "vwebp")
                                      ("\\.jpg\\'" "pqiv")
                                      ("\\.png\\'" "pqiv")

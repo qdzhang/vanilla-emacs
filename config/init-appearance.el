@@ -28,7 +28,7 @@
   "The font face used for org headers"
   :group 'basic-faces)
 ;; Libertinus Sans is also good font for headers
-(set-face-attribute 'my/font-org-header nil :family "Sarasa Fixed Slab SC")
+(set-face-attribute 'my/font-org-header nil :family "Go Sans")
 
 
 ;; Sarasa font set for CJK font

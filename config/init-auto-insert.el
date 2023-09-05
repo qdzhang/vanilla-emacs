@@ -292,6 +292,13 @@ ColumnLimit: 0
                            (apply 'append (mapcar #'(lambda (dir) (directory-files dir))
                                                   user-head-file-dir)))) "\"\n")
 
+(define-skeleton my-skel/c-simple-header
+  "insert a simple description header comment in c-mode"
+  "Short description: "
+  "/* " (file-name-nondirectory (buffer-file-name))
+  " -- " str (make-string (max 2 (- 80 (current-column) 27)) 32) "*/
+")
+
 
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here

@@ -14,7 +14,8 @@
     ("s" "Hideshow" hs-minor-mode)
     ("o" "Outline" outline-minor-mode)
     ("p" "Smartparens" smartparens-strict-mode)
-    ("e" "Flyspell" flyspell-mode)
+    ("E" "Flyspell" flyspell-mode)
+    ("e" "Flyspell Prog" flyspell-prog-mode)
     ("m" "Flymake" flymake-mode)]])
 
 (transient-define-prefix my-transient/global-menu ()

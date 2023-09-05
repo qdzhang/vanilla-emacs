@@ -40,7 +40,7 @@
 (setq tags-add-tables nil)
 
 ;; Setup global
-;; Use `gtags-mode-create' to create Global tags, and after save hook to update
+;; Use `gtags-gen' to create Global tags, and after save hook to update
 ;; GLOBAL database with changed data.
 
 (require 'gtags)
@@ -55,25 +55,39 @@
   (define-key gtags-mode-map (kbd "C-M-.") 'gtags-find-pattern)
   (define-key gtags-mode-map (kbd "C-M-;") 'gtags-next-gtag))
 
-;; Setting to make 'Gtags select mode' easy to see
+
+(defun my/gtags-select-mode-keybindings ()
+  "keybindings for `gtags-select-mode'."
+  (define-key gtags-select-mode-map (kbd "q") 'gtags-pop-stack)
+  (define-key gtags-select-mode-map (kbd "n") 'next-line)
+  (define-key gtags-select-mode-map (kbd "p") 'previous-line))
+
+
+;; Setting to make `gtags-select-mode' easy to see
 ;;
 (add-hook 'gtags-select-mode-hook (lambda ()
-                                    (hl-line-mode 1)))
+                                    (hl-line-mode 1)
+                                    (my/gtags-select-mode-keybindings)))
 
 
 ;; https://github.com/surki/dotemacs/blob/master/init.org
-(defun gtags-update ()
-  "create the gnu global tag file"
+(defun gtags-gen ()
+  "Create the gnu global tag file. If tags files exist, update them."
   (interactive)
-  (if (= 0 (call-process "global" nil nil nil " -p")) ; tagfile doesn't exist?
-      (start-process "gtags" "*Messages*" "global" "--update") ))
+  (let ((default-directory (gtags-root-dir)))
+    (if (zerop (call-process "global" nil nil nil " -p")) ; tagfile doesn't exist?
+        (progn
+          (start-process "gtags" "*Messages*" "global" "--update")
+          (message "Gtags update done."))
+      (start-process "gtags" "*Messages*" "gtags")
+      (message "Gtags create done."))))
 
 (defun gtags-root-dir ()
   "Returns GTAGS root directory or nil if doesn't exist."
   (with-temp-buffer
     (if (zerop (call-process "global" nil t nil "-pr"))
         (buffer-substring (point-min) (1- (point-max)))
-      nil)))
+      (project-root (project-current)))))
 
 (defun gtags-update-single(filename)
   "Update Gtags database for changes in a single file"
