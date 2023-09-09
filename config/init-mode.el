@@ -55,8 +55,7 @@
 (define-derived-mode my-erb-mode web-mode "MyErb"
   "A major mode derived from web-mode, for editing .erb files.")
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . my-erb-mode))
-(add-hook 'my-erb-mode-hook (lambda ()
-                              (erb-format-on-save-mode 1)))
+
 
 ;; (autoload 'erb-mode "erb-mode")
 

@@ -117,6 +117,9 @@ Add this function to the hook of `compilation-mode'."
 
 ;; Enable `rspec-mode' in `my-erb-mode'
 (add-hook 'my-erb-mode-hook 'rspec-enable-appropriate-mode)
+;; Enable format on save in `my-erb-mode'
+(add-hook 'my-erb-mode-hook (lambda ()
+                              (erb-format-on-save-mode 1)))
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here

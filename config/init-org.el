@@ -51,7 +51,8 @@
               '(("[X]" . "⦿")
                 ("[ ]" . "🞆")
                 ("[-]" . "⦾")))
-  (prettify-symbols-mode 1))
+  (prettify-symbols-mode 1)
+  (setq org-pretty-entities t))
 
 (add-hook 'org-mode-hook 'my/org-prettify-symbols)
 
