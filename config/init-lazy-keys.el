@@ -84,9 +84,7 @@
  "init-isearch")
 
 (lazy-load-global-keys
- '(("C-f" . vimlike-f)
-   ("C-b" . vimlike-f-backward)
-   ("C-v" . my/scroll-up)
+ '(("C-v" . my/scroll-up)
    ("M-v" . my/scroll-down))
  "init-navigate")
 
