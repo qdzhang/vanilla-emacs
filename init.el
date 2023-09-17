@@ -70,6 +70,8 @@
   (require 'init-ml))
 (with-eval-after-load 'cperl-mode
   (require 'init-perl))
+(with-eval-after-load 'raku-mode
+  (require 'init-perl))
 (with-eval-after-load 'forth-mode
   (require 'init-forth))
 (with-eval-after-load 'go-mode
