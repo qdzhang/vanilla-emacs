@@ -129,19 +129,21 @@
   (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
-   `(default ((t (:background "white" :foreground "black"))))
+   `(default ((t (:background "#fdf6e3" :foreground "black"))))
    `(cursor ((t (:background "black"))))
    `(font-lock-comment-face ((t :foreground "Firebrick")))
    ;; Make `term' and `ansi-term' prompt more distinguishable
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
    `(region ((t :background "#eedc82")))
+   `(show-paren-match ((t :background "turquoise")))
    `(mode-line ((t ( :inherit variable-pitch
                      :height 1.1
                      :background "#bfbfbf"))))
    `(mode-line-inactive ((t ( :inherit variable-pitch
                               :height 1.1
                               :background "#e5e5e5"
-                              :foreground "#7f7f7f"))))))
+                              :foreground "#7f7f7f"))))
+   `(header-line ((t :inherit mode-line)))))
 
 (defun my/dark-theme ()
   (interactive)
@@ -149,19 +151,21 @@
   (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
-   `(default ((t :background "#1a1a1a" :foreground "#e0e0e0")))
+   `(default ((t :background "#073642" :foreground "#96aaad")))
    `(cursor ((t :background "#e0e0e0")))
    `(font-lock-comment-face ((t :foreground "violet")))
    `(ansi-color-white ((t :background "gray90" :foreground "gray90")))
-   `(region ((t :background "#342464")))
+   `(region ((t :background "#005959")))
+   `(show-paren-match ((t :background "#d33682")))
    `(mode-line ((t ( :inherit variable-pitch
                      :height 1.1
                      :box (:line-width (-1 . -1) :color "dim gray")
-                     :background "#323232"))))
+                     :background "#2d4a51" :foreground "#9faeae"))))
    `(mode-line-inactive ((t ( :inherit variable-pitch
                               :height 1.1
                               :box (:line-width (-1 . -1) :color "dim gray")
-                              :background "#222222"))))))
+                              :background "#073642" :foreground "#657b83"))))
+   `(header-line ((t :inherit mode-line)))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
