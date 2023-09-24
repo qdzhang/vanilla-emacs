@@ -127,6 +127,12 @@ Ref:https://emacs.stackexchange.com/a/58326"
         ("j" "Journal" entry
          (file+olp+datetree "~/org/journal.org")
          "* %?\n%U\n" :clock-in t :empty-lines 1)
+        ("u" "Un-loaf" entry
+         (file+olp+datetree "~/org/un-loaf.org")
+         "* %?\n%U\n" :empty-lines 1)
+        ("w" "Whim" entry
+         (file+olp+datetree "~/org/whim.org")
+         "* %?\n%U\n" :empty-lines 1)
         ("n" "Notes" entry
          (file+headline "~/org/notes.org" "Notes")
          "** %U - %^{heading} %^g\n%?" :empty-lines 1)

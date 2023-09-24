@@ -24,6 +24,11 @@
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("ruff-lsp")))
 (add-to-list 'eglot-server-programs '(d-mode . ("/usr/bin/serve-d")))
 
+
+(add-to-list 'eglot-server-programs
+             `((cperl-mode perl-mode) "pls"))
+
+
 ;;;###autoload
 (defun my/eglot-setup-deno ()
   "Setup deno lsp for eglot when editing typescript."

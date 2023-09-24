@@ -34,5 +34,19 @@
   :args '()
   :lighter " ShFmt")
 
+;;;###autoload (autoload 'perltidy-buffer "init-reformatter" nil t)
+;;;###autoload (autoload 'perltidy-region "init-reformatter" nil t)
+;;;###autoload (autoload 'perltidy-on-save-mode "init-reformatter" nil t)
+(reformatter-define perltidy
+  :program "perltidy"
+  :args '( "--standard-output"
+           "--standard-error-output"
+           "--force-read-binary"
+           "--quiet"
+
+           ;; FORMATTING OPTIONS
+           "--no-check-syntax")
+  :lighter " Perltidy")
+
 (provide 'init-reformatter)
 ;;; init-reformatter.el
