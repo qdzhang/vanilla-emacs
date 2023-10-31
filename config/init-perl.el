@@ -30,6 +30,10 @@
 
 (add-hook 'cperl-mode-hook #'my/perl-mode-hook)
 
+(with-eval-after-load 'cperl-mode
+  (define-key cperl-mode-map (kbd "C-M-<tab>") 'perltidy-region)
+  (define-key cperl-mode-map (kbd "C-c <f1>") 'perltidy-buffer))
+
 
 ;; Raku
 (setq raku-exec-path (executable-find "raku"))
