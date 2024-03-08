@@ -153,7 +153,8 @@
     (lazy-load-local-keys
      '(("C-c ! l" . flymake-show-buffer-diagnostics)
        ("C-c ! n" . flymake-goto-next-error)
-       ("C-c ! p" . flymake-goto-prev-error))
+       ("C-c ! p" . flymake-goto-prev-error)
+       ("C-c ! c" . flymake-start))
      flymake-mode-map
      "init-flymake")))
 

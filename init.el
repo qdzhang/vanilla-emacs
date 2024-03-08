@@ -82,6 +82,7 @@
 
 (with-eval-after-load 'flymake
   (require 'flymake-diagnostic-at-point)
+  (require 'init-flymake)
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
 
 ;; Some package can be loaded defered

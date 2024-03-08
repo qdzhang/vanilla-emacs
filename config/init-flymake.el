@@ -61,7 +61,7 @@ Ref: https://github.com/progfolio/.emacs.d"
         (with-selected-window window
           (kill-buffer-and-window))))))
 
-(add-hook 'flymake-mode-hook #'my/flymake-toggle-diagnostics-buffer)
+;; (add-hook 'flymake-mode-hook #'my/flymake-toggle-diagnostics-buffer)
 
 (provide 'init-flymake)
 ;;; init-flymake.el ends here
