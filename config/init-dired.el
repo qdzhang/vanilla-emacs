@@ -34,10 +34,6 @@
 (setq delete-by-moving-to-trash t)
 (setq dired-listing-switches "-AFhlv --group-directories-first")
 
-;; Avoid popup `Async Shell Command' window when using `dired-do-async-shell-command'
-;; https://emacs.stackexchange.com/questions/5553/async-shell-process-buffer-always-clobbers-window-arrangement
-(add-to-list 'display-buffer-alist (cons "\\*Async Shell Command\\*.*" (cons #'display-buffer-no-window nil)))
-
 (with-eval-after-load 'dired
   (require 'dired-x)
   (require 'dired-aux)
