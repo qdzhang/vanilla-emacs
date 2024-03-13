@@ -12,6 +12,17 @@
     (setf (buffer-substring-no-properties start-pos end-pos) command)
     (end-of-line)))
 
+;; Config eshell prompt
+(setq eshell-prompt-regexp "^[^#$\n]*[#$] "
+      eshell-prompt-function
+      (lambda nil
+        (concat
+         (if (string= (eshell/pwd) (getenv "HOME"))
+             "~"
+           (eshell/basename (eshell/pwd)))
+         " "
+         (if (= (user-uid) 0) "# " "$ "))))
+
 (add-hook 'eshell-mode-hook (lambda ()
                               (setq completion-ignore-case t)
                               (setq read-file-name-completion-ignore-case t)
@@ -88,5 +99,13 @@ Ref: https://codeberg.org/vifon/emacs-config/src/branch/master/emacs.d/lisp/30-e
     (shell-command command)))
 
 (defalias 'eshell/o 'my/eshell-xdg-open)
+
+;; https://stackoverflow.com/a/51867960
+(defun my/eshell-exit-close-window ()
+  "When exit `eshell', close the window."
+  (when (not (one-window-p))
+    (delete-window)))
+
+(advice-add 'eshell-life-is-too-much :after 'my/eshell-exit-close-window)
 
 (provide 'init-eshell)
