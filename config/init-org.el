@@ -26,12 +26,11 @@
    `(org-formula ((t (:inherit fixed-pitch))))
    `(org-code ((t (:inherit fixed-pitch :foreground "#0f7f5f"))))
    `(org-footnote ((t (:inherit (org-link fixed-pitch)))))
-   `(org-block ((((background light)) (:inherit fixed-pitch :background "#f0f0f0"))
-                (((background dark)) (:inherit fixed-pitch :background "#333333"))))
-   `(org-block-begin-line ((((background light)) (:background "#e0e0e0" :extend t :slant italic))
-                           (((background dark)) (:background "#292929" :extend t :slant italic))))
-   `(org-block-end-line ((((background light)) (:inherit org-block-begin-line :slant italic))
-                         (((background dark)) (:inherit org-block-begin-line :slant italic))))
+   `(org-block ((t (:inherit fixed-pitch))))
+   `(org-block-begin-line
+     ((t (:box (:style release-button) :slant italic))))
+   `(org-block-end-line
+     ((t (:box (:style release-button) :slant italic))))
    `(org-document-info ((t (:foreground "dark orange"))))
    `(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
    `(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch) :height 0.8))))
@@ -66,6 +65,7 @@
       org-log-done 'time
       org-archive-location "~/org/archive.org::datetree/"
       org-src-fontify-natively t
+      org-fontify-quote-and-verse-blocks t
 
       ;; edit in current window
       org-src-window-setup 'current-window

@@ -6,7 +6,8 @@
 ;; (set-face-attribute 'default nil :font (font-spec :family "Inconsolata" :size 28))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Noto Sans Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "IntelOne Mono" :size 26))
-(set-face-attribute 'default nil :font (font-spec :family "Go Mono" :size 26))
+;; (set-face-attribute 'default nil :font (font-spec :family "Go Mono" :size 26))
+(set-face-attribute 'default nil :font (font-spec :family "Sarasa Fixed SC" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Bedstead" :size 28))
 ;; (set-face-attribute 'default nil :font (font-spec :family "CozetteHiDpi"))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
@@ -18,8 +19,8 @@
 ;; (set-face-attribute 'variable-pitch nil :family "Liberation Serif")
 ;; (set-face-attribute 'variable-pitch nil :family "Input Serif Compressed")
 ;; (set-face-attribute 'fixed-pitch nil :family "Noto Sans Mono CJK SC")
-;; (set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
-(set-face-attribute 'fixed-pitch nil :family "Inconsolata")
+(set-face-attribute 'fixed-pitch nil :family "Sarasa Mono SC")
+;; (set-face-attribute 'fixed-pitch nil :family "Inconsolata")
 ;; (set-face-attribute 'fixed-pitch nil :family "M+ 1mn")
 (set-face-attribute 'fixed-pitch-serif nil :family "Latin Modern Mono")
 
@@ -28,7 +29,8 @@
   "The font face used for org headers"
   :group 'basic-faces)
 ;; Libertinus Sans is also good font for headers
-(set-face-attribute 'my/font-org-header nil :family "Go Sans")
+;; (set-face-attribute 'my/font-org-header nil :family "Go Sans")
+(set-face-attribute 'my/font-org-header nil :family "Libertinus Sans")
 
 
 ;; Sarasa font set for CJK font
@@ -136,14 +138,7 @@
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
    `(region ((t :background "#eedc82")))
    `(show-paren-match ((t :background "turquoise")))
-   `(mode-line ((t ( :inherit variable-pitch
-                     :height 1.1
-                     :background "#bfbfbf"))))
-   `(mode-line-inactive ((t ( :inherit variable-pitch
-                              :height 1.1
-                              :background "#e5e5e5"
-                              :foreground "#7f7f7f"))))
-   `(header-line ((t :inherit mode-line)))))
+   `(header-line ((t :inherit mode-line-inactive)))))
 
 (defun my/dark-theme ()
   (interactive)
@@ -157,15 +152,7 @@
    `(ansi-color-white ((t :background "gray90" :foreground "gray90")))
    `(region ((t :background "#005959")))
    `(show-paren-match ((t :background "#d33682")))
-   `(mode-line ((t ( :inherit variable-pitch
-                     :height 1.1
-                     :box (:line-width (-1 . -1) :color "dim gray")
-                     :background "#2d4a51" :foreground "#9faeae"))))
-   `(mode-line-inactive ((t ( :inherit variable-pitch
-                              :height 1.1
-                              :box (:line-width (-1 . -1) :color "dim gray")
-                              :background "#073642" :foreground "#657b83"))))
-   `(header-line ((t :inherit mode-line)))))
+   `(header-line ((t :inherit mode-line-inactive)))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
