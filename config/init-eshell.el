@@ -27,6 +27,8 @@
                               (setq completion-ignore-case t)
                               (setq read-file-name-completion-ignore-case t)
                               (setq read-buffer-completion-ignore-case t)
+                              (setq eshell-cmpl-ignore-case t)
+                              (setq eshell-cmpl-cycle-completions nil)
                               (setq eshell-buffer-maximum-lines 20000
                                     eshell-history-size 350
                                     eshell-hist-ignoredups t)))

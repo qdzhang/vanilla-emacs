@@ -90,7 +90,6 @@
         ;; Split windows below
         ("\\*rg\\*" (display-buffer-reuse-mode-window display-buffer-below-selected))
         ("\\*Occur\\*" (display-buffer-reuse-mode-window display-buffer-below-selected))
-        ("\\*eshell\\*" (display-buffer-reuse-mode-window display-buffer-below-selected))
         ("\\*reply\\*" (display-buffer-reuse-mode-window display-buffer-below-selected))
 
         ;; Avoid popup `Async Shell Command' window when using `dired-do-async-shell-command'

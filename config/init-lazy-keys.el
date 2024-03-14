@@ -159,15 +159,10 @@
      "init-flymake")))
 
 (lazy-load-global-keys
- '(("C-`" . sane-eshell)
-   ("<f12>" . sane-eshell-create)
-   ("C-<f12>" . sane-eshell-create-in-project-root))
- "sane-eshell")
-
-(lazy-load-global-keys
- '(("C-<f11>" . my/ansi-term-toggle)
-   ("M-<f11>" . my/ansi-term-split-toggle))
- "init-term")
+ '(("C-`" . shell-easy-transient-menu)
+   ("C-<f11>" . se-toggle-buffer-term)
+   ("C-<f12>" . se-toggle-buffer-eshell))
+ "shell-easy")
 
 (eval-after-load 'term
   (lambda ()

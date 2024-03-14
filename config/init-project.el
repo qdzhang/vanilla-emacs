@@ -219,7 +219,7 @@ URL: https://github.com/karthink/.emacs.d/blob/e0dd53000e61936a3e9061652e428044b
   (interactive)
   (let* ((pr (project-current t))
          (default-directory (project-root pr)))
-    (my/ansi-term-bash)))
+    (ansi-term "/bin/bash")))
 
 
 ;; * Define transient menu
