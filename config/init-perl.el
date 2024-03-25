@@ -18,6 +18,7 @@
   ;; (my/perl-key-translation)
   (flymake-mode 1)
   (smart-dash-mode 1)
+  (smart-semicolon-mode 1)
   (add-to-list 'smart-dash-c-modes 'cperl-mode))
 
 ;; https://emacs.stackexchange.com/questions/39229/perform-key-translation-in-a-major-mode

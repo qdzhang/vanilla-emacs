@@ -18,6 +18,11 @@
   (interactive)
   (shell-command "ctags -R --languages=ruby --exclude=.git --exclude=log --exclude=tmp . $(bundle list --paths)"))
 
+(defun my/perl-project-create-ctags ()
+  "Create ctags file in a perl project."
+  (interactive)
+  (shell-command "ctags -R --languages=Perl --exclude=.git --exclude=log --exclude=tmp"))
+
 ;; Use global TAGS file
 ;; (setq tags-table-list '("TAGS" "~/tags/TAGS"))
 
