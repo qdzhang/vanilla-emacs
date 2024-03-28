@@ -109,8 +109,8 @@
 
      (require 'init-tab-bar)
 
-     (when (> emacs-major-version 27)
-       (require 'init-menu))
+     ;; (when (> emacs-major-version 27)
+     ;;   (require 'init-menu))
 
      (require 'init-hi-lock)
      (require 'init-proxy)
