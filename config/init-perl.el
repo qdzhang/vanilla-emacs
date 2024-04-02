@@ -18,6 +18,7 @@
   ;; (my/perl-key-translation)
   (flymake-mode 1)
   (smart-dash-mode 1)
+  (smart-dash-c-mode 1)
   (smart-semicolon-mode 1)
   (add-to-list 'smart-dash-c-modes 'cperl-mode))
 
