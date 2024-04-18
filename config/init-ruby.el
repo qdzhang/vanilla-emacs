@@ -31,11 +31,15 @@
        (notify-os (concat project-name " Tags ✅") "Ruby tags successfully generated")
      (notify-os "Is this a Ruby project? Tags FAILED! ⚠" "Failed!!!"))))
 
+(defun my/rbtagger-generate-tags ()
+  (interactive)
+  (rbtagger-generate-tags (project-root (project-current))))
+
 (transient-define-prefix my-transient/ruby-mode ()
   "A transient menu for ruby mode"
   [["rbtagger"
     ("v" "Visit tags table" visit-tags-table)
-    ("g" "Generate tags" rbtagger-generate-tags)
+    ("g" "Generate tags" my/rbtagger-generate-tags)
     ("l" "Show logs" rbtagger-stdout-log)]])
 
 ;; Don't auto-insert encoding comments

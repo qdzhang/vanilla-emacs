@@ -15,12 +15,16 @@
 (add-to-list 'auto-mode-alist '("\\.[pxr]?html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tt$" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ep$" . web-mode))
 
 ;; use cperl-mode instead of perl-mode
 (setq auto-mode-alist (rassq-delete-all 'perl-mode auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.\\([pP]\\([Llm]\\|erl\\|od\\)\\|al\\)\\'" . cperl-mode))
 (add-to-list 'auto-mode-alist '("\\.psgi$" . cperl-mode))
 (add-to-list 'auto-mode-alist '("cpanfile$" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.t$" . cperl-mode))
 
 (setq interpreter-mode-alist (rassq-delete-all 'perl-mode interpreter-mode-alist))
 (add-to-list 'interpreter-mode-alist '("\\(mini\\)?perl5?" . cperl-mode))

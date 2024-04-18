@@ -51,7 +51,8 @@
   (setq web-mode-engines-alist
         '(("php" . "\\.phtml\\'")
           ("erb" . "\\.erb\\.")
-          ("erb" . "\\.rhtml\\'"))))
+          ("erb" . "\\.rhtml\\'")
+          ("mojolicious" . "\\.ep\\'"))))
 
 ;; Deactivate smartparens in `web-mode'
 ;; Using `web-mode' built-in auto-pairs and auto-quoting

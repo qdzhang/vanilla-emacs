@@ -20,6 +20,7 @@
   (smart-dash-mode 1)
   (smart-dash-c-mode 1)
   (smart-semicolon-mode 1)
+  (outline-minor-mode 1)
   (add-to-list 'smart-dash-c-modes 'cperl-mode))
 
 ;; https://emacs.stackexchange.com/questions/39229/perform-key-translation-in-a-major-mode
@@ -31,7 +32,7 @@
     (define-key key-translation-map (kbd "4") (kbd "$"))
     (define-key key-translation-map (kbd "$") (kbd "4"))))
 
-(add-hook 'cperl-mode-hook #'my/perl-mode-hook)
+(add-hook 'cperl-mode-hook 'my/perl-mode-hook)
 
 (with-eval-after-load 'cperl-mode
   (define-key cperl-mode-map (kbd "C-M-<tab>") 'perltidy-region)

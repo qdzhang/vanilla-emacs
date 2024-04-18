@@ -74,6 +74,11 @@ Ref: https://codeberg.org/vifon/emacs-config/src/branch/master/emacs.d/lisp/30-e
             (font-lock-fontify-buffer)))))
     (buffer-string)))
 
+;; https://github.com/condy0919/.emacs.d/commit/8519a2af5847ecb69ff841db8ef76ed42465fb80
+(defun eshell/rg (&rest args)
+  "ripgrep with eshell integration."
+  (eshell-grep "rg" (append '("--no-heading") args) t))
+
 ;; Visual commands
 (require 'em-term)
 (mapc (lambda (x) (add-to-list 'eshell-visual-commands x))
