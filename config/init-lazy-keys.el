@@ -58,7 +58,7 @@
  "init-transient")
 
 (lazy-load-global-keys
- '(("C-c n" . my/tmp-buffer))
+ '(("C-c m" . my/tmp-buffer))
  "init-transient")
 
 (eval-after-load 'org
@@ -277,5 +277,8 @@
         ((derived-mode-p 'prog-mode)
          (string-inflection-all-cycle))))
 
+(lazy-load-global-keys
+ '(("C-c n" . notenote-menu))
+ "notenote")
 
 (provide 'init-lazy-keys)
