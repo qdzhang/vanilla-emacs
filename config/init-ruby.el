@@ -35,12 +35,21 @@
   (interactive)
   (rbtagger-generate-tags (project-root (project-current))))
 
+(defun my/add-ruby-debug-breakpoint ()
+  (interactive)
+  (insert "binding.break"))
+
 (transient-define-prefix my-transient/ruby-mode ()
   "A transient menu for ruby mode"
   [["rbtagger"
     ("v" "Visit tags table" visit-tags-table)
     ("g" "Generate tags" my/rbtagger-generate-tags)
-    ("l" "Show logs" rbtagger-stdout-log)]])
+    ("l" "Show logs" rbtagger-stdout-log)]
+   ["debug"
+    ("b" "Add breakpoint" my/add-ruby-debug-breakpoint)
+    ("h" "Highlight breakpoint" my/ruby-maybe-highlight-debugger-keywords)
+    ;; Use `C-u' prefix to Unhighlight all
+    ("u" "Unhighlight" unhighlight-regexp)]])
 
 ;; Don't auto-insert encoding comments
 ;; Those are almost never needed in Ruby 2+
