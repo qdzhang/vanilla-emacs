@@ -16,6 +16,11 @@
 ;;   inserted into other Org buffer with `org-insert-link'
 ;; - =C-c C-o=: `org-open-at-point'. Open a link at point.
 ;; - =C-c &=: `org-mark-ring-goto'. Jump back to a recorded position.
+;;
+;; `org-toggle-link-display': Toggle the literal or descriptive display of links.
+;; If you want to edit a link, use the literal link will be convenient.
+
+;; https://gist.github.com/redblobgames/3ef970bdeeef0e4a025d2981ce83ed27
 
 ;;; Code:
 
@@ -51,6 +56,7 @@
       (insert "#+title: " title "\n"
               "#+date: ")
       (org-insert-time-stamp nil t)
+      (insert "\n#+filetags:")
       (insert "\n\n"))))
 
 (defun notenote-open ()
@@ -81,6 +87,13 @@
   (interactive "sRegexp: ")
   (rgrep regexp "*.org" (concat notenote-directory "/")))
 
+(defun notenote-todo-list ()
+  "Show all todo list in notes."
+  (interactive)
+  (let ((org-agenda-files (file-expand-wildcards (concat notenote-directory "/*.org"))))
+    (org-todo-list)))
+
+
 (transient-define-prefix notenote-menu ()
   "A transient menu for notenote."
   [
@@ -93,10 +106,10 @@
     ("d" "directory" notenote-directory)]
    ["Search"
     ("t" "search tags" notenote-tags-search)
-    ("s" "search regexp" notenote-search)]
+    ("s" "search regexp" notenote-search)
+    ("<" "todo list" notenote-todo-list)]
    ["Edit"
-    ("i" "copy ID" notenote-get-id)
-    ("l" "link to ID" org-insert-link)]])
+    ("i" "copy ID" notenote-get-id)]])
 
 (provide 'notenote)
 ;;; notenote.el
