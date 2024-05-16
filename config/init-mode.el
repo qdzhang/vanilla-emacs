@@ -80,4 +80,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.cjs\\'" . javascript-mode))
 
+(add-to-list 'auto-mode-alist '("\\.d2\\'" . d2-mode))
+
 (provide 'init-mode)

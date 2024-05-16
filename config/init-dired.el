@@ -26,6 +26,7 @@
                                      ("\\.png\\'" "pqiv")
                                      ("\\.gif\\'" "pqiv")
                                      ("\\.jpeg\\'" "pqiv")
+                                     ("\\.svg\\'" "pqiv")
                                      ("\\.epub\\'" "mupdf")
                                      ("\\.azw3\\'" "ebook-viewer")))
 (setq dired-recursive-copies 'always)

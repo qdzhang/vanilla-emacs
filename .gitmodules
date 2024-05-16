@@ -25,6 +25,9 @@
 [submodule "d-mode"]
 	path = lib/d-mode
 	url = git@github.com:Emacs-D-Mode-Maintainers/Emacs-D-Mode.git
+[submodule "d2-mode"]
+	path = lib/d2-mode
+	url = https://github.com/andorsk/d2-mode
 [submodule "dash"]
 	path = lib/dash
 	url = git@github.com:magnars/dash.el.git
