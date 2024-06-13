@@ -84,6 +84,8 @@
 (dolist (mode '(org-mode-hook inf-sdcv-mode-hook markdown-mode-hook))
   (add-hook mode (lambda () (text-scale-increase 1.2))))
 
+;; For a bigger external monitor
+(add-hook 'emacs-startup-hook (lambda () (global-text-scale-adjust 8)))
 
 ;; * Themes settings
 ;; (load-theme 'tsdh-light t)
