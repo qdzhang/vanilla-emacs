@@ -74,5 +74,31 @@
       (pixel-scroll-precision-interpolate (* lines (pixel-line-height))))
   (pixel-scroll-interpolate-down))
 
+;; Config speedbar
+(require 'sb-imenu)
+(setq speedbar-initial-expansion-list-name "sb-imenu")
+
+(defun my/speedbar-imenu ()
+  (interactive)
+  (let ((speedbar-initial-expansion-list-name "sb-imenu"))
+    (speedbar 1)))
+(define-key speedbar-mode-map (kbd "i") 'my/speedbar-imenu)
+
+
+(defun my/speedbar-frame-setup ()
+  "Display speedbar on the right of screen depending on the screen width."
+  (let* ((width (display-pixel-width))
+         (pos (- width 40)))
+    (setq speedbar-frame-parameters `((minibuffer)
+                                      (width . 40)
+                                      (border-width . 0)
+                                      (menu-bar-lines . 0)
+                                      (tool-bar-lines . 0)
+                                      (unsplittable . t)
+                                      (left-fringe . 0)
+                                      (top . 0)
+                                      (left . ,pos)))))
+(add-hook 'speedbar-mode-hook 'my/speedbar-frame-setup)
+
 (provide 'init-navigate)
 ;;; init-navigate.el ends here
