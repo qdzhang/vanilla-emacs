@@ -87,10 +87,11 @@
 
 (defun my/speedbar-frame-setup ()
   "Display speedbar on the right of screen depending on the screen width."
-  (let* ((width (display-pixel-width))
-         (pos (- width 40)))
+  (let* ((width my/screen-width)
+         (sb-width (if my/screen-big-p 40 20))
+         (pos (- width sb-width)))
     (setq speedbar-frame-parameters `((minibuffer)
-                                      (width . 40)
+                                      (width . ,sb-width)
                                       (border-width . 0)
                                       (menu-bar-lines . 0)
                                       (tool-bar-lines . 0)
@@ -98,6 +99,7 @@
                                       (left-fringe . 0)
                                       (top . 0)
                                       (left . ,pos)))))
+
 (add-hook 'speedbar-mode-hook 'my/speedbar-frame-setup)
 
 (provide 'init-navigate)

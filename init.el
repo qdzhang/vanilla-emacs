@@ -21,6 +21,17 @@
 (require 'benchmark-init)
 (benchmark-init/activate)
 
+;; Determine the screen width
+(defcustom my/screen-width (display-pixel-width)
+  "The width of my screen.")
+
+(defcustom my/screen-big-p nil
+  "Whether the screen is bigger than 1920. If the width of screen is bigger than
+1920, the value is t. Otherwise the value is nil (default).")
+
+(when (> my/screen-width 1920)
+  (setq my/screen-big-p t))
+
 ;; Set path to dependencies
 (setq config-dir
       (expand-file-name "config" user-emacs-directory))
