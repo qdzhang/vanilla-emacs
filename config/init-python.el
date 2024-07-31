@@ -30,6 +30,24 @@
           (lambda ()
             (smart-dash-mode 1)))
 
+;; Highlight debugger lines
+(defun my/python-maybe-highlight-debugger-keywords ()
+  "Highlight break point lines."
+  (interactive)
+  (highlight-lines-matching-regexp "breakpoint()"))
+
+(add-hook 'python-mode-local-vars-hook 'my/python-maybe-highlight-debugger-keywords)
+
+(defun my/django-shell ()
+  "Launch django shell"
+  (interactive)
+  (let ((python-shell-interpreter-args
+         (concat "-i "
+                 default-directory
+                 "manage.py shell")))
+    (inheritenv
+     (call-interactively 'run-python))))
+
 
 (provide 'init-python)
 ;;; init-python.el
