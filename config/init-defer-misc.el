@@ -96,5 +96,12 @@
         ;; https://emacs.stackexchange.com/questions/5553/async-shell-process-buffer-always-clobbers-window-arrangement
         ("\\*Async Shell Command\\*.*" (display-buffer-no-window))))
 
+;; Make comint prompt and output text readonly
+(setq comint-prompt-read-only t)
+(defun my/comint-preoutput-turn-buffer-read-only (text)
+  (propertize text 'read-only t))
+
+(add-hook 'comint-preoutput-filter-functions 'my/comint-preoutput-turn-buffer-read-only)
+
 (provide 'init-defer-misc)
 ;;; init-defer-misc.el ends here

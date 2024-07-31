@@ -281,4 +281,8 @@
  '(("C-c n" . notenote-menu))
  "notenote")
 
+(lazy-load-global-keys
+ '(("C-c i" . speedbar))
+ "speedbar")
+
 (provide 'init-lazy-keys)

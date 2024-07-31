@@ -89,6 +89,10 @@ Copied from: https://christiantietze.de/posts/2020/05/delete-word-or-region-emac
 (with-eval-after-load 'raku-mode
   (sp-local-pair 'raku-mode "`" nil :actions nil))
 
+;; Fix the blank after the | in `ruby-mode'
+(with-eval-after-load 'ruby-mode
+  (sp-local-pair 'ruby-mode "|" "|" :pre-handlers nil))
+
 
 ;; Fix the conflict of smartparens and electric-pairs in `cperl-mode'
 ;; https://github.com/syl20bnr/spacemacs/issues/480#issuecomment-262340062
