@@ -55,6 +55,20 @@
 
 (add-hook 'org-mode-hook 'my/org-prettify-symbols)
 
+(defun my/writing-mode ()
+  "A simple funciton for distraction-free writing."
+  (interactive)
+  (setq-local visual-fill-column-center-text t)
+  (setq-local visual-fill-column-width 50)
+  (auto-fill-mode -1)
+  (save-excursion
+    (set-mark (point-min))
+    (goto-char (point-max))
+    (my/unfill-paragraph-or-region)
+    (deactivate-mark))
+  (visual-line-mode 1)
+  (visual-fill-column-mode 1))
+
 (setq org-default-notes-file "~/org/inbox.org"
       org-agenda-files '("~/org/task.org" "~/org/refile.org" "~/org/archive.org" "~/org/project.org")
       org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "SOMEDAY(s)" "|" "DONE(d)" "CANCELED(c)"))

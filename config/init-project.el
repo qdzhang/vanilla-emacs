@@ -20,13 +20,13 @@ Used in `semanticdb-project-root-functions'."
 
 ;; Determine language-aware file as project root
 (defvar project-language-aware-root-files
-  '("tsconfig.json" "package.json"
-    "Cargo.toml" "Gemfile" "go.mod"
+  '("Cargo.toml" "Gemfile" "go.mod"
     "compile_commands.json"
     "Cask" "Eldev" "Keg" "Eask"
     "project.clj"  "deps.edn" "shadow-cljs.edn"
     "dub.json" "dub.sdl"
-    "compile_flags.txt"))
+    "compile_flags.txt"
+    "tsconfig.json" "package.json"))
 
 (defun my/project-try-language-aware (dir)
   "Find a super-directory of DIR containing a root file."

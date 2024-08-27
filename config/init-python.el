@@ -39,7 +39,8 @@
 (add-hook 'python-mode-local-vars-hook 'my/python-maybe-highlight-debugger-keywords)
 
 (defun my/django-shell ()
-  "Launch django shell"
+  "Launch django shell.
+See https://faridrener.com/2015/09/30/shell-plus-emacs.html"
   (interactive)
   (let ((python-shell-interpreter-args
          (concat "-i "

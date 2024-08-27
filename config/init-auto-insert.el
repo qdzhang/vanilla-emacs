@@ -299,6 +299,14 @@ ColumnLimit: 0
   " -- " str (make-string (max 2 (- 80 (current-column) 27)) 32) "*/
 ")
 
+(define-skeleton my-skel/org-header
+  "insert header of org-mode"
+  "title: "
+  "#+TITLE: " str \n
+  "#+AUTHOR: " user-full-name \n
+  "#+DATE: " (my/time-stamp) \n)
+
+(define-auto-insert "\\.org$" 'my-skel/org-header)
 
 (provide 'init-auto-insert)
 ;;; init-auto-insert.el ends here
