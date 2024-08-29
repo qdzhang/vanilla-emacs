@@ -55,23 +55,16 @@
           ("mojolicious" . "\\.ep\\'"))))
 
 
-(defun my/web-mode-set-engine-auto ()
-  "Hooks for Web mode. Add a local hook which set the engine to the one specified by
-   `my-dir-web-mode-engine' local variable.
+(defun my/web-mode-for-django ()
+  (let ((pr (project-root (project-current))))
+    (when pr
+      (if (file-exists-p (concat pr "manage.py"))
+          (progn
+            (web-mode-set-engine "django")
+            (message "Determine Django project: Setting web template to Django"))
+        (message "Not a Django project")))))
 
-For example, if I am in a Django project, add the following line in .dir-locals.el
-  ((web-mode . ((my-dir-web-mode-engine . \"django\"))))
-"
-  (if (boundp 'my-dir-web-mode-engine)
-      (progn
-        (message "web-mode-engine is %s" my-dir-web-mode-engine)
-        (web-mode-set-engine my-dir-web-mode-engine))
-    (progn
-      (message "no web-mode-engine settled")
-      (web-mode-set-engine "none"))))
-
-(with-eval-after-load 'web-mode
-  (add-hook 'hack-local-variables-hook 'my/web-mode-set-engine-auto))
+(add-hook 'web-mode-hook 'my/web-mode-for-django)
 
 
 ;; Deactivate smartparens in `web-mode'
