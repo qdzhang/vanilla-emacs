@@ -49,7 +49,10 @@
     ("b" "Add breakpoint" my/add-ruby-debug-breakpoint)
     ("h" "Highlight breakpoint" my/ruby-maybe-highlight-debugger-keywords)
     ;; Use `C-u' prefix to Unhighlight all
-    ("u" "Unhighlight" unhighlight-regexp)]])
+    ("u" "Unhighlight" unhighlight-regexp)]
+   ["Rails"
+    ("c" "Rails console" my/rails-console)
+    ("C" "Rails console (sandbox)" my/rails-console-sandbox)]])
 
 ;; Don't auto-insert encoding comments
 ;; Those are almost never needed in Ruby 2+
@@ -131,8 +134,35 @@ Add this function to the hook of `compilation-mode'."
 ;; Enable `rspec-mode' in `my-erb-mode'
 (add-hook 'my-erb-mode-hook 'rspec-enable-appropriate-mode)
 ;; Enable format on save in `my-erb-mode'
-(add-hook 'my-erb-mode-hook (lambda ()
-                              (erb-format-on-save-mode 1)))
+;; (add-hook 'my-erb-mode-hook 'erb-format-on-save-mode)
+
+;; Launch a Rails console
+(defun my/rails-console ()
+  (interactive)
+  (inf-ruby-console-rails (or (project-root (project-current))
+                              default-directory)))
+
+(defun my/rails-console-sandbox ()
+  (interactive)
+  (inf-ruby-console-rails-sandbox (or (project-root (project-current))
+                                      default-directory)))
+
+(defun inf-ruby-console-rails-sandbox (dir)
+  "Run Rails console in DIR with `--sandbox' argument."
+  (interactive (list (inf-ruby-console-read-directory 'rails)))
+  (let* ((default-directory (file-name-as-directory dir))
+         (env (inf-ruby-console-rails-env))
+         (with-bundler (file-exists-p "Gemfile")))
+    (inf-ruby-console-run
+     (concat (when with-bundler "bundle exec ")
+             "rails console --sandbox -e "
+             env
+             ;; Note: this only has effect in Rails < 5.0 or >= 5.1.4
+             ;; https://github.com/rails/rails/pull/29010
+             (when (inf-ruby--irb-needs-nomultiline-p)
+               " -- --nomultiline --noreadline"))
+     "rails")))
+
 
 (provide 'init-ruby)
 ;;; init-ruby.el ends here
