@@ -94,21 +94,6 @@
         ("SOMEDAY" . (:foreground "DarkOrange" :weight bold))
         ("CANCELED" . (:foreground "darkgray"))))
 
-;;;###autoload
-(defun my/replace-in-string (literal rep string)
-  "Replace all LITERAL substring with REP in STRING"
-  (replace-regexp-in-string (regexp-quote literal) rep string nil 'literal))
-
-;; TODO: improve this function to truncate the whitespaces
-(defun my/checkbox-to-todo-item ()
-  "Convert current line checkbox to TODO items."
-  (interactive)
-  (let ((current-checklist (buffer-substring-no-properties (line-beginning-position)
-                                                           (line-end-position)))
-        new-todo-item)
-    (setq new-todo-item (my/replace-in-string "- [ ] " "" current-checklist))
-    (kill-new new-todo-item)))
-
 
 ;; Config org-capture-templates
 (setq org-capture-templates nil)
