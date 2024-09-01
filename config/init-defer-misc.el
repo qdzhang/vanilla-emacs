@@ -85,6 +85,13 @@
                          "\"")))
 
 ;; Setup buffers and windows
+;;
+;; To make ansi-term obey the `display-buffer-alist'
+;; https://emacs.stackexchange.com/questions/48472/how-to-make-m-x-ansi-term-behave-like-m-x-shell-opening-in-new-window/48481#48481
+;; https://emacs.stackexchange.com/questions/81033/run-ansi-term-in-a-new-frame
+;; https://old.reddit.com/r/emacs/comments/novb5o/displaybufferalist_doesnt_work_with_ansiterm_and/
+(setq switch-to-buffer-obey-display-actions t)
+
 (setq display-buffer-alist
       '(
         ;; Split windows below
@@ -95,6 +102,19 @@
         ;; Avoid popup `Async Shell Command' window when using `dired-do-async-shell-command'
         ;; https://emacs.stackexchange.com/questions/5553/async-shell-process-buffer-always-clobbers-window-arrangement
         ("\\*Async Shell Command\\*.*" (display-buffer-no-window))))
+
+(cl-defun my/display-buffer-in-side-window (&optional (buffer (current-buffer)))
+  "Display BUFFER in dedicated side window.
+Ref: https://gist.github.com/alphapapa/c5458365e9940069e6a52a2a95b1ccff"
+  (interactive)
+  (let ((display-buffer-mark-dedicated t))
+    (display-buffer-in-side-window buffer
+                                   '((side . bottom)
+                                     (slot . -1)
+                                     (window-height . 0.33)
+                                     (window-parameters
+                                      (no-delete-other-windows . t))))))
+
 
 ;; Make comint prompt and output text readonly
 (setq comint-prompt-read-only t)

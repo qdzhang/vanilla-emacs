@@ -169,7 +169,7 @@
     (lazy-load-local-keys
      '(("C-c C-y" . term-paste))
      term-raw-map
-     "term")))
+     "init-term")))
 
 (lazy-load-global-keys
  '(("c" . org-capture))
