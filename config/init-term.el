@@ -29,7 +29,5 @@
     (term-send-raw-string (concat "cd " (shell-quote-argument (expand-file-name dir)) "\n"))
     (term-send-raw-string "\C-l")))
 
-(define-key term-raw-map (kbd "C-x c") 'my/quick-cd)
-
 (provide 'init-term)
 ;;; init-term.el ends here

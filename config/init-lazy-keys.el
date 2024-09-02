@@ -53,9 +53,11 @@
      dired-mode-map
      "init-dired")))
 
+(global-unset-key (kbd "M-SPC"))
 (lazy-load-global-keys
- '(("C-c SPC" . my-transient/global-menu))
+ '(("M-SPC" . my-transient/global-menu))
  "init-transient")
+
 
 (lazy-load-global-keys
  '(("C-c m" . my/tmp-buffer))
@@ -167,7 +169,8 @@
 (eval-after-load 'term
   (lambda ()
     (lazy-load-local-keys
-     '(("C-c C-y" . term-paste))
+     '(("C-c C-y" . term-paste)
+       ("C-c d" . my/quick-cd))
      term-raw-map
      "init-term")))
 
