@@ -36,7 +36,9 @@
 ;; Sarasa font set for CJK font
 ;; (set-fontset-font t 'han "Sarasa Mono SC")
 ;; (set-fontset-font t 'han "HYXuanSong")
-(set-fontset-font t 'han "FZKai-Z03")
+;; (set-fontset-font t 'han "FZKai-Z03")
+;; 使用寒蝉正楷体
+(set-fontset-font t 'han "ChillKai")
 ;; (set-fontset-font t 'han "FZShuSong-Z01")
 ;; (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")

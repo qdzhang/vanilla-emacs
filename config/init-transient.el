@@ -18,6 +18,14 @@
     ("e" "Flyspell Prog" flyspell-prog-mode)
     ("m" "Flymake" flymake-mode)]])
 
+(transient-define-prefix my-transient/writing ()
+  "A transient for writing."
+  [["Wring Utilities"
+    ("w" "Writing mode" my/writing-mode)
+    ("c" "Count words" (lambda ()
+                         (interactive)
+                         (call-interactively 'count-words)))]])
+
 (transient-define-prefix my-transient/global-menu ()
   "A global transient menu"
   [["Actions"
@@ -36,7 +44,8 @@
     ("m" "Common modes" my-transient/common-modes-menu)
     ("e" "ielm" ielm)
     ("l" "List timers" list-timers)
-    ("o" "Tomato timer" tomato-timer)]
+    ("o" "Tomato timer" tomato-timer)
+    ("w" "Writing mode" my-transient/writing)]
    ["Help"
     ("h" "Shortdoc" shortdoc-display-group)
     ("f" "Describe face" describe-face)
