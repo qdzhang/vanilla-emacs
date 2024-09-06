@@ -62,11 +62,11 @@
 
 (tempo-define-template
  "form template"
- '("<% form_with(model: "p
+ '("<%= form_with(model: "p
    ", local: true) do |form| %>" n
    ""n
-   >"<%= form.submit %>"n
-   "<% end %>" n)
+   >"<%= form.submit %>"
+   n>"<% end %>" n)
  "formwith"
  "Insert form_with blocks")
 
