@@ -143,7 +143,8 @@
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
    `(region ((t :background "#eedc82")))
    `(show-paren-match ((t :background "turquoise")))
-   `(header-line ((t :inherit mode-line-inactive)))))
+   `(header-line ((t :inherit mode-line-inactive)))
+   `(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))))
 
 (defun my/dark-theme ()
   (interactive)
@@ -151,13 +152,14 @@
   (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
-   `(default ((t :background "#073642" :foreground "#96aaad")))
+   `(default ((t :background "#181818" :foreground "#e4e4ef")))
    `(cursor ((t :background "#e0e0e0")))
    `(font-lock-comment-face ((t :foreground "violet")))
    `(ansi-color-white ((t :background "gray90" :foreground "gray90")))
    `(region ((t :background "#005959")))
    `(show-paren-match ((t :background "#d33682")))
-   `(header-line ((t :inherit mode-line-inactive)))))
+   `(header-line ((t :inherit mode-line-inactive)))
+   `(web-mode-current-element-highlight-face ((t :foreground "white" :background "PaleGreen4")))))
 
 (with-eval-after-load 'easy-kill
   (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
