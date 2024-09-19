@@ -22,9 +22,16 @@
   "A transient for writing."
   [["Wring Utilities"
     ("w" "Writing mode" my/writing-mode)
-    ("c" "Count words" (lambda ()
-                         (interactive)
-                         (call-interactively 'count-words)))]])
+    ("c" "Count words" my/count-words)
+    ("t" "Time now" my/current-time-notify)]])
+
+(defun my/count-words ()
+  (interactive)
+  (call-interactively 'count-words))
+
+(defun my/current-time-notify ()
+  (interactive)
+  (notify-os (format-time-string "⏰ %R" (current-time)) "现在时间"))
 
 (transient-define-prefix my-transient/global-menu ()
   "A global transient menu"
