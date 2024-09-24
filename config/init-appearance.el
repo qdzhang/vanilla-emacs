@@ -144,6 +144,9 @@
    `(region ((t :background "#eedc82")))
    `(show-paren-match ((t :background "turquoise")))
    `(header-line ((t :inherit mode-line-inactive)))
+   `(mode-line ((t :background "grey75" :foreground "black")))
+   `(mode-line-active ((t :inherit mode-line :box (:line-width -1 :style released-button))))
+   `(mode-line-inactive ((t :background "#e5e5e5" :foreground "#7f7f7f" :box (:line-width -1 :color "#bababa"))))
    `(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))))
 
 (defun my/dark-theme ()
@@ -159,6 +162,9 @@
    `(region ((t :background "#005959")))
    `(show-paren-match ((t :background "#d33682")))
    `(header-line ((t :inherit mode-line-inactive)))
+   `(mode-line ((t :background "#505050" :foreground "#f6f3e8")))
+   `(mode-line-active ((t :inherit mode-line :box (:line-width -1 :style released-button))))
+   `(mode-line-inactive ((t :background "#323232" :foreground "#a6a6a6" :box (:line-width -1 :color "#606070"))))
    `(web-mode-current-element-highlight-face ((t :foreground "white" :background "PaleGreen4")))))
 
 (with-eval-after-load 'easy-kill
