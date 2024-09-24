@@ -123,5 +123,14 @@ Ref: https://gist.github.com/alphapapa/c5458365e9940069e6a52a2a95b1ccff"
 
 (add-hook 'comint-preoutput-filter-functions 'my/comint-preoutput-turn-buffer-read-only)
 
+;; Load the wakatime api and config.
+(require 'init-waka)
+(global-wakatime-mode)
+;; start up wakapi as an async shell command
+(with-eval-after-load 'wakatime-mode
+  (unless (get-buffer "*wakapi*")
+    (add-to-list 'display-buffer-alist '("\\*wakapi\\*.*" (display-buffer-no-window)))
+    (my/waka)))
+
 (provide 'init-defer-misc)
 ;;; init-defer-misc.el ends here
