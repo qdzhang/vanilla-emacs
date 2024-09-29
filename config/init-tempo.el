@@ -80,6 +80,20 @@
  "bform"
  "Insert bootstrap_form_with blocks")
 
+(tempo-define-template
+ "ruby minitest test clause"
+ `("test \"" p
+   " do"
+   n>"end")
+ "test"
+ "Insert minitest test clause")
+
+(tempo-define-template
+ "Lorem ipsum"
+ '("Lorem Ipsum")
+ "lo"
+ "Insert Lorem ipsum")
+
 (defun try-tempo-complete-tag (old)
   (unless old
     (tempo-complete-tag)))

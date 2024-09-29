@@ -34,8 +34,12 @@
   (setq web-mode-enable-current-element-highlight t)
 
   (setq web-mode-extra-snippets
-        '(("erb" . (("toto" . "<% toto | %>\n\n<% end %>")
-                    ("form" . "<% form_with(model: |, local: true) do %>\n\n<% end %>")))
+        '(("erb" . (("if" . "<% if | %>\n\n<% end %>")
+                    ("for" . "<% for | %>\n\n<% end %>")
+                    ("render" . "<%= render | %>")
+                    ("link" . "<%= link_to | %>")
+                    ("paginate" . "<%= will_paginate | %>")
+                    ("form" . "<%= form_with(model: |) do %>\n\n<% end %>")))
           ))
 
   ;; `C-c C-m' to mark, and press `m' to expand

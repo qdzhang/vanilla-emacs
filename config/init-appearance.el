@@ -138,6 +138,7 @@
    'user
    `(default ((t (:background "#fdf6e3" :foreground "black"))))
    `(cursor ((t (:background "black"))))
+   `(menu ((t (:foreground "black"))))
    `(font-lock-comment-face ((t :foreground "Firebrick")))
    ;; Make `term' and `ansi-term' prompt more distinguishable
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
