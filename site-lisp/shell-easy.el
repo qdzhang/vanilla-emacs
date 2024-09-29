@@ -124,9 +124,11 @@ not exists."
 (add-to-list 'display-buffer-alist
              '("\\*quake-term\\*"
                (display-buffer-in-side-window)
-               (side . bottom)
+               (side . top)
                (slot . -1)
-               (window-height . 0.3)))
+               (window-height . 0.3)
+               (window-parameters
+                (no-delete-other-windows . nil))))
 
 (defun se-make-quake ()
   "Make current term to quake-like below the window."

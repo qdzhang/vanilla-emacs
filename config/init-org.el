@@ -44,17 +44,6 @@
 
 (add-hook 'org-mode-hook #'my/org-font-setup)
 
-;; https://github.com/DogLooksGood/meomacs/blob/master/writing.org
-(defun my/org-prettify-symbols ()
-  (setq-local prettify-symbols-alist
-              '(("[X]" . "⦿")
-                ("[ ]" . "🞆")
-                ("[-]" . "⦾")))
-  (prettify-symbols-mode 1)
-  (setq org-pretty-entities t))
-
-(add-hook 'org-mode-hook 'my/org-prettify-symbols)
-
 (defun my/writing-mode ()
   "A simple funciton for distraction-free writing."
   (interactive)
