@@ -96,6 +96,10 @@
   (require 'init-flymake)
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
 
+;; Set up the required frontend for `company-mode', but not load it.
+;; So this line will not slow down the startup time.
+(add-hook 'after-init-hook 'company-tng-mode)
+
 ;; Some package can be loaded defered
 (run-with-idle-timer
  0.5 nil

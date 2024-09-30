@@ -11,12 +11,30 @@
 (setq company-idle-delay 0.1)
 (setq company-global-modes '(not org-mode markdown-mode eshell-mode))
 (setq company-minimum-prefix-length 2)
+(setq company-auto-commit nil)
 
 (setq completion-ignore-case t)
 (setq company-dabbrev-downcase nil)
 (setq company-dabbrev-ignore-case t)
 (setq company-dabbrev-code-ignore-case t)
 (setq company-etags-ignore-case t)
+(setq company-require-match nil)
+
+;; Don't use the predefined configuration. Config Company behavior manually.
+(setq company-tng-auto-configure nil)
+
+
+;;; Copied from doom emacs
+;;;###autoload
+(defun +company/completing-read ()
+  "Complete current company candidates in minibuffer.
+
+Uses ivy, helm, vertico, or ido, if available."
+  (interactive)
+  (cond ((not company-candidates)
+         (user-error "No company candidates available"))
+        ((when-let (cand (completing-read "Candidate: " company-candidates))
+           (company-finish cand)))))
 
 (require 'company-posframe)
 (company-posframe-mode 1)
@@ -24,8 +42,22 @@
 (setq company-posframe-quickhelp-delay nil)
 
 (with-eval-after-load 'company-mode
-  (define-key company-active-map (kbd "RET") 'company-complete-selection)
-  (define-key company-active-map [return] 'company-complete-selection))
+  ;; User `company-tng-mode', Tab and go!
+  (define-key company-active-map (kbd "TAB") 'company-select-next)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+  (define-key company-active-map (kbd "RET") nil)
+  (define-key company-active-map [return] 'nil)
+
+  ;; Other userful keybindings:
+  ;; C-w: `company-show-location'
+  ;; C-h (or <f1>): `company-show-doc-buffer'
+
+  ;; C-s: `company-search-candidates'
+  ;; After search, use `C-o'(`company-search-toggle-filtering') can filter the
+  ;; candidates by the search string.
+  (define-key company-active-map (kbd "C-SPC") 'company-complete)
+  (define-key company-active-map (kbd "C-M-s") '+company/completing-read))
+
 
 ;;;###autoload
 (defun my/toggle-company-mode ()

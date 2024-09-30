@@ -56,6 +56,7 @@
    ["Help"
     ("h" "Shortdoc" shortdoc-display-group)
     ("f" "Describe face" describe-face)
+    ("k" "Describe keymap" describe-keymap)
     ("q" "Quit" keyboard-quit)]])
 
 
