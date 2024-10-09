@@ -55,8 +55,12 @@ Uses ivy, helm, vertico, or ido, if available."
   ;; C-s: `company-search-candidates'
   ;; After search, use `C-o'(`company-search-toggle-filtering') can filter the
   ;; candidates by the search string.
-  (define-key company-active-map (kbd "C-SPC") 'company-complete)
+  (define-key company-active-map (kbd "C-M-i") 'company-complete)
   (define-key company-active-map (kbd "C-M-s") '+company/completing-read))
+
+(with-eval-after-load 'company-etags
+  '(progn (add-to-list 'company-etags-modes 'web-mode)))
+(setq company-etags-everywhere '(php-mode html-mode web-mode nxml-mode))
 
 
 ;;;###autoload

@@ -11,6 +11,9 @@
 ;; https://github.com/magit/magit/issues/1953#issuecomment-221134023
 (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
 
+;; Show word-granularity differences. (Show in-line differences)
+(setq magit-diff-refine-hunk t)
+
 ;; This function can make magit working in home directory
 ;; with a bare git respository,such as dotfiles directory
 (defun ~/magit-process-environment (env)

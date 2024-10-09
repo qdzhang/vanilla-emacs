@@ -82,4 +82,11 @@
 
 (add-to-list 'auto-mode-alist '("\\.d2\\'" . d2-mode))
 
+;; Make .env file use `conf-mode'
+(add-to-list 'auto-mode-alist '("\\.env.test$" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.env.local$" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.env.sample$" . conf-mode))
+(add-to-list 'auto-mode-alist '("\\.env$" . conf-mode))
+
+
 (provide 'init-mode)

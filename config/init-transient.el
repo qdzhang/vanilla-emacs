@@ -57,7 +57,9 @@
     ("h" "Shortdoc" shortdoc-display-group)
     ("f" "Describe face" describe-face)
     ("k" "Describe keymap" describe-keymap)
-    ("q" "Quit" keyboard-quit)]])
+    ("q" "Quit" keyboard-quit)]
+   ["External"
+    ("RET" "Terminal" my/terminal-here)]])
 
 
 ;; Create different temp buffers with different major mode, like *scratch*.
