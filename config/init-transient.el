@@ -59,7 +59,18 @@
     ("k" "Describe keymap" describe-keymap)
     ("q" "Quit" keyboard-quit)]
    ["External"
-    ("RET" "Terminal" my/terminal-here)]])
+    ("RET" "Terminal" my/terminal-here)
+    ("C-<return>" "Term-project" my/terminal-project)]])
+
+(defun my/terminal-project ()
+  "Open external terminal in project root. If not a project, open it in current
+directory."
+  (interactive)
+  (if (project-current)
+      (let* ((pr (project-current t))
+             (default-directory (project-root pr)))
+        (my/terminal-here))
+    (my/terminal-here)))
 
 
 ;; Create different temp buffers with different major mode, like *scratch*.
