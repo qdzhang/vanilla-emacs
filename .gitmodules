@@ -157,9 +157,6 @@
 [submodule "tomato-timer"]
 	path = lib/tomato-timer
 	url = git@github.com:qdzhang/tomato-timer.git
-[submodule "typescript-mode"]
-	path = lib/typescript-mode
-	url = git@github.com:emacs-typescript/typescript.el.git
 [submodule "visual-fill-column"]
 	path = lib/visual-fill-column
 	url = https://codeberg.org/joostkremers/visual-fill-column.git
