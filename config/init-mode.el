@@ -10,7 +10,7 @@
   (run-hooks (intern (format "%S-local-vars-hook" major-mode))))
 
 ;; Autoload major modes
-(add-to-list 'auto-mode-alist '("\\.m?jsx?\\'" . js-mode))
+;; (add-to-list 'auto-mode-alist '("\\.m?jsx?\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.[pxr]?html?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode))
@@ -88,5 +88,11 @@
 (add-to-list 'auto-mode-alist '("\\.env.sample$" . conf-mode))
 (add-to-list 'auto-mode-alist '("\\.env$" . conf-mode))
 
+;; Use and `tsx-ts-mode'
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . tsx-ts-mode))
+
+;; Use `bash-ts-mode'
+(add-to-list 'major-mode-remap-alist '(shell-script-mode . bash-ts-mode))
+(add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
 
 (provide 'init-mode)
