@@ -24,6 +24,17 @@
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("ruff-lsp")))
 (add-to-list 'eglot-server-programs '(d-mode . ("/usr/bin/serve-d")))
 
+;; Better performance for tsserver and vtsls
+(fset #'jsonrpc--log-event #'ignore)
+;; Config web-related modes to use vtsls
+;; https://github.com/yioneko/vtsls
+(add-to-list 'eglot-server-programs '(((js-mode :language-id "javascript")
+                                       (js-ts-mode :language-id "javascript")
+                                       (tsx-ts-mode :language-id "typescriptreact")
+                                       (typescript-ts-mode :language-id "typescript")
+                                       (typescript-mode :language-id "typescript"))
+                                      "vtsls" "--stdio"))
+
 
 (add-to-list 'eglot-server-programs
              `((cperl-mode perl-mode) "pls"))
