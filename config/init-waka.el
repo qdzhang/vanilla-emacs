@@ -10,16 +10,13 @@
 ;; put the single binary in a custom path, then make `wakatime-mode' know it.
 (setq wakatime-cli-path (expand-file-name "~/.wakatime/wakatime-cli"))
 
-;; 4. Start up wakapi from command line, or use the following helper function.
+;; 4. Start up wakapi from command line, or run it as a service.
+;; It is recommended to run it as a SystemD service, but I am running it with
+;; pebble. Run `pebble run' in command line.
+;;
 ;; Before launch, download the sample wakapi.yml from github.
 ;; Open the website and create an account.
 
-;;;###autoload
-(defun my/waka ()
-  (interactive)
-  (let ((default-directory (expand-file-name "~/self-host/")))
-    (async-shell-command "wakapi -config wakapi.yml" "*wakapi*" "*wakapi-errors*")
-    (message "wakapi startup...⏰⏰⏰")))
 
 ;; 5. After login on the website, get the api key. There are two places need the
 ;; api key:
