@@ -33,9 +33,19 @@
   ;; Highlight current matched tags, and set its color
   (setq web-mode-enable-current-element-highlight t)
 
+  ;; Define a custom function to close and indent web tags easily
+  (defun web-mode-element-close-and-indent ()
+    (interactive)
+    (unless (char-equal ?> (preceding-char))
+      (insert ">"))
+    (web-mode-element-close)
+    (indent-for-tab-command))
+
+  (define-key web-mode-map (kbd "C-c /") 'web-mode-element-close-and-indent)
+
   (setq web-mode-extra-snippets
         '(("erb" . (("if" . "<% if | %>\n\n<% end %>")
-                    ("for" . "<% for | %>\n\n<% end %>")
+                    ("end" . "|\n<% end %>")
                     ("render" . "<%= render | %>")
                     ("link" . "<%= link_to | %>")
                     ("paginate" . "<%= will_paginate | %>")
