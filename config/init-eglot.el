@@ -40,6 +40,18 @@
              `((cperl-mode perl-mode) "pls"))
 
 
+;; Download https://github.com/ltex-plus/ltex-ls-plus
+(add-to-list 'eglot-server-programs
+             '((org-mode markdown-mode rst-mode) . ("~/LanguageTool/ltex-ls-plus/bin/ltex-ls-plus" "--server-type" "TcpSocket" "--port" :autoport)))
+;; Alternative servers for grammar check
+;; - Use `harper-ls'
+;; (add-to-list 'eglot-server-programs
+;;              '((org-mode markdown-mode rst-mode) . ("harper-ls" "--stdio")))
+;; - Use `vale-ls'
+;; (add-to-list 'eglot-server-programs
+;;              '((org-mode markdown-mode rst-mode) . ("vale-ls")))
+
+
 ;;;###autoload
 (defun my/eglot-setup-deno ()
   "Setup deno lsp for eglot when editing typescript."

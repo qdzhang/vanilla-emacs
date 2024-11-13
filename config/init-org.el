@@ -159,13 +159,6 @@ Ref:https://emacs.stackexchange.com/a/58326"
 ;; Sublevels are intented with leading dots in `org-tags-view'(C-c a m)
 (setq org-tags-match-list-sublevels 'indented)
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            (run-with-idle-timer
-             1 nil
-             #'(lambda ()
-                 (require 'init-flymake)
-                 (add-hook 'flymake-diagnostic-functions 'flymake-vale nil t)))))
 
 (add-hook 'org-agenda-mode-hook (lambda () (hl-line-mode 1)))
 
