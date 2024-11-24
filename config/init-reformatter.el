@@ -48,5 +48,24 @@
            "--no-check-syntax")
   :lighter " Perltidy")
 
+;;;###autoload (autoload 'gofmt-buffer "init-reformatter" nil t)
+;;;###autoload (autoload 'gofmt-region "init-reformatter" nil t)
+;;;###autoload (autoload 'gofmt-on-save-mode "init-reformatter" nil t)
+(reformatter-define gofmt
+  :program "gofmt"
+  :args '()
+  :lighter " gofmt")
+
+;;;###autoload (autoload 'denofmt-buffer "init-reformatter" nil t)
+;;;###autoload (autoload 'denofmt-region "init-reformatter" nil t)
+;;;###autoload (autoload 'denofmt-on-save-mode "init-reformatter" nil t)
+(reformatter-define denofmt
+  :program "deno"
+  :args `("fmt"
+          "--ext"
+          "js"
+          "-")
+  :lighter " Denofmt")
+
 (provide 'init-reformatter)
 ;;; init-reformatter.el
