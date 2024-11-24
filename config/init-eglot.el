@@ -16,12 +16,14 @@
 (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
 
 
-
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "ccls"))
 ;; (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("clangd" "--clang-tidy")))
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("pyright-langserver" "--stdio")))
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("pylsp")))
 ;; (add-to-list 'eglot-server-programs '(python-mode . ("ruff-lsp")))
+(add-to-list 'eglot-server-programs
+             '((python-mode python-ts-mode)
+               "basedpyright-langserver" "--stdio"))
 (add-to-list 'eglot-server-programs '(d-mode . ("/usr/bin/serve-d")))
 
 ;; Better performance for tsserver and vtsls

@@ -107,6 +107,9 @@
   (subword-mode 1))
 
 (add-hook 'typescript-ts-mode-hook 'my/typescript-mode-hook)
+(add-hook 'tsx-ts-mode-hook (lambda ()
+                              (eglot-ensure)))
+
 
 (defun node-repl ()
   (interactive)

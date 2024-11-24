@@ -15,6 +15,7 @@
             (setq imenu-create-index-function 'python-imenu-create-flat-index)
             (imenu-add-menubar-index)
             (my/py-indent-style)
+            (eglot-ensure)
             (setq-local compile-command
                         (concat "pytest -v "
                                 (when buffer-file-name

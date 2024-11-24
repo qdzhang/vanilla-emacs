@@ -8,8 +8,10 @@
 
 ;;; Code:
 
+
 (add-hook 'go-mode-hook (lambda ()
                           (subword-mode +1)
+                          (eglot-ensure)
                           (setq-local truncate-lines t)
                           (setq-local indent-tabs-mode t)
                           (setq-local tab-width 4)))
