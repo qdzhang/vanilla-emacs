@@ -24,21 +24,14 @@
 ;; (set-face-attribute 'fixed-pitch nil :family "M+ 1mn")
 (set-face-attribute 'fixed-pitch-serif nil :family "Latin Modern Mono")
 
-(defface my/font-org-header
-  '()
-  "The font face used for org headers"
-  :group 'basic-faces)
-;; Libertinus Sans is also good font for headers
-;; (set-face-attribute 'my/font-org-header nil :family "Go Sans")
-(set-face-attribute 'my/font-org-header nil :family "Libertinus Sans")
-
 
 ;; Sarasa font set for CJK font
 ;; (set-fontset-font t 'han "Sarasa Mono SC")
 ;; (set-fontset-font t 'han "HYXuanSong")
 ;; (set-fontset-font t 'han "FZKai-Z03")
 ;; 使用寒蝉正楷体
-(set-fontset-font t 'han "ChillKai")
+;; (set-fontset-font t 'han "ChillKai")
+(set-fontset-font t 'han "FZYouSong GBK")
 ;; (set-fontset-font t 'han "FZShuSong-Z01")
 ;; (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'hangul "Sarasa Mono K")
