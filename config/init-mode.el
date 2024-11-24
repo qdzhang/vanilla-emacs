@@ -95,4 +95,10 @@
 (add-to-list 'major-mode-remap-alist '(shell-script-mode . bash-ts-mode))
 (add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
 
+
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
+
+(add-to-list 'auto-mode-alist
+             '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
+
 (provide 'init-mode)

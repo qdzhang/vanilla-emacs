@@ -9,14 +9,13 @@
 ;;; Code:
 
 
-(add-hook 'go-mode-hook (lambda ()
-                          (subword-mode +1)
-                          (eglot-ensure)
-                          (setq-local truncate-lines t)
-                          (setq-local indent-tabs-mode t)
-                          (setq-local tab-width 4)))
-
-(setq gofmt-show-errors nil)
+(add-hook 'go-ts-mode-hook (lambda ()
+                             (subword-mode +1)
+                             (eglot-ensure)
+                             (gofmt-on-save-mode)
+                             (setq-local truncate-lines t)
+                             (setq-local indent-tabs-mode t)
+                             (setq-local tab-width 4)))
 
 (with-eval-after-load 'eglot
   (setq-default eglot-workspace-configuration
@@ -24,12 +23,7 @@
                           ((staticcheck . t)
                            (completeUnimported . t))))))
 
-(defun my/go-mode-before-save ()
-  "Format buffer and organize imports in Go mode."
-  (when (eq major-mode 'go-mode)
-    (gofmt-before-save)))
 
-(add-hook 'before-save-hook #'my/go-mode-before-save)
 
 ;; Config `go vet' as a compilation command
 ;; Copied from golint

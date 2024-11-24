@@ -85,11 +85,18 @@
   (require 'init-perl))
 (with-eval-after-load 'forth-mode
   (require 'init-forth))
-(with-eval-after-load 'go-mode
-  (require 'init-go))
+(with-eval-after-load 'go-ts-mode
+  (require 'init-go)
+  (require 'init-eglot))
+
 (require 'init-elisp)
 (require 'init-direnv)
 (require 'init-python)
+(with-eval-after-load 'python-mode
+  (require 'init-eglot))
+(with-eval-after-load 'tsx-ts-mode
+  (require 'init-eglot))
+
 
 (with-eval-after-load 'flymake
   (require 'flymake-diagnostic-at-point)
