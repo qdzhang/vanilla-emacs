@@ -26,23 +26,22 @@
    `(org-formula ((t (:inherit fixed-pitch))))
    `(org-code ((t (:inherit fixed-pitch :foreground "#0f7f5f"))))
    `(org-footnote ((t (:inherit (org-link fixed-pitch)))))
-   `(org-ellipsis ((t (:underline nil :foreground "#586e75"))))
-   `(org-drawer ((t (:foreground "#586e75"))))
+   `(org-ellipsis ((t (:underline nil :foreground "dark gray"))))
+   `(org-drawer ((t (:foreground "dark gray"))))
    `(org-block ((t (:inherit fixed-pitch :height 0.9))))
    `(org-block-begin-line
-     ((t (:box (:style release-button) :slant italic :foreground "#586e75"))))
+     ((t (:box (:style release-button) :slant italic :foreground "dark gray"))))
    `(org-block-end-line
-     ((t (:box (:style release-button) :slant italic :foreground "#586e75"))))
+     ((t (:box (:style release-button) :slant italic :foreground "dark gray"))))
    `(org-document-info ((t (:foreground "dark orange"))))
    `(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
    `(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
    `(org-property-value ((t (:inherit fixed-pitch))) t)
+   `(org-date ((t (:inherit (link fixed-pitch)))) t)
    `(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
    ;; `(org-tag ((t (:box (:line-width 1)))))
    `(org-checkbox ((t :inherit 'fixed-pitch-serif :background unspecified :box unspecified)))
-   `(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "#ba2d2f")))))
-
-  (set-face-attribute 'org-date nil :inherit 'fixed-pitch))
+   `(org-verbatim ((t (:inherit (shadow fixed-pitch) :foreground "#ba2d2f"))))))
 
 (add-hook 'org-mode-hook #'my/org-font-setup)
 
@@ -148,6 +147,10 @@ Ref:https://emacs.stackexchange.com/a/58326"
   (org-table-map-tables 'org-table-align 'quietly))
 
 (advice-add 'org-agenda-quit :before 'org-save-all-org-buffers)
+
+(defun my/org-align-all-tags ()
+  (interactive)
+  (org-align-tags t))
 
 (with-eval-after-load 'org-attach
   (setq org-attach-store-link-p t))

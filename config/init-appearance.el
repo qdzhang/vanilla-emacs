@@ -34,6 +34,9 @@
 (set-fontset-font t 'han "FZYouSong GBK")
 ;; (set-fontset-font t 'han "FZShuSong-Z01")
 ;; (set-fontset-font t 'kana "Sarasa Mono J")
+;; 使用 Noto Serif CJK JP 行高比一般的英文字体高，所以使用“一點明體”，可以和
+;; 中文的宋体和英文的 serif 字形保持一致的视觉效果，还能保持行高一致。
+(set-fontset-font t 'kana "一點明體")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
 (set-fontset-font t 'bopomofo "Sarasa Mono SC")
@@ -47,7 +50,7 @@
 
 ;; Noto Serif font set for CJK font
 ;; (set-fontset-font t 'han "Noto Serif CJK SC")
-(set-fontset-font t 'kana "Noto Serif CJK JP")
+;; (set-fontset-font t 'kana "Noto Serif CJK JP")
 ;; (set-fontset-font t 'hangul "Noto Serif CJK KR")
 ;; (set-fontset-font t 'cjk-misc "Noto Serif CJK SC")
 ;; (set-fontset-font t 'bopomofo "Noto Serif CJK SC")
@@ -122,6 +125,11 @@
         ((eq my/current-color-theme 'dark)
          (my/light-theme))))
 
+(setq my-light-bg1 "white")
+(setq my-light-bg2 "#f5ebe1")
+(setq my-light-bg3 "#f4f4e8")
+(setq my-light-bg4 "#fdf6e3")
+
 ;; Default light theme with some customization
 (defun my/light-theme ()
   (interactive)
@@ -129,7 +137,7 @@
   (mapc #'disable-theme custom-enabled-themes)
   (custom-theme-set-faces
    'user
-   `(default ((t (:background "#fdf6e3" :foreground "black"))))
+   `(default ((t (:background ,my-light-bg4 :foreground "black"))))
    `(cursor ((t (:background "black"))))
    `(menu ((t (:foreground "black"))))
    `(font-lock-comment-face ((t :foreground "Firebrick")))
