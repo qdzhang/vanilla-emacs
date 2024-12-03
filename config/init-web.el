@@ -104,8 +104,13 @@
               (setq-local
                eldoc-documentation-strategy
                'eldoc-documentation-compose)))
+  (eglot-ensure)
   (subword-mode 1))
 
+(with-eval-after-load 'typescript-ts-mode
+  (require 'init-eglot))
+(with-eval-after-load 'tsx-ts-mode
+  (require 'init-eglot))
 (add-hook 'typescript-ts-mode-hook 'my/typescript-mode-hook)
 (add-hook 'tsx-ts-mode-hook (lambda ()
                               (eglot-ensure)))

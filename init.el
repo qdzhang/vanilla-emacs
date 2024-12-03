@@ -94,8 +94,6 @@
 (require 'init-python)
 (with-eval-after-load 'python-mode
   (require 'init-eglot))
-(with-eval-after-load 'tsx-ts-mode
-  (require 'init-eglot))
 
 
 (with-eval-after-load 'flymake

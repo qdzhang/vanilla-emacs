@@ -15,6 +15,19 @@
 ;; I want to turn on `flymake-mode' manually.
 (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
 
+;; https://old.reddit.com/r/emacs/comments/1h1d5k4/how_to_potentially_make_your_eglot_completions/
+;; Make company completion faster with eglot
+(add-to-list 'eglot-stay-out-of 'company-backends)
+(defun my/eglot-company-backend-local-settings ()
+  "Set the company backends so that lsp results are first, but
+ code results are a backup. This allows for autocompletion
+ without semantic evaluation, which can be useful if the lsp is
+ busy or does not return results quickly enough."
+  (setq-local company-backends
+              '((company-capf :separate company-dabbrev-code)
+                company-files)))
+(add-hook 'eglot-managed-mode-hook 'my/eglot-company-backend-local-settings)
+
 
 (add-to-list 'eglot-server-programs '((c++-mode c-mode) "ccls"))
 ;; (add-to-list 'eglot-server-programs '((c++-mode c-mode) . ("clangd" "--clang-tidy")))
