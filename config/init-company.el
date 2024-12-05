@@ -41,22 +41,21 @@ Uses ivy, helm, vertico, or ido, if available."
 ;; Disable the auto quickhelp frame. Use <f1> to open quickhelp manually
 (setq company-posframe-quickhelp-delay nil)
 
-(with-eval-after-load 'company-mode
-  ;; User `company-tng-mode', Tab and go!
-  (define-key company-active-map (kbd "TAB") 'company-select-next)
-  (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
-  (define-key company-active-map (kbd "RET") nil)
-  (define-key company-active-map [return] 'nil)
+;; User `company-tng-mode', Tab and go!
+(define-key company-active-map (kbd "TAB") 'company-select-next)
+(define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+(define-key company-active-map (kbd "RET") nil)
+(define-key company-active-map [return] 'nil)
 
-  ;; Other userful keybindings:
-  ;; C-w: `company-show-location'
-  ;; C-h (or <f1>): `company-show-doc-buffer'
+;; Other userful keybindings:
+;; C-w: `company-show-location'
+;; C-h (or <f1>): `company-show-doc-buffer'
 
-  ;; C-s: `company-search-candidates'
-  ;; After search, use `C-o'(`company-search-toggle-filtering') can filter the
-  ;; candidates by the search string.
-  (define-key company-active-map (kbd "C-M-i") 'company-complete)
-  (define-key company-active-map (kbd "C-M-s") '+company/completing-read))
+;; C-s: `company-search-candidates'
+;; After search, use `C-o'(`company-search-toggle-filtering') can filter the
+;; candidates by the search string.
+(define-key company-active-map (kbd "C-M-i") 'company-complete)
+(define-key company-active-map (kbd "C-M-s") '+company/completing-read)
 
 (with-eval-after-load 'company-etags
   '(progn (add-to-list 'company-etags-modes 'web-mode)))
