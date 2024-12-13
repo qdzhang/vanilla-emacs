@@ -114,16 +114,46 @@
 ;; Current color theme. Acceptable values: 'light, 'dark
 ;; Default is light
 (defvar my/current-color-theme 'light)
-(add-hook 'after-init-hook 'my/light-theme)
+;; (add-hook 'after-init-hook 'my/light-theme)
 (define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
+
+(add-to-list 'custom-theme-load-path
+             (file-name-as-directory (concat user-emacs-directory "themes/")))
+
+;;; Light theme
+;; (add-hook 'after-init-hook 'my/change-to-light-theme)
+
+(load-theme 'scintilla t t)
+(enable-theme 'scintilla)
+
+;; (load-theme 'gtk-ide t t)
+;; (enable-theme 'gtk-ide)
+
+;;; Dark theme
+(defun my/change-to-dark-theme ()
+  "Change to a dark theme"
+  (interactive)
+  (setq my/current-color-theme 'dark)
+  (mapcar #'disable-theme custom-enabled-themes)
+  (load-theme 'railscast t t)
+  (enable-theme 'railscast))
+
+(defun my/change-to-light-theme ()
+  "Change to a light theme"
+  (interactive)
+  (setq my/current-color-theme 'light)
+  (mapcar #'disable-theme custom-enabled-themes)
+  (load-theme 'scintilla t t)
+  (enable-theme 'scintilla))
+
 
 (defun my/theme-toggle-color ()
   "Toggle between light and dark color scheme."
   (interactive)
   (cond ((eq my/current-color-theme 'light)
-         (my/dark-theme))
+         (my/change-to-dark-theme))
         ((eq my/current-color-theme 'dark)
-         (my/light-theme))))
+         (my/change-to-light-theme))))
 
 (setq my-light-bg1 "white")
 (setq my-light-bg2 "#f5ebe1")
