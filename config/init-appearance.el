@@ -120,31 +120,30 @@
 (add-to-list 'custom-theme-load-path
              (file-name-as-directory (concat user-emacs-directory "themes/")))
 
-;;; Light theme
-;; (add-hook 'after-init-hook 'my/change-to-light-theme)
+(defun my/theme-apply (theme)
+  "Load and enable specific THEME."
+  (load-theme theme t t)
+  (enable-theme theme))
 
-(load-theme 'scintilla t t)
-(enable-theme 'scintilla)
+(cond ((eq my/current-color-theme 'light)
+       (my/theme-apply 'scintilla))
+      ((eq my/current-color-theme 'dark)
+       (my/theme-apply 'railscast)))
 
-;; (load-theme 'gtk-ide t t)
-;; (enable-theme 'gtk-ide)
 
-;;; Dark theme
 (defun my/change-to-dark-theme ()
   "Change to a dark theme"
   (interactive)
   (setq my/current-color-theme 'dark)
   (mapcar #'disable-theme custom-enabled-themes)
-  (load-theme 'railscast t t)
-  (enable-theme 'railscast))
+  (my/theme-apply 'railscast))
 
 (defun my/change-to-light-theme ()
   "Change to a light theme"
   (interactive)
   (setq my/current-color-theme 'light)
   (mapcar #'disable-theme custom-enabled-themes)
-  (load-theme 'scintilla t t)
-  (enable-theme 'scintilla))
+  (my/theme-apply 'scintilla))
 
 
 (defun my/theme-toggle-color ()

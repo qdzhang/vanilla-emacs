@@ -80,7 +80,6 @@
  '(flymake-errline ((t (:background "LightSalmon" :foreground "black"))))
  '(flymake-warnline ((t (:background "LightSteelBlue" :foreground "black"))))
  '(web-mode-current-element-highlight-face ((t :foreground "white" :background "PaleGreen4")))
- '(child-frame-border ((t (:background "white"))))
  '(mode-line
    ((t ( :background "darkslateblue"
          :foreground "white"
@@ -104,6 +103,8 @@
                       :weight bold
                       :background "darkslateblue"
                       :foreground "white"))))
+ '(ansi-color-blue ((t :foreground "#569cd6" :background "#569cd6")))
+ '(ansi-color-bright-blue ((t :foreground "#007acc" :background "#007acc")))
  '(underline ((t (:underline t)))))
 
 ;;;###autoload

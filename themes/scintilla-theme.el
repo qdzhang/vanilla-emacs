@@ -53,7 +53,6 @@
  '(widget-field-face ((t (:background "NavyBlue"))))
  '(widget-single-line-field-face ((t (:background "RoyalBlue"))))
  '(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))
- '(child-frame-border ((t (:background "black"))))
  '(ansi-color-white ((t :background "gray65" :foreground "gray65"))))
 
 ;;;###autoload
