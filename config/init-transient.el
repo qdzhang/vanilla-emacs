@@ -6,6 +6,8 @@
 
 ;;; Code:
 
+(require 'transient)
+
 (transient-define-prefix my-transient/common-modes-menu ()
   "A transient menu contains common modes"
   [["Mode"

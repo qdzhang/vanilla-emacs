@@ -44,7 +44,7 @@
 
 ;; Basic packages
 (require 'cl-lib)
-(require 'transient)
+
 (require 'lazy-load)
 
 (fido-vertical-mode)

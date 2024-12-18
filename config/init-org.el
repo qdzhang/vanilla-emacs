@@ -79,6 +79,8 @@
       ;; do not put two spaces on the left
       org-src-preserve-indentation nil
       org-src-tab-acts-natively t
+      ;; do not show code highlight in src blocks
+      org-src-fontify-natively nil
       org-edit-src-content-indentation 0)
 
 (setq org-todo-keyword-faces

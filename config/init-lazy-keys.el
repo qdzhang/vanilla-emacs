@@ -133,8 +133,12 @@
  '(("C-<f8>" . my/upcase-word-toggle)
    ("M-c" . my/capitalize-word-toggle)
    ("C-M-<return>" . my/open-newline-below)
-   ("C-o" . my/open-newline-above))
+   ("C-o" . my/open-newline-above)
+   ("M-w" . my/kill-ring-save)
+   ("C-M-<" . my/shift-left)
+   ("C-M->" . my/shift-right))
  "init-edit")
+
 
 (add-hook 'c-initialization-hook
           (lambda ()
@@ -242,11 +246,6 @@
  '(("M-<up>" . switch-to-prev-buffer)
    ("M-<down>" . switch-to-next-buffer)))
 
-(lazy-load-global-keys
- '(("M-w" . my/kill-ring-save)
-   ("C-M-<" . my/shift-left)
-   ("C-M->" . my/shift-right))
- "init-edit")
 
 ;; string-inflection config
 (lazy-load-global-keys

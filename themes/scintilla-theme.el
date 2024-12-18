@@ -32,7 +32,7 @@
 (custom-theme-set-faces
  'scintilla
 
- '(default ((t (:background "white" :foreground "black"))))
+ '(default ((t (:background "#f0eee4" :foreground "black"))))
  '(mouse ((t (:foreground "grey15"))))
  '(cursor ((t (:background "grey15"))))
 
