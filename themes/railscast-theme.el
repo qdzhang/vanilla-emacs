@@ -73,7 +73,7 @@
  ;; '(minibuffer-prompt ((t (:bold t :foreground "#FF6600"))))
  '(region ((t (:background "#555577"))))
  '(primary-selection ((t (:background "#555577"))))
- '(show-paren-match ((t :background "PaleGreen4")))
+ '(show-paren-match ((t (:background "PaleGreen4" :foreground "white"))))
  '(isearch ((t (:background "#555555"))))
  '(zmacs-region ((t (:background "#555577"))))
  '(secondary-selection ((t (:background "darkslateblue"))))

@@ -88,7 +88,8 @@ If this is a daemon session, load them all immediately instead."
             org-footnote org-macro ob org org-clock org-agenda org-capture
             org-attach magit-log magit-diff magit-status bookmark
             eshell em-alias em-banner em-basic em-cmpl em-glob em-hist em-ls
-            em-prompt em-script em-term em-unix))
+            em-prompt em-script em-term em-unix
+            init-eglot))
 
 (add-hook 'emacs-startup-hook #'my-defer/load-packages-incrementally-h)
 

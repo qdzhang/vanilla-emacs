@@ -7,7 +7,12 @@
 ;; (set-face-attribute 'default nil :font (font-spec :family "Noto Sans Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "IntelOne Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Go Mono" :size 26))
-(set-face-attribute 'default nil :font (font-spec :family "Sarasa Fixed SC" :size 26))
+
+;; Using Sarasa Font will slow down Emacs startup, use Iosevka instead.
+;; (set-face-attribute 'default nil :font (font-spec :family "Sarasa Fixed SC" :size 26))
+(set-face-attribute 'default nil :font (font-spec :family "Iosevka Fixed SS06" :size 26))
+
+
 ;; (set-face-attribute 'default nil :font (font-spec :family "Bedstead" :size 28))
 ;; (set-face-attribute 'default nil :font (font-spec :family "CozetteHiDpi"))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
@@ -27,15 +32,15 @@
 
 ;; Sarasa font set for CJK font
 ;; (set-fontset-font t 'han "Sarasa Mono SC")
-;; (set-fontset-font t 'han "HYXuanSong")
+;; 楷体
 ;; (set-fontset-font t 'han "FZKai-Z03")
-;; 使用寒蝉正楷体
-;; (set-fontset-font t 'han "ChillKai")
+;; 仿宋
 (set-fontset-font t 'han "FZYouSong GBK")
 ;; (set-fontset-font t 'han "FZShuSong-Z01")
-;; (set-fontset-font t 'kana "Sarasa Mono J")
+
 ;; 使用 Noto Serif CJK JP 行高比一般的英文字体高，所以使用“一點明體”，可以和
 ;; 中文的宋体和英文的 serif 字形保持一致的视觉效果，还能保持行高一致。
+;; (set-fontset-font t 'kana "Sarasa Mono J")
 (set-fontset-font t 'kana "一點明體")
 (set-fontset-font t 'hangul "Sarasa Mono K")
 (set-fontset-font t 'cjk-misc "Sarasa Mono SC")
