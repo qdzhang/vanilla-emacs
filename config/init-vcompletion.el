@@ -29,15 +29,15 @@
 (setq completion-show-inline-help nil)
 (when (> emacs-major-version 28)
   (setq completion-auto-help 'always)
-  (setq completion-auto-select t))
+  (setq completion-auto-select 'second-tab))
 
 
 ;; ** fuzzy completing
 (add-to-list 'completion-styles 'flex t)
 
 ;; * Config `vcomplete-mode'
-;; (require 'vcomplete)
-;; (vcomplete-mode)
+(require 'vcomplete)
+(vcomplete-mode)
 
 ;; ** Config position and size of completions buffer
 (if (> emacs-major-version 28)
@@ -49,34 +49,6 @@
                  (window-height . 0.33)
                  (slot . 0))))
 
-;; live update for completions
-;; Reference:
-;; https://emacs-china.org/t/emacs-28-1-fido-vertical-mode/20474/5
-(defun live-completions--update (&rest _)
-  "Update the *Completions* buffer.
-Meant to be added to `after-change-functions'."
-  (when (minibufferp) ; skip if we've exited already
-    (let ((while-no-input-ignore-events '(selection-request)))
-      (while-no-input
-        (condition-case nil
-            (save-match-data
-              (save-excursion
-                (goto-char (point-max))
-                (let ((inhibit-message t)
-                      (ring-bell-function #'ignore))
-                  (minibuffer-completion-help))))
-          (quit (abort-recursive-edit)))))))
-
-
-(defun live-completions--setup ()
-  "Setup live updating for the *Completions* buffer.
-Meant to be added to `minibuffer-setup-hook'."
-  (unless (memq (or (bound-and-true-p current-minibuffer-command) this-command)
-                '(execute-extended-command describe-command describe-symbol
-                                           describe-function describe-variable))
-    (add-hook 'after-change-functions #'live-completions--update nil t)))
-
-(add-hook 'minibuffer-setup-hook #'live-completions--setup)
 
 ;; Sort by frequency
 ;; Reference:
