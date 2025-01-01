@@ -20,6 +20,7 @@
    ("C-M-d" . sp-down-sexp)        ; opposite of `sp-backward-up-sexp'
    ("C-M-u" . sp-backward-up-sexp) ; opposite of `sp-down-sexp'
    ("C-M-k" . sp-kill-sexp)
+   ("M-k" . sp-backward-kill-sexp)
    ("M-l" . sp-end-of-sexp)
    ("M-u" . sp-up-sexp)            ; opposite of `sp-backward-down-sexp'
    ("M-B" . sp-backward-down-sexp) ; opposite of `sp-up-sexp'
@@ -34,9 +35,8 @@
    ("C-M-<backspace>" . sp-splice-sexp-killing-backward)
    ("C-]" . sp-select-next-thing-exchange)
    ("C-\"" . sp-change-inner)
-   ("M-r" . sp-delete-region)
+   ("M-r" . sp-rewrap-sexp)
    ("M-i" . sp-change-enclosing)
-   ("M-o" . sp-rewrap-sexp)
    ("M-d" . my/sp-kill-word)
    ("C-w" . my/kill-region-or-line)
    ("C-;" . sp-comment))
@@ -221,6 +221,7 @@
 
 (lazy-load-global-keys
  '(("C-x C-5" . my/toggle-frame-split)
+   ("M-o" . my/quick-window-jump)
    ("C-c v" . shrink-window)
    ("S-<left>" . windmove-left)
    ("S-<right>" . windmove-right)
