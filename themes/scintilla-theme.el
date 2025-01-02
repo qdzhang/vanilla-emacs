@@ -48,6 +48,7 @@
  '(highline-face ((t (:background "Grey95"))))
  '(show-paren-match-face ((t (:background "Grey80"))))
  '(region ((t (:background "Grey80"))))
+ '(menu ((t (:foreground "black"))))
  '(highlight ((t (:background "darkseagreen2"))))
  '(secondary-selection ((t (:background "NavyBlue" :foreground "white"))))
  '(widget-field-face ((t (:background "NavyBlue"))))

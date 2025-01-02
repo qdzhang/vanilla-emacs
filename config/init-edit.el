@@ -344,6 +344,7 @@ This procedure also works on `defmacro', `defface' and scheme `define'."
 ;; invoked
 (add-to-list 'pulsar-pulse-functions 'tab-bar-switch-to-tab)
 (add-to-list 'pulsar-pulse-functions 'project-switch-project)
+(add-to-list 'pulsar-pulse-functions 'my/quick-window-jump)
 
 (setq pulsar-pulse t)
 (setq pulsar-delay 0.06)
