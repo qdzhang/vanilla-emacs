@@ -7,6 +7,7 @@
 
 
 (add-to-list 'super-save-triggers 'my/quick-window-jump)
+(add-to-list 'super-save-triggers 'magit-status)
 (add-to-list 'super-save-hook-triggers 'find-file-hook)
 (add-to-list 'super-save-triggers 'switch-to-buffer)
 (add-to-list 'super-save-triggers 'tab-bar-switch-to-tab)
@@ -21,5 +22,7 @@
 (setq super-save-silent t)
 ;; Save all buffer
 (setq super-save-all-buffers t)
+;; Don't auto save remote file
+(setq super-save-remote-files nil)
 
 (provide 'init-super-save)

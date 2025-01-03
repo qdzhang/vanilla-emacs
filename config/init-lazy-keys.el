@@ -5,6 +5,7 @@
 
 ;; Use `comment-line' to replace `comment-dwim'
 (global-set-key [remap comment-dwim] #'comment-line)
+(global-set-key (kbd "M-\\") #'cycle-spacing)
 
 (lazy-load-global-keys
  '(("C-c g" . my-transient/magit-menu))

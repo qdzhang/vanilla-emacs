@@ -111,6 +111,7 @@
  #'(lambda ()
      (require 'init-edit)
      (require 'init-isearch)
+     (require 'init-grep)
      (require 'init-navigate)
      (require 'init-fold)
      (require 'init-tags)
