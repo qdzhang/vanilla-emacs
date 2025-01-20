@@ -38,6 +38,9 @@
   (define-key cperl-mode-map (kbd "C-M-<tab>") 'perltidy-region)
   (define-key cperl-mode-map (kbd "C-c <f1>") 'perltidy-buffer))
 
+(set-face-background 'cperl-array-face (face-background 'default))
+(set-face-background 'cperl-hash-face (face-background 'default))
+
 
 ;; Raku
 (setq raku-exec-path (executable-find "raku"))

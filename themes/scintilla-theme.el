@@ -54,7 +54,10 @@
  '(widget-field-face ((t (:background "NavyBlue"))))
  '(widget-single-line-field-face ((t (:background "RoyalBlue"))))
  '(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))
- '(ansi-color-white ((t :background "gray65" :foreground "gray65"))))
+ '(ansi-color-white ((t :background "gray65" :foreground "gray65")))
+ '(cperl-array-face ((t (:bold t :foreground "RoyalBlue" :background "lavender"))))
+ '(cperl-hash-face ((t (:italic t :bold t :foreground "tomato" :background "MistyRose"))))
+ '(cperl-nonoverridable-face ((t (:foreground "#008b8b")))))
 
 ;;;###autoload
 (when load-file-name
