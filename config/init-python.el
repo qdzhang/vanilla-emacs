@@ -8,6 +8,15 @@
 
 ;;; Code:
 
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args "-i --simple-prompt")
+(setq python-check-command "ruff check --output-format=pylint")
+(setq-local compile-command
+            (concat "pytest -v "
+                    (when buffer-file-name
+                      (shell-quote-argument buffer-file-name)))
+            compilation-scroll-output t)
+
 (add-hook 'python-mode-hook
           (lambda ()
             (smart-dash-mode 1)
@@ -15,12 +24,7 @@
             (setq imenu-create-index-function 'python-imenu-create-flat-index)
             (imenu-add-menubar-index)
             (my/py-indent-style)
-            (eglot-ensure)
-            (setq-local compile-command
-                        (concat "pytest -v "
-                                (when buffer-file-name
-                                  (shell-quote-argument buffer-file-name)))
-                        compilation-scroll-output t)))
+            (eglot-ensure)))
 
 (defun my/py-indent-style ()
   (setq python-indent-offset 4

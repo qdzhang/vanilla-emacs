@@ -67,5 +67,15 @@
           "-")
   :lighter " Denofmt")
 
+
+;;;###autoload (autoload 'ruff-format-buffer "init-reformatter" nil t)
+;;;###autoload (autoload 'ruff-format-region "init-reformatter" nil t)
+;;;###autoload (autoload 'ruff-format-on-save-mode "init-reformatter" nil t)
+(reformatter-define ruff-format
+  :program "ruff"
+  :args (list "format" "--stdin-filename" (or (buffer-file-name) input-file))
+  :lighter " RuffFmt"
+  :group 'ruff-format)
+
 (provide 'init-reformatter)
 ;;; init-reformatter.el
