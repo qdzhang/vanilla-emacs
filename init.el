@@ -90,7 +90,6 @@
   (require 'init-eglot))
 
 (require 'init-elisp)
-(require 'init-direnv)
 (require 'init-python)
 (with-eval-after-load 'python-mode
   (require 'init-eglot))

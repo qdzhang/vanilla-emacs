@@ -127,5 +127,8 @@ Ref: https://gist.github.com/alphapapa/c5458365e9940069e6a52a2a95b1ccff"
 (require 'init-waka)
 (global-wakatime-mode)
 
+;; Load direnv config
+(require 'init-direnv)
+
 (provide 'init-defer-misc)
 ;;; init-defer-misc.el ends here

@@ -8,10 +8,7 @@
 
 ;;; Code:
 
-(dolist (mode '(ruby-mode-hook
-                python-mode-hook
-                go-mode-hook))
-  (add-hook mode 'envrc-mode))
+(envrc-global-mode)
 
 (provide 'init-direnv)
 ;;; init-direnv.el
