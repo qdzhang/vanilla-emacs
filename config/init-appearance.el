@@ -35,7 +35,11 @@
 ;; 楷体
 ;; (set-fontset-font t 'han "FZKai-Z03")
 ;; 仿宋
-(set-fontset-font t 'han "FZYouSong GBK")
+;; (set-fontset-font t 'han "FZYouSong GBK")
+;; 上图东观体
+;; https://www.library.sh.cn/special/dongguanti/
+(set-fontset-font t 'han "上图东观体 常规")
+;; 书宋
 ;; (set-fontset-font t 'han "FZShuSong-Z01")
 
 ;; 使用 Noto Serif CJK JP 行高比一般的英文字体高，所以使用“一點明體”，可以和
