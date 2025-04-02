@@ -15,10 +15,6 @@
           rime-predicate-god-mode-p))
   (setq rime-show-candidate 'posframe)
 
-  ;; 当有输入框的时候，按 `M-j' 就可以进入临时英文模式，输入完成后按 `enter' 键上屏
-  (define-key rime-active-mode-map (kbd "M-j") 'rime-inline-ascii)
-  ;; 临时英文中，阻止标点符号直接上屏
-  (setq rime-inline-ascii-holder ?x)
   ;; 在英文断言成立的时候，按 `M-j' 强制使用中文
   (define-key rime-mode-map (kbd "M-j") 'rime-force-enable)
 

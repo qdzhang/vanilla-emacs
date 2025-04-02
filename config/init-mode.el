@@ -101,4 +101,8 @@
 (add-to-list 'auto-mode-alist
              '("\\(?:CMakeLists\\.txt\\|\\.cmake\\)\\'" . cmake-ts-mode))
 
+(add-to-list 'auto-mode-alist
+             '("\\.\\(pas\\|lpr\\|dpr\\|pp\\|inc\\|dpk\\)\\'" . opascal-mode))
+
+
 (provide 'init-mode)

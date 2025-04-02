@@ -98,7 +98,7 @@ Ref:https://emacs.stackexchange.com/a/58326"
 
 (setq org-capture-templates
       `(("t" "Work Task" entry
-         (file "~/org/todo.org")
+         (file+olp+datetree "~/org/todo.org")
          "* TODO %^{任务名} %^g\n%U\n" :empty-lines 1)
         ("r" "Weekly Review" plain
          (file+function "~/org/review.org" my/org-find-month-in-datetree)
