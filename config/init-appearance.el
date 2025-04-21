@@ -135,9 +135,9 @@
   (enable-theme theme))
 
 (cond ((eq my/current-color-theme 'light)
-       (my/theme-apply 'scintilla))
+       (my/theme-apply 'mylight))
       ((eq my/current-color-theme 'dark)
-       (my/theme-apply 'railscast)))
+       (my/theme-apply 'mydark)))
 
 
 (defun my/change-to-dark-theme ()
@@ -145,14 +145,14 @@
   (interactive)
   (setq my/current-color-theme 'dark)
   (mapcar #'disable-theme custom-enabled-themes)
-  (my/theme-apply 'railscast))
+  (my/theme-apply 'mydark))
 
 (defun my/change-to-light-theme ()
   "Change to a light theme"
   (interactive)
   (setq my/current-color-theme 'light)
   (mapcar #'disable-theme custom-enabled-themes)
-  (my/theme-apply 'scintilla))
+  (my/theme-apply 'mylight))
 
 
 (defun my/theme-toggle-color ()
@@ -163,52 +163,6 @@
         ((eq my/current-color-theme 'dark)
          (my/change-to-light-theme))))
 
-(setq my-light-bg1 "white")
-(setq my-light-bg2 "#f5ebe1")
-(setq my-light-bg3 "#f4f4e8")
-(setq my-light-bg4 "#fdf6e3")
-
-;; Default light theme with some customization
-(defun my/light-theme ()
-  (interactive)
-  (setq my/current-color-theme 'light)
-  (mapc #'disable-theme custom-enabled-themes)
-  (custom-theme-set-faces
-   'user
-   `(default ((t (:background ,my-light-bg4 :foreground "black"))))
-   `(cursor ((t (:background "black"))))
-   `(menu ((t (:foreground "black"))))
-   `(font-lock-comment-face ((t :foreground "Firebrick")))
-   ;; Make `term' and `ansi-term' prompt more distinguishable
-   `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
-   `(region ((t :background "#eedc82")))
-   `(show-paren-match ((t :background "turquoise")))
-   `(header-line ((t :inherit mode-line-inactive)))
-   `(mode-line ((t :background "grey75" :foreground "black")))
-   `(mode-line-active ((t :inherit mode-line :box (:line-width -1 :style released-button))))
-   `(mode-line-inactive ((t :background "#e5e5e5" :foreground "#7f7f7f" :box (:line-width -1 :color "#bababa"))))
-   `(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))))
-
-(defun my/dark-theme ()
-  (interactive)
-  (setq my/current-color-theme 'dark)
-  (mapc #'disable-theme custom-enabled-themes)
-  (custom-theme-set-faces
-   'user
-   `(default ((t :background "#181818" :foreground "#e4e4ef")))
-   `(cursor ((t :background "#e0e0e0")))
-   `(font-lock-comment-face ((t :foreground "violet")))
-   `(ansi-color-white ((t :background "gray90" :foreground "gray90")))
-   `(region ((t :background "#005959")))
-   `(show-paren-match ((t :background "#d33682")))
-   `(header-line ((t :inherit mode-line-inactive)))
-   `(mode-line ((t :background "#505050" :foreground "#f6f3e8")))
-   `(mode-line-active ((t :inherit mode-line :box (:line-width -1 :style released-button))))
-   `(mode-line-inactive ((t :background "#323232" :foreground "#a6a6a6" :box (:line-width -1 :color "#606070"))))
-   `(web-mode-current-element-highlight-face ((t :foreground "white" :background "PaleGreen4")))))
-
-(with-eval-after-load 'easy-kill
-  (set-face-attribute 'easy-kill-selection nil :inherit 'highlight))
 
 ;; Highlight TODO watchwords
 (defun my/add-watchwords ()
