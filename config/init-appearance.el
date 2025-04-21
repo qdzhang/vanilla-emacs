@@ -123,7 +123,10 @@
 ;; Current color theme. Acceptable values: 'light, 'dark
 ;; Default is light
 (defvar my/current-color-theme 'light)
-;; (add-hook 'after-init-hook 'my/light-theme)
+;; Setup a pair of dark/light themes
+(defvar my/light-theme 'mylight)
+(defvar my/dark-theme 'mydark)
+
 (define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
 
 (add-to-list 'custom-theme-load-path
@@ -135,9 +138,9 @@
   (enable-theme theme))
 
 (cond ((eq my/current-color-theme 'light)
-       (my/theme-apply 'mylight))
+       (my/theme-apply my/light-theme))
       ((eq my/current-color-theme 'dark)
-       (my/theme-apply 'mydark)))
+       (my/theme-apply my/dark-theme)))
 
 
 (defun my/change-to-dark-theme ()
@@ -145,14 +148,14 @@
   (interactive)
   (setq my/current-color-theme 'dark)
   (mapcar #'disable-theme custom-enabled-themes)
-  (my/theme-apply 'mydark))
+  (my/theme-apply my/dark-theme))
 
 (defun my/change-to-light-theme ()
   "Change to a light theme"
   (interactive)
   (setq my/current-color-theme 'light)
   (mapcar #'disable-theme custom-enabled-themes)
-  (my/theme-apply 'mylight))
+  (my/theme-apply my/light-theme))
 
 
 (defun my/theme-toggle-color ()
