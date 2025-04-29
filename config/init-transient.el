@@ -2,11 +2,18 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 (require 'transient)
+
+;; Emacs use the older built-in version of transient,
+;; while magit relies on a function from a newer version.
+;; Define the new function manually.
+;; https://lists.gnu.org/archive/html/bug-guix/2024-07/msg00233.html
+(defun transient-prefix-object ()
+  (or transient--prefix transient-current-prefix))
 
 (transient-define-prefix my-transient/common-modes-menu ()
   "A transient menu contains common modes"
