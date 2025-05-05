@@ -104,5 +104,7 @@
 (add-to-list 'auto-mode-alist
              '("\\.\\(pas\\|lpr\\|dpr\\|pp\\|inc\\|dpk\\)\\'" . opascal-mode))
 
+(add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
+
 
 (provide 'init-mode)
