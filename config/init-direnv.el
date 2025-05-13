@@ -10,5 +10,8 @@
 
 (envrc-global-mode)
 
+(defalias 'direnv-reload #'envrc-reload)
+(defalias 'direnv-allow #'envrc-allow)
+
 (provide 'init-direnv)
 ;;; init-direnv.el

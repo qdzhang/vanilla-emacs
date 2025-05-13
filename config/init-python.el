@@ -17,14 +17,21 @@
                       (shell-quote-argument buffer-file-name)))
             compilation-scroll-output t)
 
+(setq python-flymake-command '("ruff"
+                               "check"
+                               "--quiet"
+                               "--output-format=concise"
+                               "--stdin-filename=stdin"))
+
+(setq python-shell-dedicated 'project)
+
 (add-hook 'python-mode-hook
           (lambda ()
             (smart-dash-mode 1)
             (hs-minor-mode 1)
             (setq imenu-create-index-function 'python-imenu-create-flat-index)
             (imenu-add-menubar-index)
-            (my/py-indent-style)
-            (eglot-ensure)))
+            (my/py-indent-style)))
 
 (defun my/py-indent-style ()
   (setq python-indent-offset 4

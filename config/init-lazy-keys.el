@@ -289,4 +289,9 @@
  '(("C-c i" . speedbar))
  "speedbar")
 
+(lazy-load-local-keys
+ '(("C-c C-p" . pp-macroexpand-last-sexp))
+ emacs-lisp-mode-map
+ "init-elisp")
+
 (provide 'init-lazy-keys)

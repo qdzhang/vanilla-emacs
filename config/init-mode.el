@@ -94,6 +94,8 @@
 ;; Use `bash-ts-mode'
 (add-to-list 'major-mode-remap-alist '(shell-script-mode . bash-ts-mode))
 (add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
+;; Use `json-ts-mode'
+(add-to-list 'major-mode-remap-alist '(js-json-mode . json-ts-mode))
 
 
 (add-to-list 'auto-mode-alist '("\\.go\\'" . go-ts-mode))
