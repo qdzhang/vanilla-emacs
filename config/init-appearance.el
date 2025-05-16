@@ -12,7 +12,7 @@
 ;; (set-face-attribute 'default nil :font (font-spec :family "Sarasa Fixed SC" :size 26))
 (set-face-attribute 'default nil :font (font-spec :family "Iosevka Fixed SS06" :size 26))
 
-
+;; (set-face-attribute 'default nil :font (font-spec :family "IBM Plex Mono" :size 26))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Bedstead" :size 28))
 ;; (set-face-attribute 'default nil :font (font-spec :family "CozetteHiDpi"))
 ;; (set-face-attribute 'default nil :font (font-spec :family "Input Mono Condensed" :size 24))
@@ -38,9 +38,11 @@
 ;; (set-fontset-font t 'han "FZYouSong GBK")
 ;; 上图东观体
 ;; https://www.library.sh.cn/special/dongguanti/
-(set-fontset-font t 'han "上图东观体 常规")
+;; (set-fontset-font t 'han "上图东观体 常规")
 ;; 书宋
 ;; (set-fontset-font t 'han "FZShuSong-Z01")
+;; 国标宋体
+(set-fontset-font t 'han "国标宋体")
 
 ;; 使用 Noto Serif CJK JP 行高比一般的英文字体高，所以使用“一點明體”，可以和
 ;; 中文的宋体和英文的 serif 字形保持一致的视觉效果，还能保持行高一致。
