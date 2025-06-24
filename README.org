@@ -9,3 +9,6 @@ make bootstrap-borg
 make bootstrap
 #+end_src
 
+** Version
+
+Tested with [[https://github.com/qdzhang/emacs-lucid-29/tree/master][Emacs 29.4]] and [[https://github.com/qdzhang/tree-sitter-23][tree-sitter 0.23.2]] .

@@ -84,6 +84,11 @@ Ref: https://codeberg.org/vifon/emacs-config/src/branch/master/emacs.d/lisp/30-e
 (mapc (lambda (x) (add-to-list 'eshell-visual-commands x))
       '("el" "elinks" "htop" "less" "ssh" "tmux" "top"))
 
+;; Enable smart scrolling
+;; https://www.gnu.org/software/emacs/manual/html_node/eshell/Smart-scrolling.html
+(require 'em-smart)
+(add-to-list 'eshell-modules-list 'eshell-smart)
+
 (defun my/kill-word-backward ()
   "Let Eshell kill word acting like zsh."
   (interactive)
