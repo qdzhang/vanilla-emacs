@@ -69,7 +69,12 @@
         '(("php" . "\\.phtml\\'")
           ("erb" . "\\.erb\\.")
           ("erb" . "\\.rhtml\\'")
-          ("mojolicious" . "\\.ep\\'"))))
+          ("mojolicious" . "\\.ep\\'")))
+
+  (setq web-mode-extra-auto-pairs
+        '(("erb"  . (("beg" "end")))
+          ("php"  . (("beg" "end")
+                     ("beg" "end"))))))
 
 
 (defun my/web-mode-for-django ()
@@ -120,7 +125,8 @@
   (interactive)
   (setenv "NODE_NO_READLINE" "1")  ; Avoid fancy terminal codes
   (setq comint-prompt-read-only t)
-  (pop-to-buffer (make-comint "node-repl" "node" nil "--interactive")))
+  (inheritenv
+   (pop-to-buffer (make-comint "node-repl" "node" nil "--interactive"))))
 
 
 ;; Config `astro-mode'
