@@ -14,6 +14,7 @@
           rime-predicate-prog-in-code-p
           rime-predicate-god-mode-p))
   (setq rime-show-candidate 'posframe)
+  (setq rime-posframe-style 'vertical)
 
   ;; 在英文断言成立的时候，按 `M-j' 强制使用中文
   (define-key rime-mode-map (kbd "M-j") 'rime-force-enable)
