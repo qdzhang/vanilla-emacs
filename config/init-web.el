@@ -78,13 +78,14 @@
 
 
 (defun my/web-mode-for-django ()
-  (let ((pr (project-root (project-current))))
-    (when pr
-      (if (file-exists-p (concat pr "manage.py"))
-          (progn
-            (web-mode-set-engine "django")
-            (message "Determine Django project: Setting web template to Django"))
-        (message "Not a Django project")))))
+  (when (project-current)
+    (let ((pr (project-root (project-current))))
+      (when pr
+        (if (file-exists-p (concat pr "manage.py"))
+            (progn
+              (web-mode-set-engine "django")
+              (message "Determine Django project: Setting web template to Django"))
+          (message "Not a Django project"))))))
 
 (add-hook 'web-mode-hook 'my/web-mode-for-django)
 
