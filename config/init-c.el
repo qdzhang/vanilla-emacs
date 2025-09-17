@@ -168,4 +168,8 @@ Available values are:
                          (my/c-abbrev-config)
                          (my/c-flymake)))
 
+(require 'editcmacro)
+(add-hook 'c-mode-hook   #'editcmacro-mode)
+(add-hook 'c++-mode-hook #'editcmacro-mode)
+
 (provide 'init-c)
