@@ -165,6 +165,7 @@ Available values are:
   (add-hook 'flymake-diagnostic-functions 'flymake-gcc nil t))
 
 (add-hook 'c-mode-hook (lambda ()
+                         (smart-dash-mode 1)
                          (my/c-abbrev-config)
                          (my/c-flymake)))
 
