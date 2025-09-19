@@ -7,6 +7,8 @@
 (global-set-key [remap comment-dwim] #'comment-line)
 (global-set-key (kbd "M-\\") #'cycle-spacing)
 
+(global-set-key (kbd "C-c ;") #'indent-for-comment)
+
 (lazy-load-global-keys
  '(("C-c g" . my-transient/magit-menu))
  "init-git")
@@ -22,6 +24,7 @@
    ("C-M-u" . sp-backward-up-sexp) ; opposite of `sp-down-sexp'
    ("C-M-k" . sp-kill-sexp)
    ("M-k" . sp-backward-kill-sexp)
+   ("M-L" . sp-beginning-of-sexp)
    ("M-l" . sp-end-of-sexp)
    ("M-u" . sp-up-sexp)            ; opposite of `sp-backward-down-sexp'
    ("M-B" . sp-backward-down-sexp) ; opposite of `sp-up-sexp'
