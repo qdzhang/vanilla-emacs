@@ -1,14 +1,16 @@
--include lib/borg/borg.mk
+DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
+
+-include $(DRONES_DIR)/borg/borg.mk
 
 help::
 	$(info make codespell-dry   = run codespell, dry run)
 	$(info make codespell-fix   = run codespell, write fixes)
 
 bootstrap-borg:
-	@git submodule--helper clone --name borg --path lib/borg \
+	@git submodule--helper clone --name borg --path $(DRONES_DIR)/borg \
 	--url git@github.com:emacscollective/borg.git
-	@cd lib/borg; git symbolic-ref HEAD refs/heads/master
-	@cd lib/borg; git reset --hard HEAD
+	@cd $(DRONES_DIR)/borg; git symbolic-ref HEAD refs/heads/main
+	@cd $(DRONES_DIR)/borg; git reset --hard HEAD
 
 codespell-dry:
 	@cd lib; codespell \

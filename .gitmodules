@@ -21,7 +21,7 @@
 	url = git@github.com:tumashu/company-posframe.git
 [submodule "compat"]
 	path = lib/compat
-	url = https://git.sr.ht/~pkal/compat
+	url = git@github.com:emacs-compat/compat.git
 [submodule "d-mode"]
 	path = lib/d-mode
 	url = git@github.com:Emacs-D-Mode-Maintainers/Emacs-D-Mode.git
@@ -79,7 +79,7 @@
 	url = git@github.com:manateelazycat/lazy-load.git
 [submodule "llama"]
 	path = lib/llama
-	url = https://git.sr.ht/~tarsius/llama
+	url = git@github.com:tarsius/llama.git
 [submodule "magit"]
 	path = lib/magit
 	url = git@github.com:magit/magit.git
@@ -94,7 +94,7 @@
 	url = git@github.com:tumashu/posframe.git
 [submodule "pulsar"]
 	path = lib/pulsar
-	url = https://git.sr.ht/~protesilaos/pulsar
+	url = git@github.com:protesilaos/pulsar.git
 [submodule "quick-insert-unicode"]
 	path = lib/quick-insert-unicode
 	url = git@github.com:qdzhang/quick-insert-unicode.git
