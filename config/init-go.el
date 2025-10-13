@@ -11,7 +11,7 @@
 
 (add-hook 'go-ts-mode-hook (lambda ()
                              (subword-mode +1)
-                             (eglot-ensure)
+                             ;; (eglot-ensure)
                              (gofmt-on-save-mode)
                              (setq-local truncate-lines t)
                              (setq-local indent-tabs-mode t)

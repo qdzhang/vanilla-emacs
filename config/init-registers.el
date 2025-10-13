@@ -10,6 +10,10 @@
 (set-register register-separator "\n\n")
 (setq register-preview-delay 0.1)
 
+(defun my/bookmarks-list ()
+  (interactive)
+  (call-interactively 'bookmark-bmenu-list))
+
 (transient-define-prefix my-transient/rectangle-edit-menu ()
   "Rectangle editing menu"
   [
@@ -44,7 +48,7 @@
    ["Bookmark"
     ("b" "bookmark jump" bookmark-jump)
     ("m" "bookmark set" bookmark-set)
-    ("l" "bookmark list" bookmark-bmenu-list)]
+    ("l" "bookmark list" my/bookmarks-list)]
    ["Window"
     ("f" "Save frame" frameset-to-register)
     ("w" "Save window" window-configuration-to-register)]])

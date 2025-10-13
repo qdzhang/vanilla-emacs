@@ -87,6 +87,8 @@
       (start-process "gtags" "*Messages*" "gtags")
       (message "Gtags create done."))))
 
+(defalias 'ggen 'gtags-gen)
+
 (defun gtags-root-dir ()
   "Returns GTAGS root directory or nil if doesn't exist."
   (with-temp-buffer

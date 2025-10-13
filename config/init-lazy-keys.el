@@ -135,7 +135,7 @@
 
 (lazy-load-global-keys
  '(("C-<f8>" . my/upcase-word-toggle)
-   ("M-c" . my/capitalize-word-toggle)
+   ("C-<f9>" . my/capitalize-word-toggle)
    ("C-M-<return>" . my/open-newline-below)
    ("C-o" . my/open-newline-above)
    ("M-w" . my/kill-ring-save)
