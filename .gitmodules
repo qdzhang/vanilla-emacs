@@ -103,7 +103,7 @@
 	url = git@github.com:greghendershott/racket-mode.git
 [submodule "raku-mode"]
 	path = lib/raku-mode
-	url = https://github.com/Raku/raku-mode
+	url = git@github.com:Raku/raku-mode.git
 [submodule "rbtagger"]
 	path = lib/rbtagger
 	url = https://github.com/thiagoa/rbtagger
