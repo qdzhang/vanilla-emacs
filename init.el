@@ -158,6 +158,20 @@
     (when (file-exists-p file)
       (load file))))
 
+(defun my/byte-and-native-compile ()
+  "Used in Makefile. Compile all config files in `config/' and init.el.
+There is no need to call this function inside Emacs. Use `make compile' in shell
+to invoke the compilation. Use `make clean-elc' to remove the byte-compiled
+`.elc' files."
+  (interactive)
+  (let ((package-user-dir (concat user-emacs-directory "config")))
+    (dolist (config-file (directory-files package-user-dir t "^.*.el$" t))
+      (byte-recompile-file config-file nil 0)
+      (native-compile config-file)))
+  (let ((init (concat user-emacs-directory "init.el")))
+    (byte-recompile-file init nil 0)
+    (native-compile init)))
+
 
 ;; To disable collection of benchmark data after init is done.
 (add-hook 'after-init-hook 'benchmark-init/deactivate)

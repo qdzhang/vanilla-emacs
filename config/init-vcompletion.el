@@ -36,8 +36,8 @@
 (add-to-list 'completion-styles 'flex t)
 
 ;; * Config `vcomplete-mode'
-(require 'vcomplete)
-(vcomplete-mode)
+;; (require 'vcomplete)
+;; (vcomplete-mode)
 
 ;; ** Config position and size of completions buffer
 (if (> emacs-major-version 28)

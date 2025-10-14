@@ -1,5 +1,7 @@
 DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
 BATCH = emacs -Q --batch
+ELC_REGEX := ^.*.elc$
+FIND_AND_DELETE := find config -regex '$(ELC_REGEX)' -delete
 
 -include $(DRONES_DIR)/borg/borg.mk
 
@@ -30,3 +32,13 @@ codespell-fix:
 autoload:
 	@$(BATCH) --script config/init-autoload.el --eval \
 	"(my/update-all-autoloads)"
+
+compile:
+	@$(BATCH) --script init.el --eval \
+	"(my/byte-and-native-compile)"
+
+clean-elc:
+	rm init.elc
+	@echo "init.elc removed."
+	$(FIND_AND_DELETE)
+	@echo "All .elc file in config dir removed."

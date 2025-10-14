@@ -6,6 +6,10 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (load "/usr/share/emacs/site-lisp/gtags.el")
+  (require 'gtags))
+
 (defun my/c-project-create-etags (dir-name)
   "Create etags file in a c project."
   (interactive "DDirectory: ")
@@ -48,7 +52,7 @@
 ;; Use `gtags-gen' to create Global tags, and after save hook to update
 ;; GLOBAL database with changed data.
 
-(require 'gtags)
+
 
 (add-hook 'gtags-mode-hook #'my/gtags-mode-keybindings)
 
