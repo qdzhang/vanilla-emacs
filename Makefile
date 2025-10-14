@@ -1,4 +1,5 @@
 DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
+BATCH = emacs -Q --batch
 
 -include $(DRONES_DIR)/borg/borg.mk
 
@@ -25,3 +26,7 @@ codespell-fix:
 	  --exclude-file ~/.emacs.d/etc/codespell/ignore-lines \
 	  --skip $(shell sed '/^\s*$$/d;/^\s*#.*$$/d;s/#.*//;s/\s//g' \
 	  ~/.emacs.d/etc/codespell/ignore-files | tr "\\n" ",")
+
+autoload:
+	@$(BATCH) --script config/init-autoload.el --eval \
+	"(my/update-all-autoloads)"

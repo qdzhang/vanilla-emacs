@@ -4,22 +4,25 @@
 
 ;;; Commentary:
 
-;; This file contains all functions should be autoloaded.
+;; Use `my/update-all-autoloads' to generate a single file `my-all-loaddefs.el'
+;; that contains all functions should be autoloaded.
 
 ;;; Code:
 
+;; Emacs 29+
 ;;;###autoload
 (defun my/update-all-autoloads ()
   (interactive)
-  (cd (concat user-emacs-directory "site-lisp"))
-  (let ((generated-autoload-file
-         (expand-file-name "site-lisp-loaddefs.el")))
-    (update-directory-autoloads ""))
+  (when (fboundp 'loaddefs-generate)
+    (loaddefs-generate
+     (list
+      (concat user-emacs-directory "site-lisp")
+      (concat user-emacs-directory "config"))
+     (expand-file-name (concat user-emacs-directory
+                               "config/"
+                               "my-all-loaddefs.el")))))
 
-  (cd (concat user-emacs-directory "config"))
-  (let ((generated-autoload-file
-         (expand-file-name "config-loaddefs.el")))
-    (update-directory-autoloads "")))
+(message "Already update all autoloads.")
 
 
 (provide 'init-autoload)

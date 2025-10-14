@@ -65,8 +65,7 @@
 (require 'init-incremental)
 
 ;; Autoload files
-(require 'config-loaddefs)
-(require 'site-lisp-loaddefs)
+(require 'my-all-loaddefs)
 
 ;; Languages
 (with-eval-after-load 'cc-mode
