@@ -2,6 +2,10 @@ DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
 BATCH = emacs -Q --batch
 ELC_REGEX := ^.*.elc$
 FIND_AND_DELETE := find config -regex '$(ELC_REGEX)' -delete
+URL := https://github.com/casouri/tree-sitter-module/releases/download/v2.4/libs-linux-x64.zip
+ZIP := tree-sitter.zip
+TARGET_DIR := tree-sitter
+
 
 -include $(DRONES_DIR)/borg/borg.mk
 
@@ -42,3 +46,21 @@ clean-elc:
 	@echo "init.elc removed."
 	$(FIND_AND_DELETE)
 	@echo "All .elc file in config dir removed."
+
+treesitter: download uncompress
+	@echo "===  Tree sitter module setup finished. ==="
+
+download:
+	@echo "=== Downloading $(URL)... ==="
+	@curl -L -o $(ZIP) $(URL)
+	@echo "=== Download complete: $(ZIP)==="
+
+uncompress:
+	@mkdir -p temp_unpacked
+	@mkdir -p $(TARGET_DIR)
+# Unzip the content to a temporary directory
+	@unzip -q -d temp_unpacked $(ZIP)
+	@mv temp_unpacked/dist/* $(TARGET_DIR)
+# Clean up the temporary directory
+	@rm -rf temp_unpacked
+	@echo "=== Recompression complete. ==="

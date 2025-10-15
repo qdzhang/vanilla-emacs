@@ -54,5 +54,21 @@ URL: https://emacsredux.com/blog/2022/06/12/auto-create-missing-directories/"
 
 (add-to-list 'find-file-not-found-functions #'my/auto-create-missing-dirs)
 
+;;; Show tabs
+(defun my/show-tabs ()
+  (setq whitespace-style
+        '(face
+          ;; show tab as » (see `whitespace-display-mappings')
+          tab-mark))
+  (whitespace-mode 1))
+
+;;; Show trailing whitespace
+(defun my/show-trailing-whitespace ()
+  (set-face-attribute 'trailing-whitespace nil
+                      :background "green")
+  (setq show-trailing-whitespace 1))
+(add-hook 'prog-mode-hook 'my/show-trailing-whitespace)
+(add-hook 'prog-mode-hook 'my/show-tabs)
+
 
 (provide 'init-misc)
