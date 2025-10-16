@@ -7,7 +7,8 @@
 ;;; Code:
 
 (eval-when-compile
-  (load "/usr/share/emacs/site-lisp/gtags.el")
+  (load "/usr/share/emacs/site-lisp/gtags.el"))
+(eval-and-compile
   (require 'gtags))
 
 (defun my/c-project-create-etags (dir-name)

@@ -173,4 +173,23 @@ Available values are:
 (add-hook 'c-mode-hook   #'editcmacro-mode)
 (add-hook 'c++-mode-hook #'editcmacro-mode)
 
+;; https://github.com/Elilif/.elemacs/blob/ff4f2e3076de5aa653479f37b77d294940d0a828/lisp/init-lang.el#L95C1-L108C74
+(defun my/compile-set ()
+  "Setup `compile' for `c-mode' and `c++-mode'."
+  (let* ((file-name (buffer-file-name))
+         (is-windows (equal 'windows-nt system-type))
+         (exec-suffix (if is-windows ".exe" ".out")))
+    (when file-name
+      (setq file-name (file-name-nondirectory file-name))
+      (let ((out-file (concat (file-name-sans-extension file-name) exec-suffix)))
+        (setq-local compile-command (pcase major-mode
+                                      ('c++-mode
+                                       (format "g++ -std=c++11 -g %s -o %s"
+                                               file-name out-file))
+                                      ('c-mode
+                                       (format "gcc -std=c89 -g %s -o %s"
+                                               file-name out-file))))))))
+
+(add-hook 'c-mode-common-hook 'my/compile-set)
+
 (provide 'init-c)

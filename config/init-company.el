@@ -56,6 +56,7 @@ Uses ivy, helm, vertico, or ido, if available."
 ;; candidates by the search string.
 (define-key company-active-map (kbd "C-M-i") 'company-complete)
 (define-key company-active-map (kbd "C-M-s") '+company/completing-read)
+(define-key company-active-map (kbd "M-i") 'company-complete-selection)
 
 (with-eval-after-load 'company-etags
   '(progn (add-to-list 'company-etags-modes 'web-mode)))
