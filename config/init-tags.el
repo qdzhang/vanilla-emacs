@@ -107,7 +107,7 @@
 
 (defun my/gtags-select-mode-keybindings ()
   "keybindings for `gtags-select-mode'."
-  (define-key gtags-select-mode-map (kbd "q") 'gtags-pop-stack)
+  (define-key gtags-select-mode-map (kbd "q") 'kill-buffer-and-window)
   (define-key gtags-select-mode-map (kbd "n") 'next-line)
   (define-key gtags-select-mode-map (kbd "p") 'previous-line))
 
@@ -126,9 +126,12 @@
   (let ((default-directory (gtags-root-dir)))
     (if (zerop (call-process "global" nil nil nil " -p")) ; tagfile doesn't exist?
         (progn
-          (start-process "gtags" "*Messages*" "global" "--update")
+          (start-process "gtags" "*Gtags-status*" "global" "--update")
           (message "Gtags update done."))
-      (start-process "gtags" "*Messages*" "gtags")
+      (setenv "GTAGSCONF" "/usr/share/gtags/gtags.conf")
+      (setenv "GTAGSLABEL" "pygments")
+      (setenv "GTAGSTHROUGH" "true")
+      (start-process "gtags" "*Gtags-status*" "gtags" "-v")
       (message "Gtags create done."))))
 
 (defalias 'ggen 'gtags-gen)
@@ -140,6 +143,7 @@
         (buffer-substring (point-min) (1- (point-max)))
       (project-root (project-current)))))
 
+;; Might be useless. Use `gtags-gen' instead.
 (defun gtags-update-single(filename)
   "Update Gtags database for changes in a single file"
   (interactive)
@@ -147,6 +151,7 @@
       (start-process "update-gtags" "update-gtags" "cmd" "/c" (concat "cd " (gtags-root-dir) " && gtags --single-update " filename ))
     (start-process "update-gtags" "update-gtags" "bash" "-c" (concat "cd " (gtags-root-dir) " ; gtags --single-update " filename ))))
 
+;; Might be useless. Use `gtags-gen' instead.
 (defun gtags-update-current-file()
   (interactive)
   (let ((gtagsfilename (replace-regexp-in-string (gtags-root-dir) "." (buffer-file-name (current-buffer)))))
@@ -157,7 +162,7 @@
   "Update GTAGS file incrementally upon saving a file"
   (when gtags-mode
     (when (gtags-root-dir)
-      (gtags-update-current-file))))
+      (gtags-gen))))
 
 
 (defun gtags-next-gtag ()
