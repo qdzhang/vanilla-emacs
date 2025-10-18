@@ -12,9 +12,9 @@ Available values are:
 (setq my/c-mode-selection 'clang)
 
 (cl-case my/c-mode-selection
-  (clang (add-hook 'c-mode-hook 'my/c-mode-to-use-clang-and-gtags))
-  (cedet (add-hook 'c-mode-hook 'my/c-mode-to-use-semantic))
-  (eglot (add-hook 'c-mode-hook 'my/c-mode-to-use-eglot)))
+  (clang (add-hook 'c-mode-common-hook 'my/c-mode-to-use-clang-and-gtags))
+  (cedet (add-hook 'c-mode-common-hook 'my/c-mode-to-use-semantic))
+  (eglot (add-hook 'c-mode-common-hook 'my/c-mode-to-use-eglot)))
 
 
 ;; Setup CEDET
@@ -138,8 +138,10 @@ Available values are:
            (lambda nil
              (c-set-style "llvm.org"))))
 
-;; Enable `smart-semicolon-mode' in `c-mode'
-(add-hook 'c-mode-common-hook #'smart-semicolon-mode)
+;; Enable `smart-semicolon-mode' and `smart-dash-mode' in `c-mode'
+(add-hook 'c-mode-common-hook (lambda ()
+                                (smart-dash-mode 1)
+                                (smart-semicolon-mode 1)))
 
 (defun my/meson-executable ()
   "Insert executable function of current file in meson.build."
@@ -165,7 +167,6 @@ Available values are:
   (add-hook 'flymake-diagnostic-functions 'flymake-gcc nil t))
 
 (add-hook 'c-mode-hook (lambda ()
-                         (smart-dash-mode 1)
                          (my/c-abbrev-config)
                          (my/c-flymake)))
 
