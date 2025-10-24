@@ -148,8 +148,7 @@
           (lambda ()
             (lazy-load-local-keys
              '(("C-M-<tab>" . clang-format-region)
-               ("C-c <f1>" . clang-format-buffer)
-               ("C-c <f2>" . clang-rename))
+               ("C-c <f1>" . clang-format-buffer))
              c-mode-base-map
              "init-clang-tools")))
 
