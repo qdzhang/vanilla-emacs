@@ -5,7 +5,20 @@
   (savehist-mode 1)
 
   ;; Save kill-ring history
-  (add-to-list 'savehist-additional-variables 'kill-ring)
+  ;; (add-to-list 'savehist-additional-variables 'kill-ring)
+  (setq kill-do-not-save-duplicates t)
+
+  ;; Large savehist file will hang Emacs. Don't save kill-ring in savehist file.
+  ;; To persist kill-ring, use an external clipboard manager, such as CopyQ.
+  ;; See:
+  ;; https://emacs.stackexchange.com/questions/12086/high-cpu-memory-usage-and-abnormally-large-savehist-file
+  ;; https://emacs.stackexchange.com/questions/4187/strip-text-properties-in-savehist
+  ;; https://github.com/syl20bnr/spacemacs/issues/9409
+  (defun unpropertize-kill-ring ()
+    "Remove text properties from `kill-ring' to reduce savehist cache size."
+    (setq kill-ring (mapcar #'substring-no-properties
+                            (cl-remove-if-not #'stringp kill-ring))))
+  (add-hook 'kill-emacs-hook 'unpropertize-kill-ring)
 
   (autoload 'zap-up-to-char "misc"
     "Kill up to, but not including ARGth occurrence of CHAR." t)
