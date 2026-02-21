@@ -14,6 +14,9 @@
 ;; Show word-granularity differences. (Show in-line differences)
 (setq magit-diff-refine-hunk t)
 
+;; Disable long lines warning
+(setq magit-show-long-lines-warning nil)
+
 ;; This function can make magit working in home directory
 ;; with a bare git respository,such as dotfiles directory
 (defun ~/magit-process-environment (env)
