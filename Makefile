@@ -2,7 +2,7 @@ DRONES_DIR = $(shell git config "borg.drones-directory" || echo "lib")
 BATCH = emacs -Q --batch
 ELC_REGEX := ^.*.elc$
 FIND_AND_DELETE := find config -regex '$(ELC_REGEX)' -delete
-URL := https://github.com/casouri/tree-sitter-module/releases/download/v2.4/libs-linux-x64.zip
+URL := https://github.com/qdzhang/vanilla-emacs/releases/download/v0.1/tree-sitter-compiled.zip
 ZIP := tree-sitter.zip
 TARGET_DIR := tree-sitter
 
