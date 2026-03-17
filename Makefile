@@ -60,7 +60,7 @@ uncompress:
 	@mkdir -p $(TARGET_DIR)
 # Unzip the content to a temporary directory
 	@unzip -q -d temp_unpacked $(ZIP)
-	@mv temp_unpacked/dist/* $(TARGET_DIR)
+	@mv temp_unpacked/tree-sitter/* $(TARGET_DIR)
 # Clean up the temporary directory
 	@rm -rf temp_unpacked
 	@echo "=== Recompression complete. ==="
