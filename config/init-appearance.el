@@ -126,8 +126,8 @@
 ;; Default is light
 (defvar my/current-color-theme 'light)
 ;; Setup a pair of dark/light themes
-(defvar my/light-theme 'mylight)
-(defvar my/dark-theme 'mydark)
+(defvar my/light-theme 'alabaster)
+(defvar my/dark-theme 'alabaster-dark)
 
 (define-key global-map (kbd "<f7>") #'my/theme-toggle-color)
 
