@@ -26,10 +26,7 @@
  '(mode-line-inactive ((t :background "#e5e5e5" :foreground "#7f7f7f" :box (:line-width -1 :color "#bababa"))))
  '(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))
  '(highlight ((t (:background "darkseagreen2"))))
- '(secondary-selection ((t (:background "NavyBlue" :foreground "white"))))
- '(cperl-array-face ((t (:bold t :foreground "RoyalBlue" :background "lavender"))))
- '(cperl-hash-face ((t (:italic t :bold t :foreground "tomato" :background "MistyRose"))))
- '(cperl-nonoverridable-face ((t (:foreground "#008b8b")))))
+ '(secondary-selection ((t (:background "NavyBlue" :foreground "white")))))
 
 ;;;###autoload
 (when load-file-name

@@ -52,7 +52,6 @@ The original repository is https://github.com/tonsky/vscode-theme-alabaster")
 
    ;; Search
    `(isearch ((,class (:background "#FFBC5D" :foreground ,fg))))
-   `(lazy-highlight ((,class (:background "#FFD86381" :foreground ,fg))))
 
    ;; Diff
    `(diff-added ((,class (:background "#DDFFDD" :foreground "#434343"))))
@@ -67,10 +66,7 @@ The original repository is https://github.com/tonsky/vscode-theme-alabaster")
 
    ;; Misc
    `(ansi-color-white ((t :background "gray65" :foreground "gray65")))
-   `(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))
-   `(cperl-array-face ((t (:bold t :foreground "RoyalBlue" :background "lavender"))))
-   `(cperl-hash-face ((t (:italic t :bold t :foreground "tomato" :background "MistyRose"))))
-   `(cperl-nonoverridable-face ((t (:foreground "#008b8b"))))))
+   `(web-mode-current-element-highlight-face ((t :foreground "black" :background "PaleGreen2")))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)

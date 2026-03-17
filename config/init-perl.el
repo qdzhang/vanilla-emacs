@@ -21,7 +21,30 @@
   (smart-dash-c-mode 1)
   (smart-semicolon-mode 1)
   (outline-minor-mode 1)
-  (add-to-list 'smart-dash-c-modes 'cperl-mode))
+  (add-to-list 'smart-dash-c-modes 'cperl-mode)
+
+  (setq cperl-font-lock t)
+  (setq cperl-electric-lbrace-space t)
+  (setq cperl-electric-parens nil)
+  (setq cperl-electric-linefeed nil)
+  (setq cperl-electric-keywords nil)
+  (setq cperl-info-on-command-no-prompt t)
+  (setq cperl-clobber-lisp-bindings t)
+  (setq cperl-lazy-help-time 3)
+  (setq cperl-invalid-face nil)
+
+  (set-face-attribute 'cperl-array-face nil
+                      :foreground 'unspecified
+                      :background 'unspecified
+                      :weight 'unspecified
+                      :inherit 'font-lock-variable-name-face
+                      :slant 'italic)
+  (set-face-attribute 'cperl-hash-face nil
+                      :foreground 'unspecified
+                      :background 'unspecified
+                      :weight 'unspecified
+                      :inherit 'font-lock-variable-name-face
+                      :weight 'bold))
 
 ;; https://emacs.stackexchange.com/questions/39229/perform-key-translation-in-a-major-mode
 (defun my/perl-key-translation ()
@@ -38,8 +61,6 @@
   (define-key cperl-mode-map (kbd "C-M-<tab>") 'perltidy-region)
   (define-key cperl-mode-map (kbd "C-c <f1>") 'perltidy-buffer))
 
-(set-face-background 'cperl-array-face (face-background 'default))
-(set-face-background 'cperl-hash-face (face-background 'default))
 
 
 ;; Raku

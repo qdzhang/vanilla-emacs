@@ -47,7 +47,6 @@ The original repository is https://github.com/tonsky/sublime-scheme-alabaster")
    ;; Search & Brackets
    `(show-paren-match ((t (:foreground ,active :background "#d33682"))))
    `(isearch ((t (:foreground "#000000" :background ,active))))
-   `(lazy-highlight ((t (:foreground ,active :background "#293334"))))
 
    ;; Diff / Markup
    `(diff-added ((t (:foreground "#80a000"))))
@@ -58,10 +57,7 @@ The original repository is https://github.com/tonsky/sublime-scheme-alabaster")
    `(web-mode-current-element-highlight-face ((t :foreground "white" :background "PaleGreen4")))
    `(ansi-color-blue ((t :foreground "#569cd6" :background "#569cd6")))
    `(ansi-color-bright-blue ((t :foreground "#007acc" :background "#007acc")))
-   `(underline ((t (:underline t))))
-   `(cperl-array-face ((t (:bold t :foreground "DeepSkyBlue"))))
-   `(cperl-hash-face ((t (:italic t :bold t :foreground "tomato"))))
-   `(cperl-nonoverridable-face ((t (:foreground "chartreuse3"))))))
+   `(underline ((t (:underline t))))))
 
 ;;;###autoload
 (when (and (boundp 'custom-theme-load-path) load-file-name)

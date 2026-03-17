@@ -24,10 +24,7 @@
  '(web-mode-current-element-highlight-face ((t :foreground "white" :background "PaleGreen4")))
  '(ansi-color-blue ((t :foreground "#569cd6" :background "#569cd6")))
  '(ansi-color-bright-blue ((t :foreground "#007acc" :background "#007acc")))
- '(underline ((t (:underline t))))
- '(cperl-array-face ((t (:bold t :foreground "DeepSkyBlue"))))
- '(cperl-hash-face ((t (:italic t :bold t :foreground "tomato"))))
- '(cperl-nonoverridable-face ((t (:foreground "chartreuse3")))))
+ '(underline ((t (:underline t)))))
 
 ;;;###autoload
 (when load-file-name
