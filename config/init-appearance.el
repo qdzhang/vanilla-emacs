@@ -90,7 +90,7 @@
 ;; - prog-mode-hook
 ;; - help-mode-hook
 ;; - conf-mode-hook
-(dolist (mode '(org-mode-hook inf-sdcv-mode-hook markdown-mode-hook))
+(dolist (mode '(org-mode-hook inf-sdcv-mode-hook md-ts-mode-hook))
   (add-hook mode (lambda () (text-scale-increase 1.2))))
 
 ;; For a bigger external monitor

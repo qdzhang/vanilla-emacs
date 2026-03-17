@@ -54,6 +54,9 @@
 
 (repeat-mode)
 
+;; Autoload files
+(require 'my-all-loaddefs)
+
 ;;; Config files
 (require 'init-misc)
 (require 'init-appearance)
@@ -63,9 +66,6 @@
 (require 'init-super-save)
 (require 'init-modeline)
 (require 'init-incremental)
-
-;; Autoload files
-(require 'my-all-loaddefs)
 
 ;; Languages
 (with-eval-after-load 'cc-mode
