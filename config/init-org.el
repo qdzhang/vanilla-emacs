@@ -51,7 +51,7 @@
   "A simple funciton for distraction-free writing."
   (interactive)
   (setq-local visual-fill-column-center-text t)
-  (setq-local visual-fill-column-width 50)
+  (setq-local visual-fill-column-width 70)
   (auto-fill-mode -1)
   (save-excursion
     (set-mark (point-min))

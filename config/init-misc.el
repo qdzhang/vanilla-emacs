@@ -83,5 +83,6 @@ URL: https://emacsredux.com/blog/2022/06/12/auto-create-missing-directories/"
 (add-hook 'prog-mode-hook 'my/show-trailing-whitespace)
 (add-hook 'prog-mode-hook 'my/show-tabs)
 
+(setq use-dialog-box nil)
 
 (provide 'init-misc)
