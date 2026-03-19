@@ -92,6 +92,8 @@
 (require 'init-python)
 (with-eval-after-load 'python-mode
   (require 'init-eglot))
+(with-eval-after-load 'julia-mode
+  (require 'init-julia))
 
 
 (with-eval-after-load 'flymake

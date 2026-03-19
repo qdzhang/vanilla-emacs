@@ -166,3 +166,12 @@
 [submodule "with-editor"]
 	path = lib/with-editor
 	url = git@github.com:magit/with-editor.git
+[submodule "julia-emacs"]
+	path = lib/julia-emacs
+	url = git@github.com:JuliaEditorSupport/julia-emacs.git
+[submodule "julia-repl"]
+	path = lib/julia-repl
+	url = git@github.com:tpapp/julia-repl.git
+[submodule "s"]
+	path = lib/s
+	url = git@github.com:magnars/s.el.git
