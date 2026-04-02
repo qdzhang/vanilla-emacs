@@ -53,8 +53,19 @@
   "Get or create an ansi-term buffer."
   (interactive)
   (or (when current-prefix-arg (se-new-term name))
-      (car (filter-buffers-by-mode 'term-mode))
+      (cl-find-if (lambda (buf)
+                    (with-current-buffer buf
+                      (and (derived-mode-p 'term-mode)
+                           (not (string= (buffer-name buf) "*quake-term*")))))
+                  (buffer-list))
       (se-new-term name)))
+
+(defun se-get-or-create-quake ()
+  "Get or create an quake term buffer."
+  (interactive)
+  (or (when current-prefix-arg (se-new-term "quake-term"))
+      (car (filter-buffers-by-mode 'term-mode))
+      (se-new-term "quake-term")))
 
 (defun se-get-or-create-eshell-project-root ()
   "Get or create an eshell buffer in project root."
@@ -137,6 +148,19 @@ not exists."
       (rename-buffer "*quake-term*")
     (error "Not a term buffer")))
 
+(defun se-toggle-quake-term ()
+  "Toggle the visibility of the *quake-term* buffer."
+  (interactive)
+  (let ((buffer (get-buffer "*quake-term*")))
+    (cond
+     ((not buffer)
+      (se-get-or-create-quake))
+     ((get-buffer-window buffer)
+      (delete-windows-on buffer))
+     (t
+      (display-buffer buffer)
+      (select-window (get-buffer-window buffer))))))
+
 (transient-define-prefix shell-easy-transient-menu ()
   "A transient menu for shell easy."
   [["Eshell"
@@ -149,7 +173,7 @@ not exists."
     ("n" "anti-term new" se-new-term)]
    ["Quake-like"
     ("q" "quake" se-make-quake)
-    ("`" "toggle quake" window-toggle-side-windows)]
+    ("`" "toggle quake" se-toggle-quake-term)]
    ["Navigation"
     ("<up>" "previous" previous-buffer)
     ("<down>" "next" next-buffer)
