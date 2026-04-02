@@ -50,7 +50,8 @@
     ("r" "Regexp builder" regexp-builder)
     ("b" "Benchmark" benchmark-init/show-durations-tree)
     ("t" "Change theme" my/switch-theme)
-    ("i" "Auto insert" auto-insert)]
+    ("i" "Auto insert" auto-insert)
+    ("E" "Coding system" revert-buffer-with-coding-system)]
    ["Proxy"
     ("xs" "Status" proxy-socks-show)
     ("xe" "Enable" proxy-socks-enable)

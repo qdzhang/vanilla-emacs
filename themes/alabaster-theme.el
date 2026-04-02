@@ -42,7 +42,6 @@ The original repository is https://github.com/tonsky/vscode-theme-alabaster")
    `(font-lock-function-name-face ((,class (:foreground ,entity))))
    `(font-lock-variable-name-face ((,class (:foreground ,fg))))
    `(font-lock-builtin-face ((,class (:foreground ,fg))))
-   `(font-lock-warning-face ((,class (:foreground "#660000" :background "#96000014"))))
    `(font-lock-negation-char-face ((,class (:foreground ,number))))
    `(font-lock-preprocessor-face ((,class (:foreground ,entity))))
 
